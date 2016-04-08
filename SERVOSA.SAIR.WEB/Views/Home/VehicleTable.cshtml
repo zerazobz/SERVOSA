@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SERVOSA.SAIR.DATAACCESS.Models.Vehicle.VehicleModel>
+
+<form action="/" method="post" id="tableData">
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlacaTracto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlacaTolva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoMarca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoEstado)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlacaTracto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlacaTolva)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoMarca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoEstado)
+                </td>
+            </tr>
+        }
+
+    </table>
+</form>

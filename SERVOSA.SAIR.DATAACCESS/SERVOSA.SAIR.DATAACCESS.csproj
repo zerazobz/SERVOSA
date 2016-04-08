@@ -50,11 +50,14 @@
   <ItemGroup>
     <Compile Include="Contracts\IDBColumnsRepository.cs" />
     <Compile Include="Contracts\IDBTablesRepository.cs" />
+    <Compile Include="Contracts\IVehicleRepository.cs" />
     <Compile Include="Core\IRepository.cs" />
     <Compile Include="Models\DB\ColumnModel.cs" />
     <Compile Include="Models\DB\TableModel.cs" />
+    <Compile Include="Models\Vehicle\VehicleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Realizations\DBRepository.cs" />
+    <Compile Include="Realizations\VehicleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
