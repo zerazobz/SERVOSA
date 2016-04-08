@@ -16,7 +16,8 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public DBRepository()
         {
-            _servosaDB = DatabaseFactory.CreateDatabase();
+            DatabaseProviderFactory _databaseFactory = new DatabaseProviderFactory();
+            _servosaDB = _databaseFactory.CreateDefault();
         }
 
         public int Create(TableModel entity)
@@ -32,7 +33,12 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public int Create(ColumnModel entity)
         {
-            throw new NotImplementedException();
+            object[] parameters = new object[] { entity.TableName, entity.ColumnName, entity.DataType };
+            using (var createCommand = _servosaDB.GetStoredProcCommand("SAIR_ADDCOLUMNTABLE", parameters))
+            {
+                var resultExecution = _servosaDB.ExecuteNonQuery(createCommand);
+                return resultExecution;
+            }
         }
 
         public int Delete(TableModel entity)
@@ -42,7 +48,12 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public int Delete(ColumnModel entity)
         {
-            throw new NotImplementedException();
+            object[] parameters = new object[] { entity.TableName, entity.ColumnName };
+            using (var deleteColumnCommand = _servosaDB.GetStoredProcCommand("SAIR_DROPCOLUMNTABLE", parameters))
+            {
+                var resultExecution = _servosaDB.ExecuteNonQuery(deleteColumnCommand);
+                return resultExecution;
+            }
         }
 
         public IList<ColumnModel> GetAll()

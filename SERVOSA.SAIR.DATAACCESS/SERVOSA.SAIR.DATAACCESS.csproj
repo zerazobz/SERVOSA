@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Contracts\IDBColumnsRepository.cs" />
     <Compile Include="Contracts\IDBTablesRepository.cs" />
     <Compile Include="Core\IRepository.cs" />

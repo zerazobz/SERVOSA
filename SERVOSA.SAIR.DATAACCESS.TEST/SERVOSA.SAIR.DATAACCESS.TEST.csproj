@@ -113,12 +113,20 @@
   <ItemGroup>
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="DbRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SERVOSA.SAIR.DATAACCESS\SERVOSA.SAIR.DATAACCESS.csproj">
+      <Project>{d8de45cc-066d-4294-97da-370eb30993e8}</Project>
+      <Name>SERVOSA.SAIR.DATAACCESS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

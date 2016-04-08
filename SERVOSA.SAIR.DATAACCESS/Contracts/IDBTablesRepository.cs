@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Contracts
 {
-    interface IDBTablesRepository : IRepository<TableModel>
+    public interface IDBTablesRepository : IRepository<TableModel>
     {
     }
 }
