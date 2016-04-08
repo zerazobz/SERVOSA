@@ -22,12 +22,25 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public int Create(TableModel entity)
         {
-            object[] parameters = new object[] { entity.TableName };
+            object[] parameters = new object[] { entity.TableName, null };
 
             using (var dbCommand = _servosaDB.GetStoredProcCommand("SAIR_CREATETABLE", parameters))
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(dbCommand);
+                var outputValue = _servosaDB.GetParameterValue(dbCommand, "@tableNormalizedName");
                 return resultExecution;
+            }
+        }
+
+        public Tuple<int, string> CreateTableAndReturnsNormalizedName(TableModel entity)
+        {
+            object[] parameters = new object[] { entity.TableName, null };
+
+            using (var dbCommand = _servosaDB.GetStoredProcCommand("SAIR_CREATETABLE", parameters))
+            {
+                var resultExecution = _servosaDB.ExecuteNonQuery(dbCommand);
+                var outputValue = Convert.ToString(_servosaDB.GetParameterValue(dbCommand, "@tableNormalizedName"));
+                return new Tuple<int, string>(resultExecution, outputValue);
             }
         }
 

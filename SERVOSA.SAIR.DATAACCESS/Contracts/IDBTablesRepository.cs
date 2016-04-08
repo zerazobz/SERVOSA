@@ -10,5 +10,6 @@ namespace SERVOSA.SAIR.DATAACCESS.Contracts
 {
     public interface IDBTablesRepository : IRepository<TableModel>
     {
+        Tuple<int, string> CreateTableAndReturnsNormalizedName(TableModel entity);
     }
 }
