@@ -40,14 +40,17 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public IList<VehicleModel> GetAll()
         {
-            throw new NotImplementedException();
+            object[] parameters = new object[] { };
+            IRowMapper<VehicleModel> vehicleRowMapper = GetMapperSimple();
+            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS", vehicleRowMapper, parameters);
+            return vehicleCollection.ToList();
         }
 
         public IList<VehicleModel> GetAllFiltered(int minRow, int maxRow)
         {
             object[] parameters = new object[] { minRow, maxRow };
             IRowMapper<VehicleModel> vehicleRowMapper = MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.Marca).Build();
-            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS", vehicleRowMapper, parameters);
+            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_Filtrado", vehicleRowMapper, parameters);
             return vehicleCollection.ToList();
         }
 
@@ -64,6 +67,12 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                 var executionResult = _servosaDB.ExecuteNonQuery(updateCommand);
                 return executionResult;
             }
+        }
+
+        private IRowMapper<VehicleModel> GetMapperSimple()
+        {
+            return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
+                .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.Marca).Build();
         }
     }
 }
