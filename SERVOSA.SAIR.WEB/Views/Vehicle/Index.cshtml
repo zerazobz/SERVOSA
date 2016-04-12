@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<SERVOSA.SAIR.DATAACCESS.Models.DB.TableModel>
+
 @{
     ViewBag.Title = "Mantenimiento de Vehículos";
 }
@@ -16,8 +17,14 @@
         </div>
     </div>
     <div class="row">
-        <div id="vehicleTable">
+        <div style="overflow-x: auto;">
+            <div id="vehicleTable" style="float: left;">
 
+            </div>
+            @foreach (var iTable in Model)
+            {
+                { Html.RenderPartial("VehicleDataTable", iTable); }
+            }
         </div>
     </div>
 </div>
