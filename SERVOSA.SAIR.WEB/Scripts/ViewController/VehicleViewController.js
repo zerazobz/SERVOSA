@@ -4,6 +4,19 @@
         $("#vehicleTable").jtable('load');
     };
 
+    vehicleNamespace.LoadTableHeadDetails = function (nameTable) {
+
+    };
+
+    vehicleNamespace.LoadDataForTablesYetLoaded = function () {
+        var allTables = $(".containerdatatable>table");
+        $.each(allTables, function (i, element) {
+            var $tableName = $(element).data('tablename');
+
+            console.debug('Cargando datos de la tabla: ' + $tableName);
+        });
+    };
+
     $(function () {
         $("#vehicleTable").jtable({
             title: 'Listado de Vehiculos',
@@ -25,8 +38,33 @@
             }
         });
 
-        vehicleNamespace.LoadVehicleTable();
-    });
+        $("#containerforalltables").on('load', ".containerdatatable>table", null, function (eventObject) {
+            var tableName = $(this).data('tablename');
+            console.debug('La tabla cargada es: ' + tableName);
+            console.debug('Cargando columnas y datos');
+        });
 
+        $(".containerdatatable>table").load(function () {
+            var tableName = $(this).data('tablename');
+            console.debug('La tabla cargada es: ' + tableName);
+            console.debug('Cargando columnas y datos');
+        });
+
+        $("#addNewTable").click(function () {
+            var currentDate = new Date();
+            var tableName = $.datepicker.formatDate("yymmdd@", currentDate);
+
+            $.get("/Templates/VehicleTableTemplate.html", function (data) {
+
+                $(data).find("table").data("tablename", tableName.toString());
+                $(data).find("table>thead>tr:eq(0) th").text(tableName.toString());
+
+                $("#containerforalltables").append(data);
+            });
+        });
+
+        vehicleNamespace.LoadVehicleTable();
+        vehicleNamespace.LoadDataForTablesYetLoaded();
+    });
 
 })(window.VehicleNamespace = window.VehicleNamespace || {}, jQuery);

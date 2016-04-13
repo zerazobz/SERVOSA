@@ -429,6 +429,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ViewController\SERVOSAViewController.js" />
     <Content Include="Scripts\ViewController\VehicleViewController.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\jtable\themes\metro\red\jtable.less" />
@@ -456,6 +457,7 @@
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
     <None Include="T4MVC.tt.settings.xml" />
+    <Content Include="Templates\VehicleTableTemplate.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

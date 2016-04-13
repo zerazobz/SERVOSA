@@ -1,11 +1,7 @@
 ﻿@model SERVOSA.SAIR.DATAACCESS.Models.DB.TableModel
 
-@{
-
-}
-
-<div id="containerdatatable" style="float: left;">
-    <table class="table table-bordered">
+<div class="containerdatatable" style="float: left;">
+    <table class="table table-bordered" data-tablename="@Model.TableName">
         <thead>
             <tr>
                 <th colspan="3">
