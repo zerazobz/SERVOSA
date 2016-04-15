@@ -21,21 +21,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            List<TableModel> data = new List<TableModel>()
-            {
-                new TableModel() { TableName = "SUNAT" },
-                new TableModel() { TableName = "INMIGRACIONES" },
-                new TableModel() { TableName = "PEAJE" }
-            };
-
-            return View(data);
+            return View();
         }
         
-        [HttpGet]
-        public ActionResult VehicleDataTable(TableModel model)
-        {
-            return PartialView(model);
-        }
+        //[HttpGet]
+        //public ActionResult VehicleDataTable(TableModel model)
+        //{
+        //    return PartialView(model);
+        //}
 
         [HttpPost]
         public JsonResult ListVehicles(int jtStartIndex = 0, int jtPageSize = 0, string jtSorting = null)

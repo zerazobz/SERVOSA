@@ -1,5 +1,4 @@
-﻿@model IEnumerable<SERVOSA.SAIR.DATAACCESS.Models.DB.TableModel>
-
+﻿
 @{
     ViewBag.Title = "Mantenimiento de Vehículos";
 }
@@ -16,29 +15,20 @@
         <div class="col-md-4">
             <button disabled class="btn btn-default" type="button"><i class="glyphicon glyphicon-upload"></i> Cargar Excel</button>
         </div>
-        <div class="col-md-offset-4 col-md-4">
-            <button id="addNewTable" type="button" class="btn btn-default">Agregar Nueva Tabla</button>
-        </div>
+        @*<div class="col-md-offset-4 col-md-4">
+                <button id="addNewTable" type="button" class="btn btn-default">Agregar Nueva Tabla</button>
+            </div>*@
     </div>
     <div class="row">
-        <div style="overflow-x: auto;">
-            <div style="float: left;">
-                <div id="vehicleTable">
+        <div id="vehicleTable">
 
-                </div>
-            </div>
-            <div id="containerforalltables">
-                @foreach (var iTable in Model)
-                {
-                    { Html.RenderPartial("VehicleDataTable", iTable); }
-                }
-            </div>
         </div>
     </div>
 </div>
 
 @section scripts {
     <script src="~/Scripts/jquery-ui-1.9.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/handlebars-latest.js" type="text/javascript"></script>
     <script src="~/Scripts/jtable/jquery.jtable.js" type="text/javascript"></script>
     <script src="~/Scripts/jtable/localization/jquery.jtable.es.js" type="text/javascript"></script>
     <script src="~/Scripts/ViewController/VehicleViewController.js" type="text/javascript"></script>

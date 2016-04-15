@@ -56,10 +56,10 @@
 
             $.get("/Templates/VehicleTableTemplate.html", function (data) {
 
-                $(data).find("table").data("tablename", tableName.toString());
-                $(data).find("table>thead>tr:eq(0) th").text(tableName.toString());
-
-                $("#containerforalltables").append(data);
+                var handleTemplate = Handlebars.compile($(data).html());
+                var data = { tableName: tableName };
+                var htmlGenerated = handleTemplate(data);
+                $("#containerforalltables").append(htmlGenerated);
             });
         });
 

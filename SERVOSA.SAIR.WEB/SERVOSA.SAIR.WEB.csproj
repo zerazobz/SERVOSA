@@ -307,6 +307,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\handlebars-latest.js" />
+    <Content Include="Scripts\handlebars.min-latest.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -493,7 +495,7 @@
     <None Include="T4MVC.tt.hooks.t4" />
     <Content Include="Views\Home\VehicleTable.cshtml" />
     <Content Include="Views\Vehicle\Index.cshtml" />
-    <Content Include="Views\Vehicle\VehicleDataTable.cshtml" />
+    <Content Include="Views\Home\VehicleDataTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

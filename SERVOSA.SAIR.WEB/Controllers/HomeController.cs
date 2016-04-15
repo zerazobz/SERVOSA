@@ -1,4 +1,5 @@
 ﻿using SERVOSA.SAIR.DATAACCESS.Contracts;
+using SERVOSA.SAIR.DATAACCESS.Models.DB;
 using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult Index()
         {
-            return View(MVC.Home.Views.Index);
+            List<TableModel> data = new List<TableModel>()
+            {
+                new TableModel() { TableName = "SUNAT" },
+                new TableModel() { TableName = "INMIGRACIONES" },
+                new TableModel() { TableName = "PEAJE" }
+            };
+            return View(MVC.Home.Views.Index, data);
         }
 
         [ChildActionOnly]
@@ -30,6 +37,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var vehicleData = _vehicleRepository.GetAll();
 
             return PartialView(MVC.Home.Views.VehicleTable, vehicleData);
+        }
+
+        [HttpGet]
+        public ActionResult VehicleDataTable(TableModel model)
+        {
+            return PartialView(model);
         }
     }
 }
