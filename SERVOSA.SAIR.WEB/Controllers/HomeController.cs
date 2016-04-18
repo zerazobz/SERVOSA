@@ -23,9 +23,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             List<TableModel> data = new List<TableModel>()
             {
-                new TableModel() { TableName = "SUNAT" },
-                new TableModel() { TableName = "INMIGRACIONES" },
-                new TableModel() { TableName = "PEAJE" }
+                //new TableModel() { TableName = "SUNAT" }
+                //,
+                new TableModel() { TableName = "INMIGRACIONES" }
+                //, new TableModel() { TableName = "PEAJE WTF, sombody explain this please...." }
             };
             return View(MVC.Home.Views.Index, data);
         }
