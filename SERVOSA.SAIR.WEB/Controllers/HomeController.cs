@@ -40,9 +40,9 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult VehicleDataTable(TableViewModel model)
+        public virtual ActionResult VehicleDataTable(TableViewModel model)
         {
-            return PartialView(model);
+            return PartialView(MVC.Home.Views.VehicleDataTable, model);
         }
     }
 }

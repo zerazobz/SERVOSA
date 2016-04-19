@@ -25,10 +25,13 @@ using System.Web.Routing;
 using T4MVC;
 namespace SERVOSA.SAIR.WEB.Controllers
 {
-    public partial class HomeController
+    public partial class VariableTasksController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected HomeController(Dummy d) { }
+        public VariableTasksController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected VariableTasksController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -56,21 +59,15 @@ namespace SERVOSA.SAIR.WEB.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult VehicleDataTable()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.VehicleDataTable);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public HomeController Actions { get { return MVC.Home; } }
+        public VariableTasksController Actions { get { return MVC.VariableTasks; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Home";
+        public readonly string Name = "VariableTasks";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Home";
+        public const string NameConst = "VariableTasks";
         [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -78,27 +75,23 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Index = "Index";
-            public readonly string VehicleTable = "VehicleTable";
-            public readonly string VehicleDataTable = "VehicleDataTable";
+            public readonly string CreateTable = "CreateTable";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Index = "Index";
-            public const string VehicleTable = "VehicleTable";
-            public const string VehicleDataTable = "VehicleDataTable";
+            public const string CreateTable = "CreateTable";
         }
 
 
-        static readonly ActionParamsClass_VehicleDataTable s_params_VehicleDataTable = new ActionParamsClass_VehicleDataTable();
+        static readonly ActionParamsClass_CreateTable s_params_CreateTable = new ActionParamsClass_CreateTable();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_VehicleDataTable VehicleDataTableParams { get { return s_params_VehicleDataTable; } }
+        public ActionParamsClass_CreateTable CreateTableParams { get { return s_params_CreateTable; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_VehicleDataTable
+        public class ActionParamsClass_CreateTable
         {
-            public readonly string model = "model";
+            public readonly string viewModel = "viewModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -110,52 +103,37 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Index = "Index";
-                public readonly string VehicleDataTable = "VehicleDataTable";
-                public readonly string VehicleTable = "VehicleTable";
+                public readonly string CreateTable = "CreateTable";
             }
-            public readonly string Index = "~/Views/Home/Index.cshtml";
-            public readonly string VehicleDataTable = "~/Views/Home/VehicleDataTable.cshtml";
-            public readonly string VehicleTable = "~/Views/Home/VehicleTable.cshtml";
+            public readonly string CreateTable = "~/Views/VariableTasks/CreateTable.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_HomeController : SERVOSA.SAIR.WEB.Controllers.HomeController
+    public partial class T4MVC_VariableTasksController : SERVOSA.SAIR.WEB.Controllers.VariableTasksController
     {
-        public T4MVC_HomeController() : base(Dummy.Instance) { }
+        public T4MVC_VariableTasksController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CreateTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index()
+        public override System.Web.Mvc.ActionResult CreateTable()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            IndexOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateTable);
+            CreateTableOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void VehicleTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CreateTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.TableViewModel viewModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult VehicleTable()
+        public override System.Web.Mvc.ActionResult CreateTable(SERVOSA.SAIR.SERVICE.Models.TableViewModel viewModel)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.VehicleTable);
-            VehicleTableOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void VehicleDataTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.TableViewModel model);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult VehicleDataTable(SERVOSA.SAIR.SERVICE.Models.TableViewModel model)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.VehicleDataTable);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
-            VehicleDataTableOverride(callInfo, model);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateTable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            CreateTableOverride(callInfo, viewModel);
             return callInfo;
         }
 

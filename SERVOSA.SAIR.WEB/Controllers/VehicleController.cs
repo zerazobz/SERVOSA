@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace SERVOSA.SAIR.WEB.Controllers
 {
-    public class VehicleController : Controller
+    public partial class VehicleController : Controller
     {
         private IVehicleService _vehicleService;
 
@@ -18,19 +18,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }
-        
-        //[HttpGet]
-        //public ActionResult VehicleDataTable(TableModel model)
-        //{
-        //    return PartialView(model);
-        //}
 
         [HttpPost]
-        public JsonResult ListVehicles(int jtStartIndex = 0, int jtPageSize = 0, string jtSorting = null)
+        public virtual JsonResult ListVehicles(int jtStartIndex = 0, int jtPageSize = 0, string jtSorting = null)
         {
             try
             {
@@ -48,7 +42,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public JsonResult DeleteVehicle(int Codigo)
+        public virtual JsonResult DeleteVehicle(int Codigo)
         {
             try
             {
@@ -69,15 +63,15 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
 
         [HttpPost]
-        public JsonResult UpdateVehicle(VehicleViewModel model)
+        public virtual JsonResult UpdateVehicle(VehicleViewModel model)
         {
             try
             {
-                if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                     return Json(new { Result = "ERROR", Message = "Los campos insertados no són validos." });
 
                 var updateResult = _vehicleService.Update(model);
-                if(updateResult > 0)
+                if (updateResult > 0)
                     return Json(new { Result = "OK" });
                 else
                     return Json(new { Result = "ERROR", Message = "No se actualizo ningún registro." });
@@ -89,7 +83,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public JsonResult CreateVehicle(VehicleViewModel model)
+        public virtual JsonResult CreateVehicle(VehicleViewModel model)
         {
             try
             {

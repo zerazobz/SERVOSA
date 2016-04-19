@@ -1,4 +1,5 @@
 ﻿using SERVOSA.SAIR.DATAACCESS.Models.DB;
+using SERVOSA.SAIR.SERVICE.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class TableViewModel
+    public class TableViewModel : MessageViewModel
     {
         public string TableName { get; set; }
         public string TableNormalizedName { get; set; }

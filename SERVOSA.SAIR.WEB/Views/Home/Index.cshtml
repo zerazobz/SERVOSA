@@ -31,7 +31,7 @@
     <div id="containerforalltables" class="col-md-6" style="overflow-x: auto; padding-left: 0px;">
         @foreach (var iTable in Model)
             {
-                { Html.RenderPartial("VehicleDataTable", iTable); }
+                { Html.RenderPartial(MVC.Home.Views.VehicleDataTable, iTable); }
             }
     </div>
 </div>

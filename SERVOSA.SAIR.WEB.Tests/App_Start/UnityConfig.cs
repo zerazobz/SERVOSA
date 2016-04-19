@@ -4,7 +4,7 @@ using Microsoft.Practices.Unity.Configuration;
 using SERVOSA.SAIR.SERVICE.Core;
 using SERVOSA.SAIR.WEB.Core;
 
-namespace SERVOSA.SAIR.WEB.App_Start
+namespace SERVOSA.SAIR.WEB.Tests.App_Start
 {
     /// <summary>
     /// Specifies the Unity configuration for the main container.

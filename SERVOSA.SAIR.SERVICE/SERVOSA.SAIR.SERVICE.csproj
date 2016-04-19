@@ -59,6 +59,7 @@
     <Compile Include="Contracts\Common\IServiceRepository.cs" />
     <Compile Include="Contracts\IDBServices.cs" />
     <Compile Include="Contracts\IVehicleService.cs" />
+    <Compile Include="Core\MessageViewModel.cs" />
     <Compile Include="Core\ServiceContainerInjector.cs" />
     <Compile Include="Models\TableViewModel.cs" />
     <Compile Include="Models\VehicleViewModel.cs" />

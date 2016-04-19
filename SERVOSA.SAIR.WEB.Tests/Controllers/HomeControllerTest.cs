@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SERVOSA.SAIR.WEB;
 using SERVOSA.SAIR.WEB.Controllers;
+using SERVOSA.SAIR.SERVICE.Contracts;
+using Microsoft.Practices.Unity;
+using SERVOSA.SAIR.WEB.Tests.App_Start;
 
 namespace SERVOSA.SAIR.WEB.Tests.Controllers
 {
@@ -15,8 +18,10 @@ namespace SERVOSA.SAIR.WEB.Tests.Controllers
         [TestMethod]
         public void Index()
         {
+            var container = UnityConfig.GetConfiguredContainer();
+            var repository = container.Resolve<IVehicleService>();
             // Arrange
-            HomeController controller = new HomeController();
+            HomeController controller = new HomeController(repository);
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
