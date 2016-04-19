@@ -1,6 +1,5 @@
-﻿using SERVOSA.SAIR.DATAACCESS.Contracts;
-using SERVOSA.SAIR.DATAACCESS.Models.DB;
-using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+﻿using SERVOSA.SAIR.SERVICE.Contracts;
+using SERVOSA.SAIR.SERVICE.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +10,9 @@ namespace SERVOSA.SAIR.WEB.Controllers
 {
     public partial class HomeController : Controller
     {
-        private IVehicleRepository _vehicleRepository;
+        private IVehicleService _vehicleRepository;
 
-        public HomeController(IVehicleRepository injectedVehicleRep)
+        public HomeController(IVehicleService injectedVehicleRep)
         {
             _vehicleRepository = injectedVehicleRep;
         }
@@ -21,12 +20,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult Index()
         {
-            List<TableModel> data = new List<TableModel>()
+            List<TableViewModel> data = new List<TableViewModel>()
             {
-                //new TableModel() { TableName = "SUNAT" }
+                //new TableViewModel() { TableName = "SUNAT" }
                 //,
-                new TableModel() { TableName = "INMIGRACIONES" }
-                //, new TableModel() { TableName = "PEAJE WTF, sombody explain this please...." }
+                new TableViewModel() { TableName = "INMIGRACIONES" }
+                //, new TableViewModel() { TableName = "PEAJE WTF, sombody explain this please...." }
             };
             return View(MVC.Home.Views.Index, data);
         }
@@ -41,7 +40,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult VehicleDataTable(TableModel model)
+        public ActionResult VehicleDataTable(TableViewModel model)
         {
             return PartialView(model);
         }

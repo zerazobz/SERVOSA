@@ -32,7 +32,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             }
         }
 
-        public Tuple<int, string> CreateTableAndReturnsNormalizedName(TableModel entity)
+        public Tuple<int, TableModel> CreateTableAndReturnsNormalizedName(TableModel entity)
         {
             object[] parameters = new object[] { entity.TableName, null };
 
@@ -40,7 +40,11 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(dbCommand);
                 var outputValue = Convert.ToString(_servosaDB.GetParameterValue(dbCommand, "@tableNormalizedName"));
-                return new Tuple<int, string>(resultExecution, outputValue);
+                return new Tuple<int, TableModel>(resultExecution, new TableModel()
+                {
+                    TableName = entity.TableName,
+                    TableNormalizedName = outputValue
+                });
             }
         }
 

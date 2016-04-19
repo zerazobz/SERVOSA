@@ -512,9 +512,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SERVOSA.SAIR.DATAACCESS\SERVOSA.SAIR.DATAACCESS.csproj">
-      <Project>{d8de45cc-066d-4294-97da-370eb30993e8}</Project>
-      <Name>SERVOSA.SAIR.DATAACCESS</Name>
+    <ProjectReference Include="..\SERVOSA.SAIR.SERVICE\SERVOSA.SAIR.SERVICE.csproj">
+      <Project>{06869e68-4d91-41ea-aa1e-0670825156e9}</Project>
+      <Name>SERVOSA.SAIR.SERVICE</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

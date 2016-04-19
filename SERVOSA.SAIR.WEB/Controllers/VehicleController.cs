@@ -1,6 +1,5 @@
-﻿using SERVOSA.SAIR.DATAACCESS.Contracts;
-using SERVOSA.SAIR.DATAACCESS.Models.DB;
-using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+﻿using SERVOSA.SAIR.SERVICE.Contracts;
+using SERVOSA.SAIR.SERVICE.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +10,11 @@ namespace SERVOSA.SAIR.WEB.Controllers
 {
     public class VehicleController : Controller
     {
-        private IVehicleRepository _vehicleRepository;
+        private IVehicleService _vehicleService;
 
-        public VehicleController(IVehicleRepository injectedVehicleRep)
+        public VehicleController(IVehicleService injectedVehicleServ)
         {
-            _vehicleRepository = injectedVehicleRep;
+            _vehicleService = injectedVehicleServ;
         }
 
         [HttpGet]
@@ -35,7 +34,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             try
             {
-                var collectionVehicles = _vehicleRepository.GetAllFiltered(jtStartIndex, jtStartIndex + jtPageSize);
+                var collectionVehicles = _vehicleService.GetAllFiltered(jtStartIndex, jtStartIndex + jtPageSize);
                 int totalRows = 0;
                 if (collectionVehicles != null && collectionVehicles.Count > 0)
                     totalRows = collectionVehicles.FirstOrDefault().TotalRows;
@@ -53,7 +52,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             try
             {
-                var deleteResult = _vehicleRepository.Delete(new VehicleModel()
+                var deleteResult = _vehicleService.Delete(new VehicleViewModel()
                 {
                     Codigo = Codigo
                 });
@@ -70,14 +69,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
 
         [HttpPost]
-        public JsonResult UpdateVehicle(VehicleModel model)
+        public JsonResult UpdateVehicle(VehicleViewModel model)
         {
             try
             {
                 if(!ModelState.IsValid)
                     return Json(new { Result = "ERROR", Message = "Los campos insertados no són validos." });
 
-                var updateResult = _vehicleRepository.Update(model);
+                var updateResult = _vehicleService.Update(model);
                 if(updateResult > 0)
                     return Json(new { Result = "OK" });
                 else
@@ -90,14 +89,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public JsonResult CreateVehicle(VehicleModel model)
+        public JsonResult CreateVehicle(VehicleViewModel model)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return Json(new { Result = "ERROR", Message = "Los campos insertados no són validos." });
 
-                var createResult = _vehicleRepository.Create(model);
+                var createResult = _vehicleService.Create(model);
                 if (createResult > 0)
                     return Json(new { Result = "OK", Record = model });
                 else

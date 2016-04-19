@@ -1,8 +1,9 @@
 using System;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
-using SERVOSA.SAIR.DATAACCESS.Contracts;
-using SERVOSA.SAIR.DATAACCESS.Realizations;
+using SERVOSA.SAIR.SERVICE.Contracts;
+using SERVOSA.SAIR.SERVICE.Realizations;
+using SERVOSA.SAIR.SERVICE.Core;
 
 namespace SERVOSA.SAIR.WEB.App_Start
 {
@@ -15,6 +16,7 @@ namespace SERVOSA.SAIR.WEB.App_Start
         private static Lazy<IUnityContainer> container = new Lazy<IUnityContainer>(() =>
         {
             var container = new UnityContainer();
+            container.AddNewExtension<ServiceContainerInjector>();
             RegisterTypes(container);
             return container;
         });
@@ -39,7 +41,7 @@ namespace SERVOSA.SAIR.WEB.App_Start
 
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<IVehicleRepository, VehicleRepository>();
+            container.RegisterType<IVehicleService, VehicleService>();
         }
     }
 }
