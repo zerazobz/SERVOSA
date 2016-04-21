@@ -32,11 +32,11 @@
 
     $(function () {
         function ProccessAlertMessage(htmlTemplate, message, $divContainer) {
-            var handleTemplate = Handlebars.compile($(htmlTemplate).html());
+            var handleTemplate = Handlebars.compile(htmlTemplate);
             var data = { message: message };
             var htmlGenerated = handleTemplate(data);
             $divContainer.html(htmlGenerated);
-            $(htmlGenerated).fadeIn(1500, function () { $(this).fadeOut(1500, function () { $(this).fadeIn(1500, function () { }) }) });
+            $divContainer.fadeIn(450, function () { $divContainer.fadeOut(450, function () { $divContainer.fadeIn(450, function () { }) }) });
         }
 
         $.fn.extend({
@@ -67,6 +67,8 @@
                 });
             }
         });
+
+        
     });
 
 })(window.SERVOSA = window.SERVOSA || {}, jQuery);

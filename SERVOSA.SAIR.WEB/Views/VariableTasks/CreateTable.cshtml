@@ -3,35 +3,52 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 
+<div class="modal-header" style="background-color: #02010A; color: #ffffff;">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">FORMULARIO DE CREACIÓN</h4>
+</div>
+<div class="modal-body">
+    @using (Html.BeginForm(MVC.VariableTasks.Actions.CreateTable(), FormMethod.Post, new { id = "createTableForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="mesagepanel">
 
-@using (Html.BeginForm(MVC.VariableTasks.Actions.CreateTable(), FormMethod.Post, new { @class = "createTableForm" }))
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Creación de Tablas</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.TableName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TableName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TableName, "", new { @class = "text-danger" })
-            </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TableNormalizedName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TableNormalizedName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TableNormalizedName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <div class="form-horizontal">
+            <h4>Creación de Encabezado de Variable</h4>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear" class="btn btn-default" />
+            <input type="hidden" name="IsSuccessful" value="@Model.IsSuccessful.ToString()" />
+            <input type="hidden" name="Message" value="@Model.Message" />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.TableName, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.TableName, new { htmlAttributes = new { @class = "form-control validate[required]" } })
+                    @Html.ValidationMessageFor(model => model.TableName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @if (Model.IsSuccessful)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TableNormalizedName, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.TableNormalizedName, new { htmlAttributes = new { @class = "form-control", @disabled = "true" } })
+                    </div>
+                </div>
+            }
+
+            <div class="form-group">
+                <div class="col-md-2">
+                </div>
             </div>
         </div>
-    </div>
-}
+    }
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default btn-primary" type="button" id="createVariableSubmit">Crear</button>
+    <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Cerrar</button>
+</div>
+

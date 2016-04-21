@@ -50,17 +50,57 @@
             console.debug('Cargando columnas y datos');
         });
 
+        $(document).on("click", "#createVariableSubmit", null, function (e) {
+            //e.preventDefault();
+            var resultValidation = $("#createTableForm").validationEngine('validate');
+            if (resultValidation == true) {
+                $.post("/VariableTasks/CreateTable", $("#createTableForm").serialize(), function (data) {
+                    $("#createTableModal .modal-content").empty();
+                    $("#createTableModal .modal-content").html(data);
+                    var isSuccessfull = $("#createTableModal .modal-body").find("input[name='IsSuccessful']").val();
+                    var message = $("#createTableModal .modal-body").find("input[name='Message']").val();
+
+                    if (isSuccessfull.toLowerCase() == "true") {
+                        $("#createTableModal .modal-body").find(".mesagepanel").SERVOSASuccessNotification(message);
+                        $("#createVariableSubmit").prop("disabled", true);
+                        
+                        var tableName = $("#createTableModal .modal-body").find("input[name='TableName']").val()
+                        var normalizedTableName = $("#createTableModal .modal-body").find("input[name='TableNormalizedName']").val()
+
+                        //var currentDate = new Date();
+                        //var tableName = $.datepicker.formatDate("yymmdd@", currentDate);
+
+                        $.get("/templates/vehicletabletemplate.html", function (data) {
+
+                            var handletemplate = Handlebars.compile($(data).html());
+                            var data = {
+                                tableName: tableName,
+                                normalizedTableName: normalizedTableName
+                            };
+                            var htmlgenerated = handletemplate(data);
+                            $("#containerforalltables").append(htmlgenerated);
+                        });
+                    }
+                    else
+                        $("#createTableModal .modal-body").find(".mesagepanel").SERVOSAErrorNotification(message);
+
+                }).fail(function () {
+                    console.info('Error en la consulta Ajax Post');
+                }).complete(function () {
+                    console.info('Finalizo el Ajax Post');
+                });
+            }
+            else {
+                $("#createTableModal .modal-body").find(".mesagepanel").SERVOSAErrorNotification("Por favor llene los campos requeridos");
+            }
+        });
+
+        $("#createTableModal").on("hidden.bs.modal", function (e) {
+            $("#createTableModal .modal-content").load("/VariableTasks/CreateTable");
+        });
+
         $("#addNewTable").click(function () {
-            var currentDate = new Date();
-            var tableName = $.datepicker.formatDate("yymmdd@", currentDate);
-
-            $.get("/Templates/VehicleTableTemplate.html", function (data) {
-
-                var handleTemplate = Handlebars.compile($(data).html());
-                var data = { tableName: tableName };
-                var htmlGenerated = handleTemplate(data);
-                $("#containerforalltables").append(htmlGenerated);
-            });
+            
         });
 
         vehicleNamespace.LoadVehicleTable();

@@ -11,7 +11,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
 {
     public class TableViewModel : MessageViewModel
     {
-        [Display(Name = "Nombre de la Tabla")]
+        [Display(Name = "Nombre de la Variable")]
         public string TableName { get; set; }
         [Display(Name = "Nombre Minificado")]
         public string TableNormalizedName { get; set; }
