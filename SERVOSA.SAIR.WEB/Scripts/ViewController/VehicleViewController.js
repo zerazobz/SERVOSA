@@ -112,24 +112,25 @@
         $(document).on("click", "#createColumnSubmit", null, function (e) {
             var resultValidation = $("#createColumnForm").validationEngine('validate');
             if (resultValidation == true) {
-                $.post("/VariableTasks/CreateTable", $("#createColumnForm").serialize(), function (dataResult) {
-                    $("#createColumnForm .modal-content").empty();
-                    $("#createColumnForm .modal-content").html(data);
-                    var isSuccessfull = $("#createColumnForm .modal-body").find("input[name='IsSuccessful']").val();
-                    var message = $("#createColumnForm .modal-body").find("input[name='Message']").val();
+                $.post("/VariableTasks/CreateColumn", $("#createColumnForm").serialize(), function (dataResult) {
+                    $("#createColumnModal .modal-content").empty();
+                    $("#createColumnModal .modal-content").html(dataResult);
+                    var isSuccessfull = $("#createColumnForm ").find("input[name='IsSuccessful']").val();
+                    var message = $("#createColumnForm ").find("input[name='Message']").val();
 
                     if (isSuccessfull.toLowerCase() == "true") {
-                        $("#createColumnModal .modal-body").find(".mesagepanel").SERVOSASuccessNotification(message);
+                        $("#createColumnModal").find(".messagePanel").SERVOSASuccessNotification(message);
                         $("#createColumnSubmit").prop("disabled", true);
-
-                        var tableName = $("#createColumnModal .modal-body").find("input[name='TableName']").val();
-                        var columnName = $("#createColumnModal .modal-body").find("input[name='ColumnName']").val();
-                        var columnNormalizedName = $("#createColumnModal .modal-body").find("input[name='ColumnNormalizedName']").val();
+                        
+                        var tableName = $("#createColumnModal").find("input[name='TableNormalizedName']").val();
+                        var columnName = $("#createColumnModal").find("input[name='ColumnName']").val();
+                        var columnNormalizedName = $("#createColumnModal ").find("input[name='ColumnNormalizedName']").val();
 
                         var $currentTable = $("table[data-tablename = '" + tableName + "']");
-                        $currentTable.find("thead tr").append("<th>" + columnNormalizedName + "</th>");
-                        $currentTable.find("tr:gt(0)").append("<td></td>");
-
+                        $currentTable.find("thead tr:eq(1)").append("<th>" + columnNormalizedName + "</th>");
+                        $currentTable.find("tr:gt(1)").append("<td></td>");
+                        var oldColSpan = parseInt($currentTable.find("thead tr:first-child th").attr("colspan"));
+                        $currentTable.find("thead tr:first-child th").attr("colspan", oldColSpan + 1);
                         //$.get("/templates/vehicletabletemplate.html", function (data) {
 
                         //    var handletemplate = Handlebars.compile($(data).html());
@@ -142,7 +143,7 @@
                         //});
                     }
                     else {
-                        $("#createColumnModal .modal-body").find(".messagepanel").SERVOSAErrorNotification(message);
+                        $("#createColumnModal ").find(".messagePanel").SERVOSAErrorNotification(message);
                     }
                 }).fail(function (e) {
                     console.info('Error en la consulta Ajax Post');

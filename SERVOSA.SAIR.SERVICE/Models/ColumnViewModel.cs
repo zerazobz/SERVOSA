@@ -17,6 +17,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
         [Display(Name = "Nombre Minificado de la Columna")]
         public string ColumnNormalizedName { get; set; }
 
+        [Display(Name = "Nombre de la Tabla")]
         public string TableName { get; set; }
         public string TableNormalizedName { get; set; }
         [Required]

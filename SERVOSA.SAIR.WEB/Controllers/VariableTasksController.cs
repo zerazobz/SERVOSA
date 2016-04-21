@@ -50,6 +50,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             {
                 viewModel.IsSuccessful = true;
                 viewModel.Message = "Se creo correctamente la Columna";
+                viewModel.ColumnNormalizedName = viewModel.ColumnName.Trim().Replace(" ", String.Empty);
             }
             else
             {
