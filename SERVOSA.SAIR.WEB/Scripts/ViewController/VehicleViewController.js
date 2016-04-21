@@ -51,7 +51,6 @@
         });
 
         $(document).on("click", "#createVariableSubmit", null, function (e) {
-            //e.preventDefault();
             var resultValidation = $("#createTableForm").validationEngine('validate');
             if (resultValidation == true) {
                 $.post("/VariableTasks/CreateTable", $("#createTableForm").serialize(), function (data) {
@@ -66,9 +65,6 @@
                         
                         var tableName = $("#createTableModal .modal-body").find("input[name='TableName']").val()
                         var normalizedTableName = $("#createTableModal .modal-body").find("input[name='TableNormalizedName']").val()
-
-                        //var currentDate = new Date();
-                        //var tableName = $.datepicker.formatDate("yymmdd@", currentDate);
 
                         $.get("/templates/vehicletabletemplate.html", function (data) {
 
@@ -99,8 +95,64 @@
             $("#createTableModal .modal-content").load("/VariableTasks/CreateTable");
         });
 
-        $("#addNewTable").click(function () {
-            
+        $(document).on("click", ".addNewColumnToVariable", null, function (e) {
+            var $currentButton = $(this);
+            var normalizedTableName = $currentButton.data('normalizedtablename');
+            var tableName = $currentButton.data('tablename');
+
+            $.get("/VariableTasks/CreateColumn", function (dataResult) {
+                $("#createColumnModal").modal("show");
+                $("#createColumnModal .modal-content").empty();
+                $("#createColumnModal .modal-content").append(dataResult);
+                $("#createColumnModal .modal-content").find("input[name='TableName']").val(tableName);
+                $("#createColumnModal .modal-content").find("input[name='TableNormalizedName']").val(normalizedTableName);
+            });
+        });
+
+        $(document).on("click", "#createColumnSubmit", null, function (e) {
+            var resultValidation = $("#createColumnForm").validationEngine('validate');
+            if (resultValidation == true) {
+                $.post("/VariableTasks/CreateTable", $("#createColumnForm").serialize(), function (dataResult) {
+                    $("#createColumnForm .modal-content").empty();
+                    $("#createColumnForm .modal-content").html(data);
+                    var isSuccessfull = $("#createColumnForm .modal-body").find("input[name='IsSuccessful']").val();
+                    var message = $("#createColumnForm .modal-body").find("input[name='Message']").val();
+
+                    if (isSuccessfull.toLowerCase() == "true") {
+                        $("#createColumnModal .modal-body").find(".mesagepanel").SERVOSASuccessNotification(message);
+                        $("#createColumnSubmit").prop("disabled", true);
+
+                        var tableName = $("#createColumnModal .modal-body").find("input[name='TableName']").val();
+                        var columnName = $("#createColumnModal .modal-body").find("input[name='ColumnName']").val();
+                        var columnNormalizedName = $("#createColumnModal .modal-body").find("input[name='ColumnNormalizedName']").val();
+
+                        var $currentTable = $("table[data-tablename = '" + tableName + "']");
+                        $currentTable.find("thead tr").append("<th>" + columnNormalizedName + "</th>");
+                        $currentTable.find("tr:gt(0)").append("<td></td>");
+
+                        //$.get("/templates/vehicletabletemplate.html", function (data) {
+
+                        //    var handletemplate = Handlebars.compile($(data).html());
+                        //    var data = {
+                        //        tableName: tableName,
+                        //        normalizedTableName: normalizedTableName
+                        //    };
+                        //    var htmlgenerated = handletemplate(data);
+                        //    $("#containerforalltables").append(htmlgenerated);
+                        //});
+                    }
+                    else {
+                        $("#createColumnModal .modal-body").find(".messagepanel").SERVOSAErrorNotification(message);
+                    }
+                }).fail(function (e) {
+                    console.info('Error en la consulta Ajax Post');
+                }).complete(function (e) {
+                    console.info('Finalizo el Ajax Post');
+                });
+            }
+            else {
+                $("#createColumnModal .modal-body").find(".messagepanel").SERVOSAErrorNotification("Por favor ingrese/seleccione los campos requeridos.");
+            }
         });
 
         vehicleNamespace.LoadVehicleTable();

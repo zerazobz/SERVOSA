@@ -38,10 +38,25 @@
 </div>
 
 <div class="modal fade" id="createTableModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                @{ Html.RenderAction(MVC.VariableTasks.CreateTable()); }
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @{ Html.RenderAction(MVC.VariableTasks.CreateTable()); }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createColumnModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="column-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
+            </div>
+            <div class="column-body">
+
+            </div>
+            <div class="column-footer">
+
             </div>
         </div>
     </div>

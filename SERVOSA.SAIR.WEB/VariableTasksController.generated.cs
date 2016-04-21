@@ -76,12 +76,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public class ActionNamesClass
         {
             public readonly string CreateTable = "CreateTable";
+            public readonly string CreateColumn = "CreateColumn";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string CreateTable = "CreateTable";
+            public const string CreateColumn = "CreateColumn";
         }
 
 
@@ -90,6 +92,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public ActionParamsClass_CreateTable CreateTableParams { get { return s_params_CreateTable; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_CreateTable
+        {
+            public readonly string viewModel = "viewModel";
+        }
+        static readonly ActionParamsClass_CreateColumn s_params_CreateColumn = new ActionParamsClass_CreateColumn();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CreateColumn CreateColumnParams { get { return s_params_CreateColumn; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CreateColumn
         {
             public readonly string viewModel = "viewModel";
         }
@@ -103,8 +113,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string CreateColumn = "CreateColumn";
                 public readonly string CreateTable = "CreateTable";
             }
+            public readonly string CreateColumn = "~/Views/VariableTasks/CreateColumn.cshtml";
             public readonly string CreateTable = "~/Views/VariableTasks/CreateTable.cshtml";
         }
     }
@@ -134,6 +146,29 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateTable);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
             CreateTableOverride(callInfo, viewModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateColumnOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CreateColumn()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateColumn);
+            CreateColumnOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateColumnOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.ColumnViewModel viewModel);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CreateColumn(SERVOSA.SAIR.SERVICE.Models.ColumnViewModel viewModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateColumn);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            CreateColumnOverride(callInfo, viewModel);
             return callInfo;
         }
 

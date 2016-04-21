@@ -512,6 +512,7 @@
     <Content Include="Views\Vehicle\Index.cshtml" />
     <Content Include="Views\Home\VehicleDataTable.cshtml" />
     <Content Include="Views\VariableTasks\CreateTable.cshtml" />
+    <Content Include="Views\VariableTasks\CreateColumn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

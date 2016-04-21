@@ -103,6 +103,8 @@ namespace Links
         public static readonly string jquery_validate_min_js = Url("jquery.validate.min.js");
         public static readonly string jquery_validate_unobtrusive_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.unobtrusive.min.js") ? Url("jquery.validate.unobtrusive.min.js") : Url("jquery.validate.unobtrusive.js");
         public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
+        public static readonly string jquery_validationEngine_es_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validationEngine-es.min.js") ? Url("jquery.validationEngine-es.min.js") : Url("jquery.validationEngine-es.js");
+        public static readonly string jquery_validationEngine_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validationEngine.min.js") ? Url("jquery.validationEngine.min.js") : Url("jquery.validationEngine.js");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class jtable {
             private const string URLPATH = "~/Scripts/jtable";
@@ -518,6 +520,7 @@ namespace Links
         
         }
     
+        public static readonly string validationEngine_jquery_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/validationEngine.jquery.min.css") ? Url("validationEngine.jquery.min.css") : Url("validationEngine.jquery.css");
     }
 
     
@@ -759,6 +762,8 @@ namespace Links
                 public const string jquery_validate_min_js = "~/Scripts/jquery.validate.min.js"; 
                 public const string jquery_validate_unobtrusive_js = "~/Scripts/jquery.validate.unobtrusive.js"; 
                 public const string jquery_validate_unobtrusive_min_js = "~/Scripts/jquery.validate.unobtrusive.min.js"; 
+                public const string jquery_validationEngine_es_js = "~/Scripts/jquery.validationEngine-es.js"; 
+                public const string jquery_validationEngine_js = "~/Scripts/jquery.validationEngine.js"; 
                 public const string modernizr_2_6_2_js = "~/Scripts/modernizr-2.6.2.js"; 
                 public const string respond_js = "~/Scripts/respond.js"; 
                 public const string respond_min_js = "~/Scripts/respond.min.js"; 
@@ -835,6 +840,7 @@ namespace Links
                 public const string bootstrap_css = "~/Content/bootstrap.css";
                 public const string bootstrap_min_css = "~/Content/bootstrap.min.css";
                 public const string Site_css = "~/Content/Site.css";
+                public const string validationEngine_jquery_css = "~/Content/validationEngine.jquery.css";
             }
         }
     }

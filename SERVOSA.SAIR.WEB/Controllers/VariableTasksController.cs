@@ -33,5 +33,50 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
             return PartialView(MVC.VariableTasks.Views.CreateTable, viewModel);
         }
+
+        [HttpGet]
+        public virtual ActionResult CreateColumn()
+        {
+            ColumnViewModel viewModel = new ColumnViewModel();
+            viewModel.ListaTipos = new SelectList(GetListColumnTypes(), "Codigo", "Descripcion");
+            return PartialView(MVC.VariableTasks.Views.CreateColumn, viewModel);
+        }
+
+        [HttpPost]
+        public virtual ActionResult CreateColumn(ColumnViewModel viewModel)
+        {
+            viewModel.ListaTipos = new SelectList(GetListColumnTypes(), "Codigo", "Descripcion");
+            if (ModelState.IsValid)
+            {
+                viewModel.IsSuccessful = true;
+                viewModel.Message = "Se creo correctamente la Columna";
+            }
+            else
+            {
+                viewModel.IsSuccessful = true;
+                viewModel.Message = "No se pudo crear la Columna.";
+            }
+
+            return PartialView(MVC.VariableTasks.Views.CreateColumn, viewModel);
+        }
+
+        public IList<TipoColumna> GetListColumnTypes()
+        {
+            return new List<TipoColumna>()
+            {
+                //new TipoColumna() { Codigo = null, Descripcion = "Seleccione una opcion" },
+                new TipoColumna() { Codigo = 1, Descripcion = "Numero" },
+                new TipoColumna() { Codigo = 2, Descripcion = "Texto" },
+                new TipoColumna() { Codigo = 3, Descripcion = "Fecha" }
+            };
+        }
+
     }
+
+    public class TipoColumna
+    {
+        public int Codigo { get; set; }
+        public string Descripcion { get; set; }
+    }
+
 }
