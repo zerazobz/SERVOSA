@@ -31,5 +31,16 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
             return new Tuple<int, TableViewModel>(resultExecution.Item1, viewModelResult);
         }
+
+        public IList<TableViewModel> ListAllTables()
+        {
+            TableViewModel viewModel = null;
+            var listTables = _tableRepository.GetAll().Select(t =>
+            {
+                TableViewModel.ToViewModel(t, ref viewModel);
+                return viewModel;
+            }).ToList();
+            return listTables;
+        }
     }
 }

@@ -10,28 +10,32 @@ namespace SERVOSA.SAIR.WEB.Controllers
 {
     public partial class HomeController : Controller
     {
-        private IVehicleService _vehicleRepository;
+        private IVehicleService _vehicleServices;
+        private IDBServices _dbServices;
 
-        public HomeController(IVehicleService injectedVehicleRep)
+        public HomeController(IVehicleService injectedVehicleRep, IDBServices _injectedDbService)
         {
-            _vehicleRepository = injectedVehicleRep;
+            _vehicleServices = injectedVehicleRep;
+            _dbServices = _injectedDbService;
         }
 
         [HttpGet]
         public virtual ActionResult Index()
         {
-            List<TableViewModel> data = new List<TableViewModel>()
-            {
-                new TableViewModel() { TableName = "INMIGRACIONES", TableNormalizedName = "INMIGRACIONES" }
-            };
-            return View(MVC.Home.Views.Index, data);
+            var allTables = _dbServices.ListAllTables();
+
+            //List<TableViewModel> data = new List<TableViewModel>()
+            //{
+            //    new TableViewModel() { TableName = "INMIGRACIONES", TableNormalizedName = "INMIGRACIONES" }
+            //};
+            return View(MVC.Home.Views.Index, allTables);
         }
 
         [ChildActionOnly]
         [HttpGet]
         public virtual ActionResult VehicleTable()
         {
-            var vehicleData = _vehicleRepository.GetAll();
+            var vehicleData = _vehicleServices.GetAll();
 
             return PartialView(MVC.Home.Views.VehicleTable, vehicleData);
         }

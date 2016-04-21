@@ -10,5 +10,7 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
     public interface IDBServices
     {
         Tuple<int, TableViewModel> CreateTable(TableViewModel viewModel);
+
+        IList<TableViewModel> ListAllTables();
     }
 }

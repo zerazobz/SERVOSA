@@ -1,4 +1,5 @@
-﻿using SERVOSA.SAIR.SERVICE.Models;
+﻿using SERVOSA.SAIR.SERVICE.Contracts;
+using SERVOSA.SAIR.SERVICE.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
 {
     public partial class VariableTasksController : Controller
     {
+        private readonly IDBServices _dbService;
+
+        public VariableTasksController(IDBServices  injectedDbService)
+        {
+            _dbService = injectedDbService;
+        }
+
         [HttpGet]
         public virtual ActionResult CreateTable()
         {
@@ -21,14 +29,16 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             if(ModelState.IsValid)
             {
-                viewModel.IsSuccessful = true;
-                viewModel.TableNormalizedName = viewModel.TableName.Trim().Replace(" ", String.Empty);
+                var resultCreation = _dbService.CreateTable(viewModel);
+
+                viewModel.IsSuccessful = !String.IsNullOrWhiteSpace(resultCreation.Item2.TableNormalizedName);
+                viewModel.TableNormalizedName = resultCreation.Item2.TableNormalizedName;
                 viewModel.Message = "Se creo correctamente el Encabezado de Variable.";
             }
             else
             {
                 viewModel.IsSuccessful = false;
-                viewModel.Message = "Ocurrio un error al intentar crear el encabezado de Variable.";
+                viewModel.Message = "Por favor corrija los valores ingresados.";
             }
 
             return PartialView(MVC.VariableTasks.Views.CreateTable, viewModel);

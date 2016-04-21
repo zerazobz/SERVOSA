@@ -34,17 +34,24 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public Tuple<int, TableModel> CreateTableAndReturnsNormalizedName(TableModel entity)
         {
-            object[] parameters = new object[] { entity.TableName, null };
-
-            using (var dbCommand = _servosaDB.GetStoredProcCommand("SAIR_CREATETABLE", parameters))
+            try
             {
-                var resultExecution = _servosaDB.ExecuteNonQuery(dbCommand);
-                var outputValue = Convert.ToString(_servosaDB.GetParameterValue(dbCommand, "@tableNormalizedName"));
-                return new Tuple<int, TableModel>(resultExecution, new TableModel()
+                object[] parameters = new object[] { entity.TableName, null };
+
+                using (var dbCommand = _servosaDB.GetStoredProcCommand("SAIR_CREATETABLE", parameters))
                 {
-                    TableName = entity.TableName,
-                    TableNormalizedName = outputValue
-                });
+                    var resultExecution = _servosaDB.ExecuteNonQuery(dbCommand);
+                    var outputValue = Convert.ToString(_servosaDB.GetParameterValue(dbCommand, "@tableNormalizedName"));
+                    return new Tuple<int, TableModel>(resultExecution, new TableModel()
+                    {
+                        TableName = entity.TableName,
+                        TableNormalizedName = outputValue
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Tuple<int, TableModel>(-1, entity);
             }
         }
 
@@ -95,7 +102,10 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         IList<TableModel> IRepository<TableModel>.GetAll()
         {
-            throw new NotImplementedException();
+            object[] parameters = new object[] { };
+            IRowMapper<TableModel> tableRowMapper = MapBuilder<TableModel>.MapAllProperties().Build();
+            var allTables = _servosaDB.ExecuteSprocAccessor("SAIR_SELECTTABLES", tableRowMapper, parameters);
+            return allTables.ToList();
         }
 
         TableModel IRepository<TableModel>.GetById(int id)
