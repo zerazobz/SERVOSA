@@ -13,10 +13,12 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
     public class DBServices : IDBServices
     {
         private readonly IDBTablesRepository _tableRepository;
+        private readonly IDBColumnsRepository _columnRepository;
 
-        public DBServices(IDBTablesRepository injectedTableRepo)
+        public DBServices(IDBTablesRepository injectedTableRepo, IDBColumnsRepository injectedColumnRepo)
         {
             _tableRepository = injectedTableRepo;
+            _columnRepository = injectedColumnRepo;
         }
 
         public Tuple<int, TableViewModel> CreateTable(TableViewModel viewModel)
@@ -30,6 +32,19 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             TableViewModel.ToViewModel(resultExecution.Item2, ref viewModelResult);
 
             return new Tuple<int, TableViewModel>(resultExecution.Item1, viewModelResult);
+        }
+
+        public Tuple<int, ColumnViewModel> CreateColumn(ColumnViewModel viewModel)
+        {
+            ColumnModel model = null;
+            ColumnViewModel.ToModel(viewModel, ref model);
+            var resultExecution = _columnRepository.Create(model);
+
+            //ColumnViewModel viewModelResult = null;
+            
+            viewModel.IsSuccessful = true;
+            viewModel.Message = "Se creo correctamente la Columna";
+            return new Tuple<int, ColumnViewModel>(1, viewModel);
         }
 
         public IList<TableViewModel> ListAllTables()

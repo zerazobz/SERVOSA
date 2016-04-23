@@ -58,8 +58,11 @@ namespace SERVOSA.SAIR.WEB.Controllers
             viewModel.ListaTipos = new SelectList(GetListColumnTypes(), "Codigo", "Descripcion");
             if (ModelState.IsValid)
             {
-                viewModel.IsSuccessful = true;
-                viewModel.Message = "Se creo correctamente la Columna";
+
+                var resultCreation = _dbService.CreateColumn(viewModel);
+
+                viewModel.IsSuccessful = resultCreation.Item2.IsSuccessful;
+                viewModel.Message = resultCreation.Item2.Message;
                 viewModel.ColumnNormalizedName = viewModel.ColumnName.Trim().Replace(" ", String.Empty);
             }
             else
