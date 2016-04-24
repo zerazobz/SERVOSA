@@ -31,11 +31,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
             if (model != null)
                 viewModelResult = new ColumnViewModel()
                 {
-                    CodigoTipoSeleccionado = viewModelResult.CodigoTipoSeleccionado,
-                    ColumnName = viewModelResult.ColumnName,
-                    ColumnNormalizedName = viewModelResult.ColumnNormalizedName,
-                    TableName = viewModelResult.TableName,
-                    TableNormalizedName = viewModelResult.TableNormalizedName
+                    ColumnName = model.ColumnName,
+                    CodigoTipoSeleccionado = GetTypeValue(model.DataType),
+                    ColumnNormalizedName = model.NormalizedColumnaName,
+                    TableNormalizedName = model.NormalizedTableName
                 };
             else
                 viewModelResult = null;
@@ -47,18 +46,18 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 modelResult = new ColumnModel()
                 {
                     ColumnName = viewModel.ColumnName,
-                    TableName = viewModel.TableName,
+                    NormalizedTableName = viewModel.TableNormalizedName,
                     DataType = GetTypeDescription(viewModel.CodigoTipoSeleccionado)
                 };
             else
                 modelResult = null;
         }
 
-        private static string GetTypeDescription(int codeDescription)
+        private static string GetTypeDescription(int codeValue)
         {
             var typeDescription = String.Empty;
 
-            switch (codeDescription)
+            switch (codeValue)
             {
                 case 1:
                     typeDescription = " int";
@@ -75,6 +74,27 @@ namespace SERVOSA.SAIR.SERVICE.Models
             }
 
             return typeDescription;
+        }
+
+        private static int GetTypeValue(string codeDescription)
+        {
+            int valueReturn = 0;
+            switch (codeDescription)
+            {
+                case "int":
+                    valueReturn = 1;
+                    break;
+                case "nvarchar(80)":
+                    valueReturn = 2;
+                    break;
+                case "datetime":
+                    valueReturn = 3;
+                    break;
+                default:
+                    valueReturn = 1;
+                    break;
+            }
+            return valueReturn;
         }
     }
 }

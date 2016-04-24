@@ -8,8 +8,9 @@ namespace SERVOSA.SAIR.DATAACCESS.Models.DB
 {
     public class ColumnModel
     {
-        public string TableName { get; set; }
+        public string NormalizedTableName { get; set; }
         public string ColumnName { get; set; }
+        public string NormalizedColumnaName { get; set; }
         public string DataType { get; set; }
     }
 }

@@ -58,17 +58,16 @@ namespace SERVOSA.SAIR.WEB.Controllers
             viewModel.ListaTipos = new SelectList(GetListColumnTypes(), "Codigo", "Descripcion");
             if (ModelState.IsValid)
             {
-
                 var resultCreation = _dbService.CreateColumn(viewModel);
 
-                viewModel.IsSuccessful = resultCreation.Item2.IsSuccessful;
-                viewModel.Message = resultCreation.Item2.Message;
-                viewModel.ColumnNormalizedName = viewModel.ColumnName.Trim().Replace(" ", String.Empty);
+                viewModel.IsSuccessful = !String.IsNullOrWhiteSpace(resultCreation.Item2.ColumnNormalizedName);
+                viewModel.ColumnNormalizedName = resultCreation.Item2.ColumnNormalizedName;
+                viewModel.Message = viewModel.IsSuccessful ? "Se creo correctamente la columna" : "No se pudo crear la columna.";
             }
             else
             {
-                viewModel.IsSuccessful = true;
-                viewModel.Message = "No se pudo crear la Columna.";
+                viewModel.IsSuccessful = false;
+                viewModel.Message = "Por favor revise los campos requeridos.";
             }
 
             return PartialView(MVC.VariableTasks.Views.CreateColumn, viewModel);

@@ -10,5 +10,6 @@ namespace SERVOSA.SAIR.DATAACCESS.Contracts
 {
     public interface IDBColumnsRepository : IRepository<ColumnModel>
     {
+        Tuple<int, ColumnModel> CreateColumnAndReturnNormalizedName(ColumnModel model);
     }
 }

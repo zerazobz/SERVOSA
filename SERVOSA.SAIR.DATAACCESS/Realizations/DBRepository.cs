@@ -55,14 +55,39 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             }
         }
 
+        public Tuple<int, ColumnModel> CreateColumnAndReturnNormalizedName(ColumnModel model)
+        {
+            try
+            {
+                object[] parameters = new object[] { model.NormalizedTableName, model.ColumnName, model.DataType, null };
+                using (var createCommand = _servosaDB.GetStoredProcCommand("SAIR_ADDCOLUMNTABLE", parameters))
+                {
+                    var resultExecutionj = _servosaDB.ExecuteNonQuery(createCommand);
+                    var outputValue = _servosaDB.GetParameterValue(createCommand, "@normalizedColumnName").ToString();
+                    return new Tuple<int, ColumnModel>(resultExecutionj, new ColumnModel()
+                    {
+                        NormalizedTableName = model.NormalizedTableName,
+                        ColumnName = model.ColumnName,
+                        NormalizedColumnaName = outputValue,
+                        DataType = model.DataType
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Tuple<int, ColumnModel>(-1, model);
+            }
+        }
+
         public int Create(ColumnModel entity)
         {
-            object[] parameters = new object[] { entity.TableName, entity.ColumnName, entity.DataType };
-            using (var createCommand = _servosaDB.GetStoredProcCommand("SAIR_ADDCOLUMNTABLE", parameters))
-            {
-                var resultExecution = _servosaDB.ExecuteNonQuery(createCommand);
-                return resultExecution;
-            }
+            throw new NotImplementedException();
+            //object[] parameters = new object[] { entity.TableName, entity.ColumnName, entity.DataType };
+            //using (var createCommand = _servosaDB.GetStoredProcCommand("SAIR_ADDCOLUMNTABLE", parameters))
+            //{
+            //    var resultExecution = _servosaDB.ExecuteNonQuery(createCommand);
+            //    return resultExecution;
+            //}
         }
 
         public int Delete(TableModel entity)
@@ -72,7 +97,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public int Delete(ColumnModel entity)
         {
-            object[] parameters = new object[] { entity.TableName, entity.ColumnName };
+            object[] parameters = new object[] { entity.NormalizedTableName, entity.ColumnName };
             using (var deleteColumnCommand = _servosaDB.GetStoredProcCommand("SAIR_DROPCOLUMNTABLE", parameters))
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(deleteColumnCommand);

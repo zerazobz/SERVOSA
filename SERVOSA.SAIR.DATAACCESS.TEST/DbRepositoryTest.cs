@@ -41,7 +41,7 @@ namespace SERVOSA.SAIR.DATAACCESS.TEST
 
             var creationResult = _columnsRepository.Create(new ColumnModel()
             {
-                TableName = tableName,
+                NormalizedTableName = tableName,
                 ColumnName = columnName,
                 DataType = dataType
             });
@@ -59,7 +59,7 @@ namespace SERVOSA.SAIR.DATAACCESS.TEST
 
             var creationResult = _columnsRepository.Create(new ColumnModel()
             {
-                TableName = tableName,
+                NormalizedTableName = tableName,
                 ColumnName = columnName,
                 DataType = dataType
             });

@@ -38,13 +38,11 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
         {
             ColumnModel model = null;
             ColumnViewModel.ToModel(viewModel, ref model);
-            var resultExecution = _columnRepository.Create(model);
+            var resultExecution = _columnRepository.CreateColumnAndReturnNormalizedName(model);
 
-            //ColumnViewModel viewModelResult = null;
-            
-            viewModel.IsSuccessful = true;
-            viewModel.Message = "Se creo correctamente la Columna";
-            return new Tuple<int, ColumnViewModel>(1, viewModel);
+            ColumnViewModel viewModelResult = null;
+            ColumnViewModel.ToViewModel(resultExecution.Item2, ref viewModelResult);
+            return new Tuple<int, ColumnViewModel>(resultExecution.Item1, viewModelResult);
         }
 
         public IList<TableViewModel> ListAllTables()
