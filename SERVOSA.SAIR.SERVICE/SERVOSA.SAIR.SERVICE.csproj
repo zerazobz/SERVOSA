@@ -64,6 +64,7 @@
     <Compile Include="Core\MessageViewModel.cs" />
     <Compile Include="Core\ServiceContainerInjector.cs" />
     <Compile Include="Models\ColumnViewModel.cs" />
+    <Compile Include="Models\TableColumnViewModel.cs" />
     <Compile Include="Models\TableViewModel.cs" />
     <Compile Include="Models\VehicleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

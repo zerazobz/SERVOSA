@@ -55,5 +55,16 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             }).ToList();
             return listTables;
         }
+
+        public IList<TableColumnViewModel> ListTablesColumnCompleteData()
+        {
+            TableColumnViewModel viewModel = null;
+            var listTables = _tableRepository.ListAllDataTables().Select(t =>
+            {
+                TableColumnViewModel.ToViewModel(t, ref viewModel);
+                return viewModel;
+            }).ToList();
+            return listTables;
+        }
     }
 }

@@ -133,6 +133,14 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             return allTables.ToList();
         }
 
+        public IList<TableColumnModel> ListAllDataTables()
+        {
+            object[] parameters = new object[] { "vehiclevars" };
+            IRowMapper<TableColumnModel> tableRowMapper = MapBuilder<TableColumnModel>.MapAllProperties().Build();
+            var allTables = _servosaDB.ExecuteSprocAccessor("SAIR_LISTTABLESANDCOLUMNS", tableRowMapper, parameters);
+            return allTables.ToList();
+        }
+
         TableModel IRepository<TableModel>.GetById(int id)
         {
             throw new NotImplementedException();

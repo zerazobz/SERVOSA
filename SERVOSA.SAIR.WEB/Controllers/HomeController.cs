@@ -22,6 +22,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult Index()
         {
+            var allCompleteTable = _dbServices.ListTablesColumnCompleteData();
             var allTables = _dbServices.ListAllTables();
 
             //List<TableViewModel> data = new List<TableViewModel>()

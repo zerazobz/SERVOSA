@@ -12,5 +12,6 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
         Tuple<int, TableViewModel> CreateTable(TableViewModel viewModel);
         IList<TableViewModel> ListAllTables();
         Tuple<int, ColumnViewModel> CreateColumn(ColumnViewModel viewModel);
+        IList<TableColumnViewModel> ListTablesColumnCompleteData();
     }
 }
