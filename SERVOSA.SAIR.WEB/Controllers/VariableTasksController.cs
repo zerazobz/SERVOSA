@@ -20,12 +20,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult CreateTable()
         {
-            TableViewModel model = new TableViewModel();
+            TableServiceModel model = new TableServiceModel();
             return PartialView(MVC.VariableTasks.Views.CreateTable, model);
         }
 
         [HttpPost]
-        public virtual ActionResult CreateTable(TableViewModel viewModel)
+        public virtual ActionResult CreateTable(TableServiceModel viewModel)
         {
             if(ModelState.IsValid)
             {
@@ -47,13 +47,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult CreateColumn()
         {
-            ColumnViewModel viewModel = new ColumnViewModel();
+            ColumnServiceModel viewModel = new ColumnServiceModel();
             viewModel.ListaTipos = new SelectList(GetListColumnTypes(), "Codigo", "Descripcion");
             return PartialView(MVC.VariableTasks.Views.CreateColumn, viewModel);
         }
 
         [HttpPost]
-        public virtual ActionResult CreateColumn(ColumnViewModel viewModel)
+        public virtual ActionResult CreateColumn(ColumnServiceModel viewModel)
         {
             viewModel.ListaTipos = new SelectList(GetListColumnTypes(), "Codigo", "Descripcion");
             if (ModelState.IsValid)

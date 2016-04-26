@@ -9,9 +9,9 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
 {
     public interface IDBServices
     {
-        Tuple<int, TableViewModel> CreateTable(TableViewModel viewModel);
-        IList<TableViewModel> ListAllTables();
-        Tuple<int, ColumnViewModel> CreateColumn(ColumnViewModel viewModel);
-        IList<TableColumnViewModel> ListTablesColumnCompleteData();
+        Tuple<int, TableServiceModel> CreateTable(TableServiceModel viewModel);
+        IList<TableServiceModel> ListAllTables();
+        Tuple<int, ColumnServiceModel> CreateColumn(ColumnServiceModel viewModel);
+        IList<TableColumnServiceModel> ListTablesColumnCompleteData();
     }
 }

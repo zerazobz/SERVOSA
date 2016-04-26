@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class VehicleViewModel
+    public class VehicleServiceModel
     {
         public int Item { get; set; }
         public int Codigo { get; set; }
@@ -20,10 +20,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public int RowNumber { get; set; }
         public int TotalRows { get; set; }
 
-        public static void ToViewModel(VehicleModel model, ref VehicleViewModel viewModel)
+        public static void ToViewModel(VehicleModel model, ref VehicleServiceModel viewModel)
         {
             if (model != null)
-                viewModel = new VehicleViewModel()
+                viewModel = new VehicleServiceModel()
                 {
                     Codigo = model.Codigo,
                     CodigoEstado = model.CodigoEstado,
@@ -39,7 +39,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 viewModel = null;
         }
 
-        public static void ToModel(VehicleViewModel viewModel, ref VehicleModel model)
+        public static void ToModel(VehicleServiceModel viewModel, ref VehicleModel model)
         {
             if (viewModel != null)
                 model = new VehicleModel()

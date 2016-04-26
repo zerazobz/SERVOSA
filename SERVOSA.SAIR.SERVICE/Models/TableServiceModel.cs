@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class TableViewModel : MessageViewModel
+    public class TableServiceModel : MessageViewModel
     {
         [Display(Name = "Nombre de la Variable")]
         public string TableName { get; set; }
         [Display(Name = "Nombre Minificado")]
         public string TableNormalizedName { get; set; }
 
-        public static void ToViewModel(TableModel model, ref TableViewModel viewModel)
+        public static void ToViewModel(TableModel model, ref TableServiceModel viewModel)
         {
             if (model != null)
-                viewModel = new TableViewModel()
+                viewModel = new TableServiceModel()
                 {
                     TableName = model.TableName,
                     TableNormalizedName = model.TableNormalizedName
@@ -28,7 +28,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 viewModel = null;
         }
 
-        public static void ToModel(TableViewModel viewModel, ref TableModel model)
+        public static void ToModel(TableServiceModel viewModel, ref TableModel model)
         {
             if (viewModel != null)
                 model = new TableModel()

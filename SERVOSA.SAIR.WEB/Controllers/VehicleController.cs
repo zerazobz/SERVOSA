@@ -46,7 +46,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             try
             {
-                var deleteResult = _vehicleService.Delete(new VehicleViewModel()
+                var deleteResult = _vehicleService.Delete(new VehicleServiceModel()
                 {
                     Codigo = Codigo
                 });
@@ -63,7 +63,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
 
         [HttpPost]
-        public virtual JsonResult UpdateVehicle(VehicleViewModel model)
+        public virtual JsonResult UpdateVehicle(VehicleServiceModel model)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public virtual JsonResult CreateVehicle(VehicleViewModel model)
+        public virtual JsonResult CreateVehicle(VehicleServiceModel model)
         {
             try
             {

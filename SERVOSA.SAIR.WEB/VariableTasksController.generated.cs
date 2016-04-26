@@ -138,10 +138,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [NonAction]
-        partial void CreateTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.TableViewModel viewModel);
+        partial void CreateTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.TableServiceModel viewModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CreateTable(SERVOSA.SAIR.SERVICE.Models.TableViewModel viewModel)
+        public override System.Web.Mvc.ActionResult CreateTable(SERVOSA.SAIR.SERVICE.Models.TableServiceModel viewModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateTable);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
@@ -161,10 +161,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [NonAction]
-        partial void CreateColumnOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.ColumnViewModel viewModel);
+        partial void CreateColumnOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.ColumnServiceModel viewModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CreateColumn(SERVOSA.SAIR.SERVICE.Models.ColumnViewModel viewModel)
+        public override System.Web.Mvc.ActionResult CreateColumn(SERVOSA.SAIR.SERVICE.Models.ColumnServiceModel viewModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateColumn);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);

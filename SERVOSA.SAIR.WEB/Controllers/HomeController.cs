@@ -1,5 +1,6 @@
 ﻿using SERVOSA.SAIR.SERVICE.Contracts;
 using SERVOSA.SAIR.SERVICE.Models;
+using SERVOSA.SAIR.WEB.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,30 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public virtual ActionResult Index()
         {
             var allCompleteTable = _dbServices.ListTablesColumnCompleteData();
+            var tableDataGrouped = allCompleteTable.GroupBy(t => t.TableNormalizedName);
+
+            IList<TableColumnViewModel> collectionTables = new List<TableColumnViewModel>();
+
+            foreach (var iTableColumn in tableDataGrouped)
+            {
+                TableColumnViewModel nTable = new TableColumnViewModel();
+                nTable.TableNormalizedName = iTableColumn.Key;
+                nTable.Columns = new List<ColumnViewModel>();
+
+                ColumnViewModel nColumn;
+                foreach (var iDisaggregated in iTableColumn)
+                {
+                    nTable.TableId = iDisaggregated.TableId;
+                    nColumn = new ColumnViewModel();
+                    nColumn.ColumnName = iDisaggregated.ColumnName;
+                    nColumn.ColumnNormalizedName = iDisaggregated.ColumnNormalizedName;
+                    nColumn.SystemType = iDisaggregated.SystemType;
+                    nColumn.TypeName = iDisaggregated.TypeName;
+                    nColumn.UserType = iDisaggregated.UserType;
+                    nTable.Columns.Add(nColumn);
+                }
+            }
+
             var allTables = _dbServices.ListAllTables();
 
             //List<TableViewModel> data = new List<TableViewModel>()
@@ -42,7 +67,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpGet]
-        public virtual ActionResult VehicleDataTable(TableViewModel model)
+        public virtual ActionResult VehicleDataTable(TableServiceModel model)
         {
             return PartialView(MVC.Home.Views.VehicleDataTable, model);
         }

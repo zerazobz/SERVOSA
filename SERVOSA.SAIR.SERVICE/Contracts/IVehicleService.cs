@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Contracts
 {
-    public interface IVehicleService : IServiceRepository<VehicleViewModel>
+    public interface IVehicleService : IServiceRepository<VehicleServiceModel>
     {
-        IList<VehicleViewModel> GetAllFiltered(int minRow, int maxRow);
+        IList<VehicleServiceModel> GetAllFiltered(int minRow, int maxRow);
     }
 }

@@ -63,10 +63,10 @@
     <Compile Include="Contracts\IVehicleService.cs" />
     <Compile Include="Core\MessageViewModel.cs" />
     <Compile Include="Core\ServiceContainerInjector.cs" />
-    <Compile Include="Models\ColumnViewModel.cs" />
-    <Compile Include="Models\TableColumnViewModel.cs" />
-    <Compile Include="Models\TableViewModel.cs" />
-    <Compile Include="Models\VehicleViewModel.cs" />
+    <Compile Include="Models\ColumnServiceModel.cs" />
+    <Compile Include="Models\TableColumnServiceModel.cs" />
+    <Compile Include="Models\TableServiceModel.cs" />
+    <Compile Include="Models\VehicleServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Realizations\DBServices.cs" />
     <Compile Include="Realizations\VehicleService.cs" />

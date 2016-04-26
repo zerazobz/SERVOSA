@@ -21,47 +21,47 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             _columnRepository = injectedColumnRepo;
         }
 
-        public Tuple<int, TableViewModel> CreateTable(TableViewModel viewModel)
+        public Tuple<int, TableServiceModel> CreateTable(TableServiceModel viewModel)
         {
             TableModel model = null;
-            TableViewModel.ToModel(viewModel, ref model);
+            TableServiceModel.ToModel(viewModel, ref model);
 
             var resultExecution = _tableRepository.CreateTableAndReturnsNormalizedName(model);
 
-            TableViewModel viewModelResult = null;
-            TableViewModel.ToViewModel(resultExecution.Item2, ref viewModelResult);
+            TableServiceModel viewModelResult = null;
+            TableServiceModel.ToViewModel(resultExecution.Item2, ref viewModelResult);
 
-            return new Tuple<int, TableViewModel>(resultExecution.Item1, viewModelResult);
+            return new Tuple<int, TableServiceModel>(resultExecution.Item1, viewModelResult);
         }
 
-        public Tuple<int, ColumnViewModel> CreateColumn(ColumnViewModel viewModel)
+        public Tuple<int, ColumnServiceModel> CreateColumn(ColumnServiceModel viewModel)
         {
             ColumnModel model = null;
-            ColumnViewModel.ToModel(viewModel, ref model);
+            ColumnServiceModel.ToModel(viewModel, ref model);
             var resultExecution = _columnRepository.CreateColumnAndReturnNormalizedName(model);
 
-            ColumnViewModel viewModelResult = null;
-            ColumnViewModel.ToViewModel(resultExecution.Item2, ref viewModelResult);
-            return new Tuple<int, ColumnViewModel>(resultExecution.Item1, viewModelResult);
+            ColumnServiceModel viewModelResult = null;
+            ColumnServiceModel.ToViewModel(resultExecution.Item2, ref viewModelResult);
+            return new Tuple<int, ColumnServiceModel>(resultExecution.Item1, viewModelResult);
         }
 
-        public IList<TableViewModel> ListAllTables()
+        public IList<TableServiceModel> ListAllTables()
         {
-            TableViewModel viewModel = null;
+            TableServiceModel viewModel = null;
             var listTables = _tableRepository.GetAll().Select(t =>
             {
-                TableViewModel.ToViewModel(t, ref viewModel);
+                TableServiceModel.ToViewModel(t, ref viewModel);
                 return viewModel;
             }).ToList();
             return listTables;
         }
 
-        public IList<TableColumnViewModel> ListTablesColumnCompleteData()
+        public IList<TableColumnServiceModel> ListTablesColumnCompleteData()
         {
-            TableColumnViewModel viewModel = null;
+            TableColumnServiceModel viewModel = null;
             var listTables = _tableRepository.ListAllDataTables().Select(t =>
             {
-                TableColumnViewModel.ToViewModel(t, ref viewModel);
+                TableColumnServiceModel.ToServiceModel(t, ref viewModel);
                 return viewModel;
             }).ToList();
             return listTables;

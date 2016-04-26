@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class ColumnViewModel : MessageViewModel
+    public class ColumnServiceModel : MessageViewModel
     {
         [Display(Name = "Nombre de la Columna")]
         [Required]
@@ -26,10 +26,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
 
         public SelectList ListaTipos { get; set; }
 
-        public static void ToViewModel(ColumnModel model, ref ColumnViewModel viewModelResult)
+        public static void ToViewModel(ColumnModel model, ref ColumnServiceModel viewModelResult)
         {
             if (model != null)
-                viewModelResult = new ColumnViewModel()
+                viewModelResult = new ColumnServiceModel()
                 {
                     ColumnName = model.ColumnName,
                     CodigoTipoSeleccionado = GetTypeValue(model.DataType),
@@ -40,7 +40,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 viewModelResult = null;
         }
 
-        public static void ToModel(ColumnViewModel viewModel, ref ColumnModel modelResult)
+        public static void ToModel(ColumnServiceModel viewModel, ref ColumnModel modelResult)
         {
             if (viewModel != null)
                 modelResult = new ColumnModel()

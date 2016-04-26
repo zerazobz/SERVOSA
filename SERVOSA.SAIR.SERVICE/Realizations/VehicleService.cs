@@ -19,49 +19,49 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             _vehicleRepository = injectedVehicleRepo;
         }
 
-        public int Create(VehicleViewModel viewModel)
+        public int Create(VehicleServiceModel viewModel)
         {
             VehicleModel model = null;
-            VehicleViewModel.ToModel(viewModel, ref model);
+            VehicleServiceModel.ToModel(viewModel, ref model);
             return _vehicleRepository.Create(model);
         }
 
-        public int Delete(VehicleViewModel viewModel)
+        public int Delete(VehicleServiceModel viewModel)
         {
             VehicleModel model = null;
-            VehicleViewModel.ToModel(viewModel, ref model);
+            VehicleServiceModel.ToModel(viewModel, ref model);
             return _vehicleRepository.Delete(model);
         }
 
-        public IList<VehicleViewModel> GetAll()
+        public IList<VehicleServiceModel> GetAll()
         {
-            VehicleViewModel viewModel = null;
+            VehicleServiceModel viewModel = null;
             return _vehicleRepository.GetAll().Select(v =>
             {
-                VehicleViewModel.ToViewModel(v, ref viewModel);
+                VehicleServiceModel.ToViewModel(v, ref viewModel);
                 return viewModel;
             }).ToList();
         }
 
-        public IList<VehicleViewModel> GetAllFiltered(int minRow, int maxRow)
+        public IList<VehicleServiceModel> GetAllFiltered(int minRow, int maxRow)
         {
-            VehicleViewModel vehicleViewModel = null;
+            VehicleServiceModel vehicleViewModel = null;
             return _vehicleRepository.GetAllFiltered(minRow, maxRow).Select(v =>
             {
-                VehicleViewModel.ToViewModel(v, ref vehicleViewModel);
+                VehicleServiceModel.ToViewModel(v, ref vehicleViewModel);
                 return vehicleViewModel;
             }).ToList();
         }
 
-        public VehicleViewModel GetById(int id)
+        public VehicleServiceModel GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public int Update(VehicleViewModel viewModel)
+        public int Update(VehicleServiceModel viewModel)
         {
             VehicleModel model = null;
-            VehicleViewModel.ToModel(viewModel, ref model);
+            VehicleServiceModel.ToModel(viewModel, ref model);
             return _vehicleRepository.Update(model);
         }
     }
