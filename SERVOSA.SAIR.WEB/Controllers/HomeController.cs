@@ -46,6 +46,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
                     nColumn.UserType = iDisaggregated.UserType;
                     nTable.Columns.Add(nColumn);
                 }
+                collectionTables.Add(nTable);
             }
 
             var allTables = _dbServices.ListAllTables();
@@ -54,7 +55,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             //{
             //    new TableViewModel() { TableName = "INMIGRACIONES", TableNormalizedName = "INMIGRACIONES" }
             //};
-            return View(MVC.Home.Views.Index, allTables);
+            return View(MVC.Home.Views.Index, collectionTables);
         }
 
         [ChildActionOnly]
