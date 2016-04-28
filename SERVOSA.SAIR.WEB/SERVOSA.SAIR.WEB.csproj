@@ -215,6 +215,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\VariableTasksController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
+    <Compile Include="Controllers\VehicleDataController.cs" />
     <Compile Include="Core\WebContainerInjector.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -515,6 +516,7 @@
     <Content Include="Views\Home\VehicleDataTable.cshtml" />
     <Content Include="Views\VariableTasks\CreateTable.cshtml" />
     <Content Include="Views\VariableTasks\CreateColumn.cshtml" />
+    <Content Include="Views\VehicleData\Data.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
