@@ -12,6 +12,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
     {
         public int TableId { get; set; }
         public string TableNormalizedName { get; set; }
+        public string TableName { get; set; }
         public int SchemaId { get; set; }
         public string SchemaName { get; set; }
         public string ColumnNormalizedName { get; set; }
@@ -30,7 +31,9 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     SchemaId = model.SchemaId,
                     SchemaName = model.SchemaName,
                     SystemType = model.SystemType,
-                    TableId = model.TableObjectId
+                    TableId = model.TableObjectId,
+                    TableNormalizedName = model.TableNormalizedName,
+                    TableName = model.TableName
                 };
             else
                 viewModel = null;
@@ -49,7 +52,8 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     TableNormalizedName = viewModel.TableNormalizedName,
                     TableObjectId = viewModel.TableId,
                     TypeName = viewModel.TypeName,
-                    UserType = viewModel.UserType
+                    UserType = viewModel.UserType,
+                    TableName = viewModel.TableName
                 };
             else
                 model = null;

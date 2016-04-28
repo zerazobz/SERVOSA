@@ -35,8 +35,9 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 nTable.Columns = new List<ColumnViewModel>();
 
                 ColumnViewModel nColumn;
-                foreach (var iDisaggregated in iTableColumn)
+                foreach (var iDisaggregated in iTableColumn.Where(c => !String.IsNullOrWhiteSpace(c.ColumnName)))
                 {
+                    nTable.TableName = iDisaggregated.TableName;
                     nTable.TableId = iDisaggregated.TableId;
                     nColumn = new ColumnViewModel();
                     nColumn.ColumnName = iDisaggregated.ColumnName;

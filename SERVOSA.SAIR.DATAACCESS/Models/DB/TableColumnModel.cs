@@ -10,6 +10,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Models.DB
     {
         public int TableObjectId { get; set; }
         public string TableNormalizedName { get; set; }
+        public string TableName { get; set; }
         public int SchemaId { get; set; }
         public string SchemaName { get; set; }
         public string ColumnNormalizedName { get; set; }

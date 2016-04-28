@@ -10,6 +10,7 @@ namespace SERVOSA.SAIR.WEB.Models
     {
         public int TableId { get; set; }
         public string TableNormalizedName { get; set; }
+        public string TableName { get; set; }
         public int SchemaId { get; set; }
         public string SchemaName { get; set; }
         public IList<ColumnViewModel> Columns { get; set; }
