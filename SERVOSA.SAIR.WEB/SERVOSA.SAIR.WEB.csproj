@@ -247,6 +247,9 @@
     <Compile Include="VehicleController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="VehicleDataController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -517,6 +520,8 @@
     <Content Include="Views\VariableTasks\CreateTable.cshtml" />
     <Content Include="Views\VariableTasks\CreateColumn.cshtml" />
     <Content Include="Views\VehicleData\Data.cshtml" />
+    <Content Include="Views\VehicleData\CabeceraVehiculo.cshtml" />
+    <Content Include="Views\VehicleData\DatosVariableVehiculo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -56,7 +56,10 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public VehicleModel GetById(int id)
         {
-            throw new NotImplementedException();
+            object[] parameteres = new object[] { id };
+            IRowMapper<VehicleModel> vehicleRowMapper = GetMapperSimple();
+            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_UnReg", vehicleRowMapper, parameteres);
+            return vehicleCollection.FirstOrDefault();
         }
 
         public int Update(VehicleModel entity)
@@ -72,7 +75,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         private IRowMapper<VehicleModel> GetMapperSimple()
         {
             return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
-                .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.Marca).Build();
+                .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.RowNumber).Build();
         }
     }
 }

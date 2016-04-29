@@ -1,7 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "Data";
+    ViewBag.Title = "Datos de Vehículos";
 }
 
-<h2>Data</h2>
-
+<div class="row">
+    @{ Html.RenderAction(MVC.VehicleData.CabeceraVehiculo((int)ViewBag.VehicleCode)); }
+</div>
+<hr />
+<div class="row">
+    @{ Html.RenderAction(MVC.VehicleData.DatosVariableVehiculo((int)ViewBag.VehicleCode, "SomeVar")); }
+</div>

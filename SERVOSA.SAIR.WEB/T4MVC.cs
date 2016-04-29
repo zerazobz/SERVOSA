@@ -32,6 +32,7 @@ public static partial class MVC
     public static SERVOSA.SAIR.WEB.Controllers.ManageController Manage = new SERVOSA.SAIR.WEB.Controllers.T4MVC_ManageController();
     public static SERVOSA.SAIR.WEB.Controllers.VariableTasksController VariableTasks = new SERVOSA.SAIR.WEB.Controllers.T4MVC_VariableTasksController();
     public static SERVOSA.SAIR.WEB.Controllers.VehicleController Vehicle = new SERVOSA.SAIR.WEB.Controllers.T4MVC_VehicleController();
+    public static SERVOSA.SAIR.WEB.Controllers.VehicleDataController VehicleData = new SERVOSA.SAIR.WEB.Controllers.T4MVC_VehicleDataController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 

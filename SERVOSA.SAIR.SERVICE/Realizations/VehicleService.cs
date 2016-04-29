@@ -55,7 +55,10 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
         public VehicleServiceModel GetById(int id)
         {
-            throw new NotImplementedException();
+            VehicleServiceModel vehicleServiceModel = null;
+            var vehicleResult = _vehicleRepository.GetById(id);
+            VehicleServiceModel.ToViewModel(vehicleResult, ref vehicleServiceModel);
+            return vehicleServiceModel;
         }
 
         public int Update(VehicleServiceModel viewModel)

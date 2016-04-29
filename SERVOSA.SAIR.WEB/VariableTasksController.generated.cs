@@ -28,9 +28,6 @@ namespace SERVOSA.SAIR.WEB.Controllers
     public partial class VariableTasksController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public VariableTasksController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected VariableTasksController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
