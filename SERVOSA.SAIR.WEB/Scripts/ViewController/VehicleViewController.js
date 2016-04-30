@@ -8,11 +8,38 @@
 
     };
 
+    vehicleNamespace.LoadTableData = function (containerContext, tableName) {
+        $.post("/Vehicle/LoadTablaData", {
+            tableName: tableName
+        }, function (dataResult) {
+            var $container = $(containerContext);
+            var resultHtml = [];
+            $.each(dataResult, function (i, element) {
+
+                //var $row = $("<td>");
+                var columnList = "<tr>";
+
+                for (i = 0; i < element.Values.Count; i++) {
+                    var column = $("<td>").attr("data-vehiclecode", element.vehiclecode).attr("data-tablename", element.tablename).text(element.Values[i]).prop("outerHTML");
+                    columnList += column;
+                }
+                columnList += "</tr>"
+                
+                resultHtml.push(columnList);
+            });
+
+        }).fail(function () {
+            console.debug("No se pudo cargar los datos de la tabla: " + $(containerContext).attr("tableName"));
+        }).complete(function () {
+            console.debug("Culmino el procesamiento de la tabla: " + $(containerContext).attr("tableName"));
+        });
+    };
+
     vehicleNamespace.LoadDataForTablesYetLoaded = function () {
         var allTables = $(".containerdatatable>table");
         $.each(allTables, function (i, element) {
             var $tableName = $(element).data('tablename');
-
+            vehicleNamespace.LoadTableData(element, $tableName);
             console.debug('Cargando datos de la tabla: ' + $tableName);
         });
     };
