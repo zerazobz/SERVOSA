@@ -72,6 +72,39 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             }
         }
 
+        public IList<VehicleHeadDataModel> GetDataForTable(string tableName)
+        {
+            List<VehicleHeadDataModel> headDataCollection = new List<VehicleHeadDataModel>();
+
+            object[] parameters = new object[] { tableName };
+            using (var readCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHIS_Datos", parameters))
+            {
+                VehicleHeadDataModel headModel = null;
+                using (var readerProcedure = _servosaDB.ExecuteReader(readCommand))
+                {
+                    while (readerProcedure.Read())
+                    {
+                        var sizeColumnData = readerProcedure.FieldCount;
+                        headModel = new VehicleHeadDataModel();
+                        headModel.DataForRow = new List<VehicleDetailDataModel>(sizeColumnData);
+
+                        headModel.TableName = readerProcedure.GetString(0);
+                        headModel.VehicleId = readerProcedure.GetInt32(1);
+
+                        for (int i = 2; i < sizeColumnData; i++)
+                        {
+                            headModel.DataForRow.Add(new VehicleDetailDataModel()
+                            {
+                                Value = readerProcedure.IsDBNull(i)? String.Empty : readerProcedure.GetString(i)
+                            });
+                        }
+                        headDataCollection.Add(headModel);
+                    }
+                }
+            }
+            return headDataCollection;
+        }
+
         private IRowMapper<VehicleModel> GetMapperSimple()
         {
             return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)

@@ -17,17 +17,19 @@
             $.each(dataResult, function (i, element) {
 
                 //var $row = $("<td>");
-                var columnList = "<tr>";
+                var columnList = "";
 
                 for (i = 0; i < element.Values.Count; i++) {
                     var column = $("<td>").attr("data-vehiclecode", element.vehiclecode).attr("data-tablename", element.tablename).text(element.Values[i]).prop("outerHTML");
                     columnList += column;
                 }
-                columnList += "</tr>"
-                
-                resultHtml.push(columnList);
+
+                var $tableRow = $("<tr></tr>").attr("data-vehiclecode", element.vehiclecode).attr("data-tablename", element.tablename);
+                $tableRow.html(columnList);
+                resultHtml.push($tableRow.prop("outerHTML"));
             });
 
+            $container.html(resultHtml.join(''));
         }).fail(function () {
             console.debug("No se pudo cargar los datos de la tabla: " + $(containerContext).attr("tableName"));
         }).complete(function () {

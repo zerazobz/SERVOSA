@@ -66,6 +66,8 @@
     <Compile Include="Models\ColumnServiceModel.cs" />
     <Compile Include="Models\TableColumnServiceModel.cs" />
     <Compile Include="Models\TableServiceModel.cs" />
+    <Compile Include="Models\VehicleDetailServiceModel.cs" />
+    <Compile Include="Models\VehicleHeadServiceModel.cs" />
     <Compile Include="Models\VehicleServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Realizations\DBServices.cs" />
