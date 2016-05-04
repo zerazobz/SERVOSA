@@ -68,9 +68,16 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return _vehicleRepository.Update(model);
         }
         
-        public IList<VehicleHeadDataModel> GetVehicleDataForTable(string tableName)
+        public IList<VehicleHeadServiceModel> GetVehicleDataForTable(string tableName)
         {
-            return null;
+            VehicleHeadServiceModel modelResult = null;
+            var vehicleData = _vehicleRepository.GetDataForTable(tableName).Select(vD =>
+            {
+                VehicleHeadServiceModel.ToServiceModel(vD, ref modelResult);
+                return modelResult;
+            }).ToList();
+
+            return vehicleData;
         }
     }
 }

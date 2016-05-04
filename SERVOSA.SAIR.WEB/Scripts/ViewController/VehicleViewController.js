@@ -15,25 +15,23 @@
             var $container = $(containerContext);
             var resultHtml = [];
             $.each(dataResult, function (i, element) {
-
-                //var $row = $("<td>");
                 var columnList = "";
 
-                for (i = 0; i < element.Values.Count; i++) {
-                    var column = $("<td>").attr("data-vehiclecode", element.vehiclecode).attr("data-tablename", element.tablename).text(element.Values[i]).prop("outerHTML");
+                for (i = 2; i < element.DataForRow.length; i++) {
+                    var column = $("<td>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
                     columnList += column;
                 }
 
-                var $tableRow = $("<tr></tr>").attr("data-vehiclecode", element.vehiclecode).attr("data-tablename", element.tablename);
+                var $tableRow = $("<tr></tr>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName);
                 $tableRow.html(columnList);
                 resultHtml.push($tableRow.prop("outerHTML"));
             });
 
-            $container.html(resultHtml.join(''));
+            $container.find("tbody").html(resultHtml.join(''));
         }).fail(function () {
-            console.debug("No se pudo cargar los datos de la tabla: " + $(containerContext).attr("tableName"));
+            console.debug("No se pudo cargar los datos de la tabla: " + $(containerContext).attr("data-tableName"));
         }).complete(function () {
-            console.debug("Culmino el procesamiento de la tabla: " + $(containerContext).attr("tableName"));
+            console.debug("Culmino el procesamiento de la tabla: " + $(containerContext).attr("data-tableName"));
         });
     };
 
@@ -160,16 +158,8 @@
                         $currentTable.find("tr:gt(1)").append("<td></td>");
                         var oldColSpan = parseInt($currentTable.find("thead tr:first-child th").attr("colspan"));
                         $currentTable.find("thead tr:first-child th").attr("colspan", oldColSpan + 1);
-                        //$.get("/templates/vehicletabletemplate.html", function (data) {
 
-                        //    var handletemplate = Handlebars.compile($(data).html());
-                        //    var data = {
-                        //        tableName: tableName,
-                        //        normalizedTableName: normalizedTableName
-                        //    };
-                        //    var htmlgenerated = handletemplate(data);
-                        //    $("#containerforalltables").append(htmlgenerated);
-                        //});
+                        vehicleNamespace.LoadTableData($currentTable, tableName);
                     }
                     else {
                         $("#createColumnModal ").find(".messagePanel").SERVOSAErrorNotification(message);

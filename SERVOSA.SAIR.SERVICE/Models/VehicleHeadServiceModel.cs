@@ -19,7 +19,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public int VehicleId { get; set; }
         public IList<VehicleDetailServiceModel> DataForRow { get; set; }
 
-        public void ToDataModel(VehicleHeadServiceModel serviceModel, ref VehicleHeadDataModel dataModel)
+        public static void ToDataModel(VehicleHeadServiceModel serviceModel, ref VehicleHeadDataModel dataModel)
         {
             if (serviceModel != null)
             {
@@ -43,7 +43,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 dataModel = null;
         }
 
-        public void ToServiceModel(VehicleHeadDataModel dataModel, ref VehicleHeadServiceModel serviceModel)
+        public static void ToServiceModel(VehicleHeadDataModel dataModel, ref VehicleHeadServiceModel serviceModel)
         {
             if(dataModel != null)
             {

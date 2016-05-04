@@ -101,5 +101,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 return Json(new { Result = "ERROR", Message = ex.Message });
             }
         }
+
+        [HttpPost]
+        public JsonResult LoadTablaData(string tableName)
+        {
+            var dataResult = _vehicleService.GetVehicleDataForTable(tableName);
+            return Json(dataResult);
+        }
     }
 }

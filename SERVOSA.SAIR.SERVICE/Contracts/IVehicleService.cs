@@ -12,6 +12,6 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
     public interface IVehicleService : IServiceRepository<VehicleServiceModel>
     {
         IList<VehicleServiceModel> GetAllFiltered(int minRow, int maxRow);
-        IList<VehicleHeadDataModel> GetVehicleDataForTable(string tableName);
+        IList<VehicleHeadServiceModel> GetVehicleDataForTable(string tableName);
     }
 }
