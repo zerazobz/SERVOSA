@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Models.Vehicle
 {
-    public class VehicleHeadDataModel
+    public class VehicleVariableTableDataModel
     {
-        public VehicleHeadDataModel()
-        {
-            DataForRow = new List<VehicleDetailDataModel>();
-        }
-
         public string TableName { get; set; }
         public int ObjectId { get; set; }
-        public int VehicleId { get; set; }
-        public IList<VehicleDetailDataModel> DataForRow { get; set; }
+        public string ColumnName { get; set; }
+        public int ColumnId { get; set; }
+        public string TableValue { get; set; }
+        public string ColumnType { get; set; }
     }
 }

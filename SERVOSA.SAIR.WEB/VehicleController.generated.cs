@@ -74,6 +74,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CreateVehicle);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult LoadTablaData()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.LoadTablaData);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public VehicleController Actions { get { return MVC.Vehicle; } }
@@ -95,6 +101,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public readonly string DeleteVehicle = "DeleteVehicle";
             public readonly string UpdateVehicle = "UpdateVehicle";
             public readonly string CreateVehicle = "CreateVehicle";
+            public readonly string LoadTablaData = "LoadTablaData";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -105,6 +112,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public const string DeleteVehicle = "DeleteVehicle";
             public const string UpdateVehicle = "UpdateVehicle";
             public const string CreateVehicle = "CreateVehicle";
+            public const string LoadTablaData = "LoadTablaData";
         }
 
 
@@ -141,6 +149,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public class ActionParamsClass_CreateVehicle
         {
             public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_LoadTablaData s_params_LoadTablaData = new ActionParamsClass_LoadTablaData();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_LoadTablaData LoadTablaDataParams { get { return s_params_LoadTablaData; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_LoadTablaData
+        {
+            public readonly string tableName = "tableName";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -221,6 +237,18 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CreateVehicle);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             CreateVehicleOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoadTablaDataOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string tableName);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult LoadTablaData(string tableName)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.LoadTablaData);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "tableName", tableName);
+            LoadTablaDataOverride(callInfo, tableName);
             return callInfo;
         }
 

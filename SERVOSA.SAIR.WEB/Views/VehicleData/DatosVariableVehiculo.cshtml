@@ -1,6 +1,6 @@
-﻿@model SERVOSA.SAIR.WEB.Controllers.TempHeadModel
+﻿@*@model SERVOSA.SAIR.WEB.Controllers.TempHeadModel*@
 
-@using (Html.BeginForm(MVC.VehicleData.DatosVariableVehiculo(), FormMethod.Post, new { id = "postVariableData" }))
+@*@using (Html.BeginForm(MVC.VehicleData.DatosVariableVehiculo(), FormMethod.Post, new { id = "postVariableData" }))
 {
     @Html.AntiForgeryToken()
     <div class="row">
@@ -16,14 +16,31 @@
         <div class="row">
             <div class="col-md-6">
                 @Html.TextBoxFor(model => model.ChildData[i].Type)
-                @*<input type="text" name="ChildData[@i].Type" value="@Model.ChildData[i].Type" />*@
             </div>
             <div class="col-md-6">
                 @Html.TextBoxFor(model => model.ChildData[i].Value)
-                @*<input type="text" name="@Model.ChildData[i].Value" value="" />*@
             </div>
         </div>
     }
 
     <input type="submit" name="submitDatosVariables" value="Guardar" />
+}*@
+@model IList<SERVOSA.SAIR.DATAACCESS.Models.Vehicle.VehicleVariableTableDataModel>
+
+@using (Html.BeginForm(MVC.VehicleData.DatosVariableVehiculo(), FormMethod.Post, new { id = "postVariableData" }))
+{
+    @Html.AntiForgeryToken()
+    foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(f => item.ColumnName)
+            </div>
+            <div class="col-md-6">
+                @Html.TextBoxFor(f => item.TableValue)
+            </div>
+        </div>
+    }
+
+<input type="submit" name="submitDatosVariables" value="Guardar" />
 }

@@ -103,9 +103,9 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public JsonResult LoadTablaData(string tableName)
+        public virtual JsonResult LoadTablaData(string tableName)
         {
-            var dataResult = _vehicleService.GetVehicleDataForTable(tableName);
+            var dataResult = _vehicleService.GetVehicleRowDataForTable(tableName);
             return Json(dataResult);
         }
     }

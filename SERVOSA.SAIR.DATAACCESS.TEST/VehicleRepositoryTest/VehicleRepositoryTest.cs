@@ -19,7 +19,7 @@ namespace SERVOSA.SAIR.DATAACCESS.TEST.VehicleRepositoryTest
         [TestMethod]
         public void TestGetDataForTable()
         {
-            var dataForTable = _vehicleRepository.GetDataForTable("DocumentosSunat");
+            var dataForTable = _vehicleRepository.GetRowDataForTable("DocumentosSunat");
             Console.WriteLine("La cantidad te registros es: {0}", dataForTable.Count);
             Assert.AreNotEqual(0, dataForTable.Count);
         }

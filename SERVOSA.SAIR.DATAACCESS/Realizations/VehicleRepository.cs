@@ -72,30 +72,30 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             }
         }
 
-        public IList<VehicleHeadDataModel> GetDataForTable(string tableName)
+        public IList<VehicleHeadRowDataModel> GetRowDataForTable(string tableName)
         {
-            List<VehicleHeadDataModel> headDataCollection = new List<VehicleHeadDataModel>();
+            List<VehicleHeadRowDataModel> headDataCollection = new List<VehicleHeadRowDataModel>();
 
             object[] parameters = new object[] { tableName };
             using (var readCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHIS_Datos", parameters))
             {
-                VehicleHeadDataModel headModel = null;
+                VehicleHeadRowDataModel headModel = null;
                 using (var readerProcedure = _servosaDB.ExecuteReader(readCommand))
                 {
                     while (readerProcedure.Read())
                     {
                         var sizeColumnData = readerProcedure.FieldCount;
-                        headModel = new VehicleHeadDataModel();
-                        headModel.DataForRow = new List<VehicleDetailDataModel>(sizeColumnData);
+                        headModel = new VehicleHeadRowDataModel();
+                        headModel.DataForRow = new List<VehicleDetailRowDataModel>(sizeColumnData);
 
                         headModel.TableName = readerProcedure.GetString(0);
                         headModel.VehicleId = readerProcedure.GetInt32(1);
 
                         for (int i = 2; i < sizeColumnData; i++)
                         {
-                            headModel.DataForRow.Add(new VehicleDetailDataModel()
+                            headModel.DataForRow.Add(new VehicleDetailRowDataModel()
                             {
-                                Value = readerProcedure.IsDBNull(i)? String.Empty : readerProcedure.GetString(i)
+                                Value = readerProcedure.IsDBNull(i)? String.Empty : readerProcedure.GetValue(i).ToString()
                             });
                         }
                         headDataCollection.Add(headModel);
@@ -103,6 +103,15 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                 }
             }
             return headDataCollection;
+        }
+
+        public IList<VehicleVariableTableDataModel> GetVehicleVariableTableData(string tableName, int vehicleId)
+        {
+            object[] parameters = new object[] { tableName, vehicleId };
+            IRowMapper<VehicleVariableTableDataModel> rowMapper = MapBuilder<VehicleVariableTableDataModel>.MapAllProperties().Build();
+
+            var dataResult = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_TableData", rowMapper, parameters);
+            return dataResult.ToList();
         }
 
         private IRowMapper<VehicleModel> GetMapperSimple()

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SERVOSA.SAIR.DATAACCESS.Models.Vehicle
+namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class VehicleDetailDataModel
+    public class VehicleDetailRowServiceModel
     {
         public string Value { get; set; }
         public string Type { get; set; }

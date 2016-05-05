@@ -7,32 +7,32 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class VehicleHeadServiceModel
+    public class VehicleHeadRowServiceModel
     {
-        public VehicleHeadServiceModel()
+        public VehicleHeadRowServiceModel()
         {
-            DataForRow = new List<VehicleDetailServiceModel>();
+            DataForRow = new List<VehicleDetailRowServiceModel>();
         }
 
         public string TableName { get; set; }
         public int ObjectId { get; set; }
         public int VehicleId { get; set; }
-        public IList<VehicleDetailServiceModel> DataForRow { get; set; }
+        public IList<VehicleDetailRowServiceModel> DataForRow { get; set; }
 
-        public static void ToDataModel(VehicleHeadServiceModel serviceModel, ref VehicleHeadDataModel dataModel)
+        public static void ToDataModel(VehicleHeadRowServiceModel serviceModel, ref VehicleHeadRowDataModel dataModel)
         {
             if (serviceModel != null)
             {
-                dataModel = new VehicleHeadDataModel()
+                dataModel = new VehicleHeadRowDataModel()
                 {
                     ObjectId = serviceModel.ObjectId,
                     TableName = serviceModel.TableName,
                     VehicleId = serviceModel.VehicleId
                 };
 
-                var tmp = new List<VehicleDetailDataModel>();
+                var tmp = new List<VehicleDetailRowDataModel>();
 
-                serviceModel.DataForRow.ToList().ForEach(dR => tmp.Add(new VehicleDetailDataModel
+                serviceModel.DataForRow.ToList().ForEach(dR => tmp.Add(new VehicleDetailRowDataModel
                 {
                     Type = String.Empty,
                     Value = dR.Value
@@ -43,19 +43,19 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 dataModel = null;
         }
 
-        public static void ToServiceModel(VehicleHeadDataModel dataModel, ref VehicleHeadServiceModel serviceModel)
+        public static void ToServiceModel(VehicleHeadRowDataModel dataModel, ref VehicleHeadRowServiceModel serviceModel)
         {
             if(dataModel != null)
             {
-                serviceModel = new VehicleHeadServiceModel()
+                serviceModel = new VehicleHeadRowServiceModel()
                 {
                     ObjectId = dataModel.ObjectId,
                     TableName = dataModel.TableName,
                     VehicleId = dataModel.VehicleId
                 };
 
-                var tmp = new List<VehicleDetailServiceModel>();
-                dataModel.DataForRow.ToList().ForEach(dr => tmp.Add(new VehicleDetailServiceModel
+                var tmp = new List<VehicleDetailRowServiceModel>();
+                dataModel.DataForRow.ToList().ForEach(dr => tmp.Add(new VehicleDetailRowServiceModel
                 {
                     Type = String.Empty,
                     Value = dr.Value

@@ -1,4 +1,5 @@
 ﻿using SERVOSA.SAIR.SERVICE.Contracts;
+using SERVOSA.SAIR.SERVICE.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,17 +36,19 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult DatosVariableVehiculo(int vehicleCode, string variableName)
         {
-            TempHeadModel model = new TempHeadModel();
-            model.SomeName = "Nombre Cabecera";
-            model.ChildData = new List<TempChildModel>();
-            model.ChildData.Add(new TempChildModel() { Type = "string" });
-            model.ChildData.Add(new TempChildModel() { Type = "decimal" });
-            model.ChildData.Add(new TempChildModel() { Type = "datetime" });
-            return PartialView(model);
+            //TempHeadModel model = new TempHeadModel();
+            //model.SomeName = "Nombre Cabecera";
+            //model.ChildData = new List<TempChildModel>();
+            //model.ChildData.Add(new TempChildModel() { Type = "string" });
+            //model.ChildData.Add(new TempChildModel() { Type = "decimal" });
+            //model.ChildData.Add(new TempChildModel() { Type = "datetime" });
+            //return PartialView(model);
+            var data = _vehicleService.GetVehicleVariableTableData(variableName, vehicleCode);
+            return PartialView(data);
         }
 
         [HttpPost]
-        public virtual ActionResult DatosVariableVehiculo(TempHeadModel model)
+        public virtual ActionResult DatosVariableVehiculo(IList<VehicleVariableDataServiceModel> model)
         {
             if (ModelState.IsValid)
                 ;
