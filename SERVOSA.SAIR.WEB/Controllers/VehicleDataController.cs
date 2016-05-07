@@ -2,7 +2,9 @@
 using SERVOSA.SAIR.SERVICE.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -18,9 +20,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpGet]
-        public virtual ActionResult Data(int vehicleCode)
+        public virtual ActionResult Data(int vehicleCode, string variableName)
         {
             ViewBag.VehicleCode = vehicleCode;
+            ViewBag.TableName = variableName;
             return View();
         }
 
@@ -36,6 +39,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult DatosVariableVehiculo(int vehicleCode, string variableName)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("es-PE");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-PE");
+            var currentThread = Thread.CurrentThread.CurrentCulture;
+            var currentThreadUI = Thread.CurrentThread.CurrentUICulture;
             //TempHeadModel model = new TempHeadModel();
             //model.SomeName = "Nombre Cabecera";
             //model.ChildData = new List<TempChildModel>();
@@ -44,11 +51,30 @@ namespace SERVOSA.SAIR.WEB.Controllers
             //model.ChildData.Add(new TempChildModel() { Type = "datetime" });
             //return PartialView(model);
             var data = _vehicleService.GetVehicleVariableTableData(variableName, vehicleCode);
+            data.ColumnsCollection.ForEach(cL =>
+            {
+                switch (cL.ColumnType)
+                {
+                    case "nvarchar":
+                        cL.ColumnValue = cL.TableValue;
+                        break;
+                    case "decimal":
+                        cL.ColumnValue = Convert.ToDecimal(cL.TableValue);
+                        break;
+                    case "datetime":
+                        cL.ColumnValue = Convert.ToDateTime(cL.TableValue);
+                        break;
+                    default:
+                        cL.ColumnValue = cL.TableValue;
+                        break;
+                }
+            });
+
             return PartialView(data);
         }
 
         [HttpPost]
-        public virtual ActionResult DatosVariableVehiculo(IList<VehicleVariableDataServiceModel> model)
+        public virtual ActionResult DatosVariableVehiculo(VehicleVariableDataServiceModel model)
         {
             if (ModelState.IsValid)
                 ;

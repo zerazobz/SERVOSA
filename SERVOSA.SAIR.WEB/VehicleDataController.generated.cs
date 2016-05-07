@@ -111,6 +111,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public class ActionParamsClass_Data
         {
             public readonly string vehicleCode = "vehicleCode";
+            public readonly string variableName = "variableName";
         }
         static readonly ActionParamsClass_CabeceraVehiculo s_params_CabeceraVehiculo = new ActionParamsClass_CabeceraVehiculo();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -156,14 +157,15 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public T4MVC_VehicleDataController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void DataOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int vehicleCode);
+        partial void DataOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int vehicleCode, string variableName);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Data(int vehicleCode)
+        public override System.Web.Mvc.ActionResult Data(int vehicleCode, string variableName)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Data);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vehicleCode", vehicleCode);
-            DataOverride(callInfo, vehicleCode);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "variableName", variableName);
+            DataOverride(callInfo, vehicleCode, variableName);
             return callInfo;
         }
 
@@ -193,10 +195,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [NonAction]
-        partial void DatosVariableVehiculoOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Collections.Generic.IList<SERVOSA.SAIR.SERVICE.Models.VehicleVariableDataServiceModel> model);
+        partial void DatosVariableVehiculoOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.VehicleVariableDataServiceModel model);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult DatosVariableVehiculo(System.Collections.Generic.IList<SERVOSA.SAIR.SERVICE.Models.VehicleVariableDataServiceModel> model)
+        public override System.Web.Mvc.ActionResult DatosVariableVehiculo(SERVOSA.SAIR.SERVICE.Models.VehicleVariableDataServiceModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DatosVariableVehiculo);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

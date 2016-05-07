@@ -8,5 +8,5 @@
 </div>
 <hr />
 <div class="row">
-    @{ Html.RenderAction(MVC.VehicleData.DatosVariableVehiculo((int)ViewBag.VehicleCode, "SomeVar")); }
+    @{ Html.RenderAction(MVC.VehicleData.DatosVariableVehiculo((int)ViewBag.VehicleCode, (string)ViewBag.TableName)); }
 </div>

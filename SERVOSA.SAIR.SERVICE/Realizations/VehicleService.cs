@@ -80,15 +80,12 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return vehicleData;
         }
 
-        public IList<VehicleVariableDataServiceModel> GetVehicleVariableTableData(string tableName, int vehicleCode)
+        public VehicleVariableDataServiceModel GetVehicleVariableTableData(string tableName, int vehicleCode)
         {
             VehicleVariableDataServiceModel serviceModel = null;
-            var dataResult = _vehicleRepository.GetVehicleVariableTableData(tableName, vehicleCode).Select(vD =>
-            {
-                VehicleVariableDataServiceModel.ToServiceModel(vD, ref serviceModel);
-                return serviceModel;
-            }).ToList();
-            return dataResult;
+            var dataResult = _vehicleRepository.GetVehicleVariableTableData(tableName, vehicleCode);
+            VehicleVariableDataServiceModel.ToServiceModel(dataResult, ref serviceModel);
+            return serviceModel;
         }
     }
 }
