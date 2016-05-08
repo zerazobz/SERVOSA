@@ -1,31 +1,4 @@
-﻿@*@model SERVOSA.SAIR.WEB.Controllers.TempHeadModel*@
-
-@*@using (Html.BeginForm(MVC.VehicleData.DatosVariableVehiculo(), FormMethod.Post, new { id = "postVariableData" }))
-    {
-        @Html.AntiForgeryToken()
-        <div class="row">
-            <div class="col-md-6">
-                @Html.LabelFor(model => model.SomeName)
-            </div>
-            <div class="col-md-6">
-                @Html.DisplayFor(model => model.SomeName)
-            </div>
-        </div>
-        for (int i = 0; i < Model.ChildData.Count; i++)
-        {
-            <div class="row">
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.ChildData[i].Type)
-                </div>
-                <div class="col-md-6">
-                    @Html.TextBoxFor(model => model.ChildData[i].Value)
-                </div>
-            </div>
-        }
-
-        <input type="submit" name="submitDatosVariables" value="Guardar" />
-    }*@
-@model SERVOSA.SAIR.SERVICE.Models.VehicleVariableDataServiceModel
+﻿@model SERVOSA.SAIR.SERVICE.Models.VehicleVariableDataServiceModel
 
 @using (Html.BeginForm(MVC.VehicleData.DatosVariableVehiculo(), FormMethod.Post, new { id = "postVariableData" }))
 {
@@ -34,39 +7,39 @@
         @Html.HiddenFor(model => model.TableName)
     </div>
     @Html.AntiForgeryToken()
-    for (int i = 0; i < Model.ColumnsCollection.Count; i++)
+    for (int i = 2; i < Model.ColumnsCollection.Count; i++)
     {
-        <div class="row">
+        <div class="row" style="margin-top: 15px;">
             <div class="col-md-6">
                 @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnId)
                 @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnType)
                 @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnName)
                 @Html.Label(Model.ColumnsCollection[i].ColumnName)
-                @*@Html.LabelFor(model => model.ColumnsCollection[i].ColumnName)*@
             </div>
             <div class="col-md-6">
                 @if (Model.ColumnsCollection[i].ColumnType == "datetime")
                 {
-                    @Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue, "{0:yyyy-MM-dd}", new { type = "date" })
-                    @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, "{0:yyyy-MM-dd}", new { type = "date" })
+                    @*@Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue, "{0:yyyy-MM-dd}", new { type = "date" })*@
+                    @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
                 }
-                //else if (Model.ColumnsCollection[i].ColumnType == "decimal")
                 else if (Model.ColumnsCollection[i].ColumnType == "int")
                 {
-                    @Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue, new { type = "number", step = "any" })
-                    @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { type = "currency" })
+                    @*@Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue, new { type = "number", step = "any" })*@
+                    @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { type = "currency", @class = "form-control" })
                 }
                 else if (Model.ColumnsCollection[i].ColumnType == "nvarchar")
                 {
-                    @Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue)
-                    @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue)
+                    @*@Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue)*@
+                    @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { @class = "form-control" })
                 }
                 else
                 {
-                    @Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue)
+                    @Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue, new { @class = "form-control" })
                 }
             </div>
         </div>
     }
-    <input type="submit" name="submitDatosVariables" value="Guardar" />
+    <div class="row">
+        <input type="submit" name="submitDatosVariables" class="btn btn-default" value="Guardar" />
+    </div>
 }

@@ -2,9 +2,7 @@
 using SERVOSA.SAIR.SERVICE.Models;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -39,19 +37,24 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult DatosVariableVehiculo(int vehicleCode, string variableName)
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("es-PE");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-PE");
-            var currentThread = Thread.CurrentThread.CurrentCulture;
-            var currentThreadUI = Thread.CurrentThread.CurrentUICulture;
-            //TempHeadModel model = new TempHeadModel();
-            //model.SomeName = "Nombre Cabecera";
-            //model.ChildData = new List<TempChildModel>();
-            //model.ChildData.Add(new TempChildModel() { Type = "string" });
-            //model.ChildData.Add(new TempChildModel() { Type = "decimal" });
-            //model.ChildData.Add(new TempChildModel() { Type = "datetime" });
-            //return PartialView(model);
             var data = _vehicleService.GetVehicleVariableTableData(variableName, vehicleCode);
-            data.ColumnsCollection.ForEach(cL =>
+            PopulateColumnsValues(data);
+
+            return PartialView(data);
+        }
+
+        [HttpPost]
+        public virtual ActionResult DatosVariableVehiculo(VehicleVariableDataServiceModel model)
+        {
+            if (ModelState.IsValid)
+                ;
+            PopulateColumnsValues(model);
+            return PartialView(model);
+        }
+
+        private void PopulateColumnsValues(VehicleVariableDataServiceModel dataToWork)
+        {
+            dataToWork.ColumnsCollection.ForEach(cL =>
             {
                 switch (cL.ColumnType)
                 {
@@ -69,27 +72,6 @@ namespace SERVOSA.SAIR.WEB.Controllers
                         break;
                 }
             });
-
-            return PartialView(data);
         }
-
-        [HttpPost]
-        public virtual ActionResult DatosVariableVehiculo(VehicleVariableDataServiceModel model)
-        {
-            if (ModelState.IsValid)
-                ;
-            return View(model);
-        }
-    }
-
-    public class TempHeadModel
-    {
-        public string SomeName { get; set; }
-        public IList<TempChildModel> ChildData { get; set; }
-    }
-    public class TempChildModel
-    {
-        public string Type { get; set; }
-        public string Value { get; set; }
     }
 }
