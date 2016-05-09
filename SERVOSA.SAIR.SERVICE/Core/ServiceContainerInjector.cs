@@ -17,6 +17,7 @@ namespace SERVOSA.SAIR.SERVICE.Core
             Container.RegisterType<IDriverRepository, DriverRepository>();
             Container.RegisterType<IDBTablesRepository, DBRepository>();
             Container.RegisterType<IDBColumnsRepository, DBRepository>();
+            Container.RegisterType<ITableDataRepository, TableDataRepository>();
         }
     }
 }

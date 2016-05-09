@@ -2,11 +2,8 @@
 using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
 using SERVOSA.SAIR.SERVICE.Contracts;
 using SERVOSA.SAIR.SERVICE.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Realizations
 {

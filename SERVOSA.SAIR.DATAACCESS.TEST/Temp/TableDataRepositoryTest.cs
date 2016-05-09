@@ -1,0 +1,27 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SERVOSA.SAIR.DATAACCESS.Contracts;
+using SERVOSA.SAIR.DATAACCESS.Realizations;
+
+namespace SERVOSA.SAIR.DATAACCESS.TEST.Temp
+{
+    [TestClass]
+    public class TableDataRepositoryTest
+    {
+        private ITableDataRepository _tableDataRepository;
+
+        [TestInitialize]
+        public void InitializeTest()
+        {
+            _tableDataRepository = new TableDataRepository();
+        }
+
+        [TestMethod]
+        public void TestQueryWithStructuredData()
+        {
+            var resultExecution = _tableDataRepository.TestDataStructured();
+
+            Assert.AreNotEqual(0, resultExecution.Count);
+        }
+    }
+}

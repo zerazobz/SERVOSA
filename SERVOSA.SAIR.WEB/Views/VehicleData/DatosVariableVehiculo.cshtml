@@ -7,37 +7,68 @@
         @Html.HiddenFor(model => model.TableName)
     </div>
     @Html.AntiForgeryToken()
-    for (int i = 2; i < Model.ColumnsCollection.Count; i++)
+    for (int i = 0; i < Model.ColumnsCollection.Count; i++)
     {
-        <div class="row" style="margin-top: 15px;">
-            <div class="col-md-6">
-                @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnId)
-                @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnType)
-                @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnName)
-                @Html.Label(Model.ColumnsCollection[i].ColumnName)
+        if (i < 2)
+        {
+            <div class="row" style="margin-top: 15px; display: none;">
+                <div class="col-md-6">
+                    @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnId)
+                    @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnType)
+                    @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnName)
+                    @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnNamedType)
+                    @Html.Label(Model.ColumnsCollection[i].ColumnName)
+                </div>
+                <div class="col-md-6">
+                    @if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.DateTime)
+                    {
+                        @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
+                    }
+                    else if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.Int)
+                    {
+                        @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { type = "currency", @class = "form-control" })
+                    }
+                    else if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.NVarChar)
+                    {
+                        @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { @class = "form-control" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue, new { @class = "form-control" })
+                    }
+                </div>
             </div>
-            <div class="col-md-6">
-                @if (Model.ColumnsCollection[i].ColumnType == "datetime")
-                {
-                    @*@Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue, "{0:yyyy-MM-dd}", new { type = "date" })*@
-                    @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
-                }
-                else if (Model.ColumnsCollection[i].ColumnType == "int")
-                {
-                    @*@Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue, new { type = "number", step = "any" })*@
-                    @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { type = "currency", @class = "form-control" })
-                }
-                else if (Model.ColumnsCollection[i].ColumnType == "nvarchar")
-                {
-                    @*@Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue)*@
-                    @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { @class = "form-control" })
-                }
-                else
-                {
-                    @Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue, new { @class = "form-control" })
-                }
+        }
+        else
+        {
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-md-6">
+                    @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnId)
+                    @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnType)
+                    @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnName)
+                    @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnNamedType)
+                    @Html.Label(Model.ColumnsCollection[i].ColumnName)
+                </div>
+                <div class="col-md-6">
+                    @if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.DateTime)
+                    {
+                        @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
+                    }
+                    else if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.Int)
+                    {
+                        @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { type = "currency", @class = "form-control" })
+                    }
+                    else if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.NVarChar)
+                    {
+                        @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { @class = "form-control" })
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue, new { @class = "form-control" })
+                    }
+                </div>
             </div>
-        </div>
+        }
     }
     <div class="row">
         <input type="submit" name="submitDatosVariables" class="btn btn-default" value="Guardar" />
