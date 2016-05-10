@@ -51,11 +51,6 @@ namespace SERVOSA.SAIR.WEB.Controllers
             }
 
             var allTables = _dbServices.ListAllTables();
-
-            //List<TableViewModel> data = new List<TableViewModel>()
-            //{
-            //    new TableViewModel() { TableName = "INMIGRACIONES", TableNormalizedName = "INMIGRACIONES" }
-            //};
             return View(MVC.Home.Views.Index, collectionTables);
         }
 

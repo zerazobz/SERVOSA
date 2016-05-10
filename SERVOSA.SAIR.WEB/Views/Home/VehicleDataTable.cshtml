@@ -8,7 +8,7 @@
     <table class="table table-bordered table-hover servosatable" data-tablename="@Model.TableNormalizedName">
         <thead>
             <tr>
-                <th colspan="@qytColumns">
+                <th colspan="@(qytColumns + 1)">
                     <div style="display: inline-block;">
                         <p style="display: inline;">@Model.TableName</p>
                         <button data-normalizedtablename="@Model.TableNormalizedName" data-tablename="@Model.TableNormalizedName" class="btn btn-default addNewColumnToVariable" type="button" style="display: inline;"> <span class="glyphicon glyphicon-plus"></span> Agregar Columna</button>
@@ -16,6 +16,9 @@
                 </th>
             </tr>
             <tr>
+                <th>
+                    Tareas
+                </th>
                 @foreach (var iColumn in Model.Columns)
                 {
                     <th>@iColumn.ColumnName</th>
@@ -23,12 +26,6 @@
             </tr>
         </thead>
         <tbody>
-            @*<tr>
-                @foreach (var iColumn in Model.Columns)
-                {
-                    <td></td>
-                }
-            </tr>*@
         </tbody>
     </table>
 </div>

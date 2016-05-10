@@ -15,7 +15,7 @@
             var $container = $(containerContext);
             var resultHtml = [];
             $.each(dataResult, function (i, element) {
-                var columnList = "";
+                var columnList = "<td><span class='glyphicon glyphicon-edit' data-toggle='modal' data-target='#createUpdateTableDataModal'></span> <span class='glyphicon glyphicon-file' data-toggle='modal' data-target='#updateFileModal'></span></td>";
 
                 for (i = 2; i < element.DataForRow.length; i++) {
                     var column = $("<td>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
