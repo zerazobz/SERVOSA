@@ -15,7 +15,7 @@
             var $container = $(containerContext);
             var resultHtml = [];
             $.each(dataResult, function (i, element) {
-                var columnList = "<td><span class='glyphicon glyphicon-edit' data-toggle='modal' data-target='#createUpdateTableDataModal'></span> <span class='glyphicon glyphicon-file' data-toggle='modal' data-target='#updateFileModal'></span></td>";
+                var columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "'></span></td>";
 
                 for (i = 2; i < element.DataForRow.length; i++) {
                     var column = $("<td>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
@@ -45,6 +45,7 @@
     };
 
     $(function () {
+
         $("#vehicleTable").jtable({
             title: 'Listado de Vehiculos',
             paging: true,
@@ -174,6 +175,8 @@
                 $("#createColumnModal .modal-body").find(".messagepanel").SERVOSAErrorNotification("Por favor ingrese/seleccione los campos requeridos.");
             }
         });
+
+
 
         vehicleNamespace.LoadVehicleTable();
         vehicleNamespace.LoadDataForTablesYetLoaded();

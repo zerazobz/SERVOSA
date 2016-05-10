@@ -40,14 +40,12 @@
         }
 
         $.fn.extend({
-            //Crea un Alert Information de Error
             SERVOSAErrorNotification: function (message) {
                 var $divContainer = $(this);
                 $.get("/Templates/Notifications/NotificationError.html", function (htmlTemplate) {
                     ProccessAlertMessage(htmlTemplate, message, $divContainer);
                 });
             },
-            //Crea un Alert Information de Error
             SERVOSAWarningNotification: function (message) {
                 var $divContainer = $(this);
                 $.get("/Templates/Notifications/NotificationWarning.html", function (htmlTemplate) {
@@ -68,7 +66,19 @@
             }
         });
 
-        
+        $(document).on("click", ".createUpdateData", null, function () {
+            var $buttonContext = $(this);
+            var tableName = $buttonContext.data("tablename");
+            var vehicleId = $buttonContext.data("vehiclecode");
+
+            $.post("/VehicleData/DatosVariableVehiculo", { vehicleCode: vehicleId, variableName: tableName }, function (dataResult) {
+
+            }).complete(function (e) {
+
+            }).fail(function (e) {
+
+            });
+        });
     });
 
 })(window.SERVOSA = window.SERVOSA || {}, jQuery);
