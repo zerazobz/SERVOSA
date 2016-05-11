@@ -1,12 +1,9 @@
 ﻿(function (driverNamespace, $, undefined) {
-
     var driversTable = "#tabledataDrivers";
-  
     driverNamespace.CargarTablaDrivers = function () {
-        $(driversTable).jtable('load', {
-          
-        });
+        $(driversTable).jtable('load');
     };
+
     $(function () {
         $(driversTable).jtable({
             title: 'Operarios',
@@ -24,13 +21,13 @@
                 ApellidoMaternoOperario: { title: 'Apellido Materno' },
                 NombreOperario: { title: 'Nombre' },
                 CodigoVehiculo: { title: "Unidad a Cargo", options: '/Vehicle/GetVehiculos' },
-                PuestoVehiculo: { title: 'Puesto', options: { 0: 'Auxiliar', 1: 'Conductor'}}
+                CodigoPuesto: { title: 'Puesto', options: { 0: 'Auxiliar', 1: 'Conductor' } }
             }
         });
         $("#btnBuscar").click(function () {
             driverNamespace.CargarTablaDrivers();
         });
     });
-
+    driverNamespace.CargarTablaDrivers();
 
 })(window.driverNamespace = window.driverNamespace || {}, jQuery);
