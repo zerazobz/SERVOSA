@@ -108,5 +108,18 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var dataResult = _vehicleService.GetVehicleRowDataForTable(tableName);
             return Json(dataResult);
         }
+        [HttpPost]
+        public virtual JsonResult GetVehiculos()
+        {
+            try
+            {
+                var allVehiculos = _vehicleService.GetAll().Select(op => new { DisplayText = op.PlacaTolva + '/' +op.PlacaTracto, Value = op.Codigo});
+                return Json(new { Result = "OK", Options = allVehiculos });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
     }
 }
