@@ -21,7 +21,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public int Create(DriverModel entity)
         {
-            object[] parameters = new object[] { entity.OPER_cApellidoPaterno, entity.OPER_cApellidoMaterno, entity.OPER_cNombre, entity.OPER_cCorreo, entity.VEHI_Id,null};
+            object[] parameters = new object[] { entity.OPER_cApellidoPaterno, entity.OPER_cApellidoMaterno, entity.OPER_cNombre, entity.OPER_cCorreo, entity.VEHI_Id,entity.PUES_Id,null};
             using (var insertCommand = _servosaDB.GetStoredProcCommand("SAIR_OPERI", parameters))
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(insertCommand);

@@ -1,12 +1,9 @@
 ﻿(function (driverNamespace, $, undefined) {
-
     var driversTable = "#tabledataDrivers";
-  
     driverNamespace.CargarTablaDrivers = function () {
-        $(driversTable).jtable('load', {
-          
-        });
+        $(driversTable).jtable('load');
     };
+
     $(function () {
         $(driversTable).jtable({
             title: 'Operarios',
@@ -19,19 +16,18 @@
                 createAction: '/Driver/CreateDriver'
             },
             fields: {
-                CodigoOperario: {key: true, title: 'Codigo',list:false },
+                CodigoOperario: { key: true, title: 'Codigo', create: false, edit: false },
                 ApellidoPaternoOperario: { title: 'Apellido Paterno' },
                 ApellidoMaternoOperario: { title: 'Apellido Materno' },
                 NombreOperario: { title: 'Nombre' },
-                CodigoVehiculo:{title:"CodigoVehiculo",list:false},
-                DescripcionVehiculo: { title: 'Unidad a Cargo' },
-                PuestoVehiculo: { title: 'Puesto' }
+                CodigoVehiculo: { title: "Unidad a Cargo", options: '/Vehicle/GetVehiculos' },
+                CodigoPuesto: { title: 'Puesto', options: { 0: 'Auxiliar', 1: 'Conductor' } }
             }
         });
         $("#btnBuscar").click(function () {
             driverNamespace.CargarTablaDrivers();
         });
     });
-
+    driverNamespace.CargarTablaDrivers();
 
 })(window.driverNamespace = window.driverNamespace || {}, jQuery);
