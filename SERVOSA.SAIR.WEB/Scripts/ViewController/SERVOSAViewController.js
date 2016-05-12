@@ -69,15 +69,54 @@
         $(document).on("click", ".createUpdateData", null, function () {
             var $buttonContext = $(this);
             var tableName = $buttonContext.data("tablename");
-            var vehicleId = $buttonContext.data("vehiclecode");
+            var vehicleId = $buttonContext.data("vehicleid");
 
-            $.post("/VehicleData/DatosVariableVehiculo", { vehicleCode: vehicleId, variableName: tableName }, function (dataResult) {
-
+            $.get("/VehicleData/DatosVariableVehiculo", { vehicleCode: vehicleId, variableName: tableName }, function (dataResult) {
+                $("#createUpdateTableDataModal").modal('show');
+                $("#createUpdateTableDataModal").find(".modal-body").html(dataResult);
             }).complete(function (e) {
-
+                console.log("Se termino de procesar la carga de Datos de Variable de Vehiculo.");
             }).fail(function (e) {
-
+                console.log("Ocurrio un error al intentar cargar los datos del vehiculo");
+                console.debug(e);
             });
+        });
+
+        $(document).on("submit", "#postVariableData", null, function (e) {
+            e.preventDefault();
+            var $modalContext = $(this);
+            console.log("Manejando el submit");
+            //console.debug(decodeURI($modalContext.serialize()));
+            //Change this to ajax post traditional:true
+            console.log(JSON.stringify($modalContext.serialize()));
+
+            $.ajax({
+                url: $modalContext.data("posturl"),
+                //data: { model: JSON.stringify($modalContext.serialize()) },
+                //data: JSON.stringify($modalContext.serialize()),
+                data: $modalContext.serialize(),
+                traditional: true,
+                type: 'POST',
+                success: function (dataResult) {
+                    $("#createUpdateTableDataModal").find(".modal-body").html(dataResult);
+                    console.log("Se termino de procesar el reemplazo de la vista.");
+                },
+                error: function () {
+                    console.log("Ocurrio un error al intentar Crear/Actualizar la informacion de la tabla.");
+                    console.debug(e);
+                }
+            });
+
+            //$.post($modalContext.data("posturl"), { model: decodeURI($modalContext.serialize()) }, function (dataResult) {
+            //    $("#createUpdateTableDataModal").find(".modal-body").html(dataResult);
+            //    console.log("Se termino de procesar el reemplazo de la vista.");
+            //}).complete(function () {
+            //    console.log("Se completado la acci'on de Crear/Actualizar la informacion de la tabla.");
+            //}).fail(function (e) {
+            //    console.log("Ocurrio un error al intentar Crear/Actualizar la informacion de la tabla.");
+            //    console.debug(e);
+            //});
+
         });
     });
 

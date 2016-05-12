@@ -1,6 +1,6 @@
 ﻿@model SERVOSA.SAIR.SERVICE.Models.VehicleVariableDataServiceModel
 
-@using (Html.BeginForm(MVC.VehicleData.DatosVariableVehiculo(), FormMethod.Post, new { id = "postVariableData" }))
+@using (Html.BeginForm(MVC.VehicleData.DatosVariableVehiculo(), FormMethod.Post, new { id = "postVariableData", data_posturl = Url.Action(MVC.VehicleData.DatosVariableVehiculo()) }))
 {
     <div>
         @Html.HiddenFor(model => model.ObjectId)
@@ -71,6 +71,8 @@
         }
     }
     <div class="row">
-        <input type="submit" name="submitDatosVariables" class="btn btn-default" value="Guardar" />
+        <div class="col-md-6">
+            <input type="submit" name="submitDatosVariables" class="btn btn-default" value="Guardar" />
+        </div>
     </div>
 }
