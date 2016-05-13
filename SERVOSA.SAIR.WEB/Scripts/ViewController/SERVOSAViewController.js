@@ -86,19 +86,24 @@
             e.preventDefault();
             var $modalContext = $(this);
             console.log("Manejando el submit");
-            //console.debug(decodeURI($modalContext.serialize()));
-            //Change this to ajax post traditional:true
-            console.log(JSON.stringify($modalContext.serialize()));
+            //console.log(JSON.stringify($modalContext.serialize()));
 
             $.ajax({
                 url: $modalContext.data("posturl"),
-                //data: { model: JSON.stringify($modalContext.serialize()) },
-                //data: JSON.stringify($modalContext.serialize()),
                 data: $modalContext.serialize(),
                 traditional: true,
                 type: 'POST',
                 success: function (dataResult) {
                     $("#createUpdateTableDataModal").find(".modal-body").html(dataResult);
+                    var isSuccessful = $("#createUpdateTableDataModal .modal-body").find("[name='IsSuccessful']").val();
+                    var message = $("#createUpdateTableDataModal .modal-body").find("[name='Message']").val();
+                    if (isSuccessful.toLowerCase() == "true") {
+                        $("#createUpdateTableDataModal .modal-body").find(".messagePanel").SERVOSASuccessNotification(message);
+                        $("[name='submitDatosVariables']").prop("disabled", true);
+                    }
+                    else {
+                        $("#createUpdateTableDataModal .modal-body").find(".messagePanel").SERVOSAErrorNotification(message);
+                    }
                     console.log("Se termino de procesar el reemplazo de la vista.");
                 },
                 error: function () {

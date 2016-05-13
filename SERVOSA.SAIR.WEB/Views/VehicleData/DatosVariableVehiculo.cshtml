@@ -2,9 +2,15 @@
 
 @using (Html.BeginForm(MVC.VehicleData.DatosVariableVehiculo(), FormMethod.Post, new { id = "postVariableData", data_posturl = Url.Action(MVC.VehicleData.DatosVariableVehiculo()) }))
 {
+    <div class="messagePanel">
+
+    </div>
+
     <div>
         @Html.HiddenFor(model => model.ObjectId)
         @Html.HiddenFor(model => model.TableName)
+        <input type="hidden" name="Message" value="@Model.Message" />
+        <input type="hidden" name="IsSuccessful" value="@Model.IsSuccessful.ToString()" />
     </div>
     @Html.AntiForgeryToken()
     for (int i = 0; i < Model.ColumnsCollection.Count; i++)

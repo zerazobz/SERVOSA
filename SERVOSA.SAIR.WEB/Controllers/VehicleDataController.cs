@@ -72,11 +72,40 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
                 int resultExecution;
                 if (columnIdentity != null && !String.IsNullOrWhiteSpace(identityValue))
+                {
                     resultExecution = _tableDataService.UpdateTableData(model.TableName, Convert.ToInt32(fkValue), tableDictionaryData);
+                    if (resultExecution > 0)
+                    {
+                        model.IsSuccessful = true;
+                        model.Message = "La actualización de datos culmino satisfactoriamente.";
+                    }
+                    else
+                    {
+                        model.IsSuccessful = false;
+                        model.Message = "La actualización de datos no se pudo concretar.";
+                    }
+                }
                 else
+                {
                     resultExecution = _tableDataService.InsertTableData(model.TableName, tableDictionaryData);
+                    if(resultExecution > 0)
+                    {
+                        model.IsSuccessful = true;
+                        model.Message = "La inserción de datos se realizó satisfactoriamente.";
+                    }
+                    else
+                    {
+                        model.IsSuccessful = false;
+                        model.Message = "La inserción de datos no se pudo concretar.";
+                    }
+                }
 
                 Debug.WriteLine("La ejecución termino con un: {0}", resultExecution);
+            }
+            else
+            {
+                model.IsSuccessful = false;
+                model.Message = "Por favor revisar la conformidad de los datos.";
             }
             return PartialView(model);
         }

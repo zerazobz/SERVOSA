@@ -82,6 +82,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             VehicleVariableDataServiceModel serviceModel = null;
             var dataResult = _vehicleRepository.GetVehicleVariableTableData(tableName, vehicleCode);
             VehicleVariableDataServiceModel.ToServiceModel(dataResult, ref serviceModel);
+            serviceModel.IsSuccessful = true;
             return serviceModel;
         }
     }

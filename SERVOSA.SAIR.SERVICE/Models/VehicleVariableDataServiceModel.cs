@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class VehicleVariableDataServiceModel
+    public class VehicleVariableDataServiceModel : MessageViewModel
     {
         public VehicleVariableDataServiceModel()
         {
             ColumnsCollection = new List<ColumnDataModel>();
+            IsSuccessful = true;
         }
 
         public string TableName { get; set; }
