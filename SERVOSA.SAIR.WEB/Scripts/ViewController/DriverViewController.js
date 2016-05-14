@@ -24,6 +24,18 @@
                 CodigoPuesto: { title: 'Puesto', options: { 0: 'Auxiliar', 1: 'Conductor' } }
             }
         });
+        $(document).on("click", "#modal-file #modal-submit-ok", null, function () {
+            var fileName = $('[name="excelFile"]').val().trim();
+            var pos = fileName.lastIndexOf('.');
+            var extension = (pos <= 0) ? '' : fileName.substring(pos);
+            if (extension != '.xlsx') {
+                alert('Please browse a correct excel file to upload');
+                return;
+            }
+            $('form').submit();
+        }
+        );
+      
         $("#btnBuscar").click(function () {
             driverNamespace.CargarTablaDrivers();
         });
