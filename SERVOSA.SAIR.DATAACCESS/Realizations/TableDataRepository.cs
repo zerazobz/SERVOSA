@@ -22,27 +22,34 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         
         public int InsertDataToTable(string tableName, Dictionary<string, string> dataPrepared)
         {
-            DataTable columnsDeclaration;
-            using (columnsDeclaration = new DataTable())
+            try
             {
-                columnsDeclaration.Columns.Add("ColumnName", typeof(string));
-                dataPrepared.Select(kvp => columnsDeclaration.Rows.Add(kvp.Key)).ToList();
-            }
+                DataTable columnsDeclaration;
+                using (columnsDeclaration = new DataTable())
+                {
+                    columnsDeclaration.Columns.Add("ColumnName", typeof(string));
+                    dataPrepared.Select(kvp => columnsDeclaration.Rows.Add(kvp.Key)).ToList();
+                }
 
-            DataTable columnValues;
-            using (columnValues = new DataTable())
-            {
-                columnValues.Columns.Add("ColumnValue", typeof(string));
-                dataPrepared.Select(kvp => columnValues.Rows.Add(kvp.Value)).ToList();
-            }
+                DataTable columnValues;
+                using (columnValues = new DataTable())
+                {
+                    columnValues.Columns.Add("ColumnValue", typeof(string));
+                    dataPrepared.Select(kvp => columnValues.Rows.Add(kvp.Value)).ToList();
+                }
 
-            using (var insertCommand = _servosaDB.GetStoredProcCommand("SAIR_InsertDataToTable"))
+                using (var insertCommand = _servosaDB.GetStoredProcCommand("SAIR_InsertDataToTable"))
+                {
+                    insertCommand.Parameters.Add(new SqlParameter("columnsDeclaration", columnsDeclaration) { SqlDbType = SqlDbType.Structured });
+                    insertCommand.Parameters.Add(new SqlParameter("columnsValues", columnValues) { SqlDbType = SqlDbType.Structured });
+                    _servosaDB.AddInParameter(insertCommand, "tableName", DbType.String, tableName);
+                    var resultExecution = _servosaDB.ExecuteNonQuery(insertCommand);
+                    return resultExecution;
+                }
+            }
+            catch (Exception ex)
             {
-                insertCommand.Parameters.Add(new SqlParameter("columnsDeclaration", columnsDeclaration) { SqlDbType = SqlDbType.Structured });
-                insertCommand.Parameters.Add(new SqlParameter("columnsValues", columnValues) { SqlDbType = SqlDbType.Structured });
-                _servosaDB.AddInParameter(insertCommand, "tableName", DbType.String, tableName);
-                var resultExecution = _servosaDB.ExecuteNonQuery(insertCommand);
-                return resultExecution;
+                return -1;
             }
         }
 

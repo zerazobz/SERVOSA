@@ -18,6 +18,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public int ObjectId { get; set; }
         public int VehicleId { get; set; }
         public int ColumnIdValue { get; set; }
+        public bool WithAlert { get; set; }
         public IList<VehicleDetailRowServiceModel> DataForRow { get; set; }
 
         public static void ToDataModel(VehicleHeadRowServiceModel serviceModel, ref VehicleHeadRowDataModel dataModel)
@@ -39,6 +40,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     Value = dR.Value
                 }));
                 dataModel.DataForRow = tmp;
+                //tmp.Where(dR=> dR.Type)
                 //dataModel.DataForRow.Where(dR => dR.t)
             }
             else
@@ -56,13 +58,32 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     VehicleId = dataModel.VehicleId
                 };
 
-                var tmp = new List<VehicleDetailRowServiceModel>();
-                dataModel.DataForRow.ToList().ForEach(dr => tmp.Add(new VehicleDetailRowServiceModel
+                DateTime? lastDate = null;
+                int? daysToAlert = null;
+
+                var tmpList = new List<VehicleDetailRowServiceModel>();
+                dataModel.DataForRow.ToList().ForEach(dr =>
                 {
-                    Type = String.Empty,
-                    Value = dr.Value
-                }));
-                serviceModel.DataForRow = tmp;
+                    DateTime tmpDate;
+                    if(DateTime.TryParse(dr.Value, out tmpDate))
+                        lastDate = tmpDate;
+
+                    tmpList.Add(new VehicleDetailRowServiceModel
+                    {
+                        Type = String.Empty,
+                        Value = dr.Value
+                    });
+                });
+                serviceModel.DataForRow = tmpList;
+                int tmpInt;
+                if(tmpList.Count > 3)
+                {
+                    if(Int32.TryParse(tmpList[2].Value, out tmpInt))
+                        daysToAlert = tmpInt;
+                }
+
+                if (lastDate.HasValue && daysToAlert.HasValue)
+                    serviceModel.WithAlert = DateTime.Today <= lastDate.Value.AddDays(-daysToAlert.Value);
             }
         }
     }

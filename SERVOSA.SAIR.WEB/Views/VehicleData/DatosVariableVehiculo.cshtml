@@ -15,7 +15,7 @@
     @Html.AntiForgeryToken()
     for (int i = 0; i < Model.ColumnsCollection.Count; i++)
     {
-        if (i < 2)
+        if (i < 2 || i == 3)
         {
             <div class="row" style="margin-top: 15px; display: none;">
                 <div class="col-md-6">
@@ -60,9 +60,9 @@
                     {
                         @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
                     }
-                    else if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.Int)
+                    else if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.Int || Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.Decimal)
                     {
-                        @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { type = "currency", @class = "form-control" })
+                        @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { type = "number", @class = "form-control" })
                     }
                     else if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.NVarChar)
                     {

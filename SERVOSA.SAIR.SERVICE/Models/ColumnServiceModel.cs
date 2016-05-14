@@ -63,13 +63,13 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     typeDescription = " int";
                     break;
                 case 2:
-                    typeDescription = " nvarchar(80)";
+                    typeDescription = " nvarchar(240)";
                     break;
                 case 3:
                     typeDescription = " datetime";
                     break;
                 default:
-                    typeDescription = " nvarchar(40)";
+                    typeDescription = " nvarchar(120)";
                     break;
             }
 

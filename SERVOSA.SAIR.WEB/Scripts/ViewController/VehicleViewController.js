@@ -15,6 +15,7 @@
             var $container = $(containerContext);
             var resultHtml = [];
             $.each(dataResult, function (i, element) {
+                var withAlert = element.WithAlert;
                 var identityValue = element.DataForRow[0].Value;
                 //console.log('Identity Value: ' + identityValue + '.');
                 var columnList = '';
@@ -25,12 +26,14 @@
                     columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "'></span></td>";
                 }
 
-                for (i = 2; i < element.DataForRow.length; i++) {
+                for (i = 4; i < element.DataForRow.length; i++) {
                     var column = $("<td>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
                     columnList += column;
                 }
 
                 var $tableRow = $("<tr></tr>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName);
+                if (withAlert)
+                    $tableRow.addClass("withAlert").css("background-color", "red").css("color", "#FFFFFF");
                 $tableRow.html(columnList);
                 resultHtml.push($tableRow.prop("outerHTML"));
             });

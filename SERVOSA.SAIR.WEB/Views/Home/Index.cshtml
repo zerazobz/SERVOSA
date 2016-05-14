@@ -21,6 +21,19 @@
     .containerdatatable table tbody td {
         white-space: nowrap;
     }
+
+    /*
+        .table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th
+    */
+
+    .table-hover > tbody > tr.withAlert:hover > td,
+    .table-hover > tbody > tr.withAlert:hover > th {
+        background-color: darkred;
+    }
+
+    /*.withAlert :hover {
+        background-color: darkred;
+    }*/
 </style>
 
 <div class="row" style="margin-top: 15px;">

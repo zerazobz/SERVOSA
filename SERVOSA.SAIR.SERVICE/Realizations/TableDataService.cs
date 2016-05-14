@@ -47,7 +47,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
         private Dictionary<string, string> PrepareData(Dictionary<string, Tuple<SERVOSASqlTypes, object>> tableData, bool isUpdate)
         {
-            string[] dataToFilter = isUpdate? new string[] { "id", "SAIR_VEHIID" } : new string[] { "id" };
+            string[] dataToFilter = isUpdate? new string[] { "id", "SAIR_VEHIID", "RutaDocumento" } : new string[] { "id", "RutaDocumento" };
 
             var preCollectionData = tableData.Where(kvp => !dataToFilter.Contains(kvp.Key)).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
             Dictionary<string, string> dataPrepared = new Dictionary<string, string>();
