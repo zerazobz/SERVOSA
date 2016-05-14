@@ -70,25 +70,18 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 if (rawIdentityConvertion.Length > 0)
                     identityValue = rawIdentityConvertion[0];
 
-                int resultExecution;
+                int rowsAffected;
                 if (columnIdentity != null && !String.IsNullOrWhiteSpace(identityValue))
                 {
-                    resultExecution = _tableDataService.UpdateTableData(model.TableName, Convert.ToInt32(fkValue), tableDictionaryData);
-                    if (resultExecution > 0)
-                    {
-                        model.IsSuccessful = true;
-                        model.Message = "La actualización de datos culmino satisfactoriamente.";
-                    }
-                    else
-                    {
-                        model.IsSuccessful = false;
-                        model.Message = "La actualización de datos no se pudo concretar.";
-                    }
+                    var updateResponse = _tableDataService.UpdateTableData(model.TableName, Convert.ToInt32(fkValue), tableDictionaryData);
+                    rowsAffected = updateResponse.Item2;
+                    model.IsSuccessful = updateResponse.Item1;
+                    model.Message = updateResponse.Item3;
                 }
                 else
                 {
-                    resultExecution = _tableDataService.InsertTableData(model.TableName, tableDictionaryData);
-                    if(resultExecution > 0)
+                    rowsAffected = _tableDataService.InsertTableData(model.TableName, tableDictionaryData);
+                    if(rowsAffected > 0)
                     {
                         model.IsSuccessful = true;
                         model.Message = "La inserción de datos se realizó satisfactoriamente.";
@@ -100,7 +93,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
                     }
                 }
 
-                Debug.WriteLine("La ejecución termino con un: {0}", resultExecution);
+                Debug.WriteLine("La ejecución termino con un: {0}", rowsAffected);
             }
             else
             {

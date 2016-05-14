@@ -17,6 +17,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public string TableName { get; set; }
         public int ObjectId { get; set; }
         public int VehicleId { get; set; }
+        public int ColumnIdValue { get; set; }
         public IList<VehicleDetailRowServiceModel> DataForRow { get; set; }
 
         public static void ToDataModel(VehicleHeadRowServiceModel serviceModel, ref VehicleHeadRowDataModel dataModel)
@@ -38,6 +39,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     Value = dR.Value
                 }));
                 dataModel.DataForRow = tmp;
+                //dataModel.DataForRow.Where(dR => dR.t)
             }
             else
                 dataModel = null;

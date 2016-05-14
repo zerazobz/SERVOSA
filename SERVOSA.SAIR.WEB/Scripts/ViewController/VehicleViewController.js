@@ -15,7 +15,15 @@
             var $container = $(containerContext);
             var resultHtml = [];
             $.each(dataResult, function (i, element) {
-                var columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "'></span></td>";
+                var identityValue = element.DataForRow[0].Value;
+                //console.log('Identity Value: ' + identityValue + '.');
+                var columnList = '';
+                if (identityValue == '') {
+                    columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span></td>";
+                }
+                else {
+                    columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "'></span></td>";
+                }
 
                 for (i = 2; i < element.DataForRow.length; i++) {
                     var column = $("<td>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
@@ -37,9 +45,9 @@
 
     vehicleNamespace.LoadDataForTablesYetLoaded = function () {
         var allTables = $(".containerdatatable>table");
-        $.each(allTables, function (i, element) {
-            var $tableName = $(element).data('tablename');
-            vehicleNamespace.LoadTableData(element, $tableName);
+        $.each(allTables, function (i, tableContext) {
+            var $tableName = $(tableContext).data('tablename');
+            vehicleNamespace.LoadTableData(tableContext, $tableName);
             console.debug('Cargando datos de la tabla: ' + $tableName);
         });
     };
@@ -175,8 +183,6 @@
                 $("#createColumnModal .modal-body").find(".messagepanel").SERVOSAErrorNotification("Por favor ingrese/seleccione los campos requeridos.");
             }
         });
-
-
 
         vehicleNamespace.LoadVehicleTable();
         vehicleNamespace.LoadDataForTablesYetLoaded();

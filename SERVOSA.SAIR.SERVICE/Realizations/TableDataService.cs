@@ -25,10 +25,24 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return _tableDataRepository.InsertDataToTable(tableName, dataPrepared);
         }
 
-        public int UpdateTableData(string tableName, int vehicleId, Dictionary<string, Tuple<SERVOSASqlTypes, object>> tableData)
+        public Tuple<bool, int, string> UpdateTableData(string tableName, int vehicleId, Dictionary<string, Tuple<SERVOSASqlTypes, object>> tableData)
         {
+            string messageResult = String.Empty;
+            bool updateResult = false;
+
             Dictionary<string, string> dataPrepared = PrepareData(tableData, true);
-            return _tableDataRepository.UpdateDataToTable(tableName, vehicleId, dataPrepared);
+            int rowsAffected = _tableDataRepository.UpdateDataToTable(tableName, vehicleId, dataPrepared);
+            if (rowsAffected > 0)
+            {
+                updateResult = true;
+                messageResult = "La actualización de datos culmino satisfactoriamente.";
+            }
+            else
+            {
+                updateResult = false;
+                messageResult = "La actualización de datos no se pudo concretar.";
+            }
+            return new Tuple<bool, int, string>(updateResult, rowsAffected, messageResult);
         }
 
         private Dictionary<string, string> PrepareData(Dictionary<string, Tuple<SERVOSASqlTypes, object>> tableData, bool isUpdate)

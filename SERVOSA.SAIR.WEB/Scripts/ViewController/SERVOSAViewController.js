@@ -74,6 +74,7 @@
             $.get("/VehicleData/DatosVariableVehiculo", { vehicleCode: vehicleId, variableName: tableName }, function (dataResult) {
                 $("#createUpdateTableDataModal").modal('show');
                 $("#createUpdateTableDataModal").find(".modal-body").html(dataResult);
+                $("#createUpdateTableDataModal").find(".modal-body input[name='submitDatosVariables']").prop("tablename", tableName);
             }).complete(function (e) {
                 console.log("Se termino de procesar la carga de Datos de Variable de Vehiculo.");
             }).fail(function (e) {
@@ -100,6 +101,9 @@
                     if (isSuccessful.toLowerCase() == "true") {
                         $("#createUpdateTableDataModal .modal-body").find(".messagePanel").SERVOSASuccessNotification(message);
                         $("[name='submitDatosVariables']").prop("disabled", true);
+                        var currentTableName = $modalContext.find("input[name='submitDatosVariables']").prop('tablename');
+                        var $tableContext = $("table[data-tablename='" + currentTableName + "']");
+                        window.VehicleNamespace.LoadTableData($tableContext, currentTableName);
                     }
                     else {
                         $("#createUpdateTableDataModal .modal-body").find(".messagePanel").SERVOSAErrorNotification(message);

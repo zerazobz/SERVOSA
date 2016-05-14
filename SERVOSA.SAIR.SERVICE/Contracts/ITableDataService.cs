@@ -10,6 +10,6 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
     public interface ITableDataService
     {
         int InsertTableData(string tableName, Dictionary<string, Tuple<SERVOSASqlTypes, Object>> tableData);
-        int UpdateTableData(string tableName, int vehicleId, Dictionary<string, Tuple<SERVOSASqlTypes, object>> tableData);
+        Tuple<bool, int, string> UpdateTableData(string tableName, int vehicleId, Dictionary<string, Tuple<SERVOSASqlTypes, object>> tableData);
     }
 }
