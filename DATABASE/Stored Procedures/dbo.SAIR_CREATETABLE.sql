@@ -14,7 +14,7 @@ BEGIN
     SET @tableNormalizedName = dbo.SAIR_RemoveAccentsAndNormalizeTest(@newTableName)
     --SET @tableNormalizedName = @newTableName
     --DECLARE @tableDesc NVARCHAR(50)
-    SELECT @sql = 'create table vehiclevars.' + QUOTENAME(@tableNormalizedName) + '(id int identity(1,1), SAIR_VEHIID int not null)'
+    SELECT @sql = 'create table vehiclevars.' + QUOTENAME(@tableNormalizedName) + '(id int identity(1,1), SAIR_VEHIID int not null, DiasAlerta int null, RutaDocumento nvarchar(800))'
     PRINT @sql
 
     EXEC sp_executesql @sql
