@@ -1,6 +1,8 @@
 ﻿using Microsoft.Practices.Unity;
 using SERVOSA.SAIR.DATAACCESS.Contracts;
 using SERVOSA.SAIR.DATAACCESS.Realizations;
+using SERVOSA.SAIR.SERVICE.Contracts;
+using SERVOSA.SAIR.SERVICE.Realizations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,8 @@ namespace SERVOSA.SAIR.SERVICE.Core
             Container.RegisterType<IDBTablesRepository, DBRepository>();
             Container.RegisterType<IDBColumnsRepository, DBRepository>();
             Container.RegisterType<ITableDataRepository, TableDataRepository>();
+            Container.RegisterType<IVehicleAlertRepository, VehicleAlertRepository>();
+            Container.RegisterType<IVehicleAlertService, VehicleAlertService>();
         }
     }
 }

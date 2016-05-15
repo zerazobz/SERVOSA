@@ -13,16 +13,28 @@ namespace SERVOSA.SAIR.WEB.Controllers
     {
         private IVehicleService _vehicleServices;
         private IDBServices _dbServices;
+        private IVehicleAlertService _vehicleAlertService;
 
-        public HomeController(IVehicleService injectedVehicleRep, IDBServices _injectedDbService)
+        public HomeController(IVehicleService injectedVehicleRep, IDBServices injectedDbService, IVehicleAlertService vehiceAlertInjectedService)
         {
             _vehicleServices = injectedVehicleRep;
-            _dbServices = _injectedDbService;
+            _dbServices = injectedDbService;
+            _vehicleAlertService = vehiceAlertInjectedService;
         }
 
         [HttpGet]
         public virtual ActionResult Index()
         {
+            var allVehicleAlerts = _vehicleAlertService.GetAlertsNotSeneded();
+            foreach(var iAlert in allVehicleAlerts)
+            {
+                if (DateTime.Now > iAlert.DateToAlert.AddDays(-iAlert.DaysToAlert))
+                {
+                    var alertMessage = $"Alerta para el Vehiculo con codigo {iAlert.VehicleId}, del Documento: {iAlert.TableName}-{iAlert.AlertName}. Alerta programada para la fecha: {iAlert.DateToAlert.ToShortDateString()}";
+                    var alertSendResult = _vehicleAlertService.SendAlertBySMS(new string[] { "51950313361" }, alertMessage, iAlert.VehicleAlertId);
+                }
+            }
+
             var allCompleteTable = _dbServices.ListTablesColumnCompleteData();
             var tableDataGrouped = allCompleteTable.GroupBy(t => t.TableNormalizedName);
 
@@ -50,7 +62,6 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 collectionTables.Add(nTable);
             }
 
-            var allTables = _dbServices.ListAllTables();
             return View(MVC.Home.Views.Index, collectionTables);
         }
 

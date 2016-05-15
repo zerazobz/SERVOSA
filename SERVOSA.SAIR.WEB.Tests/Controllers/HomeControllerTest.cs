@@ -21,8 +21,9 @@ namespace SERVOSA.SAIR.WEB.Tests.Controllers
             var container = UnityConfig.GetConfiguredContainer();
             var repository = container.Resolve<IVehicleService>();
             var dbServices = container.Resolve<IDBServices>();
+            var vehicleAlertServices = container.Resolve<IVehicleAlertService>();
             // Arrange
-            HomeController controller = new HomeController(repository, dbServices);
+            HomeController controller = new HomeController(repository, dbServices, vehicleAlertServices);
 
             // Act
             ViewResult result = controller.Index() as ViewResult;

@@ -80,17 +80,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 }
                 else
                 {
-                    rowsAffected = _tableDataService.InsertTableData(model.TableName, tableDictionaryData);
-                    if(rowsAffected > 0)
-                    {
-                        model.IsSuccessful = true;
-                        model.Message = "La inserción de datos se realizó satisfactoriamente.";
-                    }
-                    else
-                    {
-                        model.IsSuccessful = false;
-                        model.Message = "La inserción de datos no se pudo concretar.";
-                    }
+                    var insertResponse = _tableDataService.InsertTableData(model.TableName, tableDictionaryData);
+                    rowsAffected = insertResponse.Item2;
+                    model.IsSuccessful = insertResponse.Item1;
+                    model.Message = insertResponse.Item3;
                 }
 
                 Debug.WriteLine("La ejecución termino con un: {0}", rowsAffected);

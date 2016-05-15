@@ -108,6 +108,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var dataResult = _vehicleService.GetVehicleRowDataForTable(tableName);
             return Json(dataResult);
         }
+
         [HttpPost]
         public virtual JsonResult GetVehiculos()
         {
