@@ -39,7 +39,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             {
                 if (DateTime.Now > iAlert.DateToAlert.AddDays(-iAlert.DaysToAlert))
                 {
-                    var alertMessage = $"Alerta para el Vehiculo con codigo {iAlert.VehicleId}, del Documento: {iAlert.TableName}-{iAlert.AlertName}. Alerta programada para la fecha: {iAlert.DateToAlert.ToShortDateString()}";
+                    var alertMessage = "Alerta para el Vehiculo con codigo {iAlert.VehicleId}, del Documento: {iAlert.TableName}-{iAlert.AlertName}. Alerta programada para la fecha: {iAlert.DateToAlert.ToShortDateString()}";
                     var alertSendResult = SendAlertBySMS(phoneNumbers, alertMessage, iAlert.VehicleAlertId);
                     rowsInserted++;
                 }

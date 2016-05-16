@@ -217,6 +217,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoadFileController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\VariableTasksController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
@@ -537,10 +538,11 @@
     <Content Include="Views\VehicleData\DatosVariableVehiculo.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Driver\Operarios.cshtml" />
-    <Content Include="Views\VehicleData\GetFileModalManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ExcelUtilities\" />
+    <Folder Include="Views\LoadFile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
