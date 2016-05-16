@@ -1,5 +1,6 @@
 ﻿using SERVOSA.SAIR.SERVICE.Contracts;
 using SERVOSA.SAIR.SERVICE.Models;
+using SERVOSA.SAIR.WEB.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,6 +101,17 @@ namespace SERVOSA.SAIR.WEB.Controllers
             {
                 return Json(new { Result = "ERROR", Message = ex.Message });
             }
-        }   
+        }
+        [HttpPost]
+        public virtual ActionResult UploadFile(HttpPostedFileBase excelFile)
+        {
+            return View("Index");
+        }
+        [HttpGet]
+        public virtual ActionResult LoadFiles()
+        {
+            DriverServiceModel model = new DriverServiceModel();
+            return PartialView("LoadFiles", model);
+        }
     }
 }

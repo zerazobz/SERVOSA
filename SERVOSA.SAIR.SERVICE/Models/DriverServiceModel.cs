@@ -19,6 +19,9 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public int CodigoPuesto { get; set; }
         public int RowNumber { get; set; }
         public int TotalRows { get; set; }
+        public int RowsAffected { get; set; }
+        public bool IsSuccessful { get; set; }
+        public string Message { get; set; }
         public static void ToViewModel(DriverModel model, ref DriverServiceModel viewModel)
         {
             if (model != null)
