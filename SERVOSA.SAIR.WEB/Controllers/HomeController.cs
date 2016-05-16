@@ -25,17 +25,9 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult Index()
         {
-            var allVehicleAlerts = _vehicleAlertService.GetAlertsNotSeneded();
-            foreach(var iAlert in allVehicleAlerts)
-            {
-                if (DateTime.Now > iAlert.DateToAlert.AddDays(-iAlert.DaysToAlert))
-                {
-                    var alertMessage = $"Alerta para el Vehiculo con codigo {iAlert.VehicleId}, del Documento: {iAlert.TableName}-{iAlert.AlertName}. Alerta programada para la fecha: {iAlert.DateToAlert.ToShortDateString()}";
-                    var alertSendResult = _vehicleAlertService.SendAlertBySMS(new string[] { "51950313361" }, alertMessage, iAlert.VehicleAlertId);
-                }
-            }
-
-            var allCompleteTable = _dbServices.ListTablesColumnCompleteData();
+            int alertsSended = _vehicleAlertService.ProcessAlerts(new string[] { "51950313361" });
+            
+            var allCompleteTable = _dbServices.ListTablesWithColumnCompleteData();
             var tableDataGrouped = allCompleteTable.GroupBy(t => t.TableNormalizedName);
 
             IList<TableColumnViewModel> collectionTables = new List<TableColumnViewModel>();

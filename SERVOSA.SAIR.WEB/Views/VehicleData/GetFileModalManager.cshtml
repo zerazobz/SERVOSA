@@ -1,0 +1,85 @@
+﻿@model SERVOSA.SAIR.SERVICE.Models.TableData.VehicleFiles
+
+
+@using (Html.BeginForm(MVC.VehicleData.GetFileModalManager(), FormMethod.Post, new { id = "postFileByVehicleForm" }))
+{
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Insertar o Remover Archivos</h4>
+    </div>
+    <div class="modal-body">
+
+        <div class="messagePanel">
+
+        </div>
+
+        <div>
+            <input type="hidden" name="Message" value="@Model.Message" />
+            <input type="hidden" name="IsSuccessful" value="@Model.IsSuccessful.ToString()" />
+        </div>
+        @Html.AntiForgeryToken()
+        <div class="container">
+            <div class="row">
+                <fieldset>
+                    <legend>Datos del Vehículo</legend>
+                    <div class="col-md-6">
+                        <div class="col-md-4" style="padding-left: 0px; padding-right: 0px;">
+                            @Html.LabelFor(model => model.PlacaTolva)
+                        </div>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.PlacaTolva, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-4" style="padding-left: 0px; padding-right: 0px;">
+                            @Html.LabelFor(model => model.Marca)
+                        </div>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.Marca, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <fieldset>
+                    <legend>Datos de la Variable</legend>
+                    <div class="col-md-8">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.TableName)
+                        </div>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.TableName, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <fieldset>
+                    <legend>Archivos del Vehiculo</legend>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input class="form-control" type="file" name="filesToUpload" id="filesToUpload" value="Seleccione un Archivo por fFavor" />
+                        </div>
+                        <div class="col-md-3">
+                            <button id="uploadVehicleFile" type="button" class="btn btn-default" data-fileinputid="#filesToUpload" data-posturl="@Url.Action(MVC.VehicleData.GetFileModalManager())">Subir Archivo</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="background-color: lightseagreen;">
+                            <p class="lead">Arrastre archivos para subir.</p>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Cerrar</button>
+    </div>
+}

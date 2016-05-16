@@ -23,7 +23,7 @@
                     columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span></td>";
                 }
                 else {
-                    columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "'></span></td>";
+                    columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file insertRemoveFile' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "'></span></td>";
                 }
 
                 for (i = 4; i < element.DataForRow.length; i++) {

@@ -93,6 +93,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public readonly string Data = "Data";
             public readonly string CabeceraVehiculo = "CabeceraVehiculo";
             public readonly string DatosVariableVehiculo = "DatosVariableVehiculo";
+            public readonly string GetFileModalManager = "GetFileModalManager";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -101,6 +102,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public const string Data = "Data";
             public const string CabeceraVehiculo = "CabeceraVehiculo";
             public const string DatosVariableVehiculo = "DatosVariableVehiculo";
+            public const string GetFileModalManager = "GetFileModalManager";
         }
 
 
@@ -131,6 +133,15 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public readonly string variableName = "variableName";
             public readonly string model = "model";
         }
+        static readonly ActionParamsClass_GetFileModalManager s_params_GetFileModalManager = new ActionParamsClass_GetFileModalManager();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetFileModalManager GetFileModalManagerParams { get { return s_params_GetFileModalManager; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetFileModalManager
+        {
+            public readonly string tableName = "tableName";
+            public readonly string vehicleCode = "vehicleCode";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -144,10 +155,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 public readonly string CabeceraVehiculo = "CabeceraVehiculo";
                 public readonly string Data = "Data";
                 public readonly string DatosVariableVehiculo = "DatosVariableVehiculo";
+                public readonly string GetFileModalManager = "GetFileModalManager";
             }
             public readonly string CabeceraVehiculo = "~/Views/VehicleData/CabeceraVehiculo.cshtml";
             public readonly string Data = "~/Views/VehicleData/Data.cshtml";
             public readonly string DatosVariableVehiculo = "~/Views/VehicleData/DatosVariableVehiculo.cshtml";
+            public readonly string GetFileModalManager = "~/Views/VehicleData/GetFileModalManager.cshtml";
         }
     }
 
@@ -203,6 +216,30 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DatosVariableVehiculo);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             DatosVariableVehiculoOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetFileModalManagerOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string tableName, int vehicleCode);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult GetFileModalManager(string tableName, int vehicleCode)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetFileModalManager);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "tableName", tableName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vehicleCode", vehicleCode);
+            GetFileModalManagerOverride(callInfo, tableName, vehicleCode);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetFileModalManagerOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult GetFileModalManager()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetFileModalManager);
+            GetFileModalManagerOverride(callInfo);
             return callInfo;
         }
 

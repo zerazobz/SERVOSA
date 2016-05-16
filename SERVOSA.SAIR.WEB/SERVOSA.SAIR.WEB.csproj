@@ -222,6 +222,9 @@
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Controllers\VehicleDataController.cs" />
     <Compile Include="Core\WebContainerInjector.cs" />
+    <Compile Include="DriverController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -456,6 +459,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\ViewController\DriverViewController.js" />
     <Content Include="Scripts\ViewController\SERVOSAViewController.js" />
+    <Content Include="Scripts\ViewController\VehicleUploadViewController.js" />
     <Content Include="Scripts\ViewController\VehicleViewController.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\jtable\themes\metro\red\jtable.less" />
@@ -533,6 +537,7 @@
     <Content Include="Views\VehicleData\DatosVariableVehiculo.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Driver\Operarios.cshtml" />
+    <Content Include="Views\VehicleData\GetFileModalManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

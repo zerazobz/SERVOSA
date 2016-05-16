@@ -1,9 +1,11 @@
 ﻿using SERVOSA.SAIR.SERVICE.Contracts;
 using SERVOSA.SAIR.SERVICE.Core;
 using SERVOSA.SAIR.SERVICE.Models;
+using SERVOSA.SAIR.SERVICE.Models.TableData;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -94,6 +96,54 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 model.Message = "Por favor revisar la conformidad de los datos.";
             }
             return PartialView(model);
+        }
+
+        [HttpGet]
+        public virtual ActionResult GetFileModalManager(string tableName, int vehicleCode)
+        {
+            VehicleFiles vehicleFileModel = new VehicleFiles();
+            IVehicleServiceModel vehicleData = _vehicleService.GetById(vehicleCode);
+            vehicleFileModel.PlacaTolva = vehicleData.PlacaTolva;
+            vehicleFileModel.Marca = vehicleData.Marca;
+            //vehicleFileModel = (VehicleFiles)vehicleData;
+            vehicleFileModel.TableName = tableName;
+            return PartialView(vehicleFileModel);
+        }
+
+        [HttpPost]
+        public virtual ActionResult GetFileModalManager()
+        {
+            if (ModelState.IsValid)
+            {
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    var iFile = Request.Files[i];
+                    if (iFile != null && iFile.ContentLength > 0)
+                    {
+                        var filename = Path.GetFileName(iFile.FileName);
+                        byte[] data;
+
+                        using (Stream inputStream = iFile.InputStream)
+                        {
+                            MemoryStream memoryStream = inputStream as MemoryStream;
+                            if (memoryStream == null)
+                            {
+                                memoryStream = new MemoryStream();
+                                inputStream.CopyTo(memoryStream);
+                            }
+                            data = memoryStream.ToArray();
+                        }
+                        if (data.Length > 0)
+                        {
+                            //byteData = data;
+                            //fileName = iFile.FileName;
+                            //typeFile = iFile.ContentType;
+                        }
+                    }
+                }
+            }
+
+            return PartialView();
         }
 
         private void PopulateColumnsValues(VehicleVariableDataServiceModel dataToWork)

@@ -8,6 +8,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Models.DB
 {
     public class TableModel
     {
+        public int ObjectId { get; set; }
         public string TableName { get; set; }
         public string TableNormalizedName { get; set; }
     }

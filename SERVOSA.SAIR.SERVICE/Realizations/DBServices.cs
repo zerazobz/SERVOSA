@@ -28,10 +28,10 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
             var resultExecution = _tableRepository.CreateTableAndReturnsNormalizedName(model);
 
-            TableServiceModel viewModelResult = null;
+            ITableServiceModel viewModelResult = null;
             TableServiceModel.ToViewModel(resultExecution.Item2, ref viewModelResult);
 
-            return new Tuple<int, TableServiceModel>(resultExecution.Item1, viewModelResult);
+            return new Tuple<int, TableServiceModel>(resultExecution.Item1, (TableServiceModel)viewModelResult);
         }
 
         public Tuple<int, ColumnServiceModel> CreateColumn(ColumnServiceModel viewModel)
@@ -47,16 +47,16 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
         public IList<TableServiceModel> ListAllTables()
         {
-            TableServiceModel viewModel = null;
+            ITableServiceModel viewModel = null;
             var listTables = _tableRepository.GetAll().Select(t =>
             {
                 TableServiceModel.ToViewModel(t, ref viewModel);
-                return viewModel;
+                return (TableServiceModel)viewModel;
             }).ToList();
             return listTables;
         }
 
-        public IList<TableColumnServiceModel> ListTablesColumnCompleteData()
+        public IList<TableColumnServiceModel> ListTablesWithColumnCompleteData()
         {
             TableColumnServiceModel viewModel = null;
             var listTables = _tableRepository.ListAllDataTables().Select(t =>

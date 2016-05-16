@@ -28,6 +28,7 @@ using T4MVC;
 public static partial class MVC
 {
     public static SERVOSA.SAIR.WEB.Controllers.AccountController Account = new SERVOSA.SAIR.WEB.Controllers.T4MVC_AccountController();
+    public static SERVOSA.SAIR.WEB.Controllers.DriverController Driver = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverController();
     public static SERVOSA.SAIR.WEB.Controllers.HomeController Home = new SERVOSA.SAIR.WEB.Controllers.T4MVC_HomeController();
     public static SERVOSA.SAIR.WEB.Controllers.ManageController Manage = new SERVOSA.SAIR.WEB.Controllers.T4MVC_ManageController();
     public static SERVOSA.SAIR.WEB.Controllers.VariableTasksController VariableTasks = new SERVOSA.SAIR.WEB.Controllers.T4MVC_VariableTasksController();
@@ -412,6 +413,7 @@ namespace Links
             private const string URLPATH = "~/Scripts/ViewController";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string DriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverViewController.min.js") ? Url("DriverViewController.min.js") : Url("DriverViewController.js");
             public static readonly string SERVOSAViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SERVOSAViewController.min.js") ? Url("SERVOSAViewController.min.js") : Url("SERVOSAViewController.js");
             public static readonly string VehicleViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/VehicleViewController.min.js") ? Url("VehicleViewController.min.js") : Url("VehicleViewController.js");
         }
@@ -743,6 +745,7 @@ namespace Links
             {
                 public static class Assets
                 {
+                    public const string DriverViewController_js = "~/Scripts/ViewController/DriverViewController.js"; 
                     public const string SERVOSAViewController_js = "~/Scripts/ViewController/SERVOSAViewController.js"; 
                     public const string VehicleViewController_js = "~/Scripts/ViewController/VehicleViewController.js"; 
                 }

@@ -77,8 +77,11 @@
     <Compile Include="Core\SERVOSASqlTypes.cs" />
     <Compile Include="Models\ColumnServiceModel.cs" />
     <Compile Include="Models\DriverServiceModel.cs" />
+    <Compile Include="Models\ITableServiceModel.cs" />
+    <Compile Include="Models\IVehicleServiceModel.cs" />
     <Compile Include="Models\TableColumnServiceModel.cs" />
     <Compile Include="Models\TableData\VehicleAlert.cs" />
+    <Compile Include="Models\TableData\VehicleFiles.cs" />
     <Compile Include="Models\TableServiceModel.cs" />
     <Compile Include="Models\VehicleDetailRowServiceModel.cs" />
     <Compile Include="Models\VehicleHeadRowServiceModel.cs" />

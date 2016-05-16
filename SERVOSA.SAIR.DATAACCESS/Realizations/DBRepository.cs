@@ -22,12 +22,17 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public int Create(TableModel entity)
         {
-            object[] parameters = new object[] { entity.TableName, null };
+            object[] parameters = new object[] { entity.TableName, null, null };
 
             using (var dbCommand = _servosaDB.GetStoredProcCommand("SAIR_CREATETABLE", parameters))
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(dbCommand);
-                var outputValue = _servosaDB.GetParameterValue(dbCommand, "@tableNormalizedName");
+                var normalizedNameOutput = _servosaDB.GetParameterValue(dbCommand, "@tableNormalizedName");
+                var objectIdOutput = _servosaDB.GetParameterValue(dbCommand, "@objectId");
+                int tmpValue;
+                if (Int32.TryParse(objectIdOutput.ToString(), out tmpValue))
+                    entity.ObjectId = tmpValue;
+                entity.TableNormalizedName = normalizedNameOutput.ToString();
                 return resultExecution;
             }
         }
@@ -41,11 +46,16 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                 using (var dbCommand = _servosaDB.GetStoredProcCommand("SAIR_CREATETABLE", parameters))
                 {
                     var resultExecution = _servosaDB.ExecuteNonQuery(dbCommand);
-                    var outputValue = Convert.ToString(_servosaDB.GetParameterValue(dbCommand, "@tableNormalizedName"));
+                    var normalizedNameOutput = Convert.ToString(_servosaDB.GetParameterValue(dbCommand, "@tableNormalizedName"));
+                    var objectIdOutput = _servosaDB.GetParameterValue(dbCommand, "@objectId");
+                    int tmpValue;
+                    Int32.TryParse(objectIdOutput.ToString(), out tmpValue);
+
                     return new Tuple<int, TableModel>(resultExecution, new TableModel()
                     {
                         TableName = entity.TableName,
-                        TableNormalizedName = outputValue
+                        TableNormalizedName = normalizedNameOutput,
+                        ObjectId = tmpValue
                     });
                 }
             }

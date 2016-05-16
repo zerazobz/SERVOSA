@@ -33,9 +33,9 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             return resultInsert;
         }
 
-        public int UpdateAlertSended(int alertId, string tokenSMS)
+        public int UpdateAlertSended(int alertId, string tokenSMS, DateTime sendDate, string recipients)
         {
-            object[] parameters = new object[] { alertId, tokenSMS };
+            object[] parameters = new object[] { alertId, tokenSMS, sendDate, recipients };
             var updateResult = _servosaDB.ExecuteNonQuery("SAIR_VEALU", parameters);
             return updateResult;
         }

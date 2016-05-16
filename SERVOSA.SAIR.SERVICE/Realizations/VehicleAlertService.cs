@@ -20,7 +20,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             _vehicleAlertRepo = injectedVehicleAlert;
         }
 
-        public IList<VehicleAlert> GetAlertsNotSeneded()
+        public IList<VehicleAlert> GetAlertsNotSended()
         {
             VehicleAlert vehicleAlertModel = null;
             var vehicleCollection = _vehicleAlertRepo.GetAlertsNotSeneded().Select(va =>
@@ -29,6 +29,22 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
                 return vehicleAlertModel;
             }).ToList();
             return vehicleCollection;
+        }
+
+        public int ProcessAlerts(IEnumerable<string> phoneNumbers)
+        {
+            int rowsInserted = 0;
+            var allVehicleAlerts = GetAlertsNotSended();
+            foreach (var iAlert in allVehicleAlerts)
+            {
+                if (DateTime.Now > iAlert.DateToAlert.AddDays(-iAlert.DaysToAlert))
+                {
+                    var alertMessage = $"Alerta para el Vehiculo con codigo {iAlert.VehicleId}, del Documento: {iAlert.TableName}-{iAlert.AlertName}. Alerta programada para la fecha: {iAlert.DateToAlert.ToShortDateString()}";
+                    var alertSendResult = SendAlertBySMS(phoneNumbers, alertMessage, iAlert.VehicleAlertId);
+                    rowsInserted++;
+                }
+            }
+            return rowsInserted;
         }
 
         public int RegisterAlert(VehicleAlert model)
@@ -41,17 +57,18 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
         public string SendAlertBySMS(IEnumerable<string> phonesNumbers, string message, int alertId)
         {
+            string processedPhones = String.Join(",", phonesNumbers);
             ElibomClient elibom = new ElibomClient("erickastooblitas@gmail.com", "740fB4OGc6");
             string deliveryToken = "TMPTEST";
-            //var deliveryToken = elibom.sendMessage(String.Join(",", phonesNumbers), message);
-            UpdateAlertSended(alertId, deliveryToken);
+            //var deliveryToken = elibom.sendMessage(processedPhones, message);
+            UpdateAlertSended(alertId, deliveryToken, DateTime.Now, processedPhones);
             Console.WriteLine(deliveryToken);
             return deliveryToken;
         }
 
-        public int UpdateAlertSended(int alertId, string smsToken)
+        public int UpdateAlertSended(int alertId, string smsToken, DateTime sendDate, string recipients)
         {
-            var updateResult = _vehicleAlertRepo.UpdateAlertSended(alertId, smsToken);
+            var updateResult = _vehicleAlertRepo.UpdateAlertSended(alertId, smsToken, sendDate, recipients);
             return updateResult;
         }
     }

@@ -30,6 +30,43 @@
         });
     };
 
+    SERVOSANamespace.LoadShowModal = function (parameters, getUrl, modalId, onSuccessCallback) {
+
+        $.get(getUrl, parameters, function (htmlResult) {
+            $(modalId).modal('show');
+            $(modalId).find('.modal-content').html(htmlResult);
+            onSuccessCallback();
+        }).complete(function (e) {
+            console.debug("Se termino de procesar la carga del Modal con ID: " + modalId);
+        }).fail(function (e) {
+            console.debug("Ocurrio un error al intentar cargar el Modal con ID: " + modalId);
+            console.debug(e);
+        });
+
+    }
+
+    SERVOSANamespace.PostFormModal = function (parameters, postUrl, modalId, onSuccessCallback, onErrorCallback) {
+        $.post(postUrl, parameters, function (htmlResult, textStatus, jqXHR) {
+            $(modalId).find(".modal-content").html(htmlResult);
+            var isSuccessful = $(modalId + " .modal-body").find("[name='IsSuccessful']").val();
+            var message = $(modalId + " .modal-body").find("[name='Message']").val();
+            if (isSuccessful.toLowerCase() == "true") {
+                $(modalId + " .modal-body").find(".messagePanel").SERVOSASuccessNotification(message);
+                onSuccessCallback();
+            }
+            else {
+                $(modalId + " .modal-body").find(".messagePanel").SERVOSAErrorNotification(message);
+                onErrorCallback();
+            }
+        }).complete(function (e) {
+            console.debug("Se completo el procesamiento post del Modal con Id: " + modalId);
+        }).fail(function (e) {
+            onErrorCallback();
+            console.debug("Ocurrio un error al postear datos del Modal con Id: " + modalId);
+            console.debug(e);
+        });
+    }
+
     $(function () {
         function ProccessAlertMessage(htmlTemplate, message, $divContainer) {
             var handleTemplate = Handlebars.compile(htmlTemplate);
@@ -69,63 +106,38 @@
         $(document).on("click", ".createUpdateData", null, function () {
             var $buttonContext = $(this);
             var tableName = $buttonContext.data("tablename");
-            var vehicleId = $buttonContext.data("vehicleid");
+            var parametersForModal = { vehicleCode: $buttonContext.data("vehicleid"), variableName: tableName };
+            var modalId = "#createUpdateTableDataModal";
 
-            $.get("/VehicleData/DatosVariableVehiculo", { vehicleCode: vehicleId, variableName: tableName }, function (dataResult) {
-                $("#createUpdateTableDataModal").modal('show');
-                $("#createUpdateTableDataModal").find(".modal-body").html(dataResult);
-                $("#createUpdateTableDataModal").find(".modal-body input[name='submitDatosVariables']").prop("tablename", tableName);
-            }).complete(function (e) {
-                console.log("Se termino de procesar la carga de Datos de Variable de Vehiculo.");
-            }).fail(function (e) {
-                console.log("Ocurrio un error al intentar cargar los datos del vehiculo");
-                console.debug(e);
+            SERVOSANamespace.LoadShowModal(parametersForModal, "/VehicleData/DatosVariableVehiculo", modalId, function () {
+                $(modalId).find(".modal-content input[name='submitDatosVariables']").prop("tablename", tableName);
             });
         });
 
+        $("#containerforalltables").on("click", ".insertRemoveFile", null, function () {
+            var $buttonContext = $(this);
+            var modalParameters = { tableName: $buttonContext.data("tablename"), vehicleCode: $buttonContext.data("vehicleid") };
+            var modalId = "#createRemoveFilesForTableDataModal";
+
+            SERVOSANamespace.LoadShowModal(modalParameters, "/VehicleData/GetFileModalManager", modalId, function () {
+
+            });
+        });
+
+
         $(document).on("submit", "#postVariableData", null, function (e) {
             e.preventDefault();
-            var $modalContext = $(this);
-            console.log("Manejando el submit");
-            //console.log(JSON.stringify($modalContext.serialize()));
+            var $formContext = $(this);
+            var modalId = "#createUpdateTableDataModal";
 
-            $.ajax({
-                url: $modalContext.data("posturl"),
-                data: $modalContext.serialize(),
-                traditional: true,
-                type: 'POST',
-                success: function (dataResult) {
-                    $("#createUpdateTableDataModal").find(".modal-body").html(dataResult);
-                    var isSuccessful = $("#createUpdateTableDataModal .modal-body").find("[name='IsSuccessful']").val();
-                    var message = $("#createUpdateTableDataModal .modal-body").find("[name='Message']").val();
-                    if (isSuccessful.toLowerCase() == "true") {
-                        $("#createUpdateTableDataModal .modal-body").find(".messagePanel").SERVOSASuccessNotification(message);
-                        $("[name='submitDatosVariables']").prop("disabled", true);
-                        var currentTableName = $modalContext.find("input[name='submitDatosVariables']").prop('tablename');
-                        var $tableContext = $("table[data-tablename='" + currentTableName + "']");
-                        window.VehicleNamespace.LoadTableData($tableContext, currentTableName);
-                    }
-                    else {
-                        $("#createUpdateTableDataModal .modal-body").find(".messagePanel").SERVOSAErrorNotification(message);
-                    }
-                    console.log("Se termino de procesar el reemplazo de la vista.");
-                },
-                error: function () {
-                    console.log("Ocurrio un error al intentar Crear/Actualizar la informacion de la tabla.");
-                    console.debug(e);
-                }
+            SERVOSANamespace.PostFormModal($formContext.serialize(), $formContext.data("posturl"), modalId, function () {
+                $("[name='submitDatosVariables']").prop("disabled", true);
+                var currentTableName = $formContext.find("input[name='submitDatosVariables']").prop('tablename');
+                var $tableContext = $("table[data-tablename='" + currentTableName + "']");
+                window.VehicleNamespace.LoadTableData($tableContext, currentTableName);
+            }, function () {
+
             });
-
-            //$.post($modalContext.data("posturl"), { model: decodeURI($modalContext.serialize()) }, function (dataResult) {
-            //    $("#createUpdateTableDataModal").find(".modal-body").html(dataResult);
-            //    console.log("Se termino de procesar el reemplazo de la vista.");
-            //}).complete(function () {
-            //    console.log("Se completado la acci'on de Crear/Actualizar la informacion de la tabla.");
-            //}).fail(function (e) {
-            //    console.log("Ocurrio un error al intentar Crear/Actualizar la informacion de la tabla.");
-            //    console.debug(e);
-            //});
-
         });
     });
 

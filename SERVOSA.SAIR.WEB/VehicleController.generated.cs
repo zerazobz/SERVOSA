@@ -102,6 +102,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public readonly string UpdateVehicle = "UpdateVehicle";
             public readonly string CreateVehicle = "CreateVehicle";
             public readonly string LoadTablaData = "LoadTablaData";
+            public readonly string GetVehiculos = "GetVehiculos";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -113,6 +114,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public const string UpdateVehicle = "UpdateVehicle";
             public const string CreateVehicle = "CreateVehicle";
             public const string LoadTablaData = "LoadTablaData";
+            public const string GetVehiculos = "GetVehiculos";
         }
 
 
@@ -249,6 +251,17 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.LoadTablaData);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "tableName", tableName);
             LoadTablaDataOverride(callInfo, tableName);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetVehiculosOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetVehiculos()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetVehiculos);
+            GetVehiculosOverride(callInfo);
             return callInfo;
         }
 

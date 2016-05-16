@@ -11,6 +11,6 @@ namespace SERVOSA.SAIR.DATAACCESS.Contracts
     {
         IList<VehicleAlertDataModel> GetAlertsNotSeneded();
         int RegisterAlert(VehicleAlertDataModel model);
-        int UpdateAlertSended(int alertId, string tokenSMS);
+        int UpdateAlertSended(int alertId, string tokenSMS, DateTime sendDate, string recipients);
     }
 }
