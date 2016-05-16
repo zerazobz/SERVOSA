@@ -111,7 +111,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult GetFileModalManager()
+        public virtual ActionResult GetFileModalManager(VehicleFiles model)
         {
             if (ModelState.IsValid)
             {
@@ -135,15 +135,22 @@ namespace SERVOSA.SAIR.WEB.Controllers
                         }
                         if (data.Length > 0)
                         {
+
                             //byteData = data;
                             //fileName = iFile.FileName;
                             //typeFile = iFile.ContentType;
+                            var destinationDirectory = Path.Combine(Server.MapPath("~"), "Files", model.TableName);
+
+                            if (!Directory.Exists(destinationDirectory))
+                                Directory.CreateDirectory(destinationDirectory);
+                            var fileDestination = Path.Combine(destinationDirectory, iFile.FileName);
+                            iFile.SaveAs(fileDestination);
                         }
                     }
                 }
             }
 
-            return PartialView();
+            return PartialView(model);
         }
 
         private void PopulateColumnsValues(VehicleVariableDataServiceModel dataToWork)

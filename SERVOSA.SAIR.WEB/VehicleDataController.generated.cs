@@ -74,6 +74,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DatosVariableVehiculo);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult GetFileModalManager()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetFileModalManager);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public VehicleDataController Actions { get { return MVC.VehicleData; } }
@@ -141,6 +147,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             public readonly string tableName = "tableName";
             public readonly string vehicleCode = "vehicleCode";
+            public readonly string model = "model";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -233,13 +240,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [NonAction]
-        partial void GetFileModalManagerOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void GetFileModalManagerOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.TableData.VehicleFiles model);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult GetFileModalManager()
+        public override System.Web.Mvc.ActionResult GetFileModalManager(SERVOSA.SAIR.SERVICE.Models.TableData.VehicleFiles model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetFileModalManager);
-            GetFileModalManagerOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            GetFileModalManagerOverride(callInfo, model);
             return callInfo;
         }
 

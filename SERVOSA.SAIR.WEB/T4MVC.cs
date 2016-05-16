@@ -415,6 +415,7 @@ namespace Links
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string DriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverViewController.min.js") ? Url("DriverViewController.min.js") : Url("DriverViewController.js");
             public static readonly string SERVOSAViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SERVOSAViewController.min.js") ? Url("SERVOSAViewController.min.js") : Url("SERVOSAViewController.js");
+            public static readonly string VehicleUploadViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/VehicleUploadViewController.min.js") ? Url("VehicleUploadViewController.min.js") : Url("VehicleUploadViewController.js");
             public static readonly string VehicleViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/VehicleViewController.min.js") ? Url("VehicleViewController.min.js") : Url("VehicleViewController.js");
         }
     
@@ -747,6 +748,7 @@ namespace Links
                 {
                     public const string DriverViewController_js = "~/Scripts/ViewController/DriverViewController.js"; 
                     public const string SERVOSAViewController_js = "~/Scripts/ViewController/SERVOSAViewController.js"; 
+                    public const string VehicleUploadViewController_js = "~/Scripts/ViewController/VehicleUploadViewController.js"; 
                     public const string VehicleViewController_js = "~/Scripts/ViewController/VehicleViewController.js"; 
                 }
             }

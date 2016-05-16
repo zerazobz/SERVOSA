@@ -64,10 +64,10 @@
                     <legend>Archivos del Vehiculo</legend>
                     <div class="row">
                         <div class="col-md-6">
-                            <input class="form-control" type="file" name="filesToUpload" id="filesToUpload" value="Seleccione un Archivo por fFavor" />
+                            <input class="form-control" type="file" name="filesToUpload" id="filesToUpload" multiple="multiple" value="Seleccione un Archivo por Favor" />
                         </div>
                         <div class="col-md-3">
-                            <button id="uploadVehicleFile" type="button" class="btn btn-default" data-fileinputid="#filesToUpload" data-posturl="@Url.Action(MVC.VehicleData.GetFileModalManager())">Subir Archivo</button>
+                            <button id="uploadVehicleFile" type="button" class="btn btn-default" data-formid="#postFileByVehicleForm" data-fileinputid="#filesToUpload" data-posturl="@Url.Action(MVC.VehicleData.GetFileModalManager())" data-modalid="#createRemoveFilesForTableDataModal">Subir Archivo</button>
                         </div>
                     </div>
                     <div class="row">
