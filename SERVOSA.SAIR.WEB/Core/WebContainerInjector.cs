@@ -18,6 +18,7 @@ namespace SERVOSA.SAIR.WEB.Core
             Container.RegisterType<IDBServices, DBServices>();
             Container.RegisterType<ITableDataService, TableDataService>();
             Container.RegisterType<IVehicleAlertService, VehicleAlertService>();
+            Container.RegisterType<ITypeService, TypeService>();
         }
     }
 }

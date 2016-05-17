@@ -68,8 +68,8 @@
                 createAction: '/Vehicle/CreateVehicle'
             },
             fields: {
-                Item: { title: 'Item', create: false, edit: false },
-                Codigo: { key: true, title: 'Codigo' },
+                Item: { title: 'Item', create: false, edit: false, width: '5%' },
+                Codigo: { key: true, title: 'Codigo', width: '5%' },
                 PlacaTracto: { title: 'PlacaTracto' },
                 PlacaTolva: { title: 'PlacaTolva' },
                 CodigoMarca: { title: 'CodigoMarca', options: { 0: 'Toyota', 1: 'Hyundai', 2 : 'Mercedes Benz' } },

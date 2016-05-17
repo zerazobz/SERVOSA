@@ -13,12 +13,57 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <button disabled class="btn btn-default" type="button"><i class="glyphicon glyphicon-upload"></i> Cargar Excel</button>
+            <button class="btn btn-default" type="button" data-toggle="modal" data-target="#uploadDownloadVehicleDataModal"><i class="glyphicon glyphicon-upload"></i> Importar Datos</button>
         </div>
     </div>
     <div class="row">
         <div id="vehicleTable">
 
+        </div>
+    </div>
+</div>
+
+<div id="uploadDownloadVehicleDataModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Cargar Descargar Datos de Vehiculos</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="lead">
+                            Para empezar descague los Códigos de:
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-default">Códigos de Marcas</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-default">Códigos de Estados</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="text-info">
+                            Suba el excel con la información a importar.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-default">Importar</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-default">Guardar Registros Validos</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
         </div>
     </div>
 </div>

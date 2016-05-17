@@ -538,6 +538,8 @@
     <Content Include="Views\VehicleData\DatosVariableVehiculo.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Driver\Operarios.cshtml" />
+    <Content Include="Views\VehicleData\GetFileModalManager.cshtml" />
+    <Content Include="Views\Vehicle\VehicleDataTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

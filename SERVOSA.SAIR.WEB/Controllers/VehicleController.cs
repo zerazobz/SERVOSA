@@ -11,10 +11,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
     public partial class VehicleController : Controller
     {
         private IVehicleService _vehicleService;
+        private ITypeService _typeService;
 
-        public VehicleController(IVehicleService injectedVehicleServ)
+        public VehicleController(IVehicleService injectedVehicleServ, ITypeService injectedTypeService)
         {
             _vehicleService = injectedVehicleServ;
+            _typeService = injectedTypeService;
         }
 
         [HttpGet]
@@ -60,7 +62,6 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 return Json(new { Result = "ERROR", Message = ex.Message });
             }
         }
-
 
         [HttpPost]
         public virtual JsonResult UpdateVehicle(VehicleServiceModel model)
@@ -116,6 +117,34 @@ namespace SERVOSA.SAIR.WEB.Controllers
             {
                 var allVehiculos = _vehicleService.GetAll().Select(op => new { DisplayText = op.PlacaTolva + '/' +op.PlacaTracto, Value = op.Codigo});
                 return Json(new { Result = "OK", Options = allVehiculos });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetVehicleBrands()
+        {
+            try
+            {
+                var allTypes = _typeService.GetAllTypesByTable("BRND").Select(bT => new { DisplayText = bT.Description, Value = bT.ConcatenatedCode });
+                return Json(new { Result = "OK", Options = allTypes });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetVehicleStates()
+        {
+            try
+            {
+                var vehicleStates = _typeService.GetAllTypesByTable("VSTA").Select(vS => new { DisplayText = vS.Description, Value = vS.ConcatenatedCode });
+                return Json(new { Result = "OK", Options = vehicleStates });
             }
             catch (Exception ex)
             {

@@ -70,6 +70,7 @@
     <Compile Include="Contracts\IDBServices.cs" />
     <Compile Include="Contracts\IDriverService.cs" />
     <Compile Include="Contracts\ITableDataService.cs" />
+    <Compile Include="Contracts\ITypeService.cs" />
     <Compile Include="Contracts\IVehicleAlertService.cs" />
     <Compile Include="Contracts\IVehicleService.cs" />
     <Compile Include="Core\MessageViewModel.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Models\TableData\VehicleAlert.cs" />
     <Compile Include="Models\TableData\VehicleFiles.cs" />
     <Compile Include="Models\TableServiceModel.cs" />
+    <Compile Include="Models\Types\TypeServiceModel.cs" />
     <Compile Include="Models\VehicleDetailRowServiceModel.cs" />
     <Compile Include="Models\VehicleHeadRowServiceModel.cs" />
     <Compile Include="Models\VehicleServiceModel.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Realizations\DBServices.cs" />
     <Compile Include="Realizations\DriverService.cs" />
     <Compile Include="Realizations\TableDataService.cs" />
+    <Compile Include="Realizations\TypeService.cs" />
     <Compile Include="Realizations\VehicleAlertService.cs" />
     <Compile Include="Realizations\VehicleService.cs" />
   </ItemGroup>
