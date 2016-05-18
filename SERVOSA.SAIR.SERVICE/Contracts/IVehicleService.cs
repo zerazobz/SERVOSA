@@ -1,6 +1,7 @@
 ﻿using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
 using SERVOSA.SAIR.SERVICE.Contracts.Common;
 using SERVOSA.SAIR.SERVICE.Models;
+using SERVOSA.SAIR.SERVICE.Models.Vehicle;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
         IList<VehicleServiceModel> GetAllFiltered(int minRow, int maxRow);
         IList<VehicleHeadRowServiceModel> GetVehicleRowDataForTable(string tableName);
         VehicleVariableDataServiceModel GetVehicleVariableTableData(string tableName, int vehicleCode);
+        IList<VehicleRelatedTableServiceModel> GetRelatedTablesToVehicle();
+        IList<string> GetListRelatedTablesToVehicle();
     }
 }

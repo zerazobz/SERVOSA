@@ -103,6 +103,8 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public readonly string CreateVehicle = "CreateVehicle";
             public readonly string LoadTablaData = "LoadTablaData";
             public readonly string GetVehiculos = "GetVehiculos";
+            public readonly string GetVehicleBrands = "GetVehicleBrands";
+            public readonly string GetVehicleStates = "GetVehicleStates";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -115,6 +117,8 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public const string CreateVehicle = "CreateVehicle";
             public const string LoadTablaData = "LoadTablaData";
             public const string GetVehiculos = "GetVehiculos";
+            public const string GetVehicleBrands = "GetVehicleBrands";
+            public const string GetVehicleStates = "GetVehicleStates";
         }
 
 
@@ -171,8 +175,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Index = "Index";
+                public readonly string VehicleDataTable = "VehicleDataTable";
             }
             public readonly string Index = "~/Views/Vehicle/Index.cshtml";
+            public readonly string VehicleDataTable = "~/Views/Vehicle/VehicleDataTable.cshtml";
         }
     }
 
@@ -262,6 +268,28 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetVehiculos);
             GetVehiculosOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetVehicleBrandsOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetVehicleBrands()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetVehicleBrands);
+            GetVehicleBrandsOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetVehicleStatesOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetVehicleStates()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetVehicleStates);
+            GetVehicleStatesOverride(callInfo);
             return callInfo;
         }
 

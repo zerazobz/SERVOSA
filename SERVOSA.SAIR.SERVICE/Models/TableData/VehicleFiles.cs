@@ -15,9 +15,13 @@ namespace SERVOSA.SAIR.SERVICE.Models.TableData
         public int Codigo { get; set; }
         public string PlacaTracto { get; set; }
         public string PlacaTolva { get; set; }
-        public int CodigoMarca { get; set; }
+        public string TablaMarca { get; set; }
+        public string CodigoMarca { get; set; }
+        public string MarcaConcatenada { get; set; }
         public string Marca { get; set; }
-        public int CodigoEstado { get; set; }
+        public string TablaEstado { get; set; }
+        public string CodigoEstado { get; set; }
+        public string EstadoConcatenado { get; set; }
         public int Item { get; set; }
         public int RowNumber { get; set; }
         public int TotalRows { get; set; }

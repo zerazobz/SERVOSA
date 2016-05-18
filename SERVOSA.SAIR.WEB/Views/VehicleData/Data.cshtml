@@ -1,4 +1,5 @@
-﻿
+﻿@model IList<string>
+
 @{
     ViewBag.Title = "Datos de Vehículos";
 }
@@ -8,5 +9,25 @@
 </div>
 <hr />
 <div class="row">
-    @{ Html.RenderAction(MVC.VehicleData.DatosVariableVehiculo((int)ViewBag.VehicleCode, (string)ViewBag.TableName)); }
+    <ul class="nav nav-tabs" role="tablist">
+        @foreach (var iTableName in Model)
+        {
+            <li role="presentation">
+                <a href="#@iTableName" aria-controls="@iTableName" role="tab" data-toggle="tab" data-vehiclecode="@((int)ViewBag.VehicleCode)">@iTableName</a>
+            </li>
+        }
+    </ul>
+
+    <div class="tab-content">
+        @foreach (var iTableName in Model)
+        {
+            <div role="tabpanel" class="tab-pane" id="@iTableName">
+                <div class="innercontenttab">
+                    Content Tab @iTableName
+                </div>
+            </div>
+        }
+    </div>
+
+    @*@{ Html.RenderAction(MVC.VehicleData.DatosVariableVehiculo((int)ViewBag.VehicleCode, (string)ViewBag.TableName)); }*@
 </div>

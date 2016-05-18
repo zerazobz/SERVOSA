@@ -13,5 +13,6 @@ namespace SERVOSA.SAIR.DATAACCESS.Contracts
         IList<VehicleModel> GetAllFiltered(int minRow, int maxRow);
         IList<VehicleHeadRowDataModel> GetRowDataForTable(string tableName);
         IList<VehicleVariableTableDataModel> GetVehicleVariableTableData(string tableName, int vehicleId);
+        IList<RelatedTableToVehicleModel> GetRelatedTablesToVehicle();
     }
 }

@@ -125,7 +125,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetVehicleBrands()
+        public virtual JsonResult GetVehicleBrands()
         {
             try
             {
@@ -139,7 +139,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetVehicleStates()
+        public virtual JsonResult GetVehicleStates()
         {
             try
             {

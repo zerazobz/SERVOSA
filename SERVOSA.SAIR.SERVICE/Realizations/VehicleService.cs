@@ -2,6 +2,7 @@
 using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
 using SERVOSA.SAIR.SERVICE.Contracts;
 using SERVOSA.SAIR.SERVICE.Models;
+using SERVOSA.SAIR.SERVICE.Models.Vehicle;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -84,6 +85,22 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             VehicleVariableDataServiceModel.ToServiceModel(dataResult, ref serviceModel);
             serviceModel.IsSuccessful = true;
             return serviceModel;
+        }
+
+        public IList<VehicleRelatedTableServiceModel> GetRelatedTablesToVehicle()
+        {
+            VehicleRelatedTableServiceModel vehicleRelatedVM = null;
+            var relatedVehiclesCollection = _vehicleRepository.GetRelatedTablesToVehicle().Select(rVT =>
+            {
+                VehicleRelatedTableServiceModel.ToServiceModel(rVT, ref vehicleRelatedVM);
+                return vehicleRelatedVM;
+            }).ToList();
+            return relatedVehiclesCollection;
+        }
+
+        public IList<string> GetListRelatedTablesToVehicle()
+        {
+            return GetRelatedTablesToVehicle().Select(rV => rV.ForeignTable).ToList();
         }
     }
 }

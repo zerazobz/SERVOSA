@@ -21,7 +21,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public int Create(VehicleModel entity)
         {
-            object[] parameters = new object[] { entity.PlacaTracto, entity.PlacaTolva, entity.CodigoMarca, entity.CodigoEstado, null };
+            object[] parameters = new object[] { entity.PlacaTracto, entity.PlacaTolva, entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, null };
             using (var insertCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHII", parameters))
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(insertCommand);
@@ -49,7 +49,8 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public IList<VehicleModel> GetAllFiltered(int minRow, int maxRow)
         {
             object[] parameters = new object[] { minRow, maxRow };
-            IRowMapper<VehicleModel> vehicleRowMapper = MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.Marca).Build();
+            IRowMapper<VehicleModel> vehicleRowMapper = MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.Marca)
+                .DoNotMap(prop => prop.Estado).Build();
             var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_Filtrado", vehicleRowMapper, parameters);
             return vehicleCollection.ToList();
         }
@@ -57,14 +58,14 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public VehicleModel GetById(int id)
         {
             object[] parameteres = new object[] { id };
-            IRowMapper<VehicleModel> vehicleRowMapper = GetMapperSimple();
+            IRowMapper<VehicleModel> vehicleRowMapper = GetMapperForOldSP();
             var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_UnReg", vehicleRowMapper, parameteres);
             return vehicleCollection.FirstOrDefault();
         }
 
         public int Update(VehicleModel entity)
         {
-            object[] parameters = new object[] { entity.Codigo, entity.PlacaTracto, entity.PlacaTolva, entity.CodigoMarca, entity.CodigoEstado };
+            object[] parameters = new object[] { entity.Codigo, entity.PlacaTracto, entity.PlacaTolva, entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA };
             using (var updateCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHIU", parameters))
             {
                 var executionResult = _servosaDB.ExecuteNonQuery(updateCommand);
@@ -114,10 +115,24 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             return dataResult.ToList();
         }
 
+        public IList<RelatedTableToVehicleModel> GetRelatedTablesToVehicle()
+        {
+            object[] parameters = new object[] { };
+            IRowMapper<RelatedTableToVehicleModel> relatedTablesMapper = MapBuilder<RelatedTableToVehicleModel>.MapAllProperties().Build();
+            var relatedTableCollection = _servosaDB.ExecuteSprocAccessor("SAIR_ALLTABLESREFERENCINGVEHICLES", relatedTablesMapper, parameters);
+            return relatedTableCollection.ToList();
+        }
+
         private IRowMapper<VehicleModel> GetMapperSimple()
         {
             return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
-                .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.RowNumber).Build();
+                .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.RowNumber).Build();
+        }
+
+        private IRowMapper<VehicleModel> GetMapperForOldSP()
+        {
+            return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
+                .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.Estado).DoNotMap(prop => prop.RowNumber).Build();
         }
     }
 }

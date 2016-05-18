@@ -70,10 +70,16 @@
             fields: {
                 Item: { title: 'Item', create: false, edit: false, width: '5%' },
                 Codigo: { key: true, title: 'Codigo', width: '5%' },
-                PlacaTracto: { title: 'PlacaTracto' },
-                PlacaTolva: { title: 'PlacaTolva' },
-                CodigoMarca: { title: 'CodigoMarca', options: { 0: 'Toyota', 1: 'Hyundai', 2 : 'Mercedes Benz' } },
-                CodigoEstado: { title: 'CodigoEstado', options: { 0: 'Observado', 1: 'Revisar', 2: 'Conforme' } }
+                PlacaTracto: { title: 'Placa Tracto' },
+                PlacaTolva: { title: 'Placa Tolva' },
+                MarcaConcatenada: {
+                    title: 'Codigo Marca',
+                    options: '/Vehicle/GetVehicleBrands'
+                },
+                EstadoConcatenado: {
+                    title: 'Codigo Estado',
+                    options: '/Vehicle/GetVehicleStates'
+                }
             }
         });
 

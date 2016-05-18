@@ -24,11 +24,11 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpGet]
-        public virtual ActionResult Data(int vehicleCode, string variableName)
+        public virtual ActionResult Data(int vehicleCode)
         {
             ViewBag.VehicleCode = vehicleCode;
-            ViewBag.TableName = variableName;
-            return View();
+            var listRelatedTablesVehicle = _vehicleService.GetListRelatedTablesToVehicle();
+            return View(listRelatedTablesVehicle);
         }
 
         [HttpGet]

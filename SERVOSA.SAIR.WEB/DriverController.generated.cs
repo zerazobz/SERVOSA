@@ -74,6 +74,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CreateDriver);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UploadFile()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadFile);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public DriverController Actions { get { return MVC.Driver; } }
@@ -95,6 +101,8 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public readonly string DeleteDriver = "DeleteDriver";
             public readonly string UpdateDriver = "UpdateDriver";
             public readonly string CreateDriver = "CreateDriver";
+            public readonly string UploadFile = "UploadFile";
+            public readonly string LoadFiles = "LoadFiles";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -105,6 +113,8 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public const string DeleteDriver = "DeleteDriver";
             public const string UpdateDriver = "UpdateDriver";
             public const string CreateDriver = "CreateDriver";
+            public const string UploadFile = "UploadFile";
+            public const string LoadFiles = "LoadFiles";
         }
 
 
@@ -141,6 +151,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public class ActionParamsClass_CreateDriver
         {
             public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_UploadFile s_params_UploadFile = new ActionParamsClass_UploadFile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UploadFile UploadFileParams { get { return s_params_UploadFile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UploadFile
+        {
+            public readonly string excelFile = "excelFile";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -223,6 +241,29 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CreateDriver);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             CreateDriverOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void UploadFileOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase excelFile);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult UploadFile(System.Web.HttpPostedFileBase excelFile)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadFile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "excelFile", excelFile);
+            UploadFileOverride(callInfo, excelFile);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LoadFilesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LoadFiles()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadFiles);
+            LoadFilesOverride(callInfo);
             return callInfo;
         }
 

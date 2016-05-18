@@ -6,14 +6,14 @@ using System.Web.Mvc;
 
 namespace SERVOSA.SAIR.WEB.Controllers
 {
-    public class LoadFileController : Controller
+    public partial class LoadFileController : Controller
     {
 
         // GET: LoadFile
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }
-       
+
     }
 }

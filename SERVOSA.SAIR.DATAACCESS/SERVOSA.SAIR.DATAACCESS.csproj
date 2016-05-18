@@ -62,6 +62,7 @@
     <Compile Include="Models\DB\TableModel.cs" />
     <Compile Include="Models\Driver\DriverModel.cs" />
     <Compile Include="Models\Types\TypeModel.cs" />
+    <Compile Include="Models\Vehicle\RelatedTableToVehicleModel.cs" />
     <Compile Include="Models\Vehicle\VehicleDetailRowDataModel.cs" />
     <Compile Include="Models\Vehicle\VehicleHeadRowDataModel.cs" />
     <Compile Include="Models\Vehicle\VehicleModel.cs" />
