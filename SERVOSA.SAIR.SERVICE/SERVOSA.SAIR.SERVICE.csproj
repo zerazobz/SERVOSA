@@ -72,6 +72,7 @@
     <Compile Include="Contracts\ITableDataService.cs" />
     <Compile Include="Contracts\ITypeService.cs" />
     <Compile Include="Contracts\IVehicleAlertService.cs" />
+    <Compile Include="Contracts\IVehicleFileService.cs" />
     <Compile Include="Contracts\IVehicleService.cs" />
     <Compile Include="Core\MessageViewModel.cs" />
     <Compile Include="Core\ServiceContainerInjector.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Models\TableServiceModel.cs" />
     <Compile Include="Models\Types\TypeServiceModel.cs" />
     <Compile Include="Models\Vehicle\VehicleDetailRowServiceModel.cs" />
+    <Compile Include="Models\Vehicle\VehicleFileServiceModel.cs" />
     <Compile Include="Models\Vehicle\VehicleHeadRowServiceModel.cs" />
     <Compile Include="Models\Vehicle\VehicleServiceModel.cs" />
     <Compile Include="Models\Vehicle\VehicleVariableDataServiceModel.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Realizations\TableDataService.cs" />
     <Compile Include="Realizations\TypeService.cs" />
     <Compile Include="Realizations\VehicleAlertService.cs" />
+    <Compile Include="Realizations\VehicleFileService.cs" />
     <Compile Include="Realizations\VehicleService.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -1,4 +1,31 @@
-﻿(function (vehicelDataService, $, undefined) {
+﻿(function (vehicleDataService, $, undefined) {
+
+    vehicleDataService.SetupJtableContainer = function (jtableContainerId, tableName, vehicleId) {
+        $(jtableContainerId).jtable({
+            title: 'Listado de Vehiculos',
+            paging: true,
+            pageSize: 10,
+            actions: {
+                listAction: '/VehicleData/ListFilesByTableAndVehicle?tableName=' + tableName + "&vehicleCode=" + vehicleId,
+                createAction: '/VehicleData/DeleteFile'
+            },
+            fields: {
+                ComposedPrimaryKey: { key: 'true'},
+                Identity: { title: 'Identity', list: false },
+                VehicleId: { title: 'VehicleId', list: false },
+                TableName: { title: 'TableName', list: true },
+                //DataFile: { title: 'DataFile', list: false },
+                FileName: { title: 'FileName', list: true },
+                FileContentType: { title: 'FileContentType', list: true },
+                //FileLocationStored: { title: 'FileLocationStored', list: true },
+                DateCreated: { title: 'DateCreated', type : 'date', displayFormat: 'dd/mm/yy', list: true }
+            }
+        });
+    };
+
+    vehicleDataService.LoadJTableContainer = function (jtableContainerId) {
+        $(jtableContainerId).jtable('load');
+    }
 
     $(function () {
         var allTabTables = $("div[class='tab-pane']").map(function (i, el) { return $(el).attr("id"); });
@@ -15,6 +42,11 @@
             }).fail(function() {
                 console.debug("No se pudo cargar la data");
             });
+
+            var containerFileTableToLoad = "#" + $(elementToLoad).find(".innerfilestable div").attr("id");
+            console.log("El contenedor de archivos a cargar es: " + containerFileTableToLoad);
+            vehicleDataService.SetupJtableContainer(containerFileTableToLoad, tableToLoad, vehicleId);
+            vehicleDataService.LoadJTableContainer(containerFileTableToLoad);
         });
     });
 

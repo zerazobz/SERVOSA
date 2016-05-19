@@ -54,6 +54,7 @@
     <Compile Include="Contracts\IDriverRepository.cs" />
     <Compile Include="Contracts\ITypeRepository.cs" />
     <Compile Include="Contracts\IVehicleAlertRepository.cs" />
+    <Compile Include="Contracts\IVehicleFilesRepository.cs" />
     <Compile Include="Contracts\IVehicleRepository.cs" />
     <Compile Include="Core\IRepository.cs" />
     <Compile Include="Models\Alerts\VehicleAlertDataModel.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Models\Types\TypeModel.cs" />
     <Compile Include="Models\Vehicle\RelatedTableToVehicleModel.cs" />
     <Compile Include="Models\Vehicle\VehicleDetailRowDataModel.cs" />
+    <Compile Include="Models\Vehicle\VehicleFileModel.cs" />
     <Compile Include="Models\Vehicle\VehicleHeadRowDataModel.cs" />
     <Compile Include="Models\Vehicle\VehicleModel.cs" />
     <Compile Include="Models\Vehicle\VehicleVariableTableDataModel.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Realizations\DriverRepository.cs" />
     <Compile Include="Realizations\TypeRepository.cs" />
     <Compile Include="Realizations\VehicleAlertRepository.cs" />
+    <Compile Include="Realizations\VehicleFilesRepository.cs" />
     <Compile Include="Realizations\VehicleRepository.cs" />
   </ItemGroup>
   <ItemGroup>

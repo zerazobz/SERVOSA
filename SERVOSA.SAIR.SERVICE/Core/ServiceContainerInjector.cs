@@ -23,6 +23,7 @@ namespace SERVOSA.SAIR.SERVICE.Core
             Container.RegisterType<IVehicleAlertRepository, VehicleAlertRepository>();
             Container.RegisterType<IVehicleAlertService, VehicleAlertService>();
             Container.RegisterType<ITypeRepository, TypeRepository>();
+            Container.RegisterType<IVehicleFilesRepository, VehicleFilesRepository>();
         }
     }
 }

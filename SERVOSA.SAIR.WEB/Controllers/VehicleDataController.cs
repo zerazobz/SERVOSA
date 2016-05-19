@@ -2,6 +2,7 @@
 using SERVOSA.SAIR.SERVICE.Core;
 using SERVOSA.SAIR.SERVICE.Models;
 using SERVOSA.SAIR.SERVICE.Models.TableData;
+using SERVOSA.SAIR.SERVICE.Models.Vehicle;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,11 +17,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
     {
         private readonly IVehicleService _vehicleService;
         private readonly ITableDataService _tableDataService;
+        private readonly IVehicleFileService _vehicleFileDataService;
 
-        public VehicleDataController(IVehicleService injectedVehicleSer, ITableDataService injectedTableDataRepo)
+        public VehicleDataController(IVehicleService injectedVehicleSer, ITableDataService injectedTableDataSer, IVehicleFileService injectedVehiFileSer)
         {
             _vehicleService = injectedVehicleSer;
-            _tableDataService = injectedTableDataRepo;
+            _tableDataService = injectedTableDataSer;
+            _vehicleFileDataService = injectedVehiFileSer;
         }
 
         [HttpGet]
@@ -135,22 +138,77 @@ namespace SERVOSA.SAIR.WEB.Controllers
                         }
                         if (data.Length > 0)
                         {
+                            var destinationDirectory = Path.Combine(Server.MapPath("~"), "Files", model.TableName, model.Codigo.ToString());
 
-                            //byteData = data;
-                            //fileName = iFile.FileName;
-                            //typeFile = iFile.ContentType;
-                            var destinationDirectory = Path.Combine(Server.MapPath("~"), "Files", model.TableName);
+                            VehicleFileServiceModel fileModelToinsert = new VehicleFileServiceModel()
+                            {
+                                DataFile = data,
+                                DateCreated = DateTime.Now,
+                                FileContentType = iFile.ContentType,
+                                FileLocationStored = destinationDirectory,
+                                FileName = iFile.FileName,
+                                TableName = model.TableName,
+                                VehicleId = model.Codigo
+                            };
 
                             if (!Directory.Exists(destinationDirectory))
                                 Directory.CreateDirectory(destinationDirectory);
                             var fileDestination = Path.Combine(destinationDirectory, iFile.FileName);
                             iFile.SaveAs(fileDestination);
+
+                            var resultInsert = _vehicleFileDataService.InsertVehicleFile(fileModelToinsert);
                         }
                     }
                 }
             }
 
             return PartialView(model);
+        }
+
+        public JsonResult ListFilesByTableAndVehicle(int jtStartIndex = 0, int jtPageSize = 0, string jtSorting = null, string tableName = null, int? vehicleCode = null)
+        {
+            try
+            {
+                if(!String.IsNullOrWhiteSpace(tableName) && vehicleCode.HasValue)
+                {
+                    int totalRecordsCount = 0;
+                    var listCollection = _vehicleFileDataService.GetFilesByTableNameAndVehicleId(tableName, vehicleCode.Value);
+                    
+                    return Json(new { Result = "OK", Records = listCollection, TotalRecordCount = listCollection.Count });
+                }
+                else
+                    return Json(new { Result = "ERROR", Message = "Error en la Integridad de Datos" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+        public JsonResult DeleteFile(string ComposedPrimaryKey)
+        {
+            try
+            {
+                string[] fileCodes = ComposedPrimaryKey.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries);
+                string pathToRemove = Path.Combine(Server.MapPath("~"), "Files", fileCodes[1], fileCodes[0], fileCodes[2]);
+                System.IO.File.Delete(pathToRemove);
+                var resultDelete = _vehicleFileDataService.DeleteVehicleFile(new VehicleFileServiceModel()
+                {
+                    TableName = fileCodes[1],
+                    VehicleId = Convert.ToInt32(fileCodes[0]),
+                    FileName = fileCodes[2]
+                });
+
+                if (resultDelete.Item1)
+                    return Json(new { Result = "OK" });
+                else
+                    return Json(new { Result = "ERROR", Message = resultDelete.Item3 });
+                //var destinationDirectory = Path.Combine(Server.MapPath("~"), "Files", model.TableName, model.Codigo.ToString());
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
         }
 
         private void PopulateColumnsValues(VehicleVariableDataServiceModel dataToWork)

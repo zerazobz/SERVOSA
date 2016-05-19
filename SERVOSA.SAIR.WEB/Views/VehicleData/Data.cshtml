@@ -27,11 +27,14 @@
                 <div class="innercontenttab" data-containerid="#@iTableName">
                     Content Tab @iTableName
                 </div>
+                <div class="innerfilestable" data-tablename="@iTableName" data-vehiclecode="@((int)ViewBag.VehicleCode)">
+                    <div id="@("filetable" + iTableName)">
+
+                    </div>
+                </div>
             </div>
         }
     </div>
-
-    @*@{ Html.RenderAction(MVC.VehicleData.DatosVariableVehiculo((int)ViewBag.VehicleCode, (string)ViewBag.TableName)); }*@
 </div>
 
 
