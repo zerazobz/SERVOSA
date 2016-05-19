@@ -41,7 +41,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             try
             {
-                object[] parameters = new object[] { entity.TableName, null };
+                object[] parameters = new object[] { entity.TableName, null, null };
 
                 using (var dbCommand = _servosaDB.GetStoredProcCommand("SAIR_CREATETABLE", parameters))
                 {

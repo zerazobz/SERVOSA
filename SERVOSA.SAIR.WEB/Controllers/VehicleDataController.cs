@@ -110,6 +110,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             vehicleFileModel.Marca = vehicleData.Marca;
             //vehicleFileModel = (VehicleFiles)vehicleData;
             vehicleFileModel.TableName = tableName;
+            vehicleFileModel.Codigo = vehicleCode;
             return PartialView(vehicleFileModel);
         }
 

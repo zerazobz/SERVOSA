@@ -57,13 +57,21 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
         public string SendAlertBySMS(IEnumerable<string> phonesNumbers, string message, int alertId)
         {
-            string processedPhones = String.Join(",", phonesNumbers);
-            ElibomClient elibom = new ElibomClient("erickastooblitas@gmail.com", "740fB4OGc6");
-            string deliveryToken = "TMPTEST";
-            //var deliveryToken = elibom.sendMessage(processedPhones, message);
-            UpdateAlertSended(alertId, deliveryToken, DateTime.Now, processedPhones);
-            Console.WriteLine(deliveryToken);
-            return deliveryToken;
+            string deliveryToken = String.Empty;
+            try
+            {
+                string processedPhones = String.Join(",", phonesNumbers);
+                ElibomClient elibom = new ElibomClient("erickastooblitas@gmail.com", "740fB4OGc6");
+                //string deliveryToken = "TMPTEST";
+                deliveryToken = elibom.sendMessage(processedPhones, message);
+                UpdateAlertSended(alertId, deliveryToken, DateTime.Now, processedPhones);
+                Console.WriteLine(deliveryToken);
+                return deliveryToken;
+            }
+            catch (Exception ex)
+            {
+                return deliveryToken;
+            }
         }
 
         public int UpdateAlertSended(int alertId, string smsToken, DateTime sendDate, string recipients)

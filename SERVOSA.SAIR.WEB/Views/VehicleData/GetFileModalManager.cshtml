@@ -16,6 +16,7 @@
         <div>
             <input type="hidden" name="Message" value="@Model.Message" />
             <input type="hidden" name="IsSuccessful" value="@Model.IsSuccessful.ToString()" />
+            <input type="hidden" name="Codigo" value="@Model.Codigo" />
         </div>
         @Html.AntiForgeryToken()
         <div class="container">
@@ -71,8 +72,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12" style="background-color: lightseagreen;">
-                            <p class="lead">Arrastre archivos para subir.</p>
+                        <div class="col-md-12">
+                            <div class="innerfilestable">
+                                <div id="uploadfiletable">
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </fieldset>
