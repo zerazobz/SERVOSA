@@ -45,24 +45,24 @@
 
     }
 
-    SERVOSANamespace.PostFormModal = function (parameters, postUrl, modalId, onSuccessCallback, onErrorCallback) {
+    SERVOSANamespace.PostFormModal = function (parameters, postUrl, containerId, onSuccessCallback, onErrorCallback) {
         $.post(postUrl, parameters, function (htmlResult, textStatus, jqXHR) {
-            $(modalId).find(".modal-content").html(htmlResult);
-            var isSuccessful = $(modalId + " .modal-body").find("[name='IsSuccessful']").val();
-            var message = $(modalId + " .modal-body").find("[name='Message']").val();
+            $(containerId).find(".modal-content").html(htmlResult);
+            var isSuccessful = $(containerId + " .modal-body").find("[name='IsSuccessful']").val();
+            var message = $(containerId + " .modal-body").find("[name='Message']").val();
             if (isSuccessful.toLowerCase() == "true") {
-                $(modalId + " .modal-body").find(".messagePanel").SERVOSASuccessNotification(message);
+                $(containerId + " .modal-body").find(".messagePanel").SERVOSASuccessNotification(message);
                 onSuccessCallback();
             }
             else {
-                $(modalId + " .modal-body").find(".messagePanel").SERVOSAErrorNotification(message);
+                $(containerId + " .modal-body").find(".messagePanel").SERVOSAErrorNotification(message);
                 onErrorCallback();
             }
         }).complete(function (e) {
-            console.debug("Se completo el procesamiento post del Modal con Id: " + modalId);
+            console.debug("Se completo el procesamiento post del Modal con Id: " + containerId);
         }).fail(function (e) {
             onErrorCallback();
-            console.debug("Ocurrio un error al postear datos del Modal con Id: " + modalId);
+            console.debug("Ocurrio un error al postear datos del Modal con Id: " + containerId);
             console.debug(e);
         });
     }
@@ -128,9 +128,9 @@
         $(document).on("submit", "#postVariableData", null, function (e) {
             e.preventDefault();
             var $formContext = $(this);
-            var modalId = "#createUpdateTableDataModal";
+            var containerId = $(this).parent().data("containerid");
 
-            SERVOSANamespace.PostFormModal($formContext.serialize(), $formContext.data("posturl"), modalId, function () {
+            SERVOSANamespace.PostFormModal($formContext.serialize(), $formContext.data("posturl"), containerId, function () {
                 $("[name='submitDatosVariables']").prop("disabled", true);
                 var currentTableName = $formContext.find("input[name='submitDatosVariables']").prop('tablename');
                 var $tableContext = $("table[data-tablename='" + currentTableName + "']");
