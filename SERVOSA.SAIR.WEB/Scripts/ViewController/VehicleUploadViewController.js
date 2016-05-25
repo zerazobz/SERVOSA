@@ -22,6 +22,13 @@
                 var responseText = ajaxUploadService.response;
                 var htmlResult = this.responseText;
                 $(modalId).find(".modal-content").html(htmlResult);
+
+                var tableToLoad = $(modalId).find("[name='TableName']").val();
+                var vehicleId = $(modalId).find("[name='Codigo']").val();
+                var containerFileTableToLoad = $(modalId).find(".innerfilestable div").attr("id");
+
+                window.VehicleDataViewController.SetupJtableContainer(containerFileTableToLoad, tableToLoad, vehicleId);
+                window.VehicleDataViewController.LoadJTableContainer(containerFileTableToLoad);
             }
         };
 

@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = "Datos de Vehículos";
 }
-
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Scripts/jtable/themes/jqueryui/jtable_jqueryui.css" rel="stylesheet" />
+<link href="~/Content/validationEngine.jquery.css" rel="stylesheet" />
 <input type="hidden" name="CurrentVehicleId" value="@((int)ViewBag.VehicleCode)" />
 
 <div class="row">
@@ -41,6 +43,10 @@
 @section scripts {
     <script src="~/Scripts/jquery-ui-1.9.2.js" type="text/javascript"></script>
     <script src="~/Scripts/handlebars-latest.js" type="text/javascript"></script>
+    <script src="~/Scripts/jtable/jquery.jtable.js" type="text/javascript"></script>
+    <script src="~/Scripts/jtable/localization/jquery.jtable.es.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validationEngine-es.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validationEngine.js" type="text/javascript"></script>
     <script src="~/Scripts/ViewController/VehicleViewController.js" type="text/javascript"></script>
     <script src="~/Scripts/ViewController/VehicleDataViewController.js" type="text/javascript"></script>
     <script src="~/Scripts/ViewController/SERVOSAViewController.js" type="text/javascript"></script>

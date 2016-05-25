@@ -7,18 +7,18 @@
             pageSize: 10,
             actions: {
                 listAction: '/VehicleData/ListFilesByTableAndVehicle?tableName=' + tableName + "&vehicleCode=" + vehicleId,
-                createAction: '/VehicleData/DeleteFile'
+                deleteAction: '/VehicleData/DeleteFile'
             },
             fields: {
-                ComposedPrimaryKey: { key: 'true'},
+                ComposedPrimaryKey: { key: 'true', list: false },
                 Identity: { title: 'Identity', list: false },
                 VehicleId: { title: 'VehicleId', list: false },
                 TableName: { title: 'TableName', list: true },
                 //DataFile: { title: 'DataFile', list: false },
                 FileName: { title: 'FileName', list: true },
-                FileContentType: { title: 'FileContentType', list: true },
+                //FileContentType: { title: 'FileContentType', list: true },
                 //FileLocationStored: { title: 'FileLocationStored', list: true },
-                DateCreated: { title: 'DateCreated', type : 'date', displayFormat: 'dd/mm/yy', list: true }
+                DateCreated: { title: 'DateCreated', type : 'date', displayFormat: 'dd/mm/yy', list: false }
             }
         });
     };

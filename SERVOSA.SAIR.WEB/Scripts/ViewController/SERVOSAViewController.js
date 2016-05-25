@@ -116,11 +116,17 @@
 
         $("#containerforalltables").on("click", ".insertRemoveFile", null, function () {
             var $buttonContext = $(this);
-            var modalParameters = { tableName: $buttonContext.data("tablename"), vehicleCode: $buttonContext.data("vehicleid") };
+            var tableToLoad = $buttonContext.data("tablename");
+            var vehicleId = $buttonContext.data("vehicleid");
+            var modalParameters = { tableName: tableToLoad, vehicleCode: vehicleId };
             var modalId = "#createRemoveFilesForTableDataModal";
 
             SERVOSANamespace.LoadShowModal(modalParameters, "/VehicleData/GetFileModalManager", modalId, function () {
 
+                var containerFileTableToLoad = "#" + $(modalId).find(".innerfilestable div").attr("id");
+                console.log("El contenedor de archivos a cargar es: " + containerFileTableToLoad);
+                window.VehicleDataViewController.SetupJtableContainer(containerFileTableToLoad, tableToLoad, vehicleId);
+                window.VehicleDataViewController.LoadJTableContainer(containerFileTableToLoad);
             });
         });
 
