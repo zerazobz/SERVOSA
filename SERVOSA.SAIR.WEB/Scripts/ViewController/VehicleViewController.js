@@ -70,8 +70,10 @@
             fields: {
                 Item: { title: 'Item', create: false, edit: false, width: '5%' },
                 Codigo: { key: true, title: 'Codigo', width: '5%' },
-                PlacaTracto: { title: 'Placa Tracto' },
-                PlacaTolva: { title: 'Placa Tolva' },
+                CodigoTipoUnidad: { title: 'Tipo de Unidad', options: '/Vehicle/GetVehiclesUnitTypes' },
+                Placa: { title: 'Placa' },
+                //PlacaTracto: { title: 'Placa Tracto' },
+                //PlacaTolva: { title: 'Placa Tolva' },
                 MarcaConcatenada: {
                     title: 'Codigo Marca',
                     options: '/Vehicle/GetVehicleBrands'

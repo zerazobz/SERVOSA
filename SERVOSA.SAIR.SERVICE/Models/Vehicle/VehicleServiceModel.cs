@@ -10,13 +10,19 @@ namespace SERVOSA.SAIR.SERVICE.Models
 {
     public class VehicleServiceModel : IVehicleServiceModel
     {
+        public VehicleServiceModel()
+        {
+            TablaMarca = "BRND";
+            TablaEstado = "VSTA";
+        }
+
         public int Item { get; set; }
         [Display(Name = "Cod.")]
         public int Codigo { get; set; }
-        [Display(Name = "Placa Tracto")]
-        public string PlacaTracto { get; set; }
-        [Display(Name = "Placa Tolva")]
-        public string PlacaTolva { get; set; }
+        //[Display(Name = "Placa Tracto")]
+        //public string PlacaTracto { get; set; }
+        //[Display(Name = "Placa Tolva")]
+        //public string PlacaTolva { get; set; }
         [Display(Name = "Marca")]
         public string Marca { get; set; }
         [Display(Name = "Estado")]
@@ -31,6 +37,11 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public string TablaEstado { get; set; }
         public string CodigoEstado { get; set; }
         public string EstadoConcatenado { get; set; }
+        public string CodigoTipoUnidad { get; set; }
+        [Display(Name = "Tipo de Unidad")]
+        public string DescripcionTipoUnidad { get; set; }
+        [Display(Name = "Placa")]
+        public string Placa { get; set; }
 
         public static void ToViewModel(VehicleModel model, ref VehicleServiceModel viewModel)
         {
@@ -47,8 +58,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     Item = model.Item,
                     Marca = model.Marca,
                     Estado = model.Estado,
-                    PlacaTolva = model.PlacaTolva,
-                    PlacaTracto = model.PlacaTracto,
+                    Placa = model.VEHI_VehiclePlate,
+                    CodigoTipoUnidad = model.VEHI_UnitType,
+                    //DescripcionTipoUnidad = model.VEHI_UnitType == "R"? "Remolque" : "Semiremolque",
+                    DescripcionTipoUnidad = model.VEHI_DescriptionUnitType,
                     RowNumber = model.RowNumber,
                     TotalRows = model.TotalRows
                 };
@@ -69,8 +82,8 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     Item = viewModel.Item,
                     Marca = viewModel.Marca,
                     Estado = viewModel.Estado,
-                    PlacaTolva = viewModel.PlacaTolva,
-                    PlacaTracto = viewModel.PlacaTracto,
+                    VEHI_VehiclePlate = viewModel.Placa,
+                    VEHI_UnitType = viewModel.CodigoTipoUnidad,
                     RowNumber = viewModel.RowNumber,
                     TotalRows = viewModel.TotalRows
                 };

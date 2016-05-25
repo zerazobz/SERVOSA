@@ -11,9 +11,10 @@
         string CodigoMarca { get; set; }
         int Item { get; set; }
         string Marca { get; set; }
-        string PlacaTolva { get; set; }
-        string PlacaTracto { get; set; }
         int RowNumber { get; set; }
         int TotalRows { get; set; }
+        string CodigoTipoUnidad { get; set; }
+        string DescripcionTipoUnidad { get; set; }
+        string Placa { get; set; }
     }
 }

@@ -106,7 +106,9 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             VehicleFiles vehicleFileModel = new VehicleFiles();
             IVehicleServiceModel vehicleData = _vehicleService.GetById(vehicleCode);
-            vehicleFileModel.PlacaTolva = vehicleData.PlacaTolva;
+            vehicleFileModel.Placa = vehicleData.Placa;
+            vehicleFileModel.CodigoTipoUnidad = vehicleData.CodigoTipoUnidad;
+            //vehicleFileModel.PlacaTolva = vehicleData.PlacaTolva;
             vehicleFileModel.Marca = vehicleData.Marca;
             //vehicleFileModel = (VehicleFiles)vehicleData;
             vehicleFileModel.TableName = tableName;

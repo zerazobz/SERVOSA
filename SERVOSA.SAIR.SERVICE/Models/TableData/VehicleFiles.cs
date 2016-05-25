@@ -13,8 +13,6 @@ namespace SERVOSA.SAIR.SERVICE.Models.TableData
         #region DatosVehiculo
 
         public int Codigo { get; set; }
-        public string PlacaTracto { get; set; }
-        public string PlacaTolva { get; set; }
         public string TablaMarca { get; set; }
         public string CodigoMarca { get; set; }
         public string MarcaConcatenada { get; set; }
@@ -25,6 +23,9 @@ namespace SERVOSA.SAIR.SERVICE.Models.TableData
         public int Item { get; set; }
         public int RowNumber { get; set; }
         public int TotalRows { get; set; }
+        public string CodigoTipoUnidad { get; set; }
+        public string DescripcionTipoUnidad { get; set; }
+        public string Placa { get; set; }
 
         #endregion
 

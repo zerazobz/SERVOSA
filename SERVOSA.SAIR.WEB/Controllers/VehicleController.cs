@@ -115,7 +115,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             try
             {
-                var allVehiculos = _vehicleService.GetAll().Select(op => new { DisplayText = op.PlacaTolva + '/' +op.PlacaTracto, Value = op.Codigo});
+                var allVehiculos = _vehicleService.GetAll().Select(op => new { DisplayText = op.DescripcionTipoUnidad + '/' +op.Placa, Value = op.Codigo});
                 return Json(new { Result = "OK", Options = allVehiculos });
             }
             catch (Exception ex)
@@ -145,6 +145,24 @@ namespace SERVOSA.SAIR.WEB.Controllers
             {
                 var vehicleStates = _typeService.GetAllTypesByTable("VSTA").Select(vS => new { DisplayText = vS.Description, Value = vS.ConcatenatedCode });
                 return Json(new { Result = "OK", Options = vehicleStates });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult GetVehiclesUnitTypes()
+        {
+            try
+            {
+                Dictionary<string, string> vehicleUnitTypes = new Dictionary<string, string>()
+                {
+                    { "R", "Remolque" },
+                    { "S", "Semi-Remolque" }
+                };
+                return Json(new { Result = "OK", Options = vehicleUnitTypes.Select(uT => new { DisplayText = uT.Value, Value = uT.Key }) });
             }
             catch (Exception ex)
             {
