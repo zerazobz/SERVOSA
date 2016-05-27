@@ -195,6 +195,12 @@
             }
         });
 
+        $(document).on("click", ".downloadFileForVariable", null, function (e) {
+            var tableName = $(this).data("normalizedtablename");
+            console.debug("Download File for: " + tableName);
+            window.location = "/VehicleData/DownloadVariable?tableName=" + tableName
+        });
+
         vehicleNamespace.LoadVehicleTable();
         vehicleNamespace.LoadDataForTablesYetLoaded();
     });

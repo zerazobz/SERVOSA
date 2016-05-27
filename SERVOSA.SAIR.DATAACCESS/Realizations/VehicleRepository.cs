@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using System.Data;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
@@ -120,6 +121,20 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             IRowMapper<RelatedTableToVehicleModel> relatedTablesMapper = MapBuilder<RelatedTableToVehicleModel>.MapAllProperties().Build();
             var relatedTableCollection = _servosaDB.ExecuteSprocAccessor("SAIR_ALLTABLESREFERENCINGVEHICLES", relatedTablesMapper, parameters);
             return relatedTableCollection.ToList();
+        }
+
+        public DataSet GetVariableDataToExport(string tableName)
+        {
+            object[] parameters = new object[] { tableName };
+            var resultDataSet = _servosaDB.ExecuteDataSet("SAIR_DatosVariable", parameters);
+            return resultDataSet;
+        }
+
+        public DataSet GetVehicleDataToExport(int vehicleCode)
+        {
+            object[] parameters = new object[] { vehicleCode };
+            var resultDataSet = _servosaDB.ExecuteDataSet("SAIR_DatosVehiculo", parameters);
+            return resultDataSet;
         }
 
         private IRowMapper<VehicleModel> GetMapperSimple()

@@ -214,6 +214,27 @@ namespace SERVOSA.SAIR.WEB.Controllers
             }
         }
 
+        public ActionResult DownloadVariable(string tableName)
+        {
+            using (var memStream = new MemoryStream())
+            {
+                _vehicleService.GenerateReportForTable(tableName, memStream);
+                string fileName = String.Format(" Datos de {0}_{1}.xlsx", tableName, DateTime.Now.ToString("ddMMyyyy_HHmm"));
+                return File(memStream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+            }
+            //return View();
+        }
+
+        public FileResult DownloadVehicleData(int vehicleId)
+        {
+            using (var memStream = new MemoryStream())
+            {
+                _vehicleService.GenerateReportForVehicle(vehicleId, memStream);
+                string fileName = String.Format(" Datos del Vehiculo {0}_{1}.xlsx", vehicleId, DateTime.Now.ToString("ddMMyyyy_HHmm"));
+                return File(memStream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+            }
+        }
+
         private void PopulateColumnsValues(VehicleVariableDataServiceModel dataToWork)
         {
             dataToWork.ColumnsCollection.ForEach(cL =>
