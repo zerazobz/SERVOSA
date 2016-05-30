@@ -26,7 +26,7 @@
                     columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file insertRemoveFile' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "'></span></td>";
                 }
 
-                for (i = 4; i < element.DataForRow.length; i++) {
+                for (i = 2; i < element.DataForRow.length - 3; i++) {
                     var column = $("<td>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
                     columnList += column;
                 }

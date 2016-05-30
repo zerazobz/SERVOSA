@@ -81,6 +81,7 @@
     <Compile Include="Contracts\IVehicleService.cs" />
     <Compile Include="Core\MessageViewModel.cs" />
     <Compile Include="Core\ServiceContainerInjector.cs" />
+    <Compile Include="Core\ServosaSingleton.cs" />
     <Compile Include="Core\SERVOSASqlTypes.cs" />
     <Compile Include="Models\ColumnServiceModel.cs" />
     <Compile Include="Models\DriverServiceModel.cs" />

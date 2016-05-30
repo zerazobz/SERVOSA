@@ -47,9 +47,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public virtual ActionResult DatosVariableVehiculo(int vehicleCode, string variableName)
         {
             var data = _vehicleService.GetVehicleVariableTableData(variableName, vehicleCode);
-            var vehicleIdColumn = data.ColumnsCollection.Where(col => col.ColumnName == "SAIR_VEHIID").FirstOrDefault();
-            if (vehicleIdColumn != null && String.IsNullOrWhiteSpace(vehicleIdColumn.TableValue))
-                vehicleIdColumn.TableValue = vehicleCode.ToString();
+            var vehicleIdVarColumn = data.ColumnsCollection.Where(col => col.ColumnName == "SAIR_VEHIID").FirstOrDefault();
+            var vehicleIdConsColumn = data.ColumnsCollection.Where(col => col.ColumnName == "CSAIR_VEHIID").FirstOrDefault();
+
+            if (vehicleIdVarColumn != null && String.IsNullOrWhiteSpace(vehicleIdVarColumn.TableValue))
+                vehicleIdVarColumn.TableValue = vehicleCode.ToString();
+            if (vehicleIdConsColumn != null && String.IsNullOrWhiteSpace(vehicleIdConsColumn.TableValue))
+                vehicleIdConsColumn.TableValue = vehicleCode.ToString();
+
             PopulateColumnsValues(data);
 
             return PartialView(data);
@@ -60,36 +65,42 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
-                var tableDictionaryData = new Dictionary<string, Tuple<SERVOSASqlTypes, Object>>();
-                tableDictionaryData = model.ColumnsCollection.ToDictionary(col => col.ColumnName, col => new Tuple<SERVOSASqlTypes, object>(col.ColumnNamedType, col.ColumnValue));
-
-                var columnFK = model.ColumnsCollection.Where(c => c.ColumnName == "SAIR_VEHIID").FirstOrDefault();
-                string fkValue = String.Empty;
-                var rawFkConvertion = columnFK.ColumnValue as string[];
-                if (rawFkConvertion.Length > 0)
-                    fkValue = rawFkConvertion[0];
-
-                var columnIdentity = model.ColumnsCollection.Where(c => c.ColumnName == "id").FirstOrDefault();
-                string identityValue = String.Empty;
-                var rawIdentityConvertion = columnIdentity.ColumnValue as string[];
-                if (rawIdentityConvertion.Length > 0)
-                    identityValue = rawIdentityConvertion[0];
-
                 int rowsAffected;
-                if (columnIdentity != null && !String.IsNullOrWhiteSpace(identityValue))
-                {
-                    var updateResponse = _tableDataService.UpdateTableData(model.TableName, Convert.ToInt32(fkValue), tableDictionaryData);
-                    rowsAffected = updateResponse.Item2;
-                    model.IsSuccessful = updateResponse.Item1;
-                    model.Message = updateResponse.Item3;
-                }
-                else
-                {
-                    var insertResponse = _tableDataService.InsertTableData(model.TableName, tableDictionaryData);
-                    rowsAffected = insertResponse.Item2;
-                    model.IsSuccessful = insertResponse.Item1;
-                    model.Message = insertResponse.Item3;
-                }
+                var executionResponse = _tableDataService.InsertOrUpdateData(model);
+                rowsAffected = executionResponse.Item2;
+                model.IsSuccessful = executionResponse.Item1;
+                model.Message = executionResponse.Item3;
+
+                //var tableDictionaryData = new Dictionary<string, Tuple<SERVOSASqlTypes, Object>>();
+                //tableDictionaryData = model.ColumnsCollection.ToDictionary(col => col.ColumnName, col => new Tuple<SERVOSASqlTypes, object>(col.ColumnNamedType, col.ColumnValue));
+
+                //var columnFK = model.ColumnsCollection.Where(c => c.ColumnName == "SAIR_VEHIID").FirstOrDefault();
+                //string fkValue = String.Empty;
+                //var rawFkConvertion = columnFK.ColumnValue as string[];
+                //if (rawFkConvertion.Length > 0)
+                //    fkValue = rawFkConvertion[0];
+
+                //var columnIdentity = model.ColumnsCollection.Where(c => c.ColumnName == "id").FirstOrDefault();
+                //string identityValue = String.Empty;
+                //var rawIdentityConvertion = columnIdentity.ColumnValue as string[];
+                //if (rawIdentityConvertion.Length > 0)
+                //    identityValue = rawIdentityConvertion[0];
+
+                
+                //if (columnIdentity != null && !String.IsNullOrWhiteSpace(identityValue))
+                //{
+                //    var updateResponse = _tableDataService.UpdateTableData(model.TableName, Convert.ToInt32(fkValue), tableDictionaryData);
+                //    rowsAffected = updateResponse.Item2;
+                //    model.IsSuccessful = updateResponse.Item1;
+                //    model.Message = updateResponse.Item3;
+                //}
+                //else
+                //{
+                //    var insertResponse = _tableDataService.InsertTableData(model.TableName, tableDictionaryData);
+                //    rowsAffected = insertResponse.Item2;
+                //    model.IsSuccessful = insertResponse.Item1;
+                //    model.Message = insertResponse.Item3;
+                //}
 
                 Debug.WriteLine("La ejecución termino con un: {0}", rowsAffected);
             }
@@ -108,9 +119,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             IVehicleServiceModel vehicleData = _vehicleService.GetById(vehicleCode);
             vehicleFileModel.Placa = vehicleData.Placa;
             vehicleFileModel.CodigoTipoUnidad = vehicleData.CodigoTipoUnidad;
-            //vehicleFileModel.PlacaTolva = vehicleData.PlacaTolva;
             vehicleFileModel.Marca = vehicleData.Marca;
-            //vehicleFileModel = (VehicleFiles)vehicleData;
             vehicleFileModel.TableName = tableName;
             vehicleFileModel.Codigo = vehicleCode;
             return PartialView(vehicleFileModel);

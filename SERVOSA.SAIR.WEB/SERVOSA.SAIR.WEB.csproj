@@ -223,6 +223,7 @@
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Controllers\VehicleDataController.cs" />
     <Compile Include="Core\WebContainerInjector.cs" />
+    <Compile Include="Core\WebSingleton.cs" />
     <Compile Include="DriverController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
