@@ -19,10 +19,6 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public int Item { get; set; }
         [Display(Name = "Cod.")]
         public int Codigo { get; set; }
-        //[Display(Name = "Placa Tracto")]
-        //public string PlacaTracto { get; set; }
-        //[Display(Name = "Placa Tolva")]
-        //public string PlacaTolva { get; set; }
         [Display(Name = "Marca")]
         public string Marca { get; set; }
         [Display(Name = "Estado")]

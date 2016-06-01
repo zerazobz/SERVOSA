@@ -1,5 +1,17 @@
 ﻿(function (vehicleNamespace, $, undefined) {
 
+    var vehicleTemplate = "";
+
+    vehicleNamespace.LoadVehicleAutoCompleteTemplate = function () {
+        $.get("/Templates/AutoComplete/Vehicle/VehicleRowAutoComplete.html", function (htmlTemplate) {
+            vehicleTemplate = htmlTemplate;
+        });
+    };
+
+    vehicleNamespace.GetVehicleAutoCompleteTemplate = function () {
+        return vehicleTemplate;
+    };
+
     vehicleNamespace.LoadVehicleTable = function () {
         $("#vehicleTable").jtable('load');
     };
@@ -56,6 +68,8 @@
     };
 
     $(function () {
+
+        vehicleNamespace.LoadVehicleAutoCompleteTemplate();
 
         $("#vehicleTable").jtable({
             title: 'Listado de Vehiculos',
@@ -200,6 +214,42 @@
             console.debug("Download File for: " + tableName);
             window.location = "/VehicleData/DownloadVariable?tableName=" + tableName
         });
+
+        $("#vehicleAutoComplete").autocomplete({
+            minLength: 3,
+            source: function (request, response) {
+                $.post("/Vehicle/SearchVehicleForAutoComplete", { searchText : request.term, maxResults : 10 }, function (data, textStatus, jqXHR) {
+                    response($.map(data, function (item) {
+                        return {
+                            label: item.Placa + "-" + item.DescripcionTipoUnidad,
+                            value: item.Placa || "" + "-" + item.DescripcionTipoUnidad || "",
+                            data: item,
+                            id: item.Codigo
+                        }
+                    }));
+                }).fail(function(e) {
+                });
+            },
+            select: function (event, ui) {
+                var elem = $(event.originalEvent.toElement);
+                if (elem.hasClass('downloadvehicledata')) {
+                    var vehicleId = elem.data("vehicleid");
+                    window.location = "/VehicleData/DownloadVehicleData?vehicleId=" + vehicleId
+                }
+            }
+        })
+        .data("ui-autocomplete")
+        ._renderItem = function (ul, item) {
+            var htmlTemplate = vehicleNamespace.GetVehicleAutoCompleteTemplate();
+            var handleTemplate = Handlebars.compile(htmlTemplate);
+            var data = {
+                VehiclePlate: item.data.Placa,
+                VehicleBrand: item.data.Marca,
+                VehicleId: item.data.Codigo
+            };
+            var htmlGenerated = handleTemplate(data);
+            return $(htmlGenerated).appendTo(ul);
+        };
 
         vehicleNamespace.LoadVehicleTable();
         vehicleNamespace.LoadDataForTablesYetLoaded();

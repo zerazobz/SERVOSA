@@ -169,5 +169,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 return Json(new { Result = "ERROR", Message = ex.Message });
             }
         }
+
+        [HttpPost]
+        public JsonResult SearchVehicleForAutoComplete(string searchText, int maxResults)
+        {
+            var collectionVehicles = _vehicleService.GetAllFilteredBySearchTerm(searchText);
+            return Json(collectionVehicles);
+        }
     }
 }

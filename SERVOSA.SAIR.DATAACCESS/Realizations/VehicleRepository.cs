@@ -55,6 +55,14 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             return vehicleCollection.ToList();
         }
 
+        public IList<VehicleModel> GetAllFilteredBySearchTerm(string searchTerm)
+        {
+            object[] parameters = new object[] { searchTerm };
+            IRowMapper<VehicleModel> vehicleRowMapper = GetMapperForSearchFilteredByTerm();
+            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_FilterByText", vehicleRowMapper, parameters);
+            return vehicleCollection.ToList();
+        }
+
         public VehicleModel GetById(int id)
         {
             object[] parameteres = new object[] { id };
@@ -154,6 +162,12 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.Marca)
                 .DoNotMap(prop => prop.Estado).DoNotMap(prop => prop.VEHI_DescriptionUnitType).Build();
+        }
+
+        private IRowMapper<VehicleModel> GetMapperForSearchFilteredByTerm()
+        {
+            return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber).DoNotMap(prop => prop.TotalRows)
+                .DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.Estado).DoNotMap(prop => prop.VEHI_DescriptionUnitType).Build();
         }
     }
 }

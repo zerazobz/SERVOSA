@@ -130,7 +130,6 @@
             });
         });
 
-
         $(document).on("submit", "#postVariableData", null, function (e) {
             e.preventDefault();
             var $formContext = $(this);

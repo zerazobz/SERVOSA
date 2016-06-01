@@ -6,8 +6,15 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/ViewController/SERVOSA.Core.js" type="text/javascript"></script>
 </head>
 <body>
+    @foreach (var iConstanColumn in SERVOSA.SAIR.SERVICE.Core.ServosaSingleton.Instance.AllConstantColumns)
+    {
+        <script>
+            SERVOSACORE.AddConstantVehicleColumn("@iConstanColumn");
+        </script>
+    }
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
