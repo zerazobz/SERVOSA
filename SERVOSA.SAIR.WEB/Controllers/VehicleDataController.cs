@@ -177,15 +177,15 @@ namespace SERVOSA.SAIR.WEB.Controllers
             return PartialView(model);
         }
 
-        public JsonResult ListFilesByTableAndVehicle(int jtStartIndex = 0, int jtPageSize = 0, string jtSorting = null, string tableName = null, int? vehicleCode = null)
+        public virtual JsonResult ListFilesByTableAndVehicle(int jtStartIndex = 0, int jtPageSize = 0, string jtSorting = null, string tableName = null, int? vehicleCode = null)
         {
             try
             {
-                if(!String.IsNullOrWhiteSpace(tableName) && vehicleCode.HasValue)
+                if (!String.IsNullOrWhiteSpace(tableName) && vehicleCode.HasValue)
                 {
                     int totalRecordsCount = 0;
                     var listCollection = _vehicleFileDataService.GetFilesByTableNameAndVehicleId(tableName, vehicleCode.Value);
-                    
+
                     return Json(new { Result = "OK", Records = listCollection, TotalRecordCount = listCollection.Count });
                 }
                 else
@@ -197,7 +197,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             }
         }
 
-        public JsonResult DeleteFile(string ComposedPrimaryKey)
+        public virtual JsonResult DeleteFile(string ComposedPrimaryKey)
         {
             try
             {
@@ -223,7 +223,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             }
         }
 
-        public ActionResult DownloadVariable(string tableName)
+        public virtual ActionResult DownloadVariable(string tableName)
         {
             using (var memStream = new MemoryStream())
             {
@@ -234,7 +234,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             //return View();
         }
 
-        public FileResult DownloadVehicleData(int vehicleId)
+        public virtual FileResult DownloadVehicleData(int vehicleId)
         {
             using (var memStream = new MemoryStream())
             {

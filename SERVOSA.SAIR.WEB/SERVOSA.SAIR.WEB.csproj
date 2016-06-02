@@ -547,6 +547,9 @@
     <Content Include="Views\Driver\Operarios.cshtml" />
     <Content Include="Views\VehicleData\GetFileModalManager.cshtml" />
     <Content Include="Views\Vehicle\VehicleDataTable.cshtml" />
+    <Content Include="Views\Driver\DriversMainData.cshtml" />
+    <Content Include="Views\Driver\DriversTable.cshtml" />
+    <Content Include="Views\Driver\DriverDataTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,6 +11,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Contracts
     public interface IDBTablesRepository : IRepository<TableModel>
     {
         Tuple<int, TableModel> CreateTableAndReturnsNormalizedName(TableModel entity);
-        IList<TableColumnModel> ListAllDataTables();
+        IList<TableColumnModel> ListAllVehicleVarsTablesWithDefinition();
+        IList<TableColumnModel> ListAllDriverVarsTablesWithDefinition();
     }
 }

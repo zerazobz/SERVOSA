@@ -80,6 +80,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.LoadTablaData);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult SearchVehicleForAutoComplete()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SearchVehicleForAutoComplete);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public VehicleController Actions { get { return MVC.Vehicle; } }
@@ -105,6 +111,8 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public readonly string GetVehiculos = "GetVehiculos";
             public readonly string GetVehicleBrands = "GetVehicleBrands";
             public readonly string GetVehicleStates = "GetVehicleStates";
+            public readonly string GetVehiclesUnitTypes = "GetVehiclesUnitTypes";
+            public readonly string SearchVehicleForAutoComplete = "SearchVehicleForAutoComplete";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -119,6 +127,8 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public const string GetVehiculos = "GetVehiculos";
             public const string GetVehicleBrands = "GetVehicleBrands";
             public const string GetVehicleStates = "GetVehicleStates";
+            public const string GetVehiclesUnitTypes = "GetVehiclesUnitTypes";
+            public const string SearchVehicleForAutoComplete = "SearchVehicleForAutoComplete";
         }
 
 
@@ -163,6 +173,15 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public class ActionParamsClass_LoadTablaData
         {
             public readonly string tableName = "tableName";
+        }
+        static readonly ActionParamsClass_SearchVehicleForAutoComplete s_params_SearchVehicleForAutoComplete = new ActionParamsClass_SearchVehicleForAutoComplete();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_SearchVehicleForAutoComplete SearchVehicleForAutoCompleteParams { get { return s_params_SearchVehicleForAutoComplete; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_SearchVehicleForAutoComplete
+        {
+            public readonly string searchText = "searchText";
+            public readonly string maxResults = "maxResults";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -290,6 +309,30 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetVehicleStates);
             GetVehicleStatesOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GetVehiclesUnitTypesOverride(T4MVC_System_Web_Mvc_JsonResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult GetVehiclesUnitTypes()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.GetVehiclesUnitTypes);
+            GetVehiclesUnitTypesOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void SearchVehicleForAutoCompleteOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string searchText, int maxResults);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult SearchVehicleForAutoComplete(string searchText, int maxResults)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.SearchVehicleForAutoComplete);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "searchText", searchText);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "maxResults", maxResults);
+            SearchVehicleForAutoCompleteOverride(callInfo, searchText, maxResults);
             return callInfo;
         }
 

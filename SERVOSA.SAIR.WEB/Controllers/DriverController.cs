@@ -12,16 +12,64 @@ namespace SERVOSA.SAIR.WEB.Controllers
     public partial class DriverController : Controller
     {
         private IDriverService _driverService;
+        private readonly IDBServices _dbServices;
 
-        public DriverController(IDriverService injectedDriverServ)
+        public DriverController(IDriverService injectedDriverServ, IDBServices injectedDBService)
         {
             _driverService = injectedDriverServ;
+            _dbServices = injectedDBService;
         }
 
         [HttpGet]
         public virtual ActionResult Index()
         {
             return View();
+        }
+
+        public virtual ActionResult DriversMainData()
+        {
+            var allCompleteTable = _dbServices.ListVehicleVarsTablesWithDefinition();
+            var tableDataGrouped = allCompleteTable.GroupBy(t => t.TableNormalizedName);
+
+            IList<TableColumnViewModel> collectionTables = new List<TableColumnViewModel>();
+
+            foreach (var iTableColumn in tableDataGrouped)
+            {
+                TableColumnViewModel nTable = new TableColumnViewModel();
+                nTable.TableNormalizedName = iTableColumn.Key;
+                nTable.Columns = new List<ColumnViewModel>();
+
+                ColumnViewModel nColumn;
+                foreach (var iDisaggregated in iTableColumn.Where(c => !String.IsNullOrWhiteSpace(c.ColumnName)))
+                {
+                    nTable.TableName = iDisaggregated.TableName;
+                    nTable.TableId = iDisaggregated.TableId;
+                    nColumn = new ColumnViewModel();
+                    nColumn.ColumnName = iDisaggregated.ColumnName;
+                    nColumn.ColumnNormalizedName = iDisaggregated.ColumnNormalizedName;
+                    nColumn.SystemType = iDisaggregated.SystemType;
+                    nColumn.TypeName = iDisaggregated.TypeName;
+                    nColumn.UserType = iDisaggregated.UserType;
+                    nTable.Columns.Add(nColumn);
+                }
+                collectionTables.Add(nTable);
+            }
+            return View(collectionTables);
+        }
+
+        [ChildActionOnly]
+        [HttpGet]
+        public virtual ActionResult DriversTable()
+        {
+            var driversData = _driverService.GetAll();
+
+            return PartialView(driversData);
+        }
+
+        [HttpGet]
+        public virtual ActionResult DriverDataTable(TableServiceModel model)
+        {
+            return PartialView(model);
         }
 
         [HttpPost]

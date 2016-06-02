@@ -153,7 +153,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetVehiclesUnitTypes()
+        public virtual JsonResult GetVehiclesUnitTypes()
         {
             try
             {
@@ -171,7 +171,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public JsonResult SearchVehicleForAutoComplete(string searchText, int maxResults)
+        public virtual JsonResult SearchVehicleForAutoComplete(string searchText, int maxResults)
         {
             var collectionVehicles = _vehicleService.GetAllFilteredBySearchTerm(searchText);
             return Json(collectionVehicles);

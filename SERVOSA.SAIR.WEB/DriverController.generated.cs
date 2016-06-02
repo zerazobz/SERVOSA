@@ -58,6 +58,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult DriverDataTable()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DriverDataTable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.JsonResult DeleteDriver()
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DeleteDriver);
@@ -97,6 +103,9 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string DriversMainData = "DriversMainData";
+            public readonly string DriversTable = "DriversTable";
+            public readonly string DriverDataTable = "DriverDataTable";
             public readonly string ListDrivers = "ListDrivers";
             public readonly string DeleteDriver = "DeleteDriver";
             public readonly string UpdateDriver = "UpdateDriver";
@@ -109,6 +118,9 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string DriversMainData = "DriversMainData";
+            public const string DriversTable = "DriversTable";
+            public const string DriverDataTable = "DriverDataTable";
             public const string ListDrivers = "ListDrivers";
             public const string DeleteDriver = "DeleteDriver";
             public const string UpdateDriver = "UpdateDriver";
@@ -118,6 +130,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
 
+        static readonly ActionParamsClass_DriverDataTable s_params_DriverDataTable = new ActionParamsClass_DriverDataTable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DriverDataTable DriverDataTableParams { get { return s_params_DriverDataTable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DriverDataTable
+        {
+            public readonly string model = "model";
+        }
         static readonly ActionParamsClass_ListDrivers s_params_ListDrivers = new ActionParamsClass_ListDrivers();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ListDrivers ListDriversParams { get { return s_params_ListDrivers; } }
@@ -170,9 +190,15 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string DriverDataTable = "DriverDataTable";
+                public readonly string DriversMainData = "DriversMainData";
+                public readonly string DriversTable = "DriversTable";
                 public readonly string Index = "Index";
                 public readonly string Operarios = "Operarios";
             }
+            public readonly string DriverDataTable = "~/Views/Driver/DriverDataTable.cshtml";
+            public readonly string DriversMainData = "~/Views/Driver/DriversMainData.cshtml";
+            public readonly string DriversTable = "~/Views/Driver/DriversTable.cshtml";
             public readonly string Index = "~/Views/Driver/Index.cshtml";
             public readonly string Operarios = "~/Views/Driver/Operarios.cshtml";
         }
@@ -191,6 +217,40 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DriversMainDataOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult DriversMainData()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DriversMainData);
+            DriversMainDataOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DriversTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult DriversTable()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DriversTable);
+            DriversTableOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DriverDataTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.TableServiceModel model);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult DriverDataTable(SERVOSA.SAIR.SERVICE.Models.TableServiceModel model)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DriverDataTable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+            DriverDataTableOverride(callInfo, model);
             return callInfo;
         }
 

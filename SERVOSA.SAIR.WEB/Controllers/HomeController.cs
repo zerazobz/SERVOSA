@@ -12,7 +12,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
     public partial class HomeController : Controller
     {
         private IVehicleService _vehicleServices;
-        private IDBServices _dbServices;
+        private readonly IDBServices _dbServices;
         private IVehicleAlertService _vehicleAlertService;
 
         public HomeController(IVehicleService injectedVehicleRep, IDBServices injectedDbService, IVehicleAlertService vehiceAlertInjectedService)
@@ -27,7 +27,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             int alertsSended = _vehicleAlertService.ProcessAlerts(new string[] { "51950313361" });
             
-            var allCompleteTable = _dbServices.ListTablesWithColumnCompleteData();
+            var allCompleteTable = _dbServices.ListVehicleVarsTablesWithDefinition();
             var tableDataGrouped = allCompleteTable.GroupBy(t => t.TableNormalizedName);
 
             IList<TableColumnViewModel> collectionTables = new List<TableColumnViewModel>();

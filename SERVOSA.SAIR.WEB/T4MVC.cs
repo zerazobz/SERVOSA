@@ -80,6 +80,21 @@ internal partial class T4MVC_System_Web_Mvc_JsonResult : System.Web.Mvc.JsonResu
     public string Protocol { get; set; }
     public RouteValueDictionary RouteValueDictionary { get; set; }
 }
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+internal partial class T4MVC_System_Web_Mvc_FileResult : System.Web.Mvc.FileResult, IT4MVCActionResult
+{
+    public T4MVC_System_Web_Mvc_FileResult(string area, string controller, string action, string protocol = null): base(" ")
+    {
+        this.InitMVCT4Result(area, controller, action, protocol);
+    }
+     
+    protected override void WriteFile(System.Web.HttpResponseBase response) { }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public string Protocol { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
 
 
 
@@ -415,7 +430,9 @@ namespace Links
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string DriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverViewController.min.js") ? Url("DriverViewController.min.js") : Url("DriverViewController.js");
+            public static readonly string SERVOSA_Core_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SERVOSA.Core.min.js") ? Url("SERVOSA.Core.min.js") : Url("SERVOSA.Core.js");
             public static readonly string SERVOSAViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SERVOSAViewController.min.js") ? Url("SERVOSAViewController.min.js") : Url("SERVOSAViewController.js");
+            public static readonly string VehicleDataViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/VehicleDataViewController.min.js") ? Url("VehicleDataViewController.min.js") : Url("VehicleDataViewController.js");
             public static readonly string VehicleUploadViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/VehicleUploadViewController.min.js") ? Url("VehicleUploadViewController.min.js") : Url("VehicleUploadViewController.js");
             public static readonly string VehicleViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/VehicleViewController.min.js") ? Url("VehicleViewController.min.js") : Url("VehicleViewController.js");
         }
@@ -748,7 +765,9 @@ namespace Links
                 public static class Assets
                 {
                     public const string DriverViewController_js = "~/Scripts/ViewController/DriverViewController.js"; 
+                    public const string SERVOSA_Core_js = "~/Scripts/ViewController/SERVOSA.Core.js"; 
                     public const string SERVOSAViewController_js = "~/Scripts/ViewController/SERVOSAViewController.js"; 
+                    public const string VehicleDataViewController_js = "~/Scripts/ViewController/VehicleDataViewController.js"; 
                     public const string VehicleUploadViewController_js = "~/Scripts/ViewController/VehicleUploadViewController.js"; 
                     public const string VehicleViewController_js = "~/Scripts/ViewController/VehicleViewController.js"; 
                 }

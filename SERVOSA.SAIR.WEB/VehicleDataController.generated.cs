@@ -80,6 +80,24 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetFileModalManager);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult DeleteFile()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DeleteFile);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult DownloadVariable()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DownloadVariable);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.FileResult DownloadVehicleData()
+        {
+            return new T4MVC_System_Web_Mvc_FileResult(Area, Name, ActionNames.DownloadVehicleData);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public VehicleDataController Actions { get { return MVC.VehicleData; } }
@@ -100,6 +118,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public readonly string CabeceraVehiculo = "CabeceraVehiculo";
             public readonly string DatosVariableVehiculo = "DatosVariableVehiculo";
             public readonly string GetFileModalManager = "GetFileModalManager";
+            public readonly string ListFilesByTableAndVehicle = "ListFilesByTableAndVehicle";
+            public readonly string DeleteFile = "DeleteFile";
+            public readonly string DownloadVariable = "DownloadVariable";
+            public readonly string DownloadVehicleData = "DownloadVehicleData";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -109,6 +131,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public const string CabeceraVehiculo = "CabeceraVehiculo";
             public const string DatosVariableVehiculo = "DatosVariableVehiculo";
             public const string GetFileModalManager = "GetFileModalManager";
+            public const string ListFilesByTableAndVehicle = "ListFilesByTableAndVehicle";
+            public const string DeleteFile = "DeleteFile";
+            public const string DownloadVariable = "DownloadVariable";
+            public const string DownloadVehicleData = "DownloadVehicleData";
         }
 
 
@@ -147,6 +173,42 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public readonly string tableName = "tableName";
             public readonly string vehicleCode = "vehicleCode";
             public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_ListFilesByTableAndVehicle s_params_ListFilesByTableAndVehicle = new ActionParamsClass_ListFilesByTableAndVehicle();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ListFilesByTableAndVehicle ListFilesByTableAndVehicleParams { get { return s_params_ListFilesByTableAndVehicle; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ListFilesByTableAndVehicle
+        {
+            public readonly string jtStartIndex = "jtStartIndex";
+            public readonly string jtPageSize = "jtPageSize";
+            public readonly string jtSorting = "jtSorting";
+            public readonly string tableName = "tableName";
+            public readonly string vehicleCode = "vehicleCode";
+        }
+        static readonly ActionParamsClass_DeleteFile s_params_DeleteFile = new ActionParamsClass_DeleteFile();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DeleteFile DeleteFileParams { get { return s_params_DeleteFile; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DeleteFile
+        {
+            public readonly string ComposedPrimaryKey = "ComposedPrimaryKey";
+        }
+        static readonly ActionParamsClass_DownloadVariable s_params_DownloadVariable = new ActionParamsClass_DownloadVariable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DownloadVariable DownloadVariableParams { get { return s_params_DownloadVariable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DownloadVariable
+        {
+            public readonly string tableName = "tableName";
+        }
+        static readonly ActionParamsClass_DownloadVehicleData s_params_DownloadVehicleData = new ActionParamsClass_DownloadVehicleData();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DownloadVehicleData DownloadVehicleDataParams { get { return s_params_DownloadVehicleData; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DownloadVehicleData
+        {
+            public readonly string vehicleId = "vehicleId";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -246,6 +308,58 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetFileModalManager);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             GetFileModalManagerOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ListFilesByTableAndVehicleOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int jtStartIndex, int jtPageSize, string jtSorting, string tableName, int? vehicleCode);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult ListFilesByTableAndVehicle(int jtStartIndex, int jtPageSize, string jtSorting, string tableName, int? vehicleCode)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ListFilesByTableAndVehicle);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "jtStartIndex", jtStartIndex);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "jtPageSize", jtPageSize);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "jtSorting", jtSorting);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "tableName", tableName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vehicleCode", vehicleCode);
+            ListFilesByTableAndVehicleOverride(callInfo, jtStartIndex, jtPageSize, jtSorting, tableName, vehicleCode);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DeleteFileOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string ComposedPrimaryKey);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult DeleteFile(string ComposedPrimaryKey)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DeleteFile);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ComposedPrimaryKey", ComposedPrimaryKey);
+            DeleteFileOverride(callInfo, ComposedPrimaryKey);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DownloadVariableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string tableName);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult DownloadVariable(string tableName)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DownloadVariable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "tableName", tableName);
+            DownloadVariableOverride(callInfo, tableName);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DownloadVehicleDataOverride(T4MVC_System_Web_Mvc_FileResult callInfo, int vehicleId);
+
+        [NonAction]
+        public override System.Web.Mvc.FileResult DownloadVehicleData(int vehicleId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_FileResult(Area, Name, ActionNames.DownloadVehicleData);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vehicleId", vehicleId);
+            DownloadVehicleDataOverride(callInfo, vehicleId);
             return callInfo;
         }
 

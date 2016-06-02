@@ -56,10 +56,21 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return listTables;
         }
 
-        public IList<TableColumnServiceModel> ListTablesWithColumnCompleteData()
+        public IList<TableColumnServiceModel> ListVehicleVarsTablesWithDefinition()
         {
             TableColumnServiceModel viewModel = null;
-            var listTables = _tableRepository.ListAllDataTables().Select(t =>
+            var listTables = _tableRepository.ListAllVehicleVarsTablesWithDefinition().Select(t =>
+            {
+                TableColumnServiceModel.ToServiceModel(t, ref viewModel);
+                return viewModel;
+            }).ToList();
+            return listTables;
+        }
+
+        public IList<TableColumnServiceModel> ListDriversVarsTablesWithDefinition()
+        {
+            TableColumnServiceModel viewModel = null;
+            var listTables = _tableRepository.ListAllDriverVarsTablesWithDefinition().Select(t =>
             {
                 TableColumnServiceModel.ToServiceModel(t, ref viewModel);
                 return viewModel;
