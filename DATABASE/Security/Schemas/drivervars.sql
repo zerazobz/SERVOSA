@@ -1,0 +1,3 @@
+CREATE SCHEMA [drivervars]
+AUTHORIZATION [dbo]
+GO

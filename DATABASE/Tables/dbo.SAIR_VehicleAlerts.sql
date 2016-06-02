@@ -7,8 +7,10 @@ CREATE TABLE [dbo].[SAIR_VehicleAlerts]
 [VEAL_AlertName] [nvarchar] (80) COLLATE Modern_Spanish_CI_AS NULL,
 [VEAL_AlertSended] [bit] NULL,
 [VEHI_ID] [int] NOT NULL,
-[VEAL_TokenSMS] [nvarchar] (80) COLLATE Modern_Spanish_CI_AS NULL
-) ON [PRIMARY]
+[VEAL_TokenSMS] [nvarchar] (80) COLLATE Modern_Spanish_CI_AS NULL,
+[VEAL_SendDate] [datetime] NULL,
+[VEAL_Recipients] [nvarchar] (max) COLLATE Modern_Spanish_CI_AS NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[SAIR_VehicleAlerts] ADD CONSTRAINT [SAIR_VEAL_PK] PRIMARY KEY CLUSTERED  ([VEAL_Id]) ON [PRIMARY]
 GO

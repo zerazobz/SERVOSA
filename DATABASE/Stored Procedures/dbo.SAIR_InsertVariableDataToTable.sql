@@ -2,7 +2,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
-CREATE PROCEDURE [dbo].[SAIR_InsertDataToTable]
+CREATE PROCEDURE [dbo].[SAIR_InsertVariableDataToTable]
 	@columnsDeclaration AS vehiclevars.ColumnList READONLY,
 	@columnsValues AS vehiclevars.ValuesList READONLY,
 	@tableName AS NVARCHAR(80)

@@ -2,7 +2,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
-CREATE PROCEDURE [dbo].[SAIR_UpdateDataToTable]
+CREATE PROCEDURE [dbo].[SAIR_UpdateVariableDataToTable]
 	@columnsDictionaryDeclarationAndValue AS vehiclevars.ColumnValueDictionary READONLY,
 	@tableName AS NVARCHAR(80),
 	@vehicleId AS INT
