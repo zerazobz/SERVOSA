@@ -40,14 +40,8 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public IList<DriverModel> GetAll()
         {
-            /*
             object[] parameters = new object[] { };
-            IRowMapper<DriverModel> driverRowMapper = GetMapperSimple();
-            var driverCollection = _servosaDB.ExecuteSprocAccessor("SAIR_OPERS", driverRowMapper, parameters);
-            return driverRowMapper;
-             * */
-            object[] parameters = new object[] { };
-            IRowMapper<DriverModel> driverRowMapper = MapBuilder<DriverModel>.MapAllProperties().Build();
+            IRowMapper<DriverModel> driverRowMapper = CreateRowMapperForSAIR_OPERS();
             var driverCollection = _servosaDB.ExecuteSprocAccessor("SAIR_OPERS", driverRowMapper, parameters);
             return driverCollection.ToList();
         }
@@ -88,6 +82,13 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             IRowMapper<DriverModel> driverRowMapper = MapBuilder<DriverModel>.MapAllProperties().Build();
             var driverCollection = _servosaDB.ExecuteSprocAccessor("SAIR_OPERS", driverRowMapper, parameters);
             return driverCollection.ToList();
+        }
+
+        private IRowMapper<DriverModel> CreateRowMapperForSAIR_OPERS()
+        {
+            return MapBuilder<DriverModel>.MapNoProperties().MapByName(prop => prop.OPER_Id).MapByName(prop => prop.OPER_cApellidoPaterno)
+                .MapByName(prop => prop.OPER_cApellidoMaterno).MapByName(prop => prop.OPER_cNombre).MapByName(prop => prop.OPER_cCorreo)
+                .MapByName(prop => prop.VEHI_Id).MapByName(prop => prop.VEHI_cDescripcion).MapByName(prop => prop.PUES_Id).Build();
         }
     }
 }

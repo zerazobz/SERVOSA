@@ -463,6 +463,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\ViewController\DriverViewController.js" />
+    <Content Include="Scripts\ViewController\Driver\DriverDataViewController.js" />
+    <Content Include="Scripts\ViewController\Driver\DriverViewController.js" />
     <Content Include="Scripts\ViewController\SERVOSAViewController.js" />
     <Content Include="Scripts\ViewController\VehicleDataViewController.js" />
     <Content Include="Scripts\ViewController\VehicleUploadViewController.js" />
@@ -495,7 +497,9 @@
     </None>
     <None Include="T4MVC.tt.hooks.t4" />
     <None Include="T4MVC.tt.settings.xml" />
+    <Content Include="Templates\AutoComplete\Driver\DriverRowAutoComplete.html" />
     <Content Include="Templates\AutoComplete\Vehicle\VehicleRowAutoComplete.html" />
+    <Content Include="Templates\DriverTableTemplate.html" />
     <Content Include="Templates\Notifications\NotificationError.html" />
     <Content Include="Templates\Notifications\NotificationInfo.html" />
     <Content Include="Templates\Notifications\NotificationSuccess.html" />
