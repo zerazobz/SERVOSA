@@ -1,0 +1,65 @@
+﻿@model SERVOSA.SAIR.SERVICE.Models.ColumnServiceModel
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+<div class="modal-header" style="background-color: #02010A; color: #ffffff;">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">FORMULARIO DE CREACIÓN</h4>
+</div>
+<div class="modal-body">
+    @using (Html.BeginForm(MVC.VariableTasks.Actions.CreateColumn(), FormMethod.Post, new { id = "createColumnForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="messagePanel">
+
+        </div>
+
+        <div class="form-horizontal">
+            <h4>Creación de Columna</h4>
+
+            <input type="hidden" name="IsSuccessful" value="@Model.IsSuccessful.ToString()" />
+            <input type="hidden" name="Message" value="@Model.Message" />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <input type="hidden" name="TableNormalizedName" value="@Model.TableNormalizedName" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.TableName, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.TableName, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ColumnName, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ColumnName, new { htmlAttributes = new { @class = "form-control validate[required]" } })
+                    @Html.ValidationMessageFor(model => model.ColumnName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CodigoTipoSeleccionado, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.CodigoTipoSeleccionado, Model.ListaTipos, "Por favor seleccione un tipo", new { @class = "form-control validate[required]" })
+                </div>
+            </div>
+
+            @if (Model.IsSuccessful)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ColumnNormalizedName, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.ColumnNormalizedName, new { htmlAttributes = new { @class = "form-control", @disabled = "true" } })
+                    </div>
+                </div>
+            }
+
+        </div>
+    }
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default btn-primary" type="button" id="createColumnSubmit">Crear</button>
+    <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Cerrar</button>
+</div>

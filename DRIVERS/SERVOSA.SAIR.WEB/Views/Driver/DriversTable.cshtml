@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SERVOSA.SAIR.SERVICE.Models.DriverServiceModel>
+
+<form action="/" method="post" id="tableData">
+    <table class="table table-hover table-bordered servosatable">
+        <thead>
+            <tr>
+                <th colspan="6">
+                    <div style="display: inline-block;">
+                        <p style="display: inline;">Datos de Conductor</p>
+                        <button class="btn btn-default" type="button" style="display: inline;margin-left: -900px;">A</button>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CodigoOperario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreOperario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DescripcionVehiculo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CorreoOperario)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CodigoOperario)
+                        <a href="/DriverData/Data?driverCode=@item.CodigoOperario"><span class="glyphicon glyphicon-dashboard"></span></a>
+                        <a href="/DriverData/DownloadVehicleData?driverCode=@item.CodigoOperario"><span class="glyphicon glyphicon-file"></span></a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreOperario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DescripcionVehiculo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CorreoOperario)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

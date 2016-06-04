@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Mantenimiento de Vehículos";
+}
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Scripts/jtable/themes/jqueryui/jtable_jqueryui.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="lead">Bienvenido al Mantenimiento de Vehiculos</p>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-md-2">
+            <label for="vehicleAutoComplete">Filtro de Vehículos</label>
+        </div>
+        <div class="col-md-8">
+            <input class="form-control" type="text" placeholder="Ingrese Vehiculo a Buscar" name="vehicleAutoComplete" id="vehicleAutoComplete" value="" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <button class="btn btn-default" type="button" data-toggle="modal" data-target="#uploadDownloadVehicleDataModal"><i class="glyphicon glyphicon-upload"></i> Importar Datos</button>
+        </div>
+    </div>
+    <div class="row">
+        <div id="vehicleTable">
+
+        </div>
+    </div>
+</div>
+
+<div id="uploadDownloadVehicleDataModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Cargar Descargar Datos de Vehiculos</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="lead">
+                            Para empezar descague los Códigos de:
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-default">Códigos de Marcas</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-default">Códigos de Estados</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="text-info">
+                            Suba el excel con la información a importar.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-default">Importar</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-default">Guardar Registros Validos</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery-ui-1.9.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/handlebars-latest.js" type="text/javascript"></script>
+    <script src="~/Scripts/jtable/jquery.jtable.js" type="text/javascript"></script>
+    <script src="~/Scripts/jtable/localization/jquery.jtable.es.js" type="text/javascript"></script>
+    <script src="~/Scripts/ViewController/VehicleViewController.js" type="text/javascript"></script>
+}

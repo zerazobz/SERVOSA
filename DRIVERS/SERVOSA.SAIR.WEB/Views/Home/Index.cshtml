@@ -1,0 +1,181 @@
+﻿@model IList<SERVOSA.SAIR.WEB.Models.TableColumnViewModel>
+
+@{
+    ViewBag.Title = "Sistema de Alerta e Incidencias Reuniones";
+}
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Scripts/jtable/themes/jqueryui/jtable_jqueryui.css" rel="stylesheet" />
+<link href="~/Content/validationEngine.jquery.css" rel="stylesheet" />
+<style type="text/css">
+    th {
+        white-space: nowrap;
+    }
+
+    tr {
+        height: 37px;
+    }
+
+    .hovertablerow {
+        background-color: #f5f5f5;
+    }
+
+    .containerdatatable table tbody td {
+        white-space: nowrap;
+    }
+
+    #allVehicleInformation table tbody td {
+        white-space: nowrap;
+    }
+
+    /*
+        .table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th
+    */
+
+    .table-hover > tbody > tr.withAlert:hover > td,
+    .table-hover > tbody > tr.withAlert:hover > th {
+        background-color: darkred;
+    }
+
+    /*.withAlert :hover {
+        background-color: darkred;
+    }*/
+</style>
+
+<div class="row" style="margin-top: 15px;">
+    <div class="col-md-2">
+        <label for="vehicleAutoComplete">Filtro de Vehículos</label>
+    </div>
+    <div class="col-md-8">
+        <input class="form-control" type="text" placeholder="Ingrese Vehiculo a Buscar" name="vehicleAutoComplete" id="vehicleAutoComplete" value="" />
+    </div>
+</div>
+
+<div class="row" style="margin-top: 15px;">
+    <div class="col-md-offset-8 col-md-4">
+        <button id="addNewTable" type="button" data-toggle="modal" data-target="#createTableModal" class="btn btn-default pull-right"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar Nueva Tabla</button>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 15px;">
+    <div id="allVehicleInformation" class="col-md-5" style="padding-right: 0px;">
+        @{ Html.RenderAction(MVC.Home.VehicleTable()); }
+    </div>
+    <div id="containerforalltables" class="col-md-7" style="overflow-x: auto; padding-left: 0px;">
+        @foreach (var iTable in Model)
+            {
+                { Html.RenderPartial(MVC.Home.Views.VehicleDataTable, iTable); }
+            }
+    </div>
+</div>
+
+<div class="modal fade" id="createTableModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @{ Html.RenderAction(MVC.VariableTasks.CreateTable()); }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createUpdateTableDataModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" data-containerid="#createUpdateTableDataModal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Crear/Actualizar Datos</h4>
+            </div>
+            <div class="modal-body">
+                <p>Crear o Actualizar Datos</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Cerrar</button>
+                @*<button type="button" class="btn btn-primary">Guardar</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createRemoveFilesForTableDataModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Insertar o Remover Archivos</h4>
+            </div>
+            <div class="modal-body">
+                <p>Insertar o Remover Archivos</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateFileModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Crear o Actualizar Archivos</h4>
+            </div>
+            <div class="modal-body">
+                <p>Crear o Actualizar Archivos</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createColumnModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery-ui-1.9.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/handlebars-latest.js" type="text/javascript"></script>
+    <script src="~/Scripts/jtable/jquery.jtable.js" type="text/javascript"></script>
+    <script src="~/Scripts/jtable/localization/jquery.jtable.es.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validationEngine-es.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validationEngine.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/ViewController/VehicleDataViewController.js" type="text/javascript"></script>
+    <script src="~/Scripts/ViewController/SERVOSAViewController.js" type="text/javascript"></script>
+    <script src="~/Scripts/ViewController/VehicleViewController.js" type="text/javascript"></script>
+    <script src="~/Scripts/ViewController/DriverViewController.js" type="text/javascript"></script>
+    <script src="~/Scripts/ViewController/VehicleUploadViewController.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            $(document).on({
+                mouseenter: function () {
+                    var $trs = $("table.servosatable tbody>tr");
+                    var i = $(this).index() + 1;
+                    $trs.filter(':nth-child(' + i + ')').addClass('hovertablerow');
+                },
+                mouseleave: function () {
+                    var $trs = $("table.servosatable tbody>tr");
+                    var i = $(this).index() + 1;
+                    $trs.filter(':nth-child(' + i + ')').removeClass('hovertablerow');
+                }
+            }, "table.servosatable tbody>tr");
+        });
+    </script>
+}
