@@ -6,7 +6,7 @@
             <tr>
                 <th colspan="6">
                     <div style="display: inline-block;">
-                        <p style="display: inline;">Datos de Vehiculo</p>
+                        <p style="display: inline;">Datos de Conductor</p>
                         <button class="btn btn-default" type="button" style="display: inline;margin-left: -900px;">A</button>
                     </div>
                 </th>
@@ -15,18 +15,18 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Codigo)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.DescripcionTipoUnidad)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.Placa)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.Marca)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Estado)
-                </th>
+                </th>*@
             </tr>
         </thead>
         <tbody>
@@ -38,18 +38,18 @@
                         <a href="/VehicleData/Data?vehicleCode=@item.Codigo"><span class="glyphicon glyphicon-dashboard"></span></a>
                         <a href="/VehicleData/DownloadVehicleData?vehicleId=@item.Codigo"><span class="glyphicon glyphicon-file"></span></a>
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.DescripcionTipoUnidad)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.Placa)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.Marca)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Estado)
-                    </td>
+                    </td>*@
                 </tr>
             }
         </tbody>

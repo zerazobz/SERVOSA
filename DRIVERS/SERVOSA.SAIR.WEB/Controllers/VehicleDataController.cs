@@ -239,7 +239,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             using (var memStream = new MemoryStream())
             {
                 _vehicleService.GenerateReportForVehicle(vehicleId, memStream);
-                string fileName = String.Format(" Datos del Vehiculo {0}_{1}.xlsx", vehicleId, DateTime.Now.ToString("ddMMyyyy_HHmm"));
+                string fileName = String.Format(" Datos del Conductor {0}_{1}.xlsx", vehicleId, DateTime.Now.ToString("ddMMyyyy_HHmm"));
                 return File(memStream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
             }
         }

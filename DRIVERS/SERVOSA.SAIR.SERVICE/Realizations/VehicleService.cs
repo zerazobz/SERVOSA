@@ -146,63 +146,67 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
             workbook.WorkbookPart.Workbook.Sheets = new DocumentFormat.OpenXml.Spreadsheet.Sheets();
 
+            int iCounter = 0;
+
             foreach (System.Data.DataTable table in ds.Tables)
             {
-
                 var sheetPart = workbook.WorkbookPart.AddNewPart<WorksheetPart>();
                 var sheetData = new DocumentFormat.OpenXml.Spreadsheet.SheetData();
                 sheetPart.Worksheet = new DocumentFormat.OpenXml.Spreadsheet.Worksheet(sheetData);
 
-                var stylesPart = workbook.WorkbookPart.AddNewPart<WorkbookStylesPart>();
-                stylesPart.Stylesheet = new Stylesheet();
+                if (iCounter == 0)
+                {
+                    var stylesPart = workbook.WorkbookPart.AddNewPart<WorkbookStylesPart>();
+                    stylesPart.Stylesheet = new Stylesheet();
 
-                // blank font list
-                stylesPart.Stylesheet.Fonts = new Fonts();
-                stylesPart.Stylesheet.Fonts.Count = 1;//Because we add only one empty
-                stylesPart.Stylesheet.Fonts.AppendChild(new Font());
-                stylesPart.Stylesheet.Fills = new Fills();
+                    // blank font list
+                    stylesPart.Stylesheet.Fonts = new Fonts();
+                    stylesPart.Stylesheet.Fonts.Count = 1;//Because we add only one empty
+                    stylesPart.Stylesheet.Fonts.AppendChild(new Font());
+                    stylesPart.Stylesheet.Fills = new Fills();
 
-                var solidRed = new PatternFill() { PatternType = PatternValues.Solid };
-                solidRed.ForegroundColor = new ForegroundColor { Rgb = HexBinaryValue.FromString("FFFF0000") };
-                solidRed.BackgroundColor = new BackgroundColor { Indexed = 64 };
+                    var solidRed = new PatternFill() { PatternType = PatternValues.Solid };
+                    solidRed.ForegroundColor = new ForegroundColor { Rgb = HexBinaryValue.FromString("FFFF0000") };
+                    solidRed.BackgroundColor = new BackgroundColor { Indexed = 64 };
 
-                var solidYellow = new PatternFill() { PatternType = PatternValues.Solid };
-                solidYellow.ForegroundColor = new ForegroundColor { Rgb = HexBinaryValue.FromString("#FFFFFF00") };
-                solidYellow.BackgroundColor = new BackgroundColor { Indexed = 64 };
+                    var solidYellow = new PatternFill() { PatternType = PatternValues.Solid };
+                    solidYellow.ForegroundColor = new ForegroundColor { Rgb = HexBinaryValue.FromString("#FFFFFF00") };
+                    solidYellow.BackgroundColor = new BackgroundColor { Indexed = 64 };
 
-                var solidGreen = new PatternFill() { PatternType = PatternValues.Solid };
-                solidGreen.ForegroundColor = new ForegroundColor { Rgb = HexBinaryValue.FromString("#FF008080") };
-                solidGreen.BackgroundColor = new BackgroundColor { Indexed = 64 };
+                    var solidGreen = new PatternFill() { PatternType = PatternValues.Solid };
+                    solidGreen.ForegroundColor = new ForegroundColor { Rgb = HexBinaryValue.FromString("#FF008080") };
+                    solidGreen.BackgroundColor = new BackgroundColor { Indexed = 64 };
 
-                var firstFill = stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = new PatternFill { PatternType = PatternValues.None } }); // required, reserved by Excel
-                stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = new PatternFill { PatternType = PatternValues.Gray125 } }); // required, reserved by Excel
-                stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = solidRed });
-                stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = solidYellow });
-                stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = solidGreen });
-                stylesPart.Stylesheet.Fills.Count = 5;
+                    var firstFill = stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = new PatternFill { PatternType = PatternValues.None } }); // required, reserved by Excel
+                    stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = new PatternFill { PatternType = PatternValues.Gray125 } }); // required, reserved by Excel
+                    stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = solidRed });
+                    stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = solidYellow });
+                    stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = solidGreen });
+                    stylesPart.Stylesheet.Fills.Count = 5;
 
-                // blank border list
-                stylesPart.Stylesheet.Borders = new Borders();
-                stylesPart.Stylesheet.Borders.Count = 1;
-                stylesPart.Stylesheet.Borders.AppendChild(new Border());
+                    // blank border list
+                    stylesPart.Stylesheet.Borders = new Borders();
+                    stylesPart.Stylesheet.Borders.Count = 1;
+                    stylesPart.Stylesheet.Borders.AppendChild(new Border());
 
-                // blank cell format list
-                stylesPart.Stylesheet.CellStyleFormats = new CellStyleFormats();
-                stylesPart.Stylesheet.CellStyleFormats.Count = 1;
-                stylesPart.Stylesheet.CellStyleFormats.AppendChild(new CellFormat());
+                    // blank cell format list
+                    stylesPart.Stylesheet.CellStyleFormats = new CellStyleFormats();
+                    stylesPart.Stylesheet.CellStyleFormats.Count = 1;
+                    stylesPart.Stylesheet.CellStyleFormats.AppendChild(new CellFormat());
 
-                // cell format list
-                stylesPart.Stylesheet.CellFormats = new CellFormats();
-                // empty one for index 0, seems to be required
-                stylesPart.Stylesheet.CellFormats.AppendChild(new CellFormat());
-                // cell format references style format 0, font 0, border 0, fill 2 and applies the fill
-                var redCellStyle = stylesPart.Stylesheet.CellFormats.AppendChild(new CellFormat { FormatId = 0, FontId = 0, BorderId = 0, FillId = 2, ApplyFill = true }).AppendChild(new Alignment { Horizontal = HorizontalAlignmentValues.Center });
-                var yellowCellStyle = stylesPart.Stylesheet.CellFormats.AppendChild(new CellFormat { FormatId = 0, FontId = 0, BorderId = 0, FillId = 3, ApplyFill = true }).AppendChild(new Alignment { Horizontal = HorizontalAlignmentValues.Center });
-                var greenCellStyle = stylesPart.Stylesheet.CellFormats.AppendChild(new CellFormat { FormatId = 0, FontId = 0, BorderId = 0, FillId = 4, ApplyFill = true }).AppendChild(new Alignment { Horizontal = HorizontalAlignmentValues.Center });
-                stylesPart.Stylesheet.CellFormats.Count = 4;
+                    // cell format list
+                    stylesPart.Stylesheet.CellFormats = new CellFormats();
+                    // empty one for index 0, seems to be required
+                    stylesPart.Stylesheet.CellFormats.AppendChild(new CellFormat());
+                    // cell format references style format 0, font 0, border 0, fill 2 and applies the fill
+                    var redCellStyle = stylesPart.Stylesheet.CellFormats.AppendChild(new CellFormat { FormatId = 0, FontId = 0, BorderId = 0, FillId = 2, ApplyFill = true }).AppendChild(new Alignment { Horizontal = HorizontalAlignmentValues.Center });
+                    var yellowCellStyle = stylesPart.Stylesheet.CellFormats.AppendChild(new CellFormat { FormatId = 0, FontId = 0, BorderId = 0, FillId = 3, ApplyFill = true }).AppendChild(new Alignment { Horizontal = HorizontalAlignmentValues.Center });
+                    var greenCellStyle = stylesPart.Stylesheet.CellFormats.AppendChild(new CellFormat { FormatId = 0, FontId = 0, BorderId = 0, FillId = 4, ApplyFill = true }).AppendChild(new Alignment { Horizontal = HorizontalAlignmentValues.Center });
+                    stylesPart.Stylesheet.CellFormats.Count = 4;
 
-                stylesPart.Stylesheet.Save();
-
+                    stylesPart.Stylesheet.Save();
+                }
+                iCounter++;
 
                 DocumentFormat.OpenXml.Spreadsheet.Sheets sheets = workbook.WorkbookPart.Workbook.GetFirstChild<DocumentFormat.OpenXml.Spreadsheet.Sheets>();
                 string relationshipId = workbook.WorkbookPart.GetIdOfPart(sheetPart);

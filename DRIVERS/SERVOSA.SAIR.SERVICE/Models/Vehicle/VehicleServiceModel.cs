@@ -19,9 +19,9 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public int Item { get; set; }
         [Display(Name = "Cod.")]
         public int Codigo { get; set; }
-        [Display(Name = "Marca")]
+        [Display(Name = "Remove")]
         public string Marca { get; set; }
-        [Display(Name = "Estado")]
+        [Display(Name = "Remove")]
         public string Estado { get; set; }
 
         public int RowNumber { get; set; }
@@ -34,9 +34,9 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public string CodigoEstado { get; set; }
         public string EstadoConcatenado { get; set; }
         public string CodigoTipoUnidad { get; set; }
-        [Display(Name = "Tipo de Unidad")]
+        [Display(Name = "Remove")]
         public string DescripcionTipoUnidad { get; set; }
-        [Display(Name = "Placa")]
+        [Display(Name = "Nombres y Apellidos")]
         public string Placa { get; set; }
 
         public static void ToViewModel(VehicleModel model, ref VehicleServiceModel viewModel)
@@ -71,10 +71,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 model = new VehicleModel()
                 {
                     Codigo = viewModel.Codigo,
-                    TYPE_cTABVSTA = viewModel.EstadoConcatenado.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(),
-                    TYPE_cCODVSTA = viewModel.EstadoConcatenado.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault(),
-                    TYPE_cTABBRND = viewModel.MarcaConcatenada.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(),
-                    TYPE_cCODBRND = viewModel.MarcaConcatenada.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault(),
+                    //TYPE_cTABVSTA = viewModel.EstadoConcatenado.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(),
+                    //TYPE_cCODVSTA = viewModel.EstadoConcatenado.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault(),
+                    //TYPE_cTABBRND = viewModel.MarcaConcatenada.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(),
+                    //TYPE_cCODBRND = viewModel.MarcaConcatenada.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault(),
                     Item = viewModel.Item,
                     Marca = viewModel.Marca,
                     Estado = viewModel.Estado,

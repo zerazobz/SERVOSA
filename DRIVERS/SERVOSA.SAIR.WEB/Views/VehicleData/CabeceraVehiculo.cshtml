@@ -1,20 +1,20 @@
 ﻿@model SERVOSA.SAIR.SERVICE.Models.VehicleServiceModel
 
 <div class="row">
-    <p>Los datos del Vehículo Seleccionado són:</p>
+    <p>Los datos del Conductor Seleccionado són:</p>
 </div>
 
 <div class="row">
     <div class="col-md-6">
         <div class="row">
-            <div class="col-md-4">@Html.LabelFor(model => model.PlacaTolva)</div>
-            <div class="col-md-8">@Html.DisplayFor(model => model.PlacaTolva)</div>
+            <div class="col-md-4">@Html.LabelFor(model => model.Placa)</div>
+            <div class="col-md-8">@Html.DisplayFor(model => model.Placa)</div>
         </div>
     </div>
-    <div class="col-md-6">
+    @*<div class="col-md-6">
         <div class="row">
             <div class="col-md-4">@Html.LabelFor(model => model.PlacaTracto)</div>
             <div class="col-md-8">@Html.DisplayFor(model => model.PlacaTracto)</div>
         </div>
-    </div>
+    </div>*@
 </div>
