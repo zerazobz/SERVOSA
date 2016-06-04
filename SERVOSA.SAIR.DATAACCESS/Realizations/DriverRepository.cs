@@ -6,6 +6,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using SERVOSA.SAIR.DATAACCESS.Contracts;
 using System;
 using System.Collections.Generic;
+using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
@@ -82,6 +83,14 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             IRowMapper<DriverModel> driverRowMapper = MapBuilder<DriverModel>.MapAllProperties().Build();
             var driverCollection = _servosaDB.ExecuteSprocAccessor("SAIR_OPERS", driverRowMapper, parameters);
             return driverCollection.ToList();
+        }
+
+        public IList<RelatedTableToEntityModel> GetRelatedTablesToVehicle()
+        {
+            object[] parameters = new object[] { };
+            IRowMapper<RelatedTableToEntityModel> relatedTablesMapper = MapBuilder<RelatedTableToEntityModel>.MapAllProperties().Build();
+            var relatedTableCollection = _servosaDB.ExecuteSprocAccessor("SAIR_ALLTABLESREFERENCINGDRIVERS", relatedTablesMapper, parameters);
+            return relatedTableCollection.ToList();
         }
 
         private IRowMapper<DriverModel> CreateRowMapperForSAIR_OPERS()

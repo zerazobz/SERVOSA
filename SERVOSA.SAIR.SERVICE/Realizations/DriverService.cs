@@ -3,6 +3,7 @@ using SERVOSA.SAIR.DATAACCESS.Models.Driver;
 using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
 using SERVOSA.SAIR.SERVICE.Contracts;
 using SERVOSA.SAIR.SERVICE.Models;
+using SERVOSA.SAIR.SERVICE.Models.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,6 +78,22 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
                 DriverServiceModel.ToViewModel(v, ref viewModel);
                 return viewModel;
             }).ToList();
+        }
+
+        public IList<DriverRelatedTableServiceModel> GetRelatedTablesToDriver()
+        {
+            DriverRelatedTableServiceModel vehicleRelatedVM = null;
+            var relatedVehiclesCollection = _driverRepository.GetRelatedTablesToVehicle().Select(rVT =>
+            {
+                DriverRelatedTableServiceModel.ToServiceModel(rVT, ref vehicleRelatedVM);
+                return vehicleRelatedVM;
+            }).ToList();
+            return relatedVehiclesCollection;
+        }
+
+        public IList<string> GetListRelatedTablesToDriver()
+        {
+            return GetRelatedTablesToDriver().Select(rV => rV.ForeignTable).ToList();
         }
     }
 }

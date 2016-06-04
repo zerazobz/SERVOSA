@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Models.Vehicle
 {
-    public class RelatedTableToVehicleModel
+    public class RelatedTableToEntityModel
     {
         public string foreign_key_name { get; set; }
         public string foreign_table { get; set; }

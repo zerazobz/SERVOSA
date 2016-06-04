@@ -15,7 +15,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Contracts
         IList<VehicleModel> GetAllFilteredBySearchTerm(string searchTerm);
         IList<VehicleHeadRowDataModel> GetRowDataForTable(string tableName);
         IList<VehicleVariableTableDataModel> GetVehicleVariableTableData(string tableName, int vehicleId);
-        IList<RelatedTableToVehicleModel> GetRelatedTablesToVehicle();
+        IList<RelatedTableToEntityModel> GetRelatedTablesToVehicle();
         DataSet GetVariableDataToExport(string tableName);
         DataSet GetVehicleDataToExport(int vehicleCode);
     }

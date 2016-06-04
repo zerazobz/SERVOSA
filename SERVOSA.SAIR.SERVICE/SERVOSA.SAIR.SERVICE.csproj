@@ -85,6 +85,7 @@
     <Compile Include="Core\SERVOSASqlTypes.cs" />
     <Compile Include="Models\ColumnServiceModel.cs" />
     <Compile Include="Models\DriverServiceModel.cs" />
+    <Compile Include="Models\Driver\DriverRelatedTableServiceModel.cs" />
     <Compile Include="Models\ITableServiceModel.cs" />
     <Compile Include="Models\Vehicle\IVehicleServiceModel.cs" />
     <Compile Include="Models\TableColumnServiceModel.cs" />

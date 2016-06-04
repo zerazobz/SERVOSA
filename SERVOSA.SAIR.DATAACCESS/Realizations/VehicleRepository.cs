@@ -123,10 +123,10 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             return dataResult.ToList();
         }
 
-        public IList<RelatedTableToVehicleModel> GetRelatedTablesToVehicle()
+        public IList<RelatedTableToEntityModel> GetRelatedTablesToVehicle()
         {
             object[] parameters = new object[] { };
-            IRowMapper<RelatedTableToVehicleModel> relatedTablesMapper = MapBuilder<RelatedTableToVehicleModel>.MapAllProperties().Build();
+            IRowMapper<RelatedTableToEntityModel> relatedTablesMapper = MapBuilder<RelatedTableToEntityModel>.MapAllProperties().Build();
             var relatedTableCollection = _servosaDB.ExecuteSprocAccessor("SAIR_ALLTABLESREFERENCINGVEHICLES", relatedTablesMapper, parameters);
             return relatedTableCollection.ToList();
         }

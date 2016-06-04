@@ -216,6 +216,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
+    <Compile Include="Controllers\DriverDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoadFileController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -464,6 +465,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\ViewController\DriverViewController.js" />
     <Content Include="Scripts\ViewController\Driver\DriverDataViewController.js" />
+    <Content Include="Scripts\ViewController\Driver\DriverUploadViewController.js" />
     <Content Include="Scripts\ViewController\Driver\DriverViewController.js" />
     <Content Include="Scripts\ViewController\SERVOSAViewController.js" />
     <Content Include="Scripts\ViewController\VehicleDataViewController.js" />
@@ -554,6 +556,7 @@
     <Content Include="Views\Driver\DriversMainData.cshtml" />
     <Content Include="Views\Driver\DriversTable.cshtml" />
     <Content Include="Views\Driver\DriverDataTable.cshtml" />
+    <Content Include="Views\DriverData\Data.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
