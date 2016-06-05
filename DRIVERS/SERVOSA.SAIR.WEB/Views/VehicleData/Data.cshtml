@@ -1,14 +1,19 @@
 ﻿@model IList<string>
 
 @{
-    ViewBag.Title = "Datos de Vehículos";
+    ViewBag.Title = "Datos del Conductor";
 }
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <link href="~/Scripts/jtable/themes/jqueryui/jtable_jqueryui.css" rel="stylesheet" />
 <link href="~/Content/validationEngine.jquery.css" rel="stylesheet" />
 <input type="hidden" name="CurrentVehicleId" value="@((int)ViewBag.VehicleCode)" />
 
-<div class="row">
+<div class="row" style="display: none;">
+    <div class="col-md-8">
+        <input type="text" id="vehicleAutoComplete" class="form-control" value="" />
+    </div>
+</div>
+<div class="row" style="margin-top: 15px;">
     @{ Html.RenderAction(MVC.VehicleData.CabeceraVehiculo((int)ViewBag.VehicleCode)); }
 </div>
 <hr />

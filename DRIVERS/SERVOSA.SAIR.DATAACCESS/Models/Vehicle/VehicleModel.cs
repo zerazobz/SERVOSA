@@ -21,6 +21,8 @@ namespace SERVOSA.SAIR.DATAACCESS.Models.Vehicle
         public string VEHI_UnitType { get; set; }
         public string VEHI_DescriptionUnitType { get; set; }
         public string VEHI_VehiclePlate { get; set; }
+        public DateTime? DRIV_dBirthDate { get; set; }
+        public string DRIV_cAddress { get; set; }
 
         public int RowNumber { get; set; }
         public int TotalRows { get; set; }

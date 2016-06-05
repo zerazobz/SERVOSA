@@ -86,6 +86,8 @@
                 Codigo: { key: true, title: 'Codigo', width: '5%' },
                 //CodigoTipoUnidad: { title: 'Tipo de Unidad', options: '/Vehicle/GetVehiclesUnitTypes' },
                 Placa: { title: 'Nombre y Apellidos' },
+                BirthDate: { title: 'Fecha de Nacimiento', type: 'date', displayFormat: 'dd/mm/yy' },
+                Address: { title: 'Dirección'}
                 //MarcaConcatenada: {
                 //    title: 'Codigo Marca',
                 //    options: '/Vehicle/GetVehicleBrands'
@@ -219,8 +221,8 @@
                 $.post("/Vehicle/SearchVehicleForAutoComplete", { searchText : request.term, maxResults : 10 }, function (data, textStatus, jqXHR) {
                     response($.map(data, function (item) {
                         return {
-                            label: item.Placa + "-" + item.DescripcionTipoUnidad,
-                            value: item.Placa || "" + "-" + item.DescripcionTipoUnidad || "",
+                            label: item.Placa + "-" + item.Address,
+                            value: item.Placa || "" + "-" + item.Address || "",
                             data: item,
                             id: item.Codigo
                         }

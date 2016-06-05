@@ -38,6 +38,12 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public string DescripcionTipoUnidad { get; set; }
         [Display(Name = "Nombres y Apellidos")]
         public string Placa { get; set; }
+        [Display(Name = "Fecha de Nacimiento")]
+        //[DisplayFormat(DataFormatString = "{0:dd/mm/yyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        public DateTime? BirthDate { get; set; }
+        [Display(Name = "Dirección")]
+        public string Address { get; set; }
 
         public static void ToViewModel(VehicleModel model, ref VehicleServiceModel viewModel)
         {
@@ -59,7 +65,9 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     //DescripcionTipoUnidad = model.VEHI_UnitType == "R"? "Remolque" : "Semiremolque",
                     DescripcionTipoUnidad = model.VEHI_DescriptionUnitType,
                     RowNumber = model.RowNumber,
-                    TotalRows = model.TotalRows
+                    TotalRows = model.TotalRows,
+                    BirthDate = model.DRIV_dBirthDate,
+                    Address = model.DRIV_cAddress
                 };
             else
                 viewModel = null;
@@ -81,7 +89,9 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     VEHI_VehiclePlate = viewModel.Placa,
                     VEHI_UnitType = viewModel.CodigoTipoUnidad,
                     RowNumber = viewModel.RowNumber,
-                    TotalRows = viewModel.TotalRows
+                    TotalRows = viewModel.TotalRows,
+                    DRIV_dBirthDate = viewModel.BirthDate,
+                    DRIV_cAddress = viewModel.Address
                 };
             else
                 model = null;

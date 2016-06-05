@@ -15,8 +15,9 @@ namespace SERVOSA.SAIR.WEB
     {
         protected void Application_Start()
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("es-PE");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-PE");
+            var peruvianCulture = CultureInfo.CreateSpecificCulture("es-PE");
+            Thread.CurrentThread.CurrentCulture = peruvianCulture;
+            Thread.CurrentThread.CurrentUICulture = peruvianCulture;
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

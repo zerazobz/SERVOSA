@@ -22,7 +22,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public int Create(VehicleModel entity)
         {
-            object[] parameters = new object[] { entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, null };
+            object[] parameters = new object[] { entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, entity.DRIV_dBirthDate, entity.DRIV_cAddress, null };
             using (var insertCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHII", parameters))
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(insertCommand);
@@ -73,7 +73,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public int Update(VehicleModel entity)
         {
-            object[] parameters = new object[] { entity.Codigo, entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate };
+            object[] parameters = new object[] { entity.Codigo, entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, entity.DRIV_dBirthDate, entity.DRIV_cAddress };
             using (var updateCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHIU", parameters))
             {
                 var executionResult = _servosaDB.ExecuteNonQuery(updateCommand);
@@ -148,26 +148,33 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         private IRowMapper<VehicleModel> GetMapperSimple()
         {
             return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
-                .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.RowNumber).Build();
+                .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.RowNumber)
+                .Build();
         }
 
         private IRowMapper<VehicleModel> GetMapperForOldSP()
         {
             return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
                 .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.Estado)
-                .DoNotMap(prop => prop.RowNumber).DoNotMap(prop => prop.VEHI_DescriptionUnitType).Build();
+                .DoNotMap(prop => prop.RowNumber).DoNotMap(prop => prop.VEHI_DescriptionUnitType)
+                //.DoNotMap(prop => prop.DRIV_dBirthDate).DoNotMap(prop => prop.DRIV_cAddress)
+                .Build();
         }
 
         private IRowMapper<VehicleModel> GetMapperForFilteredSP()
         {
             return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.Marca)
-                .DoNotMap(prop => prop.Estado).DoNotMap(prop => prop.VEHI_DescriptionUnitType).Build();
+                .DoNotMap(prop => prop.Estado).DoNotMap(prop => prop.VEHI_DescriptionUnitType)
+                //.DoNotMap(prop => prop.DRIV_dBirthDate).DoNotMap(prop => prop.DRIV_cAddress)
+                .Build();
         }
 
         private IRowMapper<VehicleModel> GetMapperForSearchFilteredByTerm()
         {
             return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber).DoNotMap(prop => prop.TotalRows)
-                .DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.Estado).DoNotMap(prop => prop.VEHI_DescriptionUnitType).Build();
+                .DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.Estado).DoNotMap(prop => prop.VEHI_DescriptionUnitType)
+                //.DoNotMap(prop => prop.DRIV_dBirthDate).DoNotMap(prop => prop.DRIV_cAddress)
+                .Build();
         }
     }
 }

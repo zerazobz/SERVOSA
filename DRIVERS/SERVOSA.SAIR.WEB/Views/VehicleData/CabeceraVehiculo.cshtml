@@ -1,20 +1,28 @@
 ﻿@model SERVOSA.SAIR.SERVICE.Models.VehicleServiceModel
 
 <div class="row">
-    <p>Los datos del Conductor Seleccionado són:</p>
+    <p class="lead text-center">Los datos del Conductor Seleccionado són:</p>
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-offset-3">
         <div class="row">
-            <div class="col-md-4">@Html.LabelFor(model => model.Placa)</div>
-            <div class="col-md-8">@Html.DisplayFor(model => model.Placa)</div>
+            <div class="col-md-6">
+                <div class="col-md-4">@Html.LabelFor(model => model.Placa)</div>
+                <div class="col-md-8">@Html.DisplayFor(model => model.Placa)</div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-4">@Html.LabelFor(model => model.BirthDate)</div>
+                <div class="col-md-8">@Html.DisplayFor(model => model.BirthDate, new { type = "date" })</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-4">@Html.LabelFor(model => Model.Address)</div>
+                <address>
+                    <div class="col-md-6">@Html.DisplayFor(model => model.Address)</div>
+                </address>
+            </div>
         </div>
     </div>
-    @*<div class="col-md-6">
-        <div class="row">
-            <div class="col-md-4">@Html.LabelFor(model => model.PlacaTracto)</div>
-            <div class="col-md-8">@Html.DisplayFor(model => model.PlacaTracto)</div>
-        </div>
-    </div>*@
 </div>
