@@ -9,21 +9,21 @@ using SERVOSA.SAIR.DATAACCESS.Contracts;
 
 namespace SERVOSA.SAIR.SERVICE.Realizations
 {
-    public class TypeService : ITypeService
+    public class DriverTypeService : IDriverTypeService
     {
         private IDriverTypeRepository _typeRepository;
 
-        public TypeService(IDriverTypeRepository injectedTypeRepo)
+        public DriverTypeService(IDriverTypeRepository injectedTypeRepo)
         {
             _typeRepository = injectedTypeRepo;
         }
 
-        public IList<TypeServiceModel> GetAllTypesByTable(string tableCode)
+        public IList<DriverTypeServiceModel> GetAllTypesByTable(string tableCode)
         {
-            TypeServiceModel resultType = null;
+            DriverTypeServiceModel resultType = null;
             var collectionResult = _typeRepository.GetAllByTable(tableCode).Select(t =>
             {
-                TypeServiceModel.ToServiceModel(t, ref resultType);
+                DriverTypeServiceModel.ToServiceModel(t, ref resultType);
                 return resultType;
             }).ToList();
             return collectionResult;

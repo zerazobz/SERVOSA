@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Core
 {
-    public sealed class ServosaSingleton
+    public sealed class ServosaDriverSingleton
     {
-        private static readonly ServosaSingleton uniqueInstance = new ServosaSingleton();
+        private static readonly ServosaDriverSingleton uniqueInstance = new ServosaDriverSingleton();
 
-        private ServosaSingleton() { }
+        private ServosaDriverSingleton() { }
 
-        public static ServosaSingleton Instance
+        public static ServosaDriverSingleton Instance
         {
             get
             {

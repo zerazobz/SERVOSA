@@ -20,7 +20,7 @@
         @Html.AntiForgeryToken()
         @for (int i = 0; i < Model.ColumnsCollection.Count; i++)
         {
-            if (SERVOSA.SAIR.SERVICE.Core.ServosaSingleton.Instance.HiddenColumnsForMainForm.Contains(Model.ColumnsCollection[i].ColumnName))
+            if (SERVOSA.SAIR.SERVICE.Core.ServosaDriverSingleton.Instance.HiddenColumnsForMainForm.Contains(Model.ColumnsCollection[i].ColumnName))
             {
                 <div class="row" style="margin-top: 15px; display: none;">
                     <div class="col-md-6">

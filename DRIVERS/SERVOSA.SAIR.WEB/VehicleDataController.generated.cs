@@ -300,10 +300,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [NonAction]
-        partial void GetFileModalManagerOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.TableData.VehicleFiles model);
+        partial void GetFileModalManagerOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.TableData.DriverFiles model);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult GetFileModalManager(SERVOSA.SAIR.SERVICE.Models.TableData.VehicleFiles model)
+        public override System.Web.Mvc.ActionResult GetFileModalManager(SERVOSA.SAIR.SERVICE.Models.TableData.DriverFiles model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetFileModalManager);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

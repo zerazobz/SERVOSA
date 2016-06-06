@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Contracts
 {
-    public interface ITypeService
+    public interface IDriverTypeService
     {
-        IList<TypeServiceModel> GetAllTypesByTable(string tableCode);
+        IList<DriverTypeServiceModel> GetAllTypesByTable(string tableCode);
     }
 }

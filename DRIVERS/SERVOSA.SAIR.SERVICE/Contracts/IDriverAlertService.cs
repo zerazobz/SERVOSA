@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Contracts
 {
-    public interface IVehicleAlertService
+    public interface IDriverAlertService
     {
-        IList<VehicleAlert> GetAlertsNotSended();
+        IList<DriverAlert> GetAlertsNotSended();
         int ProcessAlerts(IEnumerable<string> phoneNumbers);
-        int RegisterAlert(VehicleAlert model);
+        int RegisterAlert(DriverAlert model);
         int UpdateAlertSended(int alertId, string smsToken, DateTime sendDate, string recipients);
         string SendAlertBySMS(IEnumerable<string> phonesNumbers, string message, int alertId);
     }

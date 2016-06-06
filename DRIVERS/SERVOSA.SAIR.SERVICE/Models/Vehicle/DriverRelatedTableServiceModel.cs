@@ -1,15 +1,19 @@
 ﻿using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
-using SERVOSA.SAIR.SERVICE.Models.Vehicle;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SERVOSA.SAIR.SERVICE.Models.Driver
+namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
 {
-    public class DriverRelatedTableServiceModel : VehicleRelatedTableServiceModel
+    public class DriverRelatedTableServiceModel
     {
+        public string ForeignKeyName { get; set; }
+        public string ForeignTable { get; set; }
+        public string ForeignColumn { get; set; }
+        public string ParentTable { get; set; }
+        public string ParentColumn { get; set; }
 
         public static void ToDataModel(DriverRelatedTableServiceModel serviceModel, ref DriverRelatedTableToEntityModel dataModel)
         {

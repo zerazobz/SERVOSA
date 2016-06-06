@@ -15,11 +15,11 @@ namespace SERVOSA.SAIR.WEB.Controllers
 {
     public partial class VehicleDataController : Controller
     {
-        private readonly IVehicleService _vehicleService;
-        private readonly ITableDataService _tableDataService;
-        private readonly IVehicleFileService _vehicleFileDataService;
+        private readonly IDriverService _vehicleService;
+        private readonly IDriverTableDataService _tableDataService;
+        private readonly IDriverFileService _vehicleFileDataService;
 
-        public VehicleDataController(IVehicleService injectedVehicleSer, ITableDataService injectedTableDataSer, IVehicleFileService injectedVehiFileSer)
+        public VehicleDataController(IDriverService injectedVehicleSer, IDriverTableDataService injectedTableDataSer, IDriverFileService injectedVehiFileSer)
         {
             _vehicleService = injectedVehicleSer;
             _tableDataService = injectedTableDataSer;
@@ -115,7 +115,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult GetFileModalManager(string tableName, int vehicleCode)
         {
-            VehicleFiles vehicleFileModel = new VehicleFiles();
+            DriverFiles vehicleFileModel = new DriverFiles();
             IVehicleServiceModel vehicleData = _vehicleService.GetById(vehicleCode);
             vehicleFileModel.Placa = vehicleData.Placa;
             vehicleFileModel.CodigoTipoUnidad = vehicleData.CodigoTipoUnidad;
@@ -126,7 +126,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult GetFileModalManager(VehicleFiles model)
+        public virtual ActionResult GetFileModalManager(DriverFiles model)
         {
             if (ModelState.IsValid)
             {
@@ -152,7 +152,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
                         {
                             var destinationDirectory = Path.Combine(Server.MapPath("~"), "Files", model.TableName, model.Codigo.ToString());
 
-                            VehicleFileServiceModel fileModelToinsert = new VehicleFileServiceModel()
+                            DriverFileServiceModel fileModelToinsert = new DriverFileServiceModel()
                             {
                                 DataFile = data,
                                 DateCreated = DateTime.Now,
@@ -204,7 +204,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 string[] fileCodes = ComposedPrimaryKey.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries);
                 string pathToRemove = Path.Combine(Server.MapPath("~"), "Files", fileCodes[1], fileCodes[0], fileCodes[2]);
                 System.IO.File.Delete(pathToRemove);
-                var resultDelete = _vehicleFileDataService.DeleteVehicleFile(new VehicleFileServiceModel()
+                var resultDelete = _vehicleFileDataService.DeleteVehicleFile(new DriverFileServiceModel()
                 {
                     TableName = fileCodes[1],
                     VehicleId = Convert.ToInt32(fileCodes[0]),

@@ -10,21 +10,21 @@ using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
 
 namespace SERVOSA.SAIR.SERVICE.Realizations
 {
-    public class VehicleFileService : IVehicleFileService
+    public class DriverFileService : IDriverFileService
     {
         private IDriverVehicleFilesRepository _vehicleFileRepository;
 
-        public VehicleFileService(IDriverVehicleFilesRepository injectedVehicleRepo)
+        public DriverFileService(IDriverVehicleFilesRepository injectedVehicleRepo)
         {
             _vehicleFileRepository = injectedVehicleRepo;
         }
 
-        public Tuple<bool, int, string> DeleteVehicleFile(VehicleFileServiceModel model)
+        public Tuple<bool, int, string> DeleteVehicleFile(DriverFileServiceModel model)
         {
             bool resultExecution;
             string messageResult;
             DriverFileModel modelToDelete = null;
-            VehicleFileServiceModel.ToDataModel(model, ref modelToDelete);
+            DriverFileServiceModel.ToDataModel(model, ref modelToDelete);
             var rowsAffected = _vehicleFileRepository.DeleteVehicle(modelToDelete);
             if(rowsAffected > 0)
             {
@@ -39,23 +39,23 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return new Tuple<bool, int, string>(resultExecution, rowsAffected, messageResult);
         }
 
-        public IList<VehicleFileServiceModel> GetFilesByTableNameAndVehicleId(string tableName, int vehicleId)
+        public IList<DriverFileServiceModel> GetFilesByTableNameAndVehicleId(string tableName, int vehicleId)
         {
-            VehicleFileServiceModel modelForList = null;
+            DriverFileServiceModel modelForList = null;
             var filesCollection = _vehicleFileRepository.GetListVehicles(tableName, vehicleId).Select(fI =>
             {
-                VehicleFileServiceModel.ToServiceModel(fI, ref modelForList);
+                DriverFileServiceModel.ToServiceModel(fI, ref modelForList);
                 return modelForList;
             }).ToList();
             return filesCollection;
         }
 
-        public Tuple<bool, int, string> InsertVehicleFile(VehicleFileServiceModel model)
+        public Tuple<bool, int, string> InsertVehicleFile(DriverFileServiceModel model)
         {
             bool resultExecution;
             string messageResult;
             DriverFileModel modelToInsert = null;
-            VehicleFileServiceModel.ToDataModel(model, ref modelToInsert);
+            DriverFileServiceModel.ToDataModel(model, ref modelToInsert);
             var rowsAffected = _vehicleFileRepository.InsertVehicle(modelToInsert);
             if(rowsAffected > 0)
             {

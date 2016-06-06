@@ -1,21 +1,17 @@
 ﻿using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+using SERVOSA.SAIR.SERVICE.Models.Vehicle;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
+namespace SERVOSA.SAIR.SERVICE.Models.Driver
 {
-    public class VehicleRelatedTableServiceModel
+    public class OldDriverRelatedTableServiceModel : DriverRelatedTableServiceModel
     {
-        public string ForeignKeyName { get; set; }
-        public string ForeignTable { get; set; }
-        public string ForeignColumn { get; set; }
-        public string ParentTable { get; set; }
-        public string ParentColumn { get; set; }
 
-        public static void ToDataModel(VehicleRelatedTableServiceModel serviceModel, ref DriverRelatedTableToEntityModel dataModel)
+        public static void ToDataModel(OldDriverRelatedTableServiceModel serviceModel, ref DriverRelatedTableToEntityModel dataModel)
         {
             if (serviceModel != null)
                 dataModel = new DriverRelatedTableToEntityModel()
@@ -30,10 +26,10 @@ namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
                 dataModel = null;
         }
 
-        public static void ToServiceModel(DriverRelatedTableToEntityModel dataModel, ref VehicleRelatedTableServiceModel serviceModel)
+        public static void ToServiceModel(DriverRelatedTableToEntityModel dataModel, ref OldDriverRelatedTableServiceModel serviceModel)
         {
             if (dataModel != null)
-                serviceModel = new VehicleRelatedTableServiceModel()
+                serviceModel = new OldDriverRelatedTableServiceModel()
                 {
                     ForeignColumn = dataModel.foreign_column,
                     ForeignKeyName = dataModel.foreign_key_name,

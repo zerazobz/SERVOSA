@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models.TableData
 {
-    public class VehicleFiles : MessageViewModel, ITableServiceModel, IVehicleServiceModel
+    public class DriverFiles : MessageViewModel, IDriverTableServiceModel, IVehicleServiceModel
     {
         #region DatosVehiculo
 

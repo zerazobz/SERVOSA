@@ -1,6 +1,6 @@
 ﻿namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public interface ITableServiceModel
+    public interface IDriverTableServiceModel
     {
         int ObjectId { get; set; }
         string TableName { get; set; }

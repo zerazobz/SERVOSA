@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class DriverServiceModel
+    public class OldDriverServiceModel
     {
         public int CodigoOperario { get; set; }
         public string NombreOperario { get; set; }
@@ -22,10 +22,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public int RowsAffected { get; set; }
         public bool IsSuccessful { get; set; }
         public string Message { get; set; }
-        public static void ToViewModel(DriverOldModel model, ref DriverServiceModel viewModel)
+        public static void ToViewModel(DriverOldModel model, ref OldDriverServiceModel viewModel)
         {
             if (model != null)
-                viewModel = new DriverServiceModel()
+                viewModel = new OldDriverServiceModel()
                 {
                     CodigoOperario = model.OPER_Id,
                     ApellidoPaternoOperario = model.OPER_cApellidoPaterno,
@@ -42,7 +42,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 viewModel = null;
         }
 
-        public static void ToModel(DriverServiceModel viewModel, ref DriverOldModel model)
+        public static void ToModel(OldDriverServiceModel viewModel, ref DriverOldModel model)
         {
             if (viewModel != null)
                 model = new DriverOldModel()

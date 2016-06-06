@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models.TableData
 {
-    public class VehicleAlert
+    public class DriverAlert
     {
         public int VehicleAlertId { get; set; }
         public string TableName { get; set; }
@@ -17,10 +17,10 @@ namespace SERVOSA.SAIR.SERVICE.Models.TableData
         public bool AlertSended { get; set; }
         public int VehicleId { get; set; }
 
-        public static void ToServiceModel(DriverAlertDataModel model, ref VehicleAlert serviceModel)
+        public static void ToServiceModel(DriverAlertDataModel model, ref DriverAlert serviceModel)
         {
             if (model != null)
-                serviceModel = new VehicleAlert()
+                serviceModel = new DriverAlert()
                 {
                     AlertName = model.VEAL_AlertName,
                     AlertSended = model.VEAL_AlertSended,
@@ -34,7 +34,7 @@ namespace SERVOSA.SAIR.SERVICE.Models.TableData
                 serviceModel = null;
         }
         
-        public static void ToDataModel(VehicleAlert servicemodel, ref DriverAlertDataModel dataModel)
+        public static void ToDataModel(DriverAlert servicemodel, ref DriverAlertDataModel dataModel)
         {
             if (servicemodel != null)
                 dataModel = new DriverAlertDataModel()

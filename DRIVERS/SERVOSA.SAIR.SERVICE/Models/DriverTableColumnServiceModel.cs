@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class TableColumnServiceModel : MessageViewModel
+    public class DriverTableColumnServiceModel : MessageViewModel
     {
         public int TableId { get; set; }
         public string TableNormalizedName { get; set; }
@@ -21,10 +21,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public int SystemType { get; set; }
         public string TypeName { get; set; }
 
-        public static void ToServiceModel(DriverTableColumnModel model, ref TableColumnServiceModel viewModel)
+        public static void ToServiceModel(DriverTableColumnModel model, ref DriverTableColumnServiceModel viewModel)
         {
             if (model != null)
-                viewModel = new TableColumnServiceModel()
+                viewModel = new DriverTableColumnServiceModel()
                 {
                     ColumnName = model.ColumnName,
                     ColumnNormalizedName = model.ColumnNormalizedName,
@@ -39,7 +39,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 viewModel = null;
         }
 
-        public static void ToDataModel(TableColumnServiceModel viewModel, ref DriverTableColumnModel model)
+        public static void ToDataModel(DriverTableColumnServiceModel viewModel, ref DriverTableColumnModel model)
         {
             if (viewModel != null)
                 model = new DriverTableColumnModel()

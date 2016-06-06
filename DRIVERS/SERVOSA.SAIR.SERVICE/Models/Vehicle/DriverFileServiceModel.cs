@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
 {
-    public class VehicleFileServiceModel
+    public class DriverFileServiceModel
     {
         public int Identity { get; set; }
         public int VehicleId { get; set; }
@@ -20,10 +20,10 @@ namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
 
         public string ComposedPrimaryKey { get; set; }
 
-        public static void ToServiceModel(DriverFileModel dataModel, ref VehicleFileServiceModel serviceModel)
+        public static void ToServiceModel(DriverFileModel dataModel, ref DriverFileServiceModel serviceModel)
         {
             if (dataModel != null)
-                serviceModel = new VehicleFileServiceModel()
+                serviceModel = new DriverFileServiceModel()
                 {
                     DataFile = dataModel.VEFI_DataFile,
                     DateCreated = dataModel.VEFI_DateCreated,
@@ -39,7 +39,7 @@ namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
                 serviceModel = null;
         }
 
-        public static void ToDataModel(VehicleFileServiceModel serviceModel, ref DriverFileModel dataModel)
+        public static void ToDataModel(DriverFileServiceModel serviceModel, ref DriverFileModel dataModel)
         {
             if (serviceModel != null)
                 dataModel = new DriverFileModel()

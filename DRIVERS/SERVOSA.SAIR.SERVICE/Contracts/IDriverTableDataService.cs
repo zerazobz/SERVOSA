@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Contracts
 {
-    public interface ITableDataService
+    public interface IDriverTableDataService
     {
         Tuple<bool, int, string> InsertTableData(string tableName, Dictionary<string, Tuple<SERVOSASqlTypes, Object>> tableData, bool variableData);
         Tuple<bool, int, string> UpdateTableData(string tableName, int vehicleId, Dictionary<string, Tuple<SERVOSASqlTypes, object>> tableData, bool variableData);

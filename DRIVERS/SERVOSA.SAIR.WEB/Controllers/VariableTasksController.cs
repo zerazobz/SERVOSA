@@ -10,9 +10,9 @@ namespace SERVOSA.SAIR.WEB.Controllers
 {
     public partial class VariableTasksController : Controller
     {
-        private readonly IDBServices _dbService;
+        private readonly IDriverDBServices _dbService;
 
-        public VariableTasksController(IDBServices  injectedDbService)
+        public VariableTasksController(IDriverDBServices  injectedDbService)
         {
             _dbService = injectedDbService;
         }
@@ -20,12 +20,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult CreateTable()
         {
-            TableServiceModel model = new TableServiceModel();
+            DriverTableServiceModel model = new DriverTableServiceModel();
             return PartialView(MVC.VariableTasks.Views.CreateTable, model);
         }
 
         [HttpPost]
-        public virtual ActionResult CreateTable(TableServiceModel viewModel)
+        public virtual ActionResult CreateTable(DriverTableServiceModel viewModel)
         {
             if(ModelState.IsValid)
             {
@@ -47,13 +47,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult CreateColumn()
         {
-            ColumnServiceModel viewModel = new ColumnServiceModel();
+            DriverColumnServiceModel viewModel = new DriverColumnServiceModel();
             viewModel.ListaTipos = new SelectList(GetListColumnTypes(), "Codigo", "Descripcion");
             return PartialView(MVC.VariableTasks.Views.CreateColumn, viewModel);
         }
 
         [HttpPost]
-        public virtual ActionResult CreateColumn(ColumnServiceModel viewModel)
+        public virtual ActionResult CreateColumn(DriverColumnServiceModel viewModel)
         {
             viewModel.ListaTipos = new SelectList(GetListColumnTypes(), "Codigo", "Descripcion");
             if (ModelState.IsValid)

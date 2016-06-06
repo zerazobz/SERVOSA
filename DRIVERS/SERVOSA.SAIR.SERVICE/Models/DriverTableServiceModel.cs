@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class TableServiceModel : MessageViewModel, ITableServiceModel
+    public class DriverTableServiceModel : MessageViewModel, IDriverTableServiceModel
     {
         public int ObjectId { get; set; }
         [Display(Name = "Nombre de la Variable")]
@@ -17,10 +17,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
         [Display(Name = "Nombre Minificado")]
         public string TableNormalizedName { get; set; }
 
-        public static void ToViewModel(DriverTableModel model, ref ITableServiceModel viewModel)
+        public static void ToViewModel(DriverTableModel model, ref IDriverTableServiceModel viewModel)
         {
             if (model != null)
-                viewModel = new TableServiceModel()
+                viewModel = new DriverTableServiceModel()
                 {
                     TableName = model.TableName,
                     TableNormalizedName = model.TableNormalizedName,
@@ -30,7 +30,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 viewModel = null;
         }
 
-        public static void ToModel(ITableServiceModel viewModel, ref DriverTableModel model)
+        public static void ToModel(IDriverTableServiceModel viewModel, ref DriverTableModel model)
         {
             if (viewModel != null)
                 model = new DriverTableModel()

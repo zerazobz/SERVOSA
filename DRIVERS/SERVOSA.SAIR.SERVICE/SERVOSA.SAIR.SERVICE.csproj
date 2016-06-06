@@ -72,41 +72,41 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Common\IServiceRepository.cs" />
-    <Compile Include="Contracts\IDBServices.cs" />
+    <Compile Include="Contracts\IDriverDBServices.cs" />
+    <Compile Include="Contracts\IOldDriverService.cs" />
+    <Compile Include="Contracts\IDriverTableDataService.cs" />
+    <Compile Include="Contracts\IDriverTypeService.cs" />
+    <Compile Include="Contracts\IDriverAlertService.cs" />
+    <Compile Include="Contracts\IDriverFileService.cs" />
     <Compile Include="Contracts\IDriverService.cs" />
-    <Compile Include="Contracts\ITableDataService.cs" />
-    <Compile Include="Contracts\ITypeService.cs" />
-    <Compile Include="Contracts\IVehicleAlertService.cs" />
-    <Compile Include="Contracts\IVehicleFileService.cs" />
-    <Compile Include="Contracts\IVehicleService.cs" />
     <Compile Include="Core\MessageViewModel.cs" />
     <Compile Include="Core\ServiceContainerInjector.cs" />
-    <Compile Include="Core\ServosaSingleton.cs" />
+    <Compile Include="Core\ServosaDriverSingleton.cs" />
     <Compile Include="Core\SERVOSASqlTypes.cs" />
-    <Compile Include="Models\ColumnServiceModel.cs" />
-    <Compile Include="Models\DriverServiceModel.cs" />
-    <Compile Include="Models\Driver\DriverRelatedTableServiceModel.cs" />
-    <Compile Include="Models\ITableServiceModel.cs" />
+    <Compile Include="Models\DriverColumnServiceModel.cs" />
+    <Compile Include="Models\OldDriverServiceModel.cs" />
+    <Compile Include="Models\Driver\OldDriverRelatedTableServiceModel.cs" />
+    <Compile Include="Models\IDriverTableServiceModel.cs" />
     <Compile Include="Models\Vehicle\IVehicleServiceModel.cs" />
-    <Compile Include="Models\TableColumnServiceModel.cs" />
-    <Compile Include="Models\TableData\VehicleAlert.cs" />
-    <Compile Include="Models\TableData\VehicleFiles.cs" />
-    <Compile Include="Models\TableServiceModel.cs" />
-    <Compile Include="Models\Types\TypeServiceModel.cs" />
-    <Compile Include="Models\Vehicle\VehicleDetailRowServiceModel.cs" />
-    <Compile Include="Models\Vehicle\VehicleFileServiceModel.cs" />
+    <Compile Include="Models\DriverTableColumnServiceModel.cs" />
+    <Compile Include="Models\TableData\DriverAlert.cs" />
+    <Compile Include="Models\TableData\DriverFiles.cs" />
+    <Compile Include="Models\DriverTableServiceModel.cs" />
+    <Compile Include="Models\Types\DriverTypeServiceModel.cs" />
+    <Compile Include="Models\Vehicle\DriverDetailRowServiceModel.cs" />
+    <Compile Include="Models\Vehicle\DriverFileServiceModel.cs" />
     <Compile Include="Models\Vehicle\VehicleHeadRowServiceModel.cs" />
     <Compile Include="Models\Vehicle\VehicleServiceModel.cs" />
     <Compile Include="Models\Vehicle\VehicleVariableDataServiceModel.cs" />
-    <Compile Include="Models\Vehicle\VehicleRelatedTableServiceModel.cs" />
+    <Compile Include="Models\Vehicle\DriverRelatedTableServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Realizations\DBServices.cs" />
+    <Compile Include="Realizations\DriverDBServices.cs" />
+    <Compile Include="Realizations\OldDriverService.cs" />
+    <Compile Include="Realizations\DriverTableDataService.cs" />
+    <Compile Include="Realizations\DriverTypeService.cs" />
+    <Compile Include="Realizations\DriverAlertService.cs" />
+    <Compile Include="Realizations\DriverFileService.cs" />
     <Compile Include="Realizations\DriverService.cs" />
-    <Compile Include="Realizations\TableDataService.cs" />
-    <Compile Include="Realizations\TypeService.cs" />
-    <Compile Include="Realizations\VehicleAlertService.cs" />
-    <Compile Include="Realizations\VehicleFileService.cs" />
-    <Compile Include="Realizations\VehicleService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

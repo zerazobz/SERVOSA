@@ -11,11 +11,11 @@ namespace SERVOSA.SAIR.WEB.Controllers
 {
     public partial class HomeController : Controller
     {
-        private IVehicleService _vehicleServices;
-        private readonly IDBServices _dbServices;
-        private IVehicleAlertService _vehicleAlertService;
+        private IDriverService _vehicleServices;
+        private readonly IDriverDBServices _dbServices;
+        private IDriverAlertService _vehicleAlertService;
 
-        public HomeController(IVehicleService injectedVehicleRep, IDBServices injectedDbService, IVehicleAlertService vehiceAlertInjectedService)
+        public HomeController(IDriverService injectedVehicleRep, IDriverDBServices injectedDbService, IDriverAlertService vehiceAlertInjectedService)
         {
             _vehicleServices = injectedVehicleRep;
             _dbServices = injectedDbService;
@@ -67,7 +67,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpGet]
-        public virtual ActionResult VehicleDataTable(TableServiceModel model)
+        public virtual ActionResult VehicleDataTable(DriverTableServiceModel model)
         {
             return PartialView(MVC.Home.Views.VehicleDataTable, model);
         }

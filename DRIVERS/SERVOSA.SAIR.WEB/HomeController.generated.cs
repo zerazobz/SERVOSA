@@ -148,10 +148,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [NonAction]
-        partial void VehicleDataTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.TableServiceModel model);
+        partial void VehicleDataTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.DriverTableServiceModel model);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult VehicleDataTable(SERVOSA.SAIR.SERVICE.Models.TableServiceModel model)
+        public override System.Web.Mvc.ActionResult VehicleDataTable(SERVOSA.SAIR.SERVICE.Models.DriverTableServiceModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.VehicleDataTable);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

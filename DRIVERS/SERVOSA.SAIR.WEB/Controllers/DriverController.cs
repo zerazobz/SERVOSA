@@ -11,10 +11,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
 {
     public partial class DriverController : Controller
     {
-        private IDriverService _driverService;
-        private readonly IDBServices _dbServices;
+        private IOldDriverService _driverService;
+        private readonly IDriverDBServices _dbServices;
 
-        public DriverController(IDriverService injectedDriverServ, IDBServices injectedDBService)
+        public DriverController(IOldDriverService injectedDriverServ, IDriverDBServices injectedDBService)
         {
             _driverService = injectedDriverServ;
             _dbServices = injectedDBService;
@@ -67,7 +67,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpGet]
-        public virtual ActionResult DriverDataTable(TableServiceModel model)
+        public virtual ActionResult DriverDataTable(DriverTableServiceModel model)
         {
             return PartialView(model);
         }
@@ -95,7 +95,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             try
             {
-                var deleteResult = _driverService.Create(new DriverServiceModel()
+                var deleteResult = _driverService.Create(new OldDriverServiceModel()
                 {
                     CodigoOperario = CodigoOperario
                 });
@@ -112,7 +112,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
 
         [HttpPost]
-        public virtual JsonResult UpdateDriver(DriverServiceModel model)
+        public virtual JsonResult UpdateDriver(OldDriverServiceModel model)
         {
             try
             {
@@ -132,7 +132,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public virtual JsonResult CreateDriver(DriverServiceModel model)
+        public virtual JsonResult CreateDriver(OldDriverServiceModel model)
         {
             try
             {
@@ -158,7 +158,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult LoadFiles()
         {
-            DriverServiceModel model = new DriverServiceModel();
+            OldDriverServiceModel model = new OldDriverServiceModel();
             return PartialView("LoadFiles", model);
         }
     }

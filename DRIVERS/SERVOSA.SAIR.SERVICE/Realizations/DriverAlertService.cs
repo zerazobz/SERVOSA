@@ -11,21 +11,21 @@ using Elibom.APIClient;
 
 namespace SERVOSA.SAIR.SERVICE.Realizations
 {
-    public class VehicleAlertService : IVehicleAlertService
+    public class DriverAlertService : IDriverAlertService
     {
         private readonly IDriverVehicleAlertRepository _vehicleAlertRepo;
 
-        public VehicleAlertService(IDriverVehicleAlertRepository injectedVehicleAlert)
+        public DriverAlertService(IDriverVehicleAlertRepository injectedVehicleAlert)
         {
             _vehicleAlertRepo = injectedVehicleAlert;
         }
 
-        public IList<VehicleAlert> GetAlertsNotSended()
+        public IList<DriverAlert> GetAlertsNotSended()
         {
-            VehicleAlert vehicleAlertModel = null;
+            DriverAlert vehicleAlertModel = null;
             var vehicleCollection = _vehicleAlertRepo.GetAlertsNotSeneded().Select(va =>
             {
-                VehicleAlert.ToServiceModel(va, ref vehicleAlertModel);
+                DriverAlert.ToServiceModel(va, ref vehicleAlertModel);
                 return vehicleAlertModel;
             }).ToList();
             return vehicleCollection;
@@ -47,10 +47,10 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return rowsInserted;
         }
 
-        public int RegisterAlert(VehicleAlert model)
+        public int RegisterAlert(DriverAlert model)
         {
             DriverAlertDataModel dataModel = null;
-            VehicleAlert.ToDataModel(model, ref dataModel);
+            DriverAlert.ToDataModel(model, ref dataModel);
             var insertResult = _vehicleAlertRepo.RegisterAlert(dataModel);
             return insertResult;
         }

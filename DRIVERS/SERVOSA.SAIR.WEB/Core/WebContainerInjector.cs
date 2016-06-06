@@ -13,13 +13,13 @@ namespace SERVOSA.SAIR.WEB.Core
     {
         protected override void Initialize()
         {
-            Container.RegisterType<IVehicleService, VehicleService>();
             Container.RegisterType<IDriverService, DriverService>();
-            Container.RegisterType<IDBServices, DBServices>();
-            Container.RegisterType<ITableDataService, TableDataService>();
-            Container.RegisterType<IVehicleAlertService, VehicleAlertService>();
-            Container.RegisterType<ITypeService, TypeService>();
-            Container.RegisterType<IVehicleFileService, VehicleFileService>();
+            Container.RegisterType<IOldDriverService, OldDriverService>();
+            Container.RegisterType<IDriverDBServices, DriverDBServices>();
+            Container.RegisterType<IDriverTableDataService, DriverTableDataService>();
+            Container.RegisterType<IDriverAlertService, DriverAlertService>();
+            Container.RegisterType<IDriverTypeService, DriverTypeService>();
+            Container.RegisterType<IDriverFileService, DriverFileService>();
         }
     }
 }

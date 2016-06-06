@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models.Types
 {
-    public class TypeServiceModel
+    public class DriverTypeServiceModel
     {
         public string ConcatenatedCode { get; set; }
         public string TableCode { get; set; }
@@ -15,10 +15,10 @@ namespace SERVOSA.SAIR.SERVICE.Models.Types
         public string Description { get; set; }
         public string Notes { get; set; }
 
-        public static void ToServiceModel(DriverTypeModel dataModel, ref TypeServiceModel serviceModel)
+        public static void ToServiceModel(DriverTypeModel dataModel, ref DriverTypeServiceModel serviceModel)
         {
             if (dataModel != null)
-                serviceModel = new TypeServiceModel()
+                serviceModel = new DriverTypeServiceModel()
                 {
                     ConcatenatedCode = dataModel.TYPE_CodeConcatenated,
                     Description = dataModel.TYPE_cDescription,
@@ -30,7 +30,7 @@ namespace SERVOSA.SAIR.SERVICE.Models.Types
                 serviceModel = null;
         }
 
-        public static void ToDataModel(TypeServiceModel serviceModel, ref DriverTypeModel dataModel)
+        public static void ToDataModel(DriverTypeServiceModel serviceModel, ref DriverTypeModel dataModel)
         {
             if (serviceModel != null)
                 dataModel = new DriverTypeModel()

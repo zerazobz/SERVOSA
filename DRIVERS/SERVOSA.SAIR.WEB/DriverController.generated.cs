@@ -243,10 +243,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [NonAction]
-        partial void DriverDataTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.TableServiceModel model);
+        partial void DriverDataTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.DriverTableServiceModel model);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult DriverDataTable(SERVOSA.SAIR.SERVICE.Models.TableServiceModel model)
+        public override System.Web.Mvc.ActionResult DriverDataTable(SERVOSA.SAIR.SERVICE.Models.DriverTableServiceModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DriverDataTable);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -281,10 +281,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [NonAction]
-        partial void UpdateDriverOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, SERVOSA.SAIR.SERVICE.Models.DriverServiceModel model);
+        partial void UpdateDriverOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, SERVOSA.SAIR.SERVICE.Models.OldDriverServiceModel model);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult UpdateDriver(SERVOSA.SAIR.SERVICE.Models.DriverServiceModel model)
+        public override System.Web.Mvc.JsonResult UpdateDriver(SERVOSA.SAIR.SERVICE.Models.OldDriverServiceModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.UpdateDriver);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -293,10 +293,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [NonAction]
-        partial void CreateDriverOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, SERVOSA.SAIR.SERVICE.Models.DriverServiceModel model);
+        partial void CreateDriverOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, SERVOSA.SAIR.SERVICE.Models.OldDriverServiceModel model);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult CreateDriver(SERVOSA.SAIR.SERVICE.Models.DriverServiceModel model)
+        public override System.Web.Mvc.JsonResult CreateDriver(SERVOSA.SAIR.SERVICE.Models.OldDriverServiceModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CreateDriver);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

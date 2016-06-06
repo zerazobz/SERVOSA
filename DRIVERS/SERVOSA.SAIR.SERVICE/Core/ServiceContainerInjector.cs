@@ -21,7 +21,7 @@ namespace SERVOSA.SAIR.SERVICE.Core
             Container.RegisterType<IDriverDBColumnsRepository, DBRepository>();
             Container.RegisterType<IDriverTableDataRepository, TableDataRepository>();
             Container.RegisterType<IDriverVehicleAlertRepository, VehicleAlertRepository>();
-            Container.RegisterType<IVehicleAlertService, VehicleAlertService>();
+            Container.RegisterType<IDriverAlertService, DriverAlertService>();
             Container.RegisterType<IDriverTypeRepository, TypeRepository>();
             Container.RegisterType<IDriverVehicleFilesRepository, VehicleFilesRepository>();
         }

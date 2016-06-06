@@ -9,9 +9,9 @@ namespace SERVOSA.SAIR.WEB.Controllers
 {
     public class DriverDataController : Controller
     {
-        private readonly IDriverService _driverService;
+        private readonly IOldDriverService _driverService;
 
-        public DriverDataController(IDriverService injectedDriverService)
+        public DriverDataController(IOldDriverService injectedDriverService)
         {
             _driverService = injectedDriverService;
         }

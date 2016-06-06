@@ -12,12 +12,12 @@ using SERVOSA.SAIR.SERVICE.Models;
 
 namespace SERVOSA.SAIR.SERVICE.Realizations
 {
-    public class TableDataService : ITableDataService
+    public class DriverTableDataService : IDriverTableDataService
     {
         private readonly IDriverTableDataRepository _tableDataRepository;
-        private readonly IVehicleAlertService _vehicleAlertService;
+        private readonly IDriverAlertService _vehicleAlertService;
 
-        public TableDataService(IDriverTableDataRepository injectedTableDataRepo, IVehicleAlertService injectedVehiceAlertService)
+        public DriverTableDataService(IDriverTableDataRepository injectedTableDataRepo, IDriverAlertService injectedVehiceAlertService)
         {
             _tableDataRepository = injectedTableDataRepo;
             _vehicleAlertService = injectedVehiceAlertService;
@@ -104,16 +104,16 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
             {
                 bool isVariableData = true;
-                Dictionary<string, Tuple<SERVOSASqlTypes, Object>> tableData = model.ColumnsCollection.Where(col => !ServosaSingleton.Instance.AllConstantColumns.Contains(col.ColumnName))
+                Dictionary<string, Tuple<SERVOSASqlTypes, Object>> tableData = model.ColumnsCollection.Where(col => !ServosaDriverSingleton.Instance.AllConstantColumns.Contains(col.ColumnName))
                 .ToDictionary(col => col.ColumnName, col => new Tuple<SERVOSASqlTypes, object>(col.ColumnNamedType, col.ColumnValue));
 
-                var columnFK = model.ColumnsCollection.Where(c => c.ColumnName == ServosaSingleton.Instance.ConstantVehicleId).FirstOrDefault();
+                var columnFK = model.ColumnsCollection.Where(c => c.ColumnName == ServosaDriverSingleton.Instance.ConstantVehicleId).FirstOrDefault();
                 string fkValue = String.Empty;
                 var rawFkConvertion = columnFK.ColumnValue as string[];
                 if (rawFkConvertion.Length > 0)
                     fkValue = rawFkConvertion[0];
 
-                var columnIdentity = model.ColumnsCollection.Where(c => c.ColumnName == ServosaSingleton.Instance.ConstantIdentity).FirstOrDefault();
+                var columnIdentity = model.ColumnsCollection.Where(c => c.ColumnName == ServosaDriverSingleton.Instance.ConstantIdentity).FirstOrDefault();
                 string identityValue = String.Empty;
                 var rawIdentityConvertion = columnIdentity.ColumnValue as string[];
                 if (rawIdentityConvertion.Length > 0)
@@ -127,16 +127,16 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
             {
                 bool isVariableData = false;
-                Dictionary<string, Tuple<SERVOSASqlTypes, Object>> tableData = model.ColumnsCollection.Where(col => ServosaSingleton.Instance.AllConstantColumns.Contains(col.ColumnName))
+                Dictionary<string, Tuple<SERVOSASqlTypes, Object>> tableData = model.ColumnsCollection.Where(col => ServosaDriverSingleton.Instance.AllConstantColumns.Contains(col.ColumnName))
                 .ToDictionary(col => col.ColumnName, col => new Tuple<SERVOSASqlTypes, object>(col.ColumnNamedType, col.ColumnValue));
 
-                var columnFK = model.ColumnsCollection.Where(c => c.ColumnName == ServosaSingleton.Instance.VariableVehicleId).FirstOrDefault();
+                var columnFK = model.ColumnsCollection.Where(c => c.ColumnName == ServosaDriverSingleton.Instance.VariableVehicleId).FirstOrDefault();
                 string fkValue = String.Empty;
                 var rawFkConvertion = columnFK.ColumnValue as string[];
                 if (rawFkConvertion.Length > 0)
                     fkValue = rawFkConvertion[0];
 
-                var columnIdentity = model.ColumnsCollection.Where(c => c.ColumnName == ServosaSingleton.Instance.VariableIdentity).FirstOrDefault();
+                var columnIdentity = model.ColumnsCollection.Where(c => c.ColumnName == ServosaDriverSingleton.Instance.VariableIdentity).FirstOrDefault();
                 string identityValue = String.Empty;
                 var rawIdentityConvertion = columnIdentity.ColumnValue as string[];
                 if (rawIdentityConvertion.Length > 0)
@@ -154,8 +154,8 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
         private Dictionary<string, string> PrepareData(Dictionary<string, Tuple<SERVOSASqlTypes, object>> tableData, bool isUpdate, bool variableData)
         {
             string[] dataToFilter = isUpdate?
-                variableData ? ServosaSingleton.Instance.VariableNonUpdateColumns.ToArray() : ServosaSingleton.Instance.ConstantNonUpdateColumns.ToArray()
-                : variableData ? ServosaSingleton.Instance.VariableNonInsertColumns.ToArray() : ServosaSingleton.Instance.ConstantNonInsertColumns.ToArray();
+                variableData ? ServosaDriverSingleton.Instance.VariableNonUpdateColumns.ToArray() : ServosaDriverSingleton.Instance.ConstantNonUpdateColumns.ToArray()
+                : variableData ? ServosaDriverSingleton.Instance.VariableNonInsertColumns.ToArray() : ServosaDriverSingleton.Instance.ConstantNonInsertColumns.ToArray();
 
             var preCollectionData = tableData.Where(kvp => !dataToFilter.Contains(kvp.Key)).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
             Dictionary<string, string> dataPrepared = new Dictionary<string, string>();
@@ -198,18 +198,18 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return result;
         }
 
-        private VehicleAlert GetAlertModelFromDataDictionary(Dictionary<string, string> prmDataToSearch)
+        private DriverAlert GetAlertModelFromDataDictionary(Dictionary<string, string> prmDataToSearch)
         {
-            VehicleAlert modelToInsert = null;
+            DriverAlert modelToInsert = null;
             string dateName = String.Empty;
             DateTime dateAlert = DateTime.MinValue;
 
             int vehicleId;
             int daysToAlert;
-            Int32.TryParse(prmDataToSearch.Where(kvp => kvp.Key == ServosaSingleton.Instance.ConstantVehicleId).Select(kvp => kvp.Value).FirstOrDefault(), out vehicleId);
-            Int32.TryParse(prmDataToSearch.Where(kvp => kvp.Key == ServosaSingleton.Instance.ConstantDayToAlert).Select(kvp => kvp.Value).FirstOrDefault(), out daysToAlert);
+            Int32.TryParse(prmDataToSearch.Where(kvp => kvp.Key == ServosaDriverSingleton.Instance.ConstantVehicleId).Select(kvp => kvp.Value).FirstOrDefault(), out vehicleId);
+            Int32.TryParse(prmDataToSearch.Where(kvp => kvp.Key == ServosaDriverSingleton.Instance.ConstantDayToAlert).Select(kvp => kvp.Value).FirstOrDefault(), out daysToAlert);
 
-            var dataFilterred = prmDataToSearch.Where(kvp => ServosaSingleton.Instance.ConstantExpirationDate.Contains(kvp.Key));
+            var dataFilterred = prmDataToSearch.Where(kvp => ServosaDriverSingleton.Instance.ConstantExpirationDate.Contains(kvp.Key));
             foreach (var iKVP in dataFilterred)
             {
                 if (DateTime.TryParse(iKVP.Value.Replace("'", ""), out dateAlert))
@@ -217,7 +217,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             }
 
             if (!String.IsNullOrWhiteSpace(dateName))
-                modelToInsert = new VehicleAlert()
+                modelToInsert = new DriverAlert()
                 {
                     AlertName = dateName,
                     DateToAlert = dateAlert,

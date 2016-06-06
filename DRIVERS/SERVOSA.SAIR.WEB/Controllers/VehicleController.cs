@@ -11,10 +11,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
 {
     public partial class VehicleController : Controller
     {
-        private IVehicleService _vehicleService;
-        private ITypeService _typeService;
+        private IDriverService _vehicleService;
+        private IDriverTypeService _typeService;
 
-        public VehicleController(IVehicleService injectedVehicleServ, ITypeService injectedTypeService)
+        public VehicleController(IDriverService injectedVehicleServ, IDriverTypeService injectedTypeService)
         {
             _vehicleService = injectedVehicleServ;
             _typeService = injectedTypeService;
