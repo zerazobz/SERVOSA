@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class VehicleServiceModel : IVehicleServiceModel
+    public class DriverServiceModel : IDriverServiceModel
     {
-        public VehicleServiceModel()
+        public DriverServiceModel()
         {
             TablaMarca = "BRND";
             TablaEstado = "VSTA";
@@ -45,10 +45,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
         [Display(Name = "Dirección")]
         public string Address { get; set; }
 
-        public static void ToViewModel(DriverModel model, ref VehicleServiceModel viewModel)
+        public static void ToViewModel(DriverModel model, ref DriverServiceModel viewModel)
         {
             if (model != null)
-                viewModel = new VehicleServiceModel()
+                viewModel = new DriverServiceModel()
                 {
                     Codigo = model.Codigo,
                     TablaEstado = model.TYPE_cTABVSTA,
@@ -73,7 +73,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 viewModel = null;
         }
 
-        public static void ToModel(VehicleServiceModel viewModel, ref DriverModel model)
+        public static void ToModel(DriverServiceModel viewModel, ref DriverModel model)
         {
             if (viewModel != null)
                 model = new DriverModel()

@@ -97,7 +97,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
         //        return InsertTableData(model.TableName, tableData);
         //}
 
-        public Tuple<bool, int, string> InsertOrUpdateData(VehicleVariableDataServiceModel model)
+        public Tuple<bool, int, string> InsertOrUpdateData(DriverVariableDataServiceModel model)
         {
             Tuple<bool, int, string> resultForConstants = null;
             Tuple<bool, int, string> resultForVariables = null;

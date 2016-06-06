@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Contracts
 {
-    public interface IDriverService : IServiceRepository<VehicleServiceModel>
+    public interface IDriverService : IServiceRepository<DriverServiceModel>
     {
-        IList<VehicleServiceModel> GetAllFiltered(int minRow, int maxRow);
-        IList<VehicleServiceModel> GetAllFilteredBySearchTerm(string searchTerm);
+        IList<DriverServiceModel> GetAllFiltered(int minRow, int maxRow);
+        IList<DriverServiceModel> GetAllFilteredBySearchTerm(string searchTerm);
         IList<VehicleHeadRowServiceModel> GetVehicleRowDataForTable(string tableName);
-        VehicleVariableDataServiceModel GetVehicleVariableTableData(string tableName, int vehicleCode);
+        DriverVariableDataServiceModel GetVehicleVariableTableData(string tableName, int vehicleCode);
         IList<DriverRelatedTableServiceModel> GetRelatedTablesToVehicle();
         IList<string> GetListRelatedTablesToVehicle();
         void GenerateReportForTable(string tableName, Stream streamData);

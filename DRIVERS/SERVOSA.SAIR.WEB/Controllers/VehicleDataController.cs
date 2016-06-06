@@ -61,7 +61,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult DatosVariableVehiculo(VehicleVariableDataServiceModel model)
+        public virtual ActionResult DatosVariableVehiculo(DriverVariableDataServiceModel model)
         {
             if (ModelState.IsValid)
             {
@@ -115,14 +115,16 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult GetFileModalManager(string tableName, int vehicleCode)
         {
-            DriverFiles vehicleFileModel = new DriverFiles();
-            IVehicleServiceModel vehicleData = _vehicleService.GetById(vehicleCode);
-            vehicleFileModel.Placa = vehicleData.Placa;
-            vehicleFileModel.CodigoTipoUnidad = vehicleData.CodigoTipoUnidad;
-            vehicleFileModel.Marca = vehicleData.Marca;
-            vehicleFileModel.TableName = tableName;
-            vehicleFileModel.Codigo = vehicleCode;
-            return PartialView(vehicleFileModel);
+            DriverFiles driverFileModel = new DriverFiles();
+            IDriverServiceModel driverData = _vehicleService.GetById(vehicleCode);
+            driverFileModel.Placa = driverData.Placa;
+            driverFileModel.CodigoTipoUnidad = driverData.CodigoTipoUnidad;
+            driverFileModel.Marca = driverData.Marca;
+            driverFileModel.TableName = tableName;
+            driverFileModel.Codigo = vehicleCode;
+            driverFileModel.Address = driverData.Address;
+            driverFileModel.BirthDate = driverData.BirthDate;
+            return PartialView(driverFileModel);
         }
 
         [HttpPost]
@@ -244,7 +246,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             }
         }
 
-        private void PopulateColumnsValues(VehicleVariableDataServiceModel dataToWork)
+        private void PopulateColumnsValues(DriverVariableDataServiceModel dataToWork)
         {
             dataToWork.ColumnsCollection.ForEach(cL =>
             {

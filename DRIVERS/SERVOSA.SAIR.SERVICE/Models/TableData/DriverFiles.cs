@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models.TableData
 {
-    public class DriverFiles : MessageViewModel, IDriverTableServiceModel, IVehicleServiceModel
+    public class DriverFiles : MessageViewModel, IDriverTableServiceModel, IDriverServiceModel
     {
         #region DatosVehiculo
 
@@ -25,7 +25,12 @@ namespace SERVOSA.SAIR.SERVICE.Models.TableData
         public int TotalRows { get; set; }
         public string CodigoTipoUnidad { get; set; }
         public string DescripcionTipoUnidad { get; set; }
+        [Display(Name = "Nombres")]
         public string Placa { get; set; }
+        [Display(Name = "Fecha de Nacimiento")]
+        public DateTime? BirthDate { get; set; }
+        [Display(Name = "Direccion")]
+        public string Address { get; set; }
 
         #endregion
 

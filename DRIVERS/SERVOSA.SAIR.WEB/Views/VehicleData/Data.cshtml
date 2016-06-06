@@ -31,10 +31,10 @@
         @foreach (var iTableName in Model)
         {
             <div role="tabpanel" class="tab-pane" id="@iTableName">
-                <div class="innercontenttab" data-containerid="#@iTableName">
+                <div class="innercontenttab well" data-containerid="#@iTableName">
                     Content Tab @iTableName
                 </div>
-                <div class="innerfilestable" data-tablename="@iTableName" data-vehiclecode="@((int)ViewBag.VehicleCode)">
+                <div class="innerfilestable well" data-tablename="@iTableName" data-vehiclecode="@((int)ViewBag.VehicleCode)">
                     <div id="@("filetable" + iTableName)">
 
                     </div>

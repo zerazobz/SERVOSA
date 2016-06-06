@@ -244,10 +244,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [NonAction]
-        partial void UpdateVehicleOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, SERVOSA.SAIR.SERVICE.Models.VehicleServiceModel model);
+        partial void UpdateVehicleOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, SERVOSA.SAIR.SERVICE.Models.DriverServiceModel model);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult UpdateVehicle(SERVOSA.SAIR.SERVICE.Models.VehicleServiceModel model)
+        public override System.Web.Mvc.JsonResult UpdateVehicle(SERVOSA.SAIR.SERVICE.Models.DriverServiceModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.UpdateVehicle);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -256,10 +256,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [NonAction]
-        partial void CreateVehicleOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, SERVOSA.SAIR.SERVICE.Models.VehicleServiceModel model);
+        partial void CreateVehicleOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, SERVOSA.SAIR.SERVICE.Models.DriverServiceModel model);
 
         [NonAction]
-        public override System.Web.Mvc.JsonResult CreateVehicle(SERVOSA.SAIR.SERVICE.Models.VehicleServiceModel model)
+        public override System.Web.Mvc.JsonResult CreateVehicle(SERVOSA.SAIR.SERVICE.Models.DriverServiceModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.CreateVehicle);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

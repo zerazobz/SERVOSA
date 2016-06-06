@@ -87,7 +87,7 @@
     <Compile Include="Models\OldDriverServiceModel.cs" />
     <Compile Include="Models\Driver\OldDriverRelatedTableServiceModel.cs" />
     <Compile Include="Models\IDriverTableServiceModel.cs" />
-    <Compile Include="Models\Vehicle\IVehicleServiceModel.cs" />
+    <Compile Include="Models\Vehicle\IDriverServiceModel.cs" />
     <Compile Include="Models\DriverTableColumnServiceModel.cs" />
     <Compile Include="Models\TableData\DriverAlert.cs" />
     <Compile Include="Models\TableData\DriverFiles.cs" />
@@ -95,9 +95,9 @@
     <Compile Include="Models\Types\DriverTypeServiceModel.cs" />
     <Compile Include="Models\Vehicle\DriverDetailRowServiceModel.cs" />
     <Compile Include="Models\Vehicle\DriverFileServiceModel.cs" />
-    <Compile Include="Models\Vehicle\VehicleHeadRowServiceModel.cs" />
-    <Compile Include="Models\Vehicle\VehicleServiceModel.cs" />
-    <Compile Include="Models\Vehicle\VehicleVariableDataServiceModel.cs" />
+    <Compile Include="Models\Vehicle\DriverHeadRowServiceModel.cs" />
+    <Compile Include="Models\Vehicle\DriverServiceModel.cs" />
+    <Compile Include="Models\Vehicle\DriverVariableDataServiceModel.cs" />
     <Compile Include="Models\Vehicle\DriverRelatedTableServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Realizations\DriverDBServices.cs" />

@@ -1,6 +1,8 @@
-﻿namespace SERVOSA.SAIR.SERVICE.Models
+﻿using System;
+
+namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public interface IVehicleServiceModel
+    public interface IDriverServiceModel
     {
         int Codigo { get; set; }
         string TablaEstado { get; set; }
@@ -16,5 +18,7 @@
         string CodigoTipoUnidad { get; set; }
         string DescripcionTipoUnidad { get; set; }
         string Placa { get; set; }
+        DateTime? BirthDate { get; set; }
+        string Address { get; set; }
     }
 }

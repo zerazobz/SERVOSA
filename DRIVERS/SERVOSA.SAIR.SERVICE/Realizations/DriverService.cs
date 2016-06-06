@@ -24,62 +24,62 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             _vehicleRepository = injectedVehicleRepo;
         }
 
-        public int Create(VehicleServiceModel viewModel)
+        public int Create(DriverServiceModel viewModel)
         {
             DriverModel model = null;
-            VehicleServiceModel.ToModel(viewModel, ref model);
+            DriverServiceModel.ToModel(viewModel, ref model);
             return _vehicleRepository.Create(model);
         }
 
-        public int Delete(VehicleServiceModel viewModel)
+        public int Delete(DriverServiceModel viewModel)
         {
             DriverModel model = null;
-            VehicleServiceModel.ToModel(viewModel, ref model);
+            DriverServiceModel.ToModel(viewModel, ref model);
             return _vehicleRepository.Delete(model);
         }
 
-        public IList<VehicleServiceModel> GetAll()
+        public IList<DriverServiceModel> GetAll()
         {
-            VehicleServiceModel viewModel = null;
+            DriverServiceModel viewModel = null;
             return _vehicleRepository.GetAll().Select(v =>
             {
-                VehicleServiceModel.ToViewModel(v, ref viewModel);
+                DriverServiceModel.ToViewModel(v, ref viewModel);
                 return viewModel;
             }).ToList();
         }
 
-        public IList<VehicleServiceModel> GetAllFiltered(int minRow, int maxRow)
+        public IList<DriverServiceModel> GetAllFiltered(int minRow, int maxRow)
         {
-            VehicleServiceModel vehicleViewModel = null;
+            DriverServiceModel vehicleViewModel = null;
             return _vehicleRepository.GetAllFiltered(minRow, maxRow).Select(v =>
             {
-                VehicleServiceModel.ToViewModel(v, ref vehicleViewModel);
+                DriverServiceModel.ToViewModel(v, ref vehicleViewModel);
                 return vehicleViewModel;
             }).ToList();
         }
 
-        public IList<VehicleServiceModel> GetAllFilteredBySearchTerm(string searchTerm)
+        public IList<DriverServiceModel> GetAllFilteredBySearchTerm(string searchTerm)
         {
-            VehicleServiceModel vehicleViewModel = null;
+            DriverServiceModel vehicleViewModel = null;
             return _vehicleRepository.GetAllFilteredBySearchTerm(searchTerm).Select(v =>
             {
-                VehicleServiceModel.ToViewModel(v, ref vehicleViewModel);
+                DriverServiceModel.ToViewModel(v, ref vehicleViewModel);
                 return vehicleViewModel;
             }).ToList();
         }
 
-        public VehicleServiceModel GetById(int id)
+        public DriverServiceModel GetById(int id)
         {
-            VehicleServiceModel vehicleServiceModel = null;
+            DriverServiceModel vehicleServiceModel = null;
             var vehicleResult = _vehicleRepository.GetById(id);
-            VehicleServiceModel.ToViewModel(vehicleResult, ref vehicleServiceModel);
+            DriverServiceModel.ToViewModel(vehicleResult, ref vehicleServiceModel);
             return vehicleServiceModel;
         }
 
-        public int Update(VehicleServiceModel viewModel)
+        public int Update(DriverServiceModel viewModel)
         {
             DriverModel model = null;
-            VehicleServiceModel.ToModel(viewModel, ref model);
+            DriverServiceModel.ToModel(viewModel, ref model);
             return _vehicleRepository.Update(model);
         }
 
@@ -95,11 +95,11 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return vehicleData;
         }
 
-        public VehicleVariableDataServiceModel GetVehicleVariableTableData(string tableName, int vehicleCode)
+        public DriverVariableDataServiceModel GetVehicleVariableTableData(string tableName, int vehicleCode)
         {
-            VehicleVariableDataServiceModel serviceModel = null;
+            DriverVariableDataServiceModel serviceModel = null;
             var dataResult = _vehicleRepository.GetVehicleVariableTableData(tableName, vehicleCode);
-            VehicleVariableDataServiceModel.ToServiceModel(dataResult, ref serviceModel);
+            DriverVariableDataServiceModel.ToServiceModel(dataResult, ref serviceModel);
             serviceModel.IsSuccessful = true;
             return serviceModel;
         }

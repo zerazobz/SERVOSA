@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class VehicleVariableDataServiceModel : MessageViewModel
+    public class DriverVariableDataServiceModel : MessageViewModel
     {
-        public VehicleVariableDataServiceModel()
+        public DriverVariableDataServiceModel()
         {
             ColumnsCollection = new List<ColumnDataModel>();
             IsSuccessful = true;
@@ -21,11 +21,11 @@ namespace SERVOSA.SAIR.SERVICE.Models
 
         public List<ColumnDataModel> ColumnsCollection { get; set; }
 
-        public static void ToServiceModel(IList<DriverVariableTableDataModel> dataModel, ref VehicleVariableDataServiceModel serviceModel)
+        public static void ToServiceModel(IList<DriverVariableTableDataModel> dataModel, ref DriverVariableDataServiceModel serviceModel)
         {
             if (dataModel != null && dataModel.Count > 0)
             {
-                serviceModel = new VehicleVariableDataServiceModel();
+                serviceModel = new DriverVariableDataServiceModel();
                 serviceModel.TableName = dataModel.First().TableName;
                 serviceModel.ObjectId = dataModel.First().ObjectId;
                 serviceModel.ColumnsCollection = dataModel.Select(e =>
@@ -62,7 +62,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 serviceModel = null;
         }
 
-        public static void ToDataModel(VehicleVariableDataServiceModel serviceModel, ref DriverVariableTableDataModel dataModel)
+        public static void ToDataModel(DriverVariableDataServiceModel serviceModel, ref DriverVariableTableDataModel dataModel)
         {
             if (serviceModel != null)
                 dataModel = new DriverVariableTableDataModel()
