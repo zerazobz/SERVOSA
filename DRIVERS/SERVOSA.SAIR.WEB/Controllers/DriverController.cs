@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace SERVOSA.SAIR.WEB.Controllers
 {
+    [Authorize]
     public partial class DriverController : Controller
     {
         private IOldDriverService _driverService;

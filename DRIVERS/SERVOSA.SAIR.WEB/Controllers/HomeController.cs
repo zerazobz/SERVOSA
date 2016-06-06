@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace SERVOSA.SAIR.WEB.Controllers
 {
+    [Authorize]
     public partial class HomeController : Controller
     {
         private IDriverService _vehicleServices;
