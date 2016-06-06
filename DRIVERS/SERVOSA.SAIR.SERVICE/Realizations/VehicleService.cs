@@ -17,23 +17,23 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 {
     public class VehicleService : IVehicleService
     {
-        private readonly IVehicleRepository _vehicleRepository;
+        private readonly IDriverRepository _vehicleRepository;
 
-        public VehicleService(IVehicleRepository injectedVehicleRepo)
+        public VehicleService(IDriverRepository injectedVehicleRepo)
         {
             _vehicleRepository = injectedVehicleRepo;
         }
 
         public int Create(VehicleServiceModel viewModel)
         {
-            VehicleModel model = null;
+            DriverModel model = null;
             VehicleServiceModel.ToModel(viewModel, ref model);
             return _vehicleRepository.Create(model);
         }
 
         public int Delete(VehicleServiceModel viewModel)
         {
-            VehicleModel model = null;
+            DriverModel model = null;
             VehicleServiceModel.ToModel(viewModel, ref model);
             return _vehicleRepository.Delete(model);
         }
@@ -78,7 +78,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
         public int Update(VehicleServiceModel viewModel)
         {
-            VehicleModel model = null;
+            DriverModel model = null;
             VehicleServiceModel.ToModel(viewModel, ref model);
             return _vehicleRepository.Update(model);
         }

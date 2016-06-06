@@ -21,7 +21,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
 
         public List<ColumnDataModel> ColumnsCollection { get; set; }
 
-        public static void ToServiceModel(IList<VehicleVariableTableDataModel> dataModel, ref VehicleVariableDataServiceModel serviceModel)
+        public static void ToServiceModel(IList<DriverVariableTableDataModel> dataModel, ref VehicleVariableDataServiceModel serviceModel)
         {
             if (dataModel != null && dataModel.Count > 0)
             {
@@ -62,10 +62,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 serviceModel = null;
         }
 
-        public static void ToDataModel(VehicleVariableDataServiceModel serviceModel, ref VehicleVariableTableDataModel dataModel)
+        public static void ToDataModel(VehicleVariableDataServiceModel serviceModel, ref DriverVariableTableDataModel dataModel)
         {
             if (serviceModel != null)
-                dataModel = new VehicleVariableTableDataModel()
+                dataModel = new DriverVariableTableDataModel()
                 {
                     ObjectId = serviceModel.ObjectId,
                     TableName = serviceModel.TableName

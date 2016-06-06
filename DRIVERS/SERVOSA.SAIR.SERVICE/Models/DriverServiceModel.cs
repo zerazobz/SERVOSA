@@ -22,7 +22,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public int RowsAffected { get; set; }
         public bool IsSuccessful { get; set; }
         public string Message { get; set; }
-        public static void ToViewModel(DriverModel model, ref DriverServiceModel viewModel)
+        public static void ToViewModel(DriverOldModel model, ref DriverServiceModel viewModel)
         {
             if (model != null)
                 viewModel = new DriverServiceModel()
@@ -42,10 +42,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 viewModel = null;
         }
 
-        public static void ToModel(DriverServiceModel viewModel, ref DriverModel model)
+        public static void ToModel(DriverServiceModel viewModel, ref DriverOldModel model)
         {
             if (viewModel != null)
-                model = new DriverModel()
+                model = new DriverOldModel()
                 {
                     OPER_Id = viewModel.CodigoOperario,
                     OPER_cApellidoPaterno = viewModel.ApellidoPaternoOperario,

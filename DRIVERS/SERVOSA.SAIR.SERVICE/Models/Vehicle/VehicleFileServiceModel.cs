@@ -20,7 +20,7 @@ namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
 
         public string ComposedPrimaryKey { get; set; }
 
-        public static void ToServiceModel(VehicleFileModel dataModel, ref VehicleFileServiceModel serviceModel)
+        public static void ToServiceModel(DriverFileModel dataModel, ref VehicleFileServiceModel serviceModel)
         {
             if (dataModel != null)
                 serviceModel = new VehicleFileServiceModel()
@@ -39,10 +39,10 @@ namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
                 serviceModel = null;
         }
 
-        public static void ToDataModel(VehicleFileServiceModel serviceModel, ref VehicleFileModel dataModel)
+        public static void ToDataModel(VehicleFileServiceModel serviceModel, ref DriverFileModel dataModel)
         {
             if (serviceModel != null)
-                dataModel = new VehicleFileModel()
+                dataModel = new DriverFileModel()
                 {
                     VEFI_DataFile = serviceModel.DataFile,
                     VEFI_DateCreated = serviceModel.DateCreated,

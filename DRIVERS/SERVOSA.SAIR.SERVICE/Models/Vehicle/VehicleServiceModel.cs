@@ -45,7 +45,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
         [Display(Name = "Dirección")]
         public string Address { get; set; }
 
-        public static void ToViewModel(VehicleModel model, ref VehicleServiceModel viewModel)
+        public static void ToViewModel(DriverModel model, ref VehicleServiceModel viewModel)
         {
             if (model != null)
                 viewModel = new VehicleServiceModel()
@@ -73,10 +73,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 viewModel = null;
         }
 
-        public static void ToModel(VehicleServiceModel viewModel, ref VehicleModel model)
+        public static void ToModel(VehicleServiceModel viewModel, ref DriverModel model)
         {
             if (viewModel != null)
-                model = new VehicleModel()
+                model = new DriverModel()
                 {
                     Codigo = viewModel.Codigo,
                     //TYPE_cTABVSTA = viewModel.EstadoConcatenado.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(),

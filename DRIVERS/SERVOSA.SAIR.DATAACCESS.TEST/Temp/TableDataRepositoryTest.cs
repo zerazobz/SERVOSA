@@ -8,7 +8,7 @@ namespace SERVOSA.SAIR.DATAACCESS.TEST.Temp
     [TestClass]
     public class TableDataRepositoryTest
     {
-        private ITableDataRepository _tableDataRepository;
+        private IDriverTableDataRepository _tableDataRepository;
 
         [TestInitialize]
         public void InitializeTest()

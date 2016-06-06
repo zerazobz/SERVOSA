@@ -13,9 +13,9 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 {
     public class VehicleAlertService : IVehicleAlertService
     {
-        private readonly IVehicleAlertRepository _vehicleAlertRepo;
+        private readonly IDriverVehicleAlertRepository _vehicleAlertRepo;
 
-        public VehicleAlertService(IVehicleAlertRepository injectedVehicleAlert)
+        public VehicleAlertService(IDriverVehicleAlertRepository injectedVehicleAlert)
         {
             _vehicleAlertRepo = injectedVehicleAlert;
         }
@@ -49,7 +49,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
         public int RegisterAlert(VehicleAlert model)
         {
-            VehicleAlertDataModel dataModel = null;
+            DriverAlertDataModel dataModel = null;
             VehicleAlert.ToDataModel(model, ref dataModel);
             var insertResult = _vehicleAlertRepo.RegisterAlert(dataModel);
             return insertResult;

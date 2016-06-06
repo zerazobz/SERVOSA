@@ -21,7 +21,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public int SystemType { get; set; }
         public string TypeName { get; set; }
 
-        public static void ToServiceModel(TableColumnModel model, ref TableColumnServiceModel viewModel)
+        public static void ToServiceModel(DriverTableColumnModel model, ref TableColumnServiceModel viewModel)
         {
             if (model != null)
                 viewModel = new TableColumnServiceModel()
@@ -39,10 +39,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 viewModel = null;
         }
 
-        public static void ToDataModel(TableColumnServiceModel viewModel, ref TableColumnModel model)
+        public static void ToDataModel(TableColumnServiceModel viewModel, ref DriverTableColumnModel model)
         {
             if (viewModel != null)
-                model = new TableColumnModel()
+                model = new DriverTableColumnModel()
                 {
                     ColumnName = viewModel.ColumnName,
                     ColumnNormalizedName = viewModel.ColumnNormalizedName,

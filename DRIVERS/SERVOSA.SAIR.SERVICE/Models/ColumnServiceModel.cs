@@ -26,7 +26,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
 
         public SelectList ListaTipos { get; set; }
 
-        public static void ToViewModel(ColumnModel model, ref ColumnServiceModel viewModelResult)
+        public static void ToViewModel(DriverColumnModel model, ref ColumnServiceModel viewModelResult)
         {
             if (model != null)
                 viewModelResult = new ColumnServiceModel()
@@ -40,10 +40,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 viewModelResult = null;
         }
 
-        public static void ToModel(ColumnServiceModel viewModel, ref ColumnModel modelResult)
+        public static void ToModel(ColumnServiceModel viewModel, ref DriverColumnModel modelResult)
         {
             if (viewModel != null)
-                modelResult = new ColumnModel()
+                modelResult = new DriverColumnModel()
                 {
                     ColumnName = viewModel.ColumnName,
                     NormalizedTableName = viewModel.TableNormalizedName,

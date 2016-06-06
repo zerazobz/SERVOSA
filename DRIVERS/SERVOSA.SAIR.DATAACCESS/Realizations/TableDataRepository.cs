@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
-    public class TableDataRepository : ITableDataRepository
+    public class TableDataRepository : IDriverTableDataRepository
     {
         private readonly Database _servosaDB;
         public TableDataRepository()

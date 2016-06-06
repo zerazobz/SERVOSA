@@ -9,7 +9,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
-    public class VehicleAlertRepository : IVehicleAlertRepository
+    public class VehicleAlertRepository : IDriverVehicleAlertRepository
     {
         private readonly Database _servosaDB;
         public VehicleAlertRepository()
@@ -18,15 +18,15 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             _servosaDB = databaseFactory.CreateDefault();
         }
 
-        public IList<VehicleAlertDataModel> GetAlertsNotSeneded()
+        public IList<DriverAlertDataModel> GetAlertsNotSeneded()
         {
             object[] parameters = new object[] { };
-            IRowMapper<VehicleAlertDataModel> vehicleAlertRowMapper = MapBuilder<VehicleAlertDataModel>.MapAllProperties().Build();
+            IRowMapper<DriverAlertDataModel> vehicleAlertRowMapper = MapBuilder<DriverAlertDataModel>.MapAllProperties().Build();
             var vehicleAlertCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEALS_TodosNoEnviados", vehicleAlertRowMapper, parameters);
             return vehicleAlertCollection.ToList();
         }
 
-        public int RegisterAlert(VehicleAlertDataModel model)
+        public int RegisterAlert(DriverAlertDataModel model)
         {
             object[] parameters = new object[] { model.VEAL_TableName, model.VEAL_DaysToAlert, model.VEAL_DateToAlert, model.VEAL_AlertName, model.VEAL_AlertSended, model.VEHI_ID };
             var resultInsert = _servosaDB.ExecuteNonQuery("SAIR_VEALI", parameters);

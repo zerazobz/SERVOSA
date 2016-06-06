@@ -10,7 +10,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
-    public class DBRepository : IDBColumnsRepository, IDBTablesRepository
+    public class DBRepository : IDriverDBColumnsRepository, IDBTablesRepository
     {
         private Database _servosaDB;
 
@@ -20,7 +20,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             _servosaDB = _databaseFactory.CreateDefault();
         }
 
-        public int Create(TableModel entity)
+        public int Create(DriverTableModel entity)
         {
             object[] parameters = new object[] { entity.TableName, null, null };
 
@@ -37,7 +37,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             }
         }
 
-        public Tuple<int, TableModel> CreateTableAndReturnsNormalizedName(TableModel entity)
+        public Tuple<int, DriverTableModel> CreateTableAndReturnsNormalizedName(DriverTableModel entity)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                     int tmpValue;
                     Int32.TryParse(objectIdOutput.ToString(), out tmpValue);
 
-                    return new Tuple<int, TableModel>(resultExecution, new TableModel()
+                    return new Tuple<int, DriverTableModel>(resultExecution, new DriverTableModel()
                     {
                         TableName = entity.TableName,
                         TableNormalizedName = normalizedNameOutput,
@@ -61,11 +61,11 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             }
             catch (Exception ex)
             {
-                return new Tuple<int, TableModel>(-1, entity);
+                return new Tuple<int, DriverTableModel>(-1, entity);
             }
         }
 
-        public Tuple<int, ColumnModel> CreateColumnAndReturnNormalizedName(ColumnModel model)
+        public Tuple<int, DriverColumnModel> CreateColumnAndReturnNormalizedName(DriverColumnModel model)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                 {
                     var resultExecutionj = _servosaDB.ExecuteNonQuery(createCommand);
                     var outputValue = _servosaDB.GetParameterValue(createCommand, "@normalizedColumnName").ToString();
-                    return new Tuple<int, ColumnModel>(resultExecutionj, new ColumnModel()
+                    return new Tuple<int, DriverColumnModel>(resultExecutionj, new DriverColumnModel()
                     {
                         NormalizedTableName = model.NormalizedTableName,
                         ColumnName = model.ColumnName,
@@ -85,11 +85,11 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             }
             catch (Exception ex)
             {
-                return new Tuple<int, ColumnModel>(-1, model);
+                return new Tuple<int, DriverColumnModel>(-1, model);
             }
         }
 
-        public int Create(ColumnModel entity)
+        public int Create(DriverColumnModel entity)
         {
             throw new NotImplementedException();
             //object[] parameters = new object[] { entity.TableName, entity.ColumnName, entity.DataType };
@@ -100,12 +100,12 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             //}
         }
 
-        public int Delete(TableModel entity)
+        public int Delete(DriverTableModel entity)
         {
             throw new NotImplementedException();
         }
 
-        public int Delete(ColumnModel entity)
+        public int Delete(DriverColumnModel entity)
         {
             object[] parameters = new object[] { entity.NormalizedTableName, entity.ColumnName };
             using (var deleteColumnCommand = _servosaDB.GetStoredProcCommand("SAIR_DROPCOLUMNTABLE", parameters))
@@ -115,51 +115,51 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             }
         }
 
-        public IList<ColumnModel> GetAll()
+        public IList<DriverColumnModel> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public ColumnModel GetById(int id)
+        public DriverColumnModel GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public int Update(TableModel entity)
+        public int Update(DriverTableModel entity)
         {
             throw new NotImplementedException();
         }
 
-        public int Update(ColumnModel entity)
+        public int Update(DriverColumnModel entity)
         {
             throw new NotImplementedException();
         }
 
-        IList<TableModel> IRepository<TableModel>.GetAll()
+        IList<DriverTableModel> IRepository<DriverTableModel>.GetAll()
         {
             object[] parameters = new object[] { };
-            IRowMapper<TableModel> tableRowMapper = MapBuilder<TableModel>.MapAllProperties().Build();
+            IRowMapper<DriverTableModel> tableRowMapper = MapBuilder<DriverTableModel>.MapAllProperties().Build();
             var allTables = _servosaDB.ExecuteSprocAccessor("SAIR_SELECTTABLES", tableRowMapper, parameters);
             return allTables.ToList();
         }
 
-        public IList<TableColumnModel> ListAllVehicleVarsTablesWithDefinition()
+        public IList<DriverTableColumnModel> ListAllVehicleVarsTablesWithDefinition()
         {
             object[] parameters = new object[] { "vehiclevars" };
-            IRowMapper<TableColumnModel> tableRowMapper = MapBuilder<TableColumnModel>.MapAllProperties().Build();
+            IRowMapper<DriverTableColumnModel> tableRowMapper = MapBuilder<DriverTableColumnModel>.MapAllProperties().Build();
             var allTables = _servosaDB.ExecuteSprocAccessor("SAIR_LISTTABLESANDCOLUMNS", tableRowMapper, parameters);
             return allTables.ToList();
         }
 
-        public IList<TableColumnModel> ListAllDriverVarsTablesWithDefinition()
+        public IList<DriverTableColumnModel> ListAllDriverVarsTablesWithDefinition()
         {
             object[] parameters = new object[] { "drivervars" };
-            IRowMapper<TableColumnModel> tableRowMapper = MapBuilder<TableColumnModel>.MapAllProperties().Build();
+            IRowMapper<DriverTableColumnModel> tableRowMapper = MapBuilder<DriverTableColumnModel>.MapAllProperties().Build();
             var allTables = _servosaDB.ExecuteSprocAccessor("SAIR_LISTTABLESANDCOLUMNS", tableRowMapper, parameters);
             return allTables.ToList();
         }
 
-        TableModel IRepository<TableModel>.GetById(int id)
+        DriverTableModel IRepository<DriverTableModel>.GetById(int id)
         {
             throw new NotImplementedException();
         }

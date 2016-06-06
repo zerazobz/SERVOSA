@@ -9,7 +9,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
-    public class TypeRepository : ITypeRepository
+    public class TypeRepository : IDriverTypeRepository
     {
         private Database _servosaDatabase;
 
@@ -19,10 +19,10 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             _servosaDatabase = providerFactory.CreateDefault();
         }
 
-        public IList<TypeModel> GetAllByTable(string tableCode)
+        public IList<DriverTypeModel> GetAllByTable(string tableCode)
         {
             object[] parameters = new object[] { tableCode };
-            IRowMapper<TypeModel> typeRowMapper = MapBuilder<TypeModel>.MapAllProperties().Build();
+            IRowMapper<DriverTypeModel> typeRowMapper = MapBuilder<DriverTypeModel>.MapAllProperties().Build();
             var collectionTypes = _servosaDatabase.ExecuteSprocAccessor("SAIR_TYPES_AllByTable", typeRowMapper, parameters);
             return collectionTypes.ToList();
         }

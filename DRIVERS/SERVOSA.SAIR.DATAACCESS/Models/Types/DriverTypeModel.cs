@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Models.Types
 {
-    public class TypeModel
+    public class DriverTypeModel
     {
         public string TYPE_CodeConcatenated { get; set; }
         public string TYPE_cCodTable { get; set; }

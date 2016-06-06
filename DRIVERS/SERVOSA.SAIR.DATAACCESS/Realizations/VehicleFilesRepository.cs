@@ -9,7 +9,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
-    public class VehicleFilesRepository : IVehicleFilesRepository
+    public class VehicleFilesRepository : IDriverVehicleFilesRepository
     {
         private Database _servosaDb;
         public VehicleFilesRepository()
@@ -18,22 +18,22 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             _servosaDb = providerFactory.CreateDefault();
         }
 
-        public int DeleteVehicle(VehicleFileModel model)
+        public int DeleteVehicle(DriverFileModel model)
         {
             object[] deleteParameters = new object[] { model.VEHI_VEHIID, model.VEFI_TableName, model.VEFI_FileName };
             var deleteResult = _servosaDb.ExecuteNonQuery("SAIR_VEFID", deleteParameters);
             return deleteResult;
         }
 
-        public IList<VehicleFileModel> GetListVehicles(string tableName, int vehicleCode)
+        public IList<DriverFileModel> GetListVehicles(string tableName, int vehicleCode)
         {
-            IRowMapper<VehicleFileModel> vehicleFileMapper = MapBuilder<VehicleFileModel>.MapAllProperties().Build();
+            IRowMapper<DriverFileModel> vehicleFileMapper = MapBuilder<DriverFileModel>.MapAllProperties().Build();
             object[] listVehicleParameters = new object[] { vehicleCode, tableName };
             var listVehicles = _servosaDb.ExecuteSprocAccessor("SAIR_VEFIS_ByTableNameVehicle", vehicleFileMapper, listVehicleParameters);
             return listVehicles.ToList();
         }
 
-        public int InsertVehicle(VehicleFileModel model)
+        public int InsertVehicle(DriverFileModel model)
         {
             object[] insertParameters = new object[] { model.VEHI_VEHIID, model.VEFI_TableName, model.VEFI_DataFile, model.VEFI_FileName, model.VEFI_FileContentType, model.VEFI_FileLocationStored, model.VEFI_DateCreated };
             var insertResult = _servosaDb.ExecuteNonQuery("SAIR_VEFII", insertParameters);

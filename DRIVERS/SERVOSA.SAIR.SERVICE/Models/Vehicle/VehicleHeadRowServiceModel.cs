@@ -32,9 +32,9 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     VehicleId = serviceModel.VehicleId
                 };
 
-                var tmp = new List<VehicleDetailRowDataModel>();
+                var tmp = new List<DriverDetailRowDataModel>();
 
-                serviceModel.DataForRow.ToList().ForEach(dR => tmp.Add(new VehicleDetailRowDataModel
+                serviceModel.DataForRow.ToList().ForEach(dR => tmp.Add(new DriverDetailRowDataModel
                 {
                     Type = String.Empty,
                     Value = dR.Value

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Models.Vehicle
 {
-    public class VehicleFileModel
+    public class DriverFileModel
     {
         public int VEFI_Identity { get; set; }
         public int VEHI_VEHIID { get; set; }

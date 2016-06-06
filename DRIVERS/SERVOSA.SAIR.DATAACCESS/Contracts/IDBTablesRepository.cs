@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Contracts
 {
-    public interface IDBTablesRepository : IRepository<TableModel>
+    public interface IDBTablesRepository : IRepository<DriverTableModel>
     {
-        Tuple<int, TableModel> CreateTableAndReturnsNormalizedName(TableModel entity);
-        IList<TableColumnModel> ListAllVehicleVarsTablesWithDefinition();
-        IList<TableColumnModel> ListAllDriverVarsTablesWithDefinition();
+        Tuple<int, DriverTableModel> CreateTableAndReturnsNormalizedName(DriverTableModel entity);
+        IList<DriverTableColumnModel> ListAllVehicleVarsTablesWithDefinition();
+        IList<DriverTableColumnModel> ListAllDriverVarsTablesWithDefinition();
     }
 }

@@ -12,9 +12,9 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 {
     public class VehicleFileService : IVehicleFileService
     {
-        private IVehicleFilesRepository _vehicleFileRepository;
+        private IDriverVehicleFilesRepository _vehicleFileRepository;
 
-        public VehicleFileService(IVehicleFilesRepository injectedVehicleRepo)
+        public VehicleFileService(IDriverVehicleFilesRepository injectedVehicleRepo)
         {
             _vehicleFileRepository = injectedVehicleRepo;
         }
@@ -23,7 +23,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
         {
             bool resultExecution;
             string messageResult;
-            VehicleFileModel modelToDelete = null;
+            DriverFileModel modelToDelete = null;
             VehicleFileServiceModel.ToDataModel(model, ref modelToDelete);
             var rowsAffected = _vehicleFileRepository.DeleteVehicle(modelToDelete);
             if(rowsAffected > 0)
@@ -54,7 +54,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
         {
             bool resultExecution;
             string messageResult;
-            VehicleFileModel modelToInsert = null;
+            DriverFileModel modelToInsert = null;
             VehicleFileServiceModel.ToDataModel(model, ref modelToInsert);
             var rowsAffected = _vehicleFileRepository.InsertVehicle(modelToInsert);
             if(rowsAffected > 0)

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Contracts
 {
-    public interface IVehicleAlertRepository
+    public interface IDriverVehicleAlertRepository
     {
-        IList<VehicleAlertDataModel> GetAlertsNotSeneded();
-        int RegisterAlert(VehicleAlertDataModel model);
+        IList<DriverAlertDataModel> GetAlertsNotSeneded();
+        int RegisterAlert(DriverAlertDataModel model);
         int UpdateAlertSended(int alertId, string tokenSMS, DateTime sendDate, string recipients);
     }
 }

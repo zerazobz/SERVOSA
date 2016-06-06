@@ -17,7 +17,7 @@ namespace SERVOSA.SAIR.SERVICE.Models.TableData
         public bool AlertSended { get; set; }
         public int VehicleId { get; set; }
 
-        public static void ToServiceModel(VehicleAlertDataModel model, ref VehicleAlert serviceModel)
+        public static void ToServiceModel(DriverAlertDataModel model, ref VehicleAlert serviceModel)
         {
             if (model != null)
                 serviceModel = new VehicleAlert()
@@ -34,10 +34,10 @@ namespace SERVOSA.SAIR.SERVICE.Models.TableData
                 serviceModel = null;
         }
         
-        public static void ToDataModel(VehicleAlert servicemodel, ref VehicleAlertDataModel dataModel)
+        public static void ToDataModel(VehicleAlert servicemodel, ref DriverAlertDataModel dataModel)
         {
             if (servicemodel != null)
-                dataModel = new VehicleAlertDataModel()
+                dataModel = new DriverAlertDataModel()
                 {
                     VEAL_AlertName = servicemodel.AlertName,
                     VEAL_AlertSended = servicemodel.AlertSended,

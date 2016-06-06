@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Models.Driver
 {
-    public class DriverModel
+    public class DriverOldModel
     {
         public int OPER_Id { get; set; }
         public string OPER_cApellidoPaterno { get; set;}

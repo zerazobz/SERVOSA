@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Contracts
 {
-    public interface ITableDataRepository
+    public interface IDriverTableDataRepository
     {
         List<int> TestDataStructured();
         int InsertDataToTable(string tableName, Dictionary<string, string> dataPrepared, bool variableData);

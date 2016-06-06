@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Models.DB
 {
-    public class ColumnModel
+    public class DriverColumnModel
     {
         public string NormalizedTableName { get; set; }
         public string ColumnName { get; set; }

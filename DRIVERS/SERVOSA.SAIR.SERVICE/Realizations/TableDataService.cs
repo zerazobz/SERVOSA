@@ -14,10 +14,10 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 {
     public class TableDataService : ITableDataService
     {
-        private readonly ITableDataRepository _tableDataRepository;
+        private readonly IDriverTableDataRepository _tableDataRepository;
         private readonly IVehicleAlertService _vehicleAlertService;
 
-        public TableDataService(ITableDataRepository injectedTableDataRepo, IVehicleAlertService injectedVehiceAlertService)
+        public TableDataService(IDriverTableDataRepository injectedTableDataRepo, IVehicleAlertService injectedVehiceAlertService)
         {
             _tableDataRepository = injectedTableDataRepo;
             _vehicleAlertService = injectedVehiceAlertService;

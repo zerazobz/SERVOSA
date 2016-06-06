@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Models.Alerts
 {
-    public class VehicleAlertDataModel
+    public class DriverAlertDataModel
     {
         public int VEAL_Id { get; set; }
         public string VEAL_TableName { get; set; }

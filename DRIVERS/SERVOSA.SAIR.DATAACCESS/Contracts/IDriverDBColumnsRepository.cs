@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Contracts
 {
-    public interface IDBColumnsRepository : IRepository<ColumnModel>
+    public interface IDriverDBColumnsRepository : IRepository<DriverColumnModel>
     {
-        Tuple<int, ColumnModel> CreateColumnAndReturnNormalizedName(ColumnModel model);
+        Tuple<int, DriverColumnModel> CreateColumnAndReturnNormalizedName(DriverColumnModel model);
     }
 }

@@ -11,9 +11,9 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 {
     public class TypeService : ITypeService
     {
-        private ITypeRepository _typeRepository;
+        private IDriverTypeRepository _typeRepository;
 
-        public TypeService(ITypeRepository injectedTypeRepo)
+        public TypeService(IDriverTypeRepository injectedTypeRepo)
         {
             _typeRepository = injectedTypeRepo;
         }

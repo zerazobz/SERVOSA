@@ -15,7 +15,7 @@ namespace SERVOSA.SAIR.SERVICE.Models.Types
         public string Description { get; set; }
         public string Notes { get; set; }
 
-        public static void ToServiceModel(TypeModel dataModel, ref TypeServiceModel serviceModel)
+        public static void ToServiceModel(DriverTypeModel dataModel, ref TypeServiceModel serviceModel)
         {
             if (dataModel != null)
                 serviceModel = new TypeServiceModel()
@@ -30,10 +30,10 @@ namespace SERVOSA.SAIR.SERVICE.Models.Types
                 serviceModel = null;
         }
 
-        public static void ToDataModel(TypeServiceModel serviceModel, ref TypeModel dataModel)
+        public static void ToDataModel(TypeServiceModel serviceModel, ref DriverTypeModel dataModel)
         {
             if (serviceModel != null)
-                dataModel = new TypeModel()
+                dataModel = new DriverTypeModel()
                 {
                     TYPE_cCodTable = serviceModel.TableCode,
                     TYPE_cCodType = serviceModel.TypeCode,

@@ -14,23 +14,23 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 {
     public class DriverService:IDriverService
     {
-         private readonly IDriverRepository _driverRepository;
+         private readonly IDriverOldRepository _driverRepository;
 
-        public DriverService(IDriverRepository injectedDriverRepo)
+        public DriverService(IDriverOldRepository injectedDriverRepo)
         {
             _driverRepository = injectedDriverRepo;
         }
 
         public int Create(DriverServiceModel viewModel)
         {
-            DriverModel model = null;
+            DriverOldModel model = null;
             DriverServiceModel.ToModel(viewModel, ref model);
             return _driverRepository.Create(model);
         }
 
         public int Delete(DriverServiceModel viewModel)
         {
-            DriverModel model = null;
+            DriverOldModel model = null;
             DriverServiceModel.ToModel(viewModel, ref model);
             return _driverRepository.Delete(model);
         }
@@ -65,7 +65,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
         public int Update(DriverServiceModel viewModel)
         {
-            DriverModel model = null;
+            DriverOldModel model = null;
             DriverServiceModel.ToModel(viewModel, ref model);
             return _driverRepository.Update(model);
         }

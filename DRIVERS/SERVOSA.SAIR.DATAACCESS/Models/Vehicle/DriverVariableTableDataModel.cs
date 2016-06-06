@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Models.Vehicle
 {
-    public class VehicleVariableTableDataModel
+    public class DriverVariableTableDataModel
     {
         public string TableName { get; set; }
         public int ObjectId { get; set; }

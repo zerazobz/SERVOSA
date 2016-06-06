@@ -10,12 +10,12 @@ namespace SERVOSA.SAIR.DATAACCESS.Models.Vehicle
     {
         public VehicleHeadRowDataModel()
         {
-            DataForRow = new List<VehicleDetailRowDataModel>();
+            DataForRow = new List<DriverDetailRowDataModel>();
         }
 
         public string TableName { get; set; }
         public int ObjectId { get; set; }
         public int VehicleId { get; set; }
-        public IList<VehicleDetailRowDataModel> DataForRow { get; set; }
+        public IList<DriverDetailRowDataModel> DataForRow { get; set; }
     }
 }

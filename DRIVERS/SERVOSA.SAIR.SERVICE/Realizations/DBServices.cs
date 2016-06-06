@@ -13,9 +13,9 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
     public class DBServices : IDBServices
     {
         private readonly IDBTablesRepository _tableRepository;
-        private readonly IDBColumnsRepository _columnRepository;
+        private readonly IDriverDBColumnsRepository _columnRepository;
 
-        public DBServices(IDBTablesRepository injectedTableRepo, IDBColumnsRepository injectedColumnRepo)
+        public DBServices(IDBTablesRepository injectedTableRepo, IDriverDBColumnsRepository injectedColumnRepo)
         {
             _tableRepository = injectedTableRepo;
             _columnRepository = injectedColumnRepo;
@@ -23,7 +23,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
         public Tuple<int, TableServiceModel> CreateTable(TableServiceModel viewModel)
         {
-            TableModel model = null;
+            DriverTableModel model = null;
             TableServiceModel.ToModel(viewModel, ref model);
 
             var resultExecution = _tableRepository.CreateTableAndReturnsNormalizedName(model);
@@ -36,7 +36,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 
         public Tuple<int, ColumnServiceModel> CreateColumn(ColumnServiceModel viewModel)
         {
-            ColumnModel model = null;
+            DriverColumnModel model = null;
             ColumnServiceModel.ToModel(viewModel, ref model);
             var resultExecution = _columnRepository.CreateColumnAndReturnNormalizedName(model);
 

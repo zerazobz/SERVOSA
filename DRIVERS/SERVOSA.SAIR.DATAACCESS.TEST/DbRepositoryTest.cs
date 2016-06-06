@@ -9,7 +9,7 @@ namespace SERVOSA.SAIR.DATAACCESS.TEST
     [TestClass]
     public class DbRepositoryTest
     {
-        private IDBColumnsRepository _columnsRepository;
+        private IDriverDBColumnsRepository _columnsRepository;
         private IDBTablesRepository _tableRepository;
 
         public DbRepositoryTest()
@@ -23,7 +23,7 @@ namespace SERVOSA.SAIR.DATAACCESS.TEST
         {
             string tableName = "Revision Tecnica Tracto";
 
-            var creationResult = _tableRepository.Create(new TableModel()
+            var creationResult = _tableRepository.Create(new DriverTableModel()
             {
                 TableName = tableName
             });
@@ -39,7 +39,7 @@ namespace SERVOSA.SAIR.DATAACCESS.TEST
             string columnName = "FechaVencimiento";
             string dataType = "datetime";
 
-            var creationResult = _columnsRepository.Create(new ColumnModel()
+            var creationResult = _columnsRepository.Create(new DriverColumnModel()
             {
                 NormalizedTableName = tableName,
                 ColumnName = columnName,
@@ -57,7 +57,7 @@ namespace SERVOSA.SAIR.DATAACCESS.TEST
             string columnName = "DiasFaltantes";
             string dataType = "int";
 
-            var creationResult = _columnsRepository.Create(new ColumnModel()
+            var creationResult = _columnsRepository.Create(new DriverColumnModel()
             {
                 NormalizedTableName = tableName,
                 ColumnName = columnName,

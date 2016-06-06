@@ -15,10 +15,10 @@ namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
         public string ParentTable { get; set; }
         public string ParentColumn { get; set; }
 
-        public static void ToDataModel(VehicleRelatedTableServiceModel serviceModel, ref RelatedTableToEntityModel dataModel)
+        public static void ToDataModel(VehicleRelatedTableServiceModel serviceModel, ref DriverRelatedTableToEntityModel dataModel)
         {
             if (serviceModel != null)
-                dataModel = new RelatedTableToEntityModel()
+                dataModel = new DriverRelatedTableToEntityModel()
                 {
                     foreign_column = serviceModel.ForeignColumn,
                     foreign_key_name = serviceModel.ForeignKeyName,
@@ -30,7 +30,7 @@ namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
                 dataModel = null;
         }
 
-        public static void ToServiceModel(RelatedTableToEntityModel dataModel, ref VehicleRelatedTableServiceModel serviceModel)
+        public static void ToServiceModel(DriverRelatedTableToEntityModel dataModel, ref VehicleRelatedTableServiceModel serviceModel)
         {
             if (dataModel != null)
                 serviceModel = new VehicleRelatedTableServiceModel()
