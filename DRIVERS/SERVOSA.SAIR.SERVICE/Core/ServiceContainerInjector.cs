@@ -15,15 +15,15 @@ namespace SERVOSA.SAIR.SERVICE.Core
     {
         protected override void Initialize()
         {
-            Container.RegisterType<IDriverRepository, VehicleRepository>();
-            Container.RegisterType<IDriverOldRepository, DriverRepository>();
-            Container.RegisterType<IDBTablesRepository, DBRepository>();
-            Container.RegisterType<IDriverDBColumnsRepository, DBRepository>();
-            Container.RegisterType<IDriverTableDataRepository, TableDataRepository>();
-            Container.RegisterType<IDriverVehicleAlertRepository, VehicleAlertRepository>();
+            Container.RegisterType<IDriverRepository, DriverRepository>();
+            Container.RegisterType<IDriverOldRepository, OldDriverRepository>();
+            Container.RegisterType<IDriverDBTablesRepository, DriverDBRepository>();
+            Container.RegisterType<IDriverDBColumnsRepository, DriverDBRepository>();
+            Container.RegisterType<IDriverTableDataRepository, DriverTableDataRepository>();
+            Container.RegisterType<IDriverVehicleAlertRepository, DriverAlertRepository>();
             Container.RegisterType<IDriverAlertService, DriverAlertService>();
-            Container.RegisterType<IDriverTypeRepository, TypeRepository>();
-            Container.RegisterType<IDriverVehicleFilesRepository, VehicleFilesRepository>();
+            Container.RegisterType<IDriverTypeRepository, DriverTypeRepository>();
+            Container.RegisterType<IDriverVehicleFilesRepository, DriverFilesRepository>();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace SERVOSA.SAIR.DATAACCESS.TEST.Temp
         [TestInitialize]
         public void InitializeTest()
         {
-            _tableDataRepository = new TableDataRepository();
+            _tableDataRepository = new DriverTableDataRepository();
         }
 
         [TestMethod]

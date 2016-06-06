@@ -9,10 +9,10 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
-    public class VehicleAlertRepository : IDriverVehicleAlertRepository
+    public class DriverAlertRepository : IDriverVehicleAlertRepository
     {
         private readonly Database _servosaDB;
-        public VehicleAlertRepository()
+        public DriverAlertRepository()
         {
             DatabaseProviderFactory databaseFactory = new DatabaseProviderFactory();
             _servosaDB = databaseFactory.CreateDefault();

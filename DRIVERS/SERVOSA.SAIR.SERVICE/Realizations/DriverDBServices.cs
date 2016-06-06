@@ -12,10 +12,10 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 {
     public class DriverDBServices : IDriverDBServices
     {
-        private readonly IDBTablesRepository _tableRepository;
+        private readonly IDriverDBTablesRepository _tableRepository;
         private readonly IDriverDBColumnsRepository _columnRepository;
 
-        public DriverDBServices(IDBTablesRepository injectedTableRepo, IDriverDBColumnsRepository injectedColumnRepo)
+        public DriverDBServices(IDriverDBTablesRepository injectedTableRepo, IDriverDBColumnsRepository injectedColumnRepo)
         {
             _tableRepository = injectedTableRepo;
             _columnRepository = injectedColumnRepo;

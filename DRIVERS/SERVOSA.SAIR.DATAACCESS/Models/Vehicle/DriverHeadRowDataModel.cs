@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Models.Vehicle
 {
-    public class VehicleHeadRowDataModel
+    public class DriverHeadRowDataModel
     {
-        public VehicleHeadRowDataModel()
+        public DriverHeadRowDataModel()
         {
             DataForRow = new List<DriverDetailRowDataModel>();
         }

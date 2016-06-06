@@ -10,12 +10,12 @@ namespace SERVOSA.SAIR.DATAACCESS.TEST
     public class DbRepositoryTest
     {
         private IDriverDBColumnsRepository _columnsRepository;
-        private IDBTablesRepository _tableRepository;
+        private IDriverDBTablesRepository _tableRepository;
 
         public DbRepositoryTest()
         {
-            _columnsRepository = new DBRepository();
-            _tableRepository = new DBRepository();
+            _columnsRepository = new DriverDBRepository();
+            _tableRepository = new DriverDBRepository();
         }
 
         [TestMethod]

@@ -1,16 +1,16 @@
-﻿using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SERVOSA.SAIR.DATAACCESS.Models.Driver;
-using Microsoft.Practices.EnterpriseLibrary.Data;
-using SERVOSA.SAIR.DATAACCESS.Contracts;
+﻿using SERVOSA.SAIR.DATAACCESS.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using System.Data;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
-    public class DriverRepository : IDriverOldRepository
+    public class DriverRepository : IDriverRepository
     {
         private Database _servosaDB;
 
@@ -20,84 +20,161 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             _servosaDB = _databaseFactory.CreateDefault();
         }
 
-        public int Create(DriverOldModel entity)
+        public int Create(DriverModel entity)
         {
-            object[] parameters = new object[] { entity.OPER_cApellidoPaterno, entity.OPER_cApellidoMaterno, entity.OPER_cNombre, entity.OPER_cCorreo, entity.VEHI_Id,entity.PUES_Id,null};
-            using (var insertCommand = _servosaDB.GetStoredProcCommand("SAIR_OPERI", parameters))
+            object[] parameters = new object[] { entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, entity.DRIV_dBirthDate, entity.DRIV_cAddress, null };
+            using (var insertCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHII", parameters))
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(insertCommand);
-                var driverCode = Convert.ToInt32(_servosaDB.GetParameterValue(insertCommand, "OPER_Id"));
-                entity.OPER_Id = driverCode;
+                var vehicleCode = Convert.ToInt32(_servosaDB.GetParameterValue(insertCommand, "Codigo"));
+                entity.Codigo = vehicleCode;
                 return resultExecution;
             }
         }
 
-        public int Delete(DriverOldModel entity)
+        public int Delete(DriverModel entity)
         {
-            object[] parameters = new object[] { entity.OPER_Id };
-            var resultExecution = _servosaDB.ExecuteNonQuery("SAIR_OPERD", parameters);
+            object[] parameters = new object[] { entity.Codigo };
+            var resultExecution = _servosaDB.ExecuteNonQuery("SAIR_VEHID", parameters);
             return resultExecution;
         }
 
-        public IList<DriverOldModel> GetAll()
+        public IList<DriverModel> GetAll()
         {
             object[] parameters = new object[] { };
-            IRowMapper<DriverOldModel> driverRowMapper = CreateRowMapperForSAIR_OPERS();
-            var driverCollection = _servosaDB.ExecuteSprocAccessor("SAIR_OPERS", driverRowMapper, parameters);
-            return driverCollection.ToList();
+            IRowMapper<DriverModel> vehicleRowMapper = GetMapperSimple();
+            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS", vehicleRowMapper, parameters);
+            return vehicleCollection.ToList();
         }
 
-        public IList<DriverOldModel> GetAllFiltered(int minRow, int maxRow)
+        public IList<DriverModel> GetAllFiltered(int minRow, int maxRow)
         {
             object[] parameters = new object[] { minRow, maxRow };
-            IRowMapper<DriverOldModel> driverRowMapper = MapBuilder<DriverOldModel>.MapAllProperties().Build();
-            var driverCollection = _servosaDB.ExecuteSprocAccessor("SAIR_OPERS_Filtrado", driverRowMapper, parameters);
-            return driverCollection.ToList();
+            IRowMapper<DriverModel> vehicleRowMapper = GetMapperForFilteredSP();
+            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_Filtrado", vehicleRowMapper, parameters);
+            return vehicleCollection.ToList();
         }
 
-        public DriverOldModel GetById(int id)
+        public IList<DriverModel> GetAllFilteredBySearchTerm(string searchTerm)
+        {
+            object[] parameters = new object[] { searchTerm };
+            IRowMapper<DriverModel> vehicleRowMapper = GetMapperForSearchFilteredByTerm();
+            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_FilterByText", vehicleRowMapper, parameters);
+            return vehicleCollection.ToList();
+        }
+
+        public DriverModel GetById(int id)
         {
             object[] parameteres = new object[] { id };
-            IRowMapper<DriverOldModel> driverRowMapper = GetMapperSimple();
-            var driverCollection = _servosaDB.ExecuteSprocAccessor("SAIR_OPERS_UnReg", driverRowMapper, parameteres);
-            return driverCollection.FirstOrDefault();
+            IRowMapper<DriverModel> vehicleRowMapper = GetMapperForOldSP();
+            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_UnReg", vehicleRowMapper, parameteres);
+            return vehicleCollection.FirstOrDefault();
         }
 
-        public int Update(DriverOldModel entity)
+        public int Update(DriverModel entity)
         {
-            object[] parameters = new object[] { entity.OPER_Id, entity.OPER_cApellidoPaterno, entity.OPER_cApellidoMaterno, entity.OPER_cNombre, entity.OPER_cCorreo,entity.VEHI_Id,entity.PUES_Id};
-            using (var updateCommand = _servosaDB.GetStoredProcCommand("SAIR_OPERU", parameters))
+            object[] parameters = new object[] { entity.Codigo, entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, entity.DRIV_dBirthDate, entity.DRIV_cAddress };
+            using (var updateCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHIU", parameters))
             {
                 var executionResult = _servosaDB.ExecuteNonQuery(updateCommand);
                 return executionResult;
             }
         }
-        private IRowMapper<DriverOldModel> GetMapperSimple()
+
+        public IList<DriverHeadRowDataModel> GetRowDataForTable(string tableName)
         {
-            return MapBuilder<DriverOldModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
-                .DoNotMap(prop => prop.TotalRows).Build();
+            List<DriverHeadRowDataModel> headDataCollection = new List<DriverHeadRowDataModel>();
+
+            object[] parameters = new object[] { tableName };
+            using (var readCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHIS_Datos", parameters))
+            {
+                DriverHeadRowDataModel headModel = null;
+                using (var readerProcedure = _servosaDB.ExecuteReader(readCommand))
+                {
+                    while (readerProcedure.Read())
+                    {
+                        var sizeColumnData = readerProcedure.FieldCount;
+                        headModel = new DriverHeadRowDataModel();
+                        headModel.DataForRow = new List<DriverDetailRowDataModel>(sizeColumnData);
+
+                        headModel.TableName = readerProcedure.GetString(0);
+                        headModel.VehicleId = readerProcedure.GetInt32(1);
+
+                        for (int i = 2; i < sizeColumnData; i++)
+                        {
+                            headModel.DataForRow.Add(new DriverDetailRowDataModel()
+                            {
+                                Value = readerProcedure.IsDBNull(i)? String.Empty : readerProcedure.GetValue(i).ToString()
+                            });
+                        }
+                        headDataCollection.Add(headModel);
+                    }
+                }
+            }
+            return headDataCollection;
         }
-        public IList<DriverOldModel> GetRowDataForTable(string tableName)
+
+        public IList<DriverVariableTableDataModel> GetVehicleVariableTableData(string tableName, int vehicleId)
         {
-            object[] parameters = new object[] { GetMapperSimple() };
-            IRowMapper<DriverOldModel> driverRowMapper = MapBuilder<DriverOldModel>.MapAllProperties().Build();
-            var driverCollection = _servosaDB.ExecuteSprocAccessor("SAIR_OPERS", driverRowMapper, parameters);
-            return driverCollection.ToList();
+            object[] parameters = new object[] { tableName, vehicleId };
+            IRowMapper<DriverVariableTableDataModel> rowMapper = MapBuilder<DriverVariableTableDataModel>.MapAllProperties().Build();
+
+            var dataResult = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_TableData", rowMapper, parameters);
+            return dataResult.ToList();
         }
 
         public IList<DriverRelatedTableToEntityModel> GetRelatedTablesToVehicle()
         {
             object[] parameters = new object[] { };
             IRowMapper<DriverRelatedTableToEntityModel> relatedTablesMapper = MapBuilder<DriverRelatedTableToEntityModel>.MapAllProperties().Build();
-            var relatedTableCollection = _servosaDB.ExecuteSprocAccessor("SAIR_ALLTABLESREFERENCINGDRIVERS", relatedTablesMapper, parameters);
+            var relatedTableCollection = _servosaDB.ExecuteSprocAccessor("SAIR_ALLTABLESREFERENCINGVEHICLES", relatedTablesMapper, parameters);
             return relatedTableCollection.ToList();
         }
 
-        private IRowMapper<DriverOldModel> CreateRowMapperForSAIR_OPERS()
+        public DataSet GetVariableDataToExport(string tableName)
         {
-            return MapBuilder<DriverOldModel>.MapNoProperties().MapByName(prop => prop.OPER_Id).MapByName(prop => prop.OPER_cApellidoPaterno)
-                .MapByName(prop => prop.OPER_cApellidoMaterno).MapByName(prop => prop.OPER_cNombre).MapByName(prop => prop.OPER_cCorreo)
-                .MapByName(prop => prop.VEHI_Id).MapByName(prop => prop.VEHI_cDescripcion).MapByName(prop => prop.PUES_Id).Build();
+            object[] parameters = new object[] { tableName };
+            var resultDataSet = _servosaDB.ExecuteDataSet("SAIR_DatosVariable", parameters);
+            return resultDataSet;
+        }
+
+        public DataSet GetVehicleDataToExport(int vehicleCode)
+        {
+            object[] parameters = new object[] { vehicleCode };
+            var resultDataSet = _servosaDB.ExecuteDataSet("SAIR_DatosVehiculo", parameters);
+            return resultDataSet;
+        }
+
+        private IRowMapper<DriverModel> GetMapperSimple()
+        {
+            return MapBuilder<DriverModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
+                .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.RowNumber)
+                .Build();
+        }
+
+        private IRowMapper<DriverModel> GetMapperForOldSP()
+        {
+            return MapBuilder<DriverModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
+                .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.Estado)
+                .DoNotMap(prop => prop.RowNumber).DoNotMap(prop => prop.VEHI_DescriptionUnitType)
+                //.DoNotMap(prop => prop.DRIV_dBirthDate).DoNotMap(prop => prop.DRIV_cAddress)
+                .Build();
+        }
+
+        private IRowMapper<DriverModel> GetMapperForFilteredSP()
+        {
+            return MapBuilder<DriverModel>.MapAllProperties().DoNotMap(prop => prop.Marca)
+                .DoNotMap(prop => prop.Estado).DoNotMap(prop => prop.VEHI_DescriptionUnitType)
+                //.DoNotMap(prop => prop.DRIV_dBirthDate).DoNotMap(prop => prop.DRIV_cAddress)
+                .Build();
+        }
+
+        private IRowMapper<DriverModel> GetMapperForSearchFilteredByTerm()
+        {
+            return MapBuilder<DriverModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber).DoNotMap(prop => prop.TotalRows)
+                .DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.Estado).DoNotMap(prop => prop.VEHI_DescriptionUnitType)
+                //.DoNotMap(prop => prop.DRIV_dBirthDate).DoNotMap(prop => prop.DRIV_cAddress)
+                .Build();
         }
     }
 }

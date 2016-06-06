@@ -9,10 +9,10 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
-    public class VehicleFilesRepository : IDriverVehicleFilesRepository
+    public class DriverFilesRepository : IDriverVehicleFilesRepository
     {
         private Database _servosaDb;
-        public VehicleFilesRepository()
+        public DriverFilesRepository()
         {
             DatabaseProviderFactory providerFactory = new DatabaseProviderFactory();
             _servosaDb = providerFactory.CreateDefault();

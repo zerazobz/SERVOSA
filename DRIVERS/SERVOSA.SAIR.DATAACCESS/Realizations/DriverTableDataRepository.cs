@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
-    public class TableDataRepository : IDriverTableDataRepository
+    public class DriverTableDataRepository : IDriverTableDataRepository
     {
         private readonly Database _servosaDB;
-        public TableDataRepository()
+        public DriverTableDataRepository()
         {
             DatabaseProviderFactory _databaseFactory = new DatabaseProviderFactory();
             _servosaDB = _databaseFactory.CreateDefault();

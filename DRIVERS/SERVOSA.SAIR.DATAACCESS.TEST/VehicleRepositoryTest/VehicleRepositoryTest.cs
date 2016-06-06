@@ -13,7 +13,7 @@ namespace SERVOSA.SAIR.DATAACCESS.TEST.VehicleRepositoryTest
         [TestInitialize]
         public void TestClassInitiliaze()
         {
-            _vehicleRepository = new VehicleRepository();
+            _vehicleRepository = new DriverRepository();
         }
 
         [TestMethod]

@@ -49,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IDriverDBColumnsRepository.cs" />
-    <Compile Include="Contracts\IDBTablesRepository.cs" />
+    <Compile Include="Contracts\IDriverDBTablesRepository.cs" />
     <Compile Include="Contracts\IDriverTableDataRepository.cs" />
     <Compile Include="Contracts\IDriverOldRepository.cs" />
     <Compile Include="Contracts\IDriverTypeRepository.cs" />
@@ -66,17 +66,17 @@
     <Compile Include="Models\Vehicle\DriverRelatedTableToEntityModel.cs" />
     <Compile Include="Models\Vehicle\DriverDetailRowDataModel.cs" />
     <Compile Include="Models\Vehicle\DriverFileModel.cs" />
-    <Compile Include="Models\Vehicle\VehicleHeadRowDataModel.cs" />
+    <Compile Include="Models\Vehicle\DriverHeadRowDataModel.cs" />
     <Compile Include="Models\Vehicle\DriverModel.cs" />
     <Compile Include="Models\Vehicle\DriverVariableTableDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Realizations\DBRepository.cs" />
-    <Compile Include="Realizations\TableDataRepository.cs" />
+    <Compile Include="Realizations\DriverDBRepository.cs" />
+    <Compile Include="Realizations\DriverTableDataRepository.cs" />
+    <Compile Include="Realizations\OldDriverRepository.cs" />
+    <Compile Include="Realizations\DriverTypeRepository.cs" />
+    <Compile Include="Realizations\DriverAlertRepository.cs" />
+    <Compile Include="Realizations\DriverFilesRepository.cs" />
     <Compile Include="Realizations\DriverRepository.cs" />
-    <Compile Include="Realizations\TypeRepository.cs" />
-    <Compile Include="Realizations\VehicleAlertRepository.cs" />
-    <Compile Include="Realizations\VehicleFilesRepository.cs" />
-    <Compile Include="Realizations\VehicleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

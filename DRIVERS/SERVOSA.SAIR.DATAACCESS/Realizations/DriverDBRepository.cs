@@ -10,11 +10,11 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
-    public class DBRepository : IDriverDBColumnsRepository, IDBTablesRepository
+    public class DriverDBRepository : IDriverDBColumnsRepository, IDriverDBTablesRepository
     {
         private Database _servosaDB;
 
-        public DBRepository()
+        public DriverDBRepository()
         {
             DatabaseProviderFactory _databaseFactory = new DatabaseProviderFactory();
             _servosaDB = _databaseFactory.CreateDefault();
