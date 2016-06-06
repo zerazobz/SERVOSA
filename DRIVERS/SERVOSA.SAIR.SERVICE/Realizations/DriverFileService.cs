@@ -12,9 +12,9 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 {
     public class DriverFileService : IDriverFileService
     {
-        private IDriverVehicleFilesRepository _vehicleFileRepository;
+        private IDriverFilesRepository _vehicleFileRepository;
 
-        public DriverFileService(IDriverVehicleFilesRepository injectedVehicleRepo)
+        public DriverFileService(IDriverFilesRepository injectedVehicleRepo)
         {
             _vehicleFileRepository = injectedVehicleRepo;
         }
@@ -25,7 +25,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             string messageResult;
             DriverFileModel modelToDelete = null;
             DriverFileServiceModel.ToDataModel(model, ref modelToDelete);
-            var rowsAffected = _vehicleFileRepository.DeleteVehicle(modelToDelete);
+            var rowsAffected = _vehicleFileRepository.DeleteDriver(modelToDelete);
             if(rowsAffected > 0)
             {
                 resultExecution = true;
@@ -42,7 +42,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
         public IList<DriverFileServiceModel> GetFilesByTableNameAndVehicleId(string tableName, int vehicleId)
         {
             DriverFileServiceModel modelForList = null;
-            var filesCollection = _vehicleFileRepository.GetListVehicles(tableName, vehicleId).Select(fI =>
+            var filesCollection = _vehicleFileRepository.GetListDrivers(tableName, vehicleId).Select(fI =>
             {
                 DriverFileServiceModel.ToServiceModel(fI, ref modelForList);
                 return modelForList;
@@ -56,7 +56,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             string messageResult;
             DriverFileModel modelToInsert = null;
             DriverFileServiceModel.ToDataModel(model, ref modelToInsert);
-            var rowsAffected = _vehicleFileRepository.InsertVehicle(modelToInsert);
+            var rowsAffected = _vehicleFileRepository.InsertDriver(modelToInsert);
             if(rowsAffected > 0)
             {
                 resultExecution = true;

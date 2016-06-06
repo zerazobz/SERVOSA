@@ -53,8 +53,8 @@
     <Compile Include="Contracts\IDriverTableDataRepository.cs" />
     <Compile Include="Contracts\IDriverOldRepository.cs" />
     <Compile Include="Contracts\IDriverTypeRepository.cs" />
-    <Compile Include="Contracts\IDriverVehicleAlertRepository.cs" />
-    <Compile Include="Contracts\IDriverVehicleFilesRepository.cs" />
+    <Compile Include="Contracts\IDriverAlertRepository.cs" />
+    <Compile Include="Contracts\IDriverFilesRepository.cs" />
     <Compile Include="Contracts\IDriverRepository.cs" />
     <Compile Include="Core\IRepository.cs" />
     <Compile Include="Models\Alerts\DriverAlertDataModel.cs" />

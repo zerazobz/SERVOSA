@@ -9,7 +9,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
-    public class DriverAlertRepository : IDriverVehicleAlertRepository
+    public class DriverAlertRepository : IDriverAlertRepository
     {
         private readonly Database _servosaDB;
         public DriverAlertRepository()
@@ -21,9 +21,9 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public IList<DriverAlertDataModel> GetAlertsNotSeneded()
         {
             object[] parameters = new object[] { };
-            IRowMapper<DriverAlertDataModel> vehicleAlertRowMapper = MapBuilder<DriverAlertDataModel>.MapAllProperties().Build();
-            var vehicleAlertCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEALS_TodosNoEnviados", vehicleAlertRowMapper, parameters);
-            return vehicleAlertCollection.ToList();
+            IRowMapper<DriverAlertDataModel> driverAlertRowMapper = MapBuilder<DriverAlertDataModel>.MapAllProperties().Build();
+            var driverAlertCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEALS_TodosNoEnviados", driverAlertRowMapper, parameters);
+            return driverAlertCollection.ToList();
         }
 
         public int RegisterAlert(DriverAlertDataModel model)

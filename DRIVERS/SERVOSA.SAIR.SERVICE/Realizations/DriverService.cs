@@ -98,7 +98,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
         public DriverVariableDataServiceModel GetVehicleVariableTableData(string tableName, int vehicleCode)
         {
             DriverVariableDataServiceModel serviceModel = null;
-            var dataResult = _vehicleRepository.GetVehicleVariableTableData(tableName, vehicleCode);
+            var dataResult = _vehicleRepository.GetDriverVariableTableData(tableName, vehicleCode);
             DriverVariableDataServiceModel.ToServiceModel(dataResult, ref serviceModel);
             serviceModel.IsSuccessful = true;
             return serviceModel;
@@ -107,7 +107,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
         public IList<DriverRelatedTableServiceModel> GetRelatedTablesToVehicle()
         {
             DriverRelatedTableServiceModel vehicleRelatedVM = null;
-            var relatedVehiclesCollection = _vehicleRepository.GetRelatedTablesToVehicle().Select(rVT =>
+            var relatedVehiclesCollection = _vehicleRepository.GetRelatedTablesToDriver().Select(rVT =>
             {
                 DriverRelatedTableServiceModel.ToServiceModel(rVT, ref vehicleRelatedVM);
                 return vehicleRelatedVM;
@@ -133,7 +133,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
         {
             using (SpreadsheetDocument package = SpreadsheetDocument.Create(streamData, SpreadsheetDocumentType.Workbook))
             {
-                var dataResultToExport = _vehicleRepository.GetVehicleDataToExport(vehicleCode);
+                var dataResultToExport = _vehicleRepository.GetDriverDataToExport(vehicleCode);
                 CreateWorkBookFromDataSet(package, dataResultToExport);
             }
         }

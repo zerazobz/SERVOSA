@@ -14,6 +14,6 @@ namespace SERVOSA.SAIR.DATAACCESS.Contracts
     {
         IList<DriverOldModel> GetAllFiltered(int minRow, int maxRow);
         IList<DriverOldModel> GetRowDataForTable(string tableName);
-        IList<DriverRelatedTableToEntityModel> GetRelatedTablesToVehicle();
+        IList<DriverRelatedTableToEntityModel> GetRelatedTablesToDriver();
     }
 }

@@ -20,10 +20,10 @@ namespace SERVOSA.SAIR.SERVICE.Core
             Container.RegisterType<IDriverDBTablesRepository, DriverDBRepository>();
             Container.RegisterType<IDriverDBColumnsRepository, DriverDBRepository>();
             Container.RegisterType<IDriverTableDataRepository, DriverTableDataRepository>();
-            Container.RegisterType<IDriverVehicleAlertRepository, DriverAlertRepository>();
+            Container.RegisterType<IDriverAlertRepository, DriverAlertRepository>();
             Container.RegisterType<IDriverAlertService, DriverAlertService>();
             Container.RegisterType<IDriverTypeRepository, DriverTypeRepository>();
-            Container.RegisterType<IDriverVehicleFilesRepository, DriverFilesRepository>();
+            Container.RegisterType<IDriverFilesRepository, DriverFilesRepository>();
         }
     }
 }

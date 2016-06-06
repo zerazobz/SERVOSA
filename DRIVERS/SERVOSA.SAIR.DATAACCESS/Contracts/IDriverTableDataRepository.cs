@@ -10,6 +10,6 @@ namespace SERVOSA.SAIR.DATAACCESS.Contracts
     {
         List<int> TestDataStructured();
         int InsertDataToTable(string tableName, Dictionary<string, string> dataPrepared, bool variableData);
-        int UpdateDataToTable(string tableName, int vehicleId, Dictionary<string, string> dataPrepared, bool variableData);
+        int UpdateDataToTable(string tableName, int driverId, Dictionary<string, string> dataPrepared, bool variableData);
     }
 }

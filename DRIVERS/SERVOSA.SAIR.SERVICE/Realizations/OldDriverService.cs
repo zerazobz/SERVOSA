@@ -83,7 +83,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
         public IList<OldDriverRelatedTableServiceModel> GetRelatedTablesToDriver()
         {
             OldDriverRelatedTableServiceModel vehicleRelatedVM = null;
-            var relatedVehiclesCollection = _driverRepository.GetRelatedTablesToVehicle().Select(rVT =>
+            var relatedVehiclesCollection = _driverRepository.GetRelatedTablesToDriver().Select(rVT =>
             {
                 OldDriverRelatedTableServiceModel.ToServiceModel(rVT, ref vehicleRelatedVM);
                 return vehicleRelatedVM;

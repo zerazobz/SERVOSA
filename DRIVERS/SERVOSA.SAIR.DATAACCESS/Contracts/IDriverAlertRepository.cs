@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Contracts
 {
-    public interface IDriverVehicleAlertRepository
+    public interface IDriverAlertRepository
     {
         IList<DriverAlertDataModel> GetAlertsNotSeneded();
         int RegisterAlert(DriverAlertDataModel model);

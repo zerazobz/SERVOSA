@@ -26,8 +26,8 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             using (var insertCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHII", parameters))
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(insertCommand);
-                var vehicleCode = Convert.ToInt32(_servosaDB.GetParameterValue(insertCommand, "Codigo"));
-                entity.Codigo = vehicleCode;
+                var driverCode = Convert.ToInt32(_servosaDB.GetParameterValue(insertCommand, "Codigo"));
+                entity.Codigo = driverCode;
                 return resultExecution;
             }
         }
@@ -42,8 +42,8 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public IList<DriverModel> GetAll()
         {
             object[] parameters = new object[] { };
-            IRowMapper<DriverModel> vehicleRowMapper = GetMapperSimple();
-            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS", vehicleRowMapper, parameters);
+            IRowMapper<DriverModel> driverRowMapper = GetMapperSimple();
+            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS", driverRowMapper, parameters);
             return vehicleCollection.ToList();
         }
 
@@ -114,7 +114,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             return headDataCollection;
         }
 
-        public IList<DriverVariableTableDataModel> GetVehicleVariableTableData(string tableName, int vehicleId)
+        public IList<DriverVariableTableDataModel> GetDriverVariableTableData(string tableName, int vehicleId)
         {
             object[] parameters = new object[] { tableName, vehicleId };
             IRowMapper<DriverVariableTableDataModel> rowMapper = MapBuilder<DriverVariableTableDataModel>.MapAllProperties().Build();
@@ -123,7 +123,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             return dataResult.ToList();
         }
 
-        public IList<DriverRelatedTableToEntityModel> GetRelatedTablesToVehicle()
+        public IList<DriverRelatedTableToEntityModel> GetRelatedTablesToDriver()
         {
             object[] parameters = new object[] { };
             IRowMapper<DriverRelatedTableToEntityModel> relatedTablesMapper = MapBuilder<DriverRelatedTableToEntityModel>.MapAllProperties().Build();
@@ -138,7 +138,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             return resultDataSet;
         }
 
-        public DataSet GetVehicleDataToExport(int vehicleCode)
+        public DataSet GetDriverDataToExport(int vehicleCode)
         {
             object[] parameters = new object[] { vehicleCode };
             var resultDataSet = _servosaDB.ExecuteDataSet("SAIR_DatosVehiculo", parameters);

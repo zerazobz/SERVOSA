@@ -13,9 +13,9 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
 {
     public class DriverAlertService : IDriverAlertService
     {
-        private readonly IDriverVehicleAlertRepository _vehicleAlertRepo;
+        private readonly IDriverAlertRepository _vehicleAlertRepo;
 
-        public DriverAlertService(IDriverVehicleAlertRepository injectedVehicleAlert)
+        public DriverAlertService(IDriverAlertRepository injectedVehicleAlert)
         {
             _vehicleAlertRepo = injectedVehicleAlert;
         }

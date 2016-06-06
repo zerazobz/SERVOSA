@@ -85,7 +85,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             return driverCollection.ToList();
         }
 
-        public IList<DriverRelatedTableToEntityModel> GetRelatedTablesToVehicle()
+        public IList<DriverRelatedTableToEntityModel> GetRelatedTablesToDriver()
         {
             object[] parameters = new object[] { };
             IRowMapper<DriverRelatedTableToEntityModel> relatedTablesMapper = MapBuilder<DriverRelatedTableToEntityModel>.MapAllProperties().Build();

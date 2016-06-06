@@ -9,7 +9,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
-    public class DriverFilesRepository : IDriverVehicleFilesRepository
+    public class DriverFilesRepository : IDriverFilesRepository
     {
         private Database _servosaDb;
         public DriverFilesRepository()
@@ -18,22 +18,22 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             _servosaDb = providerFactory.CreateDefault();
         }
 
-        public int DeleteVehicle(DriverFileModel model)
+        public int DeleteDriver(DriverFileModel model)
         {
             object[] deleteParameters = new object[] { model.VEHI_VEHIID, model.VEFI_TableName, model.VEFI_FileName };
             var deleteResult = _servosaDb.ExecuteNonQuery("SAIR_VEFID", deleteParameters);
             return deleteResult;
         }
 
-        public IList<DriverFileModel> GetListVehicles(string tableName, int vehicleCode)
+        public IList<DriverFileModel> GetListDrivers(string tableName, int vehicleCode)
         {
-            IRowMapper<DriverFileModel> vehicleFileMapper = MapBuilder<DriverFileModel>.MapAllProperties().Build();
-            object[] listVehicleParameters = new object[] { vehicleCode, tableName };
-            var listVehicles = _servosaDb.ExecuteSprocAccessor("SAIR_VEFIS_ByTableNameVehicle", vehicleFileMapper, listVehicleParameters);
-            return listVehicles.ToList();
+            IRowMapper<DriverFileModel> driverFileMapper = MapBuilder<DriverFileModel>.MapAllProperties().Build();
+            object[] listDriverParameters = new object[] { vehicleCode, tableName };
+            var listDrivers = _servosaDb.ExecuteSprocAccessor("SAIR_VEFIS_ByTableNameVehicle", driverFileMapper, listDriverParameters);
+            return listDrivers.ToList();
         }
 
-        public int InsertVehicle(DriverFileModel model)
+        public int InsertDriver(DriverFileModel model)
         {
             object[] insertParameters = new object[] { model.VEHI_VEHIID, model.VEFI_TableName, model.VEFI_DataFile, model.VEFI_FileName, model.VEFI_FileContentType, model.VEFI_FileLocationStored, model.VEFI_DateCreated };
             var insertResult = _servosaDb.ExecuteNonQuery("SAIR_VEFII", insertParameters);
