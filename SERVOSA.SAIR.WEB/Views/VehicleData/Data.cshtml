@@ -12,6 +12,9 @@
     @{ Html.RenderAction(MVC.VehicleData.CabeceraVehiculo((int)ViewBag.VehicleCode)); }
 </div>
 <hr />
+<div style="display: none;">
+    <input type="text" name="vehicleAutoComplete" id="vehicleAutoComplete" value="" />
+</div>
 <div class="row">
     <ul class="nav nav-tabs" role="tablist">
         @foreach (var iTableName in Model)
@@ -26,10 +29,10 @@
         @foreach (var iTableName in Model)
         {
             <div role="tabpanel" class="tab-pane" id="@iTableName">
-                <div class="innercontenttab" data-containerid="#@iTableName">
+                <div class="innercontenttab well" data-containerid="#@iTableName">
                     Content Tab @iTableName
                 </div>
-                <div class="innerfilestable" data-tablename="@iTableName" data-vehiclecode="@((int)ViewBag.VehicleCode)">
+                <div class="innerfilestable well" data-tablename="@iTableName" data-vehiclecode="@((int)ViewBag.VehicleCode)">
                     <div id="@("filetable" + iTableName)">
 
                     </div>
@@ -38,7 +41,6 @@
         }
     </div>
 </div>
-
 
 @section scripts {
     <script src="~/Scripts/jquery-ui-1.9.2.js" type="text/javascript"></script>

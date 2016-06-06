@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace SERVOSA.SAIR.WEB.Controllers
 {
+    [Authorize]
     public partial class VehicleDataController : Controller
     {
         private readonly IVehicleService _vehicleService;

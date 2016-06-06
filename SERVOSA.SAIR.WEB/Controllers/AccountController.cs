@@ -73,10 +73,35 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 return View(model);
             }
 
+            SignInStatus signResult = SignInStatus.Failure;
+
+            if (new string[] { "usuario1vehiculos", "usuario2vehiculos" }.Contains(model.Email) && new string[] { "123456", "123456" }.Contains(model.Password))
+            {
+                signResult = SignInStatus.Success;
+                var ident = new ClaimsIdentity(
+                  new[] { 
+              // adding following 2 claim just for supporting default antiforgery provider
+              new Claim(ClaimTypes.NameIdentifier, model.Email),
+              new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity", "http://www.w3.org/2001/XMLSchema#string"),
+
+              new Claim(ClaimTypes.Name,model.Email),
+
+              // optionally you could add roles if any
+              new Claim(ClaimTypes.Role, "RoleName"),
+              new Claim(ClaimTypes.Role, "AnotherRole"),
+
+                  },
+                  DefaultAuthenticationTypes.ApplicationCookie);
+
+                HttpContext.GetOwinContext().Authentication.SignIn(
+                   new AuthenticationProperties { IsPersistent = false }, ident);
+            }
+
+
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            switch (signResult)
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
@@ -86,7 +111,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Intento de Login invalido.");
                     return View(model);
             }
         }

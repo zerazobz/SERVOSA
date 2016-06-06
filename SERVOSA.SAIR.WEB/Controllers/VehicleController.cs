@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace SERVOSA.SAIR.WEB.Controllers
 {
+    [Authorize]
     public partial class VehicleController : Controller
     {
         private IVehicleService _vehicleService;
