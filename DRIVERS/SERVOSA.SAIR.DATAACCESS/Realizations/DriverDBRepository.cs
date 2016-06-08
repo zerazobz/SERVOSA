@@ -24,7 +24,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             object[] parameters = new object[] { entity.TableName, null, null };
 
-            using (var dbCommand = _servosaDB.GetStoredProcCommand("SAIR_CREATETABLE", parameters))
+            using (var dbCommand = _servosaDB.GetStoredProcCommand("SAIR_DRIVCREATETABLE", parameters))
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(dbCommand);
                 var normalizedNameOutput = _servosaDB.GetParameterValue(dbCommand, "@tableNormalizedName");
@@ -43,7 +43,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             {
                 object[] parameters = new object[] { entity.TableName, null, null };
 
-                using (var dbCommand = _servosaDB.GetStoredProcCommand("SAIR_CREATETABLE", parameters))
+                using (var dbCommand = _servosaDB.GetStoredProcCommand("SAIR_DRIVCREATETABLE", parameters))
                 {
                     var resultExecution = _servosaDB.ExecuteNonQuery(dbCommand);
                     var normalizedNameOutput = Convert.ToString(_servosaDB.GetParameterValue(dbCommand, "@tableNormalizedName"));
@@ -70,7 +70,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             try
             {
                 object[] parameters = new object[] { model.NormalizedTableName, model.ColumnName, model.DataType, null };
-                using (var createCommand = _servosaDB.GetStoredProcCommand("SAIR_ADDCOLUMNTABLE", parameters))
+                using (var createCommand = _servosaDB.GetStoredProcCommand("SAIR_DRIVADDCOLUMNTABLE", parameters))
                 {
                     var resultExecutionj = _servosaDB.ExecuteNonQuery(createCommand);
                     var outputValue = _servosaDB.GetParameterValue(createCommand, "@normalizedColumnName").ToString();
@@ -93,7 +93,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             throw new NotImplementedException();
             //object[] parameters = new object[] { entity.TableName, entity.ColumnName, entity.DataType };
-            //using (var createCommand = _servosaDB.GetStoredProcCommand("SAIR_ADDCOLUMNTABLE", parameters))
+            //using (var createCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHIADDCOLUMNTABLE", parameters))
             //{
             //    var resultExecution = _servosaDB.ExecuteNonQuery(createCommand);
             //    return resultExecution;
@@ -108,7 +108,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public int Delete(DriverColumnModel entity)
         {
             object[] parameters = new object[] { entity.NormalizedTableName, entity.ColumnName };
-            using (var deleteColumnCommand = _servosaDB.GetStoredProcCommand("SAIR_DROPCOLUMNTABLE", parameters))
+            using (var deleteColumnCommand = _servosaDB.GetStoredProcCommand("SAIR_DRIVDROPCOLUMNTABLE", parameters))
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(deleteColumnCommand);
                 return resultExecution;
@@ -139,15 +139,15 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             object[] parameters = new object[] { };
             IRowMapper<DriverTableModel> tableRowMapper = MapBuilder<DriverTableModel>.MapAllProperties().Build();
-            var allTables = _servosaDB.ExecuteSprocAccessor("SAIR_SELECTTABLES", tableRowMapper, parameters);
+            var allTables = _servosaDB.ExecuteSprocAccessor("SAIR_DRIVSELECTTABLES", tableRowMapper, parameters);
             return allTables.ToList();
         }
 
         public IList<DriverTableColumnModel> ListAllVehicleVarsTablesWithDefinition()
         {
-            object[] parameters = new object[] { "vehiclevars" };
+            object[] parameters = new object[] { "drivervars" };
             IRowMapper<DriverTableColumnModel> tableRowMapper = MapBuilder<DriverTableColumnModel>.MapAllProperties().Build();
-            var allTables = _servosaDB.ExecuteSprocAccessor("SAIR_LISTTABLESANDCOLUMNS", tableRowMapper, parameters);
+            var allTables = _servosaDB.ExecuteSprocAccessor("SAIR_DRIVLISTTABLESANDCOLUMNS", tableRowMapper, parameters);
             return allTables.ToList();
         }
 
@@ -155,7 +155,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             object[] parameters = new object[] { "drivervars" };
             IRowMapper<DriverTableColumnModel> tableRowMapper = MapBuilder<DriverTableColumnModel>.MapAllProperties().Build();
-            var allTables = _servosaDB.ExecuteSprocAccessor("SAIR_LISTTABLESANDCOLUMNS", tableRowMapper, parameters);
+            var allTables = _servosaDB.ExecuteSprocAccessor("SAIR_DRIVLISTTABLESANDCOLUMNS", tableRowMapper, parameters);
             return allTables.ToList();
         }
 

@@ -336,6 +336,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <None Include="Properties\PublishProfiles\sairvehicles - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\sairvehicles - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\handlebars-latest.js" />
     <Content Include="Scripts\handlebars.min-latest.js" />

@@ -21,7 +21,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public int DeleteDriver(DriverFileModel model)
         {
             object[] deleteParameters = new object[] { model.VEHI_VEHIID, model.VEFI_TableName, model.VEFI_FileName };
-            var deleteResult = _servosaDb.ExecuteNonQuery("SAIR_VEFID", deleteParameters);
+            var deleteResult = _servosaDb.ExecuteNonQuery("SAIR_DRFID", deleteParameters);
             return deleteResult;
         }
 
@@ -29,14 +29,14 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             IRowMapper<DriverFileModel> driverFileMapper = MapBuilder<DriverFileModel>.MapAllProperties().Build();
             object[] listDriverParameters = new object[] { vehicleCode, tableName };
-            var listDrivers = _servosaDb.ExecuteSprocAccessor("SAIR_VEFIS_ByTableNameVehicle", driverFileMapper, listDriverParameters);
+            var listDrivers = _servosaDb.ExecuteSprocAccessor("SAIR_DRFIS_ByTableNameDriver", driverFileMapper, listDriverParameters);
             return listDrivers.ToList();
         }
 
         public int InsertDriver(DriverFileModel model)
         {
             object[] insertParameters = new object[] { model.VEHI_VEHIID, model.VEFI_TableName, model.VEFI_DataFile, model.VEFI_FileName, model.VEFI_FileContentType, model.VEFI_FileLocationStored, model.VEFI_DateCreated };
-            var insertResult = _servosaDb.ExecuteNonQuery("SAIR_VEFII", insertParameters);
+            var insertResult = _servosaDb.ExecuteNonQuery("SAIR_DRFII", insertParameters);
             return insertResult;
         }
     }

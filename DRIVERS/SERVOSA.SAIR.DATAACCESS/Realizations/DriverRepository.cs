@@ -23,7 +23,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public int Create(DriverModel entity)
         {
             object[] parameters = new object[] { entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, entity.DRIV_dBirthDate, entity.DRIV_cAddress, null };
-            using (var insertCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHII", parameters))
+            using (var insertCommand = _servosaDB.GetStoredProcCommand("SAIR_DRIVI", parameters))
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(insertCommand);
                 var driverCode = Convert.ToInt32(_servosaDB.GetParameterValue(insertCommand, "Codigo"));
@@ -35,7 +35,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public int Delete(DriverModel entity)
         {
             object[] parameters = new object[] { entity.Codigo };
-            var resultExecution = _servosaDB.ExecuteNonQuery("SAIR_VEHID", parameters);
+            var resultExecution = _servosaDB.ExecuteNonQuery("SAIR_DRIVD", parameters);
             return resultExecution;
         }
 
@@ -43,7 +43,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             object[] parameters = new object[] { };
             IRowMapper<DriverModel> driverRowMapper = GetMapperSimple();
-            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS", driverRowMapper, parameters);
+            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_DRIVS", driverRowMapper, parameters);
             return vehicleCollection.ToList();
         }
 
@@ -51,7 +51,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             object[] parameters = new object[] { minRow, maxRow };
             IRowMapper<DriverModel> vehicleRowMapper = GetMapperForFilteredSP();
-            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_Filtrado", vehicleRowMapper, parameters);
+            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_DRIVS_Filtrado", vehicleRowMapper, parameters);
             return vehicleCollection.ToList();
         }
 
@@ -59,7 +59,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             object[] parameters = new object[] { searchTerm };
             IRowMapper<DriverModel> vehicleRowMapper = GetMapperForSearchFilteredByTerm();
-            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_FilterByText", vehicleRowMapper, parameters);
+            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_DRIVS_FilterByText", vehicleRowMapper, parameters);
             return vehicleCollection.ToList();
         }
 
@@ -67,14 +67,14 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             object[] parameteres = new object[] { id };
             IRowMapper<DriverModel> vehicleRowMapper = GetMapperForOldSP();
-            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_UnReg", vehicleRowMapper, parameteres);
+            var vehicleCollection = _servosaDB.ExecuteSprocAccessor("SAIR_DRIVS_UnReg", vehicleRowMapper, parameteres);
             return vehicleCollection.FirstOrDefault();
         }
 
         public int Update(DriverModel entity)
         {
             object[] parameters = new object[] { entity.Codigo, entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, entity.DRIV_dBirthDate, entity.DRIV_cAddress };
-            using (var updateCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHIU", parameters))
+            using (var updateCommand = _servosaDB.GetStoredProcCommand("SAIR_DRIVIU", parameters))
             {
                 var executionResult = _servosaDB.ExecuteNonQuery(updateCommand);
                 return executionResult;
@@ -86,7 +86,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             List<DriverHeadRowDataModel> headDataCollection = new List<DriverHeadRowDataModel>();
 
             object[] parameters = new object[] { tableName };
-            using (var readCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHIS_Datos", parameters))
+            using (var readCommand = _servosaDB.GetStoredProcCommand("SAIR_DRIVS_Datos", parameters))
             {
                 DriverHeadRowDataModel headModel = null;
                 using (var readerProcedure = _servosaDB.ExecuteReader(readCommand))
@@ -119,7 +119,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             object[] parameters = new object[] { tableName, vehicleId };
             IRowMapper<DriverVariableTableDataModel> rowMapper = MapBuilder<DriverVariableTableDataModel>.MapAllProperties().Build();
 
-            var dataResult = _servosaDB.ExecuteSprocAccessor("SAIR_VEHIS_TableData", rowMapper, parameters);
+            var dataResult = _servosaDB.ExecuteSprocAccessor("SAIR_DRIVS_TableData", rowMapper, parameters);
             return dataResult.ToList();
         }
 
@@ -127,21 +127,21 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             object[] parameters = new object[] { };
             IRowMapper<DriverRelatedTableToEntityModel> relatedTablesMapper = MapBuilder<DriverRelatedTableToEntityModel>.MapAllProperties().Build();
-            var relatedTableCollection = _servosaDB.ExecuteSprocAccessor("SAIR_ALLTABLESREFERENCINGVEHICLES", relatedTablesMapper, parameters);
+            var relatedTableCollection = _servosaDB.ExecuteSprocAccessor("SAIR_ALLTABLESREFERENCINGDRIVERS", relatedTablesMapper, parameters);
             return relatedTableCollection.ToList();
         }
 
         public DataSet GetVariableDataToExport(string tableName)
         {
             object[] parameters = new object[] { tableName };
-            var resultDataSet = _servosaDB.ExecuteDataSet("SAIR_DatosVariable", parameters);
+            var resultDataSet = _servosaDB.ExecuteDataSet("SAIR_DatosVariableDriver", parameters);
             return resultDataSet;
         }
 
         public DataSet GetDriverDataToExport(int vehicleCode)
         {
             object[] parameters = new object[] { vehicleCode };
-            var resultDataSet = _servosaDB.ExecuteDataSet("SAIR_DatosVehiculo", parameters);
+            var resultDataSet = _servosaDB.ExecuteDataSet("SAIR_DatosConductor", parameters);
             return resultDataSet;
         }
 

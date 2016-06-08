@@ -38,7 +38,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                     dataPrepared.Select(kvp => columnValues.Rows.Add(kvp.Value)).ToList();
                 }
 
-                using (var insertCommand = _servosaDB.GetStoredProcCommand(variableData? "SAIR_InsertVariableDataToTable" : "SAIR_InsertConstantDataToTable"))
+                using (var insertCommand = _servosaDB.GetStoredProcCommand(variableData? "SAIR_DriverInsertVariableDataToTable" : "SAIR_DriverInsertConstantDataToTable"))
                 {
                     insertCommand.Parameters.Add(new SqlParameter("columnsDeclaration", columnsDeclaration) { SqlDbType = SqlDbType.Structured });
                     insertCommand.Parameters.Add(new SqlParameter("columnsValues", columnValues) { SqlDbType = SqlDbType.Structured });
@@ -92,7 +92,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                 var rawTemp = dataPrepared.Select(kvp => columnsDictionaryDeclaration.Rows.Add(new object[] { kvp.Key, kvp.Value })).ToList();
             }
 
-            using (var updateCommand = _servosaDB.GetStoredProcCommand(variableData? "SAIR_UpdateVariableDataToTable" : "SAIR_UpdateConstantDataToTable"))
+            using (var updateCommand = _servosaDB.GetStoredProcCommand(variableData? "SAIR_DriverUpdateVariableDataToTable" : "SAIR_DriverUpdateConstantDataToTable"))
             {
                 updateCommand.Parameters.Add(new SqlParameter("columnsDictionaryDeclarationAndValue", columnsDictionaryDeclaration) { SqlDbType = SqlDbType.Structured });
                 _servosaDB.AddInParameter(updateCommand, "tableName", DbType.String, tableName);

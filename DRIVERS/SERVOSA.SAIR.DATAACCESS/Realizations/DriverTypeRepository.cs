@@ -23,7 +23,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             object[] parameters = new object[] { tableCode };
             IRowMapper<DriverTypeModel> typeRowMapper = MapBuilder<DriverTypeModel>.MapAllProperties().Build();
-            var collectionTypes = _servosaDatabase.ExecuteSprocAccessor("SAIR_TYPES_AllByTable", typeRowMapper, parameters);
+            var collectionTypes = _servosaDatabase.ExecuteSprocAccessor("SAIR_TYPES_AllByTableForDriver", typeRowMapper, parameters);
             return collectionTypes.ToList();
         }
     }
