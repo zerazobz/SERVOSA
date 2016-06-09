@@ -1,4 +1,4 @@
-﻿using SERVOSA.SAIR.DATAACCESS.Models.Driver;
+﻿using SERVOSA.SAIR.DATAACCESS.Models.OldDriver;
 using System;
 using System.Collections.Generic;
 using System.Linq;

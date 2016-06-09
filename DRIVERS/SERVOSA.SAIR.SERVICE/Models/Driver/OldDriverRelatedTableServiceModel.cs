@@ -1,16 +1,15 @@
-﻿using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
-using SERVOSA.SAIR.SERVICE.Models.Vehicle;
+﻿using SERVOSA.SAIR.DATAACCESS.Models.Driver;
+using SERVOSA.SAIR.SERVICE.Models.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SERVOSA.SAIR.SERVICE.Models.Driver
+namespace SERVOSA.SAIR.SERVICE.Models.OldDriver
 {
     public class OldDriverRelatedTableServiceModel : DriverRelatedTableServiceModel
     {
-
         public static void ToDataModel(OldDriverRelatedTableServiceModel serviceModel, ref DriverRelatedTableToEntityModel dataModel)
         {
             if (serviceModel != null)

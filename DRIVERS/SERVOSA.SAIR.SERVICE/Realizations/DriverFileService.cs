@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SERVOSA.SAIR.SERVICE.Models.Vehicle;
+using SERVOSA.SAIR.SERVICE.Models.Driver;
 using SERVOSA.SAIR.DATAACCESS.Contracts;
-using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+using SERVOSA.SAIR.DATAACCESS.Models.Driver;
 
 namespace SERVOSA.SAIR.SERVICE.Realizations
 {
@@ -19,7 +19,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             _vehicleFileRepository = injectedVehicleRepo;
         }
 
-        public Tuple<bool, int, string> DeleteVehicleFile(DriverFileServiceModel model)
+        public Tuple<bool, int, string> DeleteDriverFile(DriverFileServiceModel model)
         {
             bool resultExecution;
             string messageResult;
@@ -39,7 +39,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return new Tuple<bool, int, string>(resultExecution, rowsAffected, messageResult);
         }
 
-        public IList<DriverFileServiceModel> GetFilesByTableNameAndVehicleId(string tableName, int vehicleId)
+        public IList<DriverFileServiceModel> GetFilesByTableNameAndDriverId(string tableName, int vehicleId)
         {
             DriverFileServiceModel modelForList = null;
             var filesCollection = _vehicleFileRepository.GetListDrivers(tableName, vehicleId).Select(fI =>
@@ -50,7 +50,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return filesCollection;
         }
 
-        public Tuple<bool, int, string> InsertVehicleFile(DriverFileServiceModel model)
+        public Tuple<bool, int, string> InsertDriverFile(DriverFileServiceModel model)
         {
             bool resultExecution;
             string messageResult;

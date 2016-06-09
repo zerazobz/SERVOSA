@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SERVOSA.SAIR.DATAACCESS.Models.Vehicle
+namespace SERVOSA.SAIR.DATAACCESS.Models.Driver
 {
     public class DriverHeadRowDataModel
     {

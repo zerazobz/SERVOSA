@@ -1,4 +1,4 @@
-﻿using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+﻿using SERVOSA.SAIR.DATAACCESS.Models.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class VehicleHeadRowServiceModel
+    public class DriverHeadRowServiceModel
     {
-        public VehicleHeadRowServiceModel()
+        public DriverHeadRowServiceModel()
         {
-            DataForRow = new List<VehicleDetailRowServiceModel>();
+            DataForRow = new List<DriverDetailRowServiceModel>();
         }
 
         public string TableName { get; set; }
@@ -19,9 +19,9 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public int VehicleId { get; set; }
         public int ColumnIdValue { get; set; }
         public bool WithAlert { get; set; }
-        public IList<VehicleDetailRowServiceModel> DataForRow { get; set; }
+        public IList<DriverDetailRowServiceModel> DataForRow { get; set; }
 
-        public static void ToDataModel(VehicleHeadRowServiceModel serviceModel, ref DriverHeadRowDataModel dataModel)
+        public static void ToDataModel(DriverHeadRowServiceModel serviceModel, ref DriverHeadRowDataModel dataModel)
         {
             if (serviceModel != null)
             {
@@ -47,11 +47,11 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 dataModel = null;
         }
 
-        public static void ToServiceModel(DriverHeadRowDataModel dataModel, ref VehicleHeadRowServiceModel serviceModel)
+        public static void ToServiceModel(DriverHeadRowDataModel dataModel, ref DriverHeadRowServiceModel serviceModel)
         {
             if(dataModel != null)
             {
-                serviceModel = new VehicleHeadRowServiceModel()
+                serviceModel = new DriverHeadRowServiceModel()
                 {
                     ObjectId = dataModel.ObjectId,
                     TableName = dataModel.TableName,
@@ -61,14 +61,14 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 DateTime? lastDate = null;
                 int? daysToAlert = null;
 
-                var tmpList = new List<VehicleDetailRowServiceModel>();
+                var tmpList = new List<DriverDetailRowServiceModel>();
                 dataModel.DataForRow.ToList().ForEach(dr =>
                 {
                     DateTime tmpDate;
                     if(DateTime.TryParse(dr.Value, out tmpDate))
                         lastDate = tmpDate;
 
-                    tmpList.Add(new VehicleDetailRowServiceModel
+                    tmpList.Add(new DriverDetailRowServiceModel
                     {
                         Type = String.Empty,
                         Value = dr.Value

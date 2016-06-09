@@ -76,25 +76,25 @@
         //    paging: true,
         //    pageSize: 10,
         //    actions: {
-        //        listAction: '/Vehicle/ListVehicles',
-        //        deleteAction: '/Vehicle/DeleteVehicle',
-        //        updateAction: '/Vehicle/UpdateVehicle',
-        //        createAction: '/Vehicle/CreateVehicle'
+        //        listAction: '/Driver/ListDrivers',
+        //        deleteAction: '/Driver/DeleteDriver',
+        //        updateAction: '/Driver/UpdateDriver',
+        //        createAction: '/Driver/CreateDriver'
         //    },
         //    fields: {
         //        Item: { title: 'Item', create: false, edit: false, width: '5%' },
         //        Codigo: { key: true, title: 'Codigo', width: '5%' },
-        //        CodigoTipoUnidad: { title: 'Tipo de Unidad', options: '/Vehicle/GetVehiclesUnitTypes' },
+        //        CodigoTipoUnidad: { title: 'Tipo de Unidad', options: '/Driver/GetDriversUnitTypes' },
         //        Placa: { title: 'Placa' },
         //        //PlacaTracto: { title: 'Placa Tracto' },
         //        //PlacaTolva: { title: 'Placa Tolva' },
         //        MarcaConcatenada: {
         //            title: 'Codigo Marca',
-        //            options: '/Vehicle/GetVehicleBrands'
+        //            options: '/Driver/GetDriverBrands'
         //        },
         //        EstadoConcatenado: {
         //            title: 'Codigo Estado',
-        //            options: '/Vehicle/GetVehicleStates'
+        //            options: '/Driver/GetDriverStates'
         //        }
         //    }
         //});
@@ -243,8 +243,8 @@
             var htmlTemplate = driverNamespace.GetDriverAutoCompleteTemplate();
             var handleTemplate = Handlebars.compile(htmlTemplate);
             var data = {
-                //VehiclePlate: item.data.Placa,
-                //VehicleBrand: item.data.Marca,
+                //DriverPlate: item.data.Placa,
+                //DriverBrand: item.data.Marca,
                 DriverId: item.data.Codigo
             };
             var htmlGenerated = handleTemplate(data);

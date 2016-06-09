@@ -1,11 +1,11 @@
-﻿using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+﻿using SERVOSA.SAIR.DATAACCESS.Models.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
+namespace SERVOSA.SAIR.SERVICE.Models.Driver
 {
     public class DriverRelatedTableServiceModel
     {

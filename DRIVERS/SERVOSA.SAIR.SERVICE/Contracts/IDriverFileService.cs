@@ -1,4 +1,4 @@
-﻿using SERVOSA.SAIR.SERVICE.Models.Vehicle;
+﻿using SERVOSA.SAIR.SERVICE.Models.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +9,8 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
 {
     public interface IDriverFileService
     {
-        IList<DriverFileServiceModel> GetFilesByTableNameAndVehicleId(string tableName, int vehicleId);
-        Tuple<bool, int, string> InsertVehicleFile(DriverFileServiceModel model);
-        Tuple<bool, int, string> DeleteVehicleFile(DriverFileServiceModel model);
+        IList<DriverFileServiceModel> GetFilesByTableNameAndDriverId(string tableName, int driverId);
+        Tuple<bool, int, string> InsertDriverFile(DriverFileServiceModel model);
+        Tuple<bool, int, string> DeleteDriverFile(DriverFileServiceModel model);
     }
 }

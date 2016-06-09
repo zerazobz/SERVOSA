@@ -12,23 +12,23 @@ namespace SERVOSA.SAIR.WEB.Controllers
     [Authorize]
     public partial class HomeController : Controller
     {
-        private IDriverService _vehicleServices;
+        private IDriverService _driverServices;
         private readonly IDriverDBServices _dbServices;
-        private IDriverAlertService _vehicleAlertService;
+        private IDriverAlertService _driverAlertService;
 
-        public HomeController(IDriverService injectedVehicleRep, IDriverDBServices injectedDbService, IDriverAlertService vehiceAlertInjectedService)
+        public HomeController(IDriverService injectedDriverRep, IDriverDBServices injectedDbService, IDriverAlertService vehiceAlertInjectedService)
         {
-            _vehicleServices = injectedVehicleRep;
+            _driverServices = injectedDriverRep;
             _dbServices = injectedDbService;
-            _vehicleAlertService = vehiceAlertInjectedService;
+            _driverAlertService = vehiceAlertInjectedService;
         }
 
         [HttpGet]
         public virtual ActionResult Index()
         {
-            int alertsSended = _vehicleAlertService.ProcessAlerts(new string[] { "51950313361" });
+            int alertsSended = _driverAlertService.ProcessAlerts(new string[] { "51950313361" });
             
-            var allCompleteTable = _dbServices.ListVehicleVarsTablesWithDefinition();
+            var allCompleteTable = _dbServices.ListDriversVarsTablesWithDefinition();
             var tableDataGrouped = allCompleteTable.GroupBy(t => t.TableNormalizedName);
 
             IList<TableColumnViewModel> collectionTables = new List<TableColumnViewModel>();
@@ -60,17 +60,17 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
         [ChildActionOnly]
         [HttpGet]
-        public virtual ActionResult VehicleTable()
+        public virtual ActionResult DriverTable()
         {
-            var vehicleData = _vehicleServices.GetAll();
+            var driverData = _driverServices.GetAll();
 
-            return PartialView(MVC.Home.Views.VehicleTable, vehicleData);
+            return PartialView(MVC.Home.Views.DriverTable, driverData);
         }
 
         [HttpGet]
-        public virtual ActionResult VehicleDataTable(DriverTableServiceModel model)
+        public virtual ActionResult DriverDataTable(DriverTableServiceModel model)
         {
-            return PartialView(MVC.Home.Views.VehicleDataTable, model);
+            return PartialView(MVC.Home.Views.DriverDataTable, model);
         }
     }
 }

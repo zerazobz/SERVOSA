@@ -1,16 +1,16 @@
-﻿using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+﻿using SERVOSA.SAIR.DATAACCESS.Models.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
+namespace SERVOSA.SAIR.SERVICE.Models.Driver
 {
     public class DriverFileServiceModel
     {
         public int Identity { get; set; }
-        public int VehicleId { get; set; }
+        public int DriverId { get; set; }
         public string TableName { get; set; }
         public byte[] DataFile { get; set; }
         public string FileName { get; set; }
@@ -32,7 +32,7 @@ namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
                     FileName = dataModel.VEFI_FileName,
                     Identity = dataModel.VEFI_Identity,
                     TableName = dataModel.VEFI_TableName,
-                    VehicleId = dataModel.VEHI_VEHIID,
+                    DriverId = dataModel.VEHI_VEHIID,
                     ComposedPrimaryKey = String.Format("{0}|@|{1}|@|{2}", dataModel.VEHI_VEHIID, dataModel.VEFI_TableName, dataModel.VEFI_FileName)
                 };
             else
@@ -51,7 +51,7 @@ namespace SERVOSA.SAIR.SERVICE.Models.Vehicle
                     VEFI_FileName = serviceModel.FileName,
                     VEFI_Identity = serviceModel.Identity,
                     VEFI_TableName = serviceModel.TableName,
-                    VEHI_VEHIID = serviceModel.VehicleId
+                    VEHI_VEHIID = serviceModel.DriverId
                 };
             else
                 dataModel = null;

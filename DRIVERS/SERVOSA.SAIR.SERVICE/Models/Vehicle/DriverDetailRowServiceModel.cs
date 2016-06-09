@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models
 {
-    public class VehicleDetailRowServiceModel
+    public class DriverDetailRowServiceModel
     {
         public string Value { get; set; }
         public string Type { get; set; }

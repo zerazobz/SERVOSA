@@ -1,11 +1,11 @@
 ﻿(function (servosaCore, undefined) {
 	var _allConstantColumns = [];
 
-	servosaCore.AddConstantVehicleColumn = function (iColumn) {
+	servosaCore.AddConstantDriverColumn = function (iColumn) {
 		_allConstantColumns.push(iColumn);
 	}
 
-	servosaCore.GetConstantVehicleColumns = function () {
+	servosaCore.GetConstantDriverColumns = function () {
 		return _allConstantColumns;
 	}
 

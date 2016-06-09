@@ -1,6 +1,6 @@
 ﻿using SERVOSA.SAIR.DATAACCESS.Core;
+using SERVOSA.SAIR.DATAACCESS.Models.OldDriver;
 using SERVOSA.SAIR.DATAACCESS.Models.Driver;
-using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
 using System;
 using System.Collections.Generic;
 using System.Linq;

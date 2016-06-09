@@ -1,18 +1,18 @@
-﻿(function (vehicleDataService, $, undefined) {
+﻿(function (driverDataService, $, undefined) {
 
-    vehicleDataService.SetupJtableContainer = function (jtableContainerId, tableName, vehicleId) {
+    driverDataService.SetupJtableContainer = function (jtableContainerId, tableName, driverId) {
         $(jtableContainerId).jtable({
             title: 'Listado de Vehiculos',
             paging: true,
             pageSize: 10,
             actions: {
-                listAction: '/VehicleData/ListFilesByTableAndVehicle?tableName=' + tableName + "&vehicleCode=" + vehicleId,
-                deleteAction: '/VehicleData/DeleteFile'
+                listAction: '/DriverData/ListFilesByTableAndDriver?tableName=' + tableName + "&driverCode=" + driverId,
+                deleteAction: '/DriverData/DeleteFile'
             },
             fields: {
                 ComposedPrimaryKey: { key: 'true', list: false },
                 Identity: { title: 'Identity', list: false },
-                VehicleId: { title: 'VehicleId', list: false },
+                DriverId: { title: 'DriverId', list: false },
                 TableName: { title: 'TableName', list: true },
                 //DataFile: { title: 'DataFile', list: false },
                 FileName: { title: 'FileName', list: true },
@@ -23,19 +23,19 @@
         });
     };
 
-    vehicleDataService.LoadJTableContainer = function (jtableContainerId) {
+    driverDataService.LoadJTableContainer = function (jtableContainerId) {
         $(jtableContainerId).jtable('load');
     }
 
     $(function () {
         var allTabTables = $("div[class='tab-pane']").map(function (i, el) { return $(el).attr("id"); });
-        var vehicleId = $("[name='CurrentVehicleId']").val();
+        var driverId = $("[name='CurrentDriverId']").val();
         $.each(allTabTables, function (i, element) {
             console.debug("El elemento es: " + element);
             var tableToLoad = element;
             var elementToLoad = "#" + element;
 
-            $.get("/VehicleData/DatosVariableVehiculo?vehicleCode=" + vehicleId + "&variableName=" + tableToLoad, function (htmlResult) {
+            $.get("/DriverData/DatosVariableVehiculo?driverCode=" + driverId + "&variableName=" + tableToLoad, function (htmlResult) {
                 console.log("La tabla a revisar es: " + elementToLoad);
                 $(elementToLoad).find(".innercontenttab").empty();
                 $(elementToLoad).find(".innercontenttab").html(htmlResult);
@@ -45,9 +45,9 @@
 
             var containerFileTableToLoad = "#" + $(elementToLoad).find(".innerfilestable div").attr("id");
             console.log("El contenedor de archivos a cargar es: " + containerFileTableToLoad);
-            vehicleDataService.SetupJtableContainer(containerFileTableToLoad, tableToLoad, vehicleId);
-            vehicleDataService.LoadJTableContainer(containerFileTableToLoad);
+            driverDataService.SetupJtableContainer(containerFileTableToLoad, tableToLoad, driverId);
+            driverDataService.LoadJTableContainer(containerFileTableToLoad);
         });
     });
 
-})(window.VehicleDataViewController = window.VehicleDataViewController || {}, jQuery);
+})(window.DriverDataViewController = window.DriverDataViewController || {}, jQuery);

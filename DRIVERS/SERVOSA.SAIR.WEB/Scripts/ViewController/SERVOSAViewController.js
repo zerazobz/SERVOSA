@@ -106,10 +106,10 @@
         $(document).on("click", ".createUpdateData", null, function () {
             var $buttonContext = $(this);
             var tableName = $buttonContext.data("tablename");
-            var parametersForModal = { vehicleCode: $buttonContext.data("vehicleid"), variableName: tableName };
+            var parametersForModal = { driverCode: $buttonContext.data("driverid"), variableName: tableName };
             var modalId = "#createUpdateTableDataModal";
 
-            SERVOSANamespace.LoadShowModal(parametersForModal, "/VehicleData/DatosVariableVehiculo", modalId, function () {
+            SERVOSANamespace.LoadShowModal(parametersForModal, "/DriverData/DatosVariableVehiculo", modalId, function () {
                 $(modalId).find(".modal-content input[name='submitDatosVariables']").prop("tablename", tableName);
             });
         });
@@ -117,16 +117,16 @@
         $("#containerforalltables").on("click", ".insertRemoveFile", null, function () {
             var $buttonContext = $(this);
             var tableToLoad = $buttonContext.data("tablename");
-            var vehicleId = $buttonContext.data("vehicleid");
-            var modalParameters = { tableName: tableToLoad, vehicleCode: vehicleId };
+            var driverId = $buttonContext.data("driverid");
+            var modalParameters = { tableName: tableToLoad, driverCode: driverId };
             var modalId = "#createRemoveFilesForTableDataModal";
 
-            SERVOSANamespace.LoadShowModal(modalParameters, "/VehicleData/GetFileModalManager", modalId, function () {
+            SERVOSANamespace.LoadShowModal(modalParameters, "/DriverData/GetFileModalManager", modalId, function () {
 
                 var containerFileTableToLoad = "#" + $(modalId).find(".innerfilestable div").attr("id");
                 console.log("El contenedor de archivos a cargar es: " + containerFileTableToLoad);
-                window.VehicleDataViewController.SetupJtableContainer(containerFileTableToLoad, tableToLoad, vehicleId);
-                window.VehicleDataViewController.LoadJTableContainer(containerFileTableToLoad);
+                window.DriverDataViewController.SetupJtableContainer(containerFileTableToLoad, tableToLoad, driverId);
+                window.DriverDataViewController.LoadJTableContainer(containerFileTableToLoad);
             });
         });
 
@@ -139,7 +139,7 @@
                 $("[name='submitDatosVariables']").prop("disabled", true);
                 var currentTableName = $formContext.find("input[name='submitDatosVariables']").prop('tablename');
                 var $tableContext = $("table[data-tablename='" + currentTableName + "']");
-                window.VehicleNamespace.LoadTableData($tableContext, currentTableName);
+                window.DriverNamespace.LoadTableData($tableContext, currentTableName);
             }, function () {
 
             });

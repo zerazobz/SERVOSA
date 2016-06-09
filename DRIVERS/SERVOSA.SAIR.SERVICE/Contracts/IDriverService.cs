@@ -1,7 +1,7 @@
-﻿using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+﻿using SERVOSA.SAIR.DATAACCESS.Models.Driver;
 using SERVOSA.SAIR.SERVICE.Contracts.Common;
 using SERVOSA.SAIR.SERVICE.Models;
-using SERVOSA.SAIR.SERVICE.Models.Vehicle;
+using SERVOSA.SAIR.SERVICE.Models.Driver;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,11 +15,11 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
     {
         IList<DriverServiceModel> GetAllFiltered(int minRow, int maxRow);
         IList<DriverServiceModel> GetAllFilteredBySearchTerm(string searchTerm);
-        IList<VehicleHeadRowServiceModel> GetVehicleRowDataForTable(string tableName);
-        DriverVariableDataServiceModel GetVehicleVariableTableData(string tableName, int vehicleCode);
-        IList<DriverRelatedTableServiceModel> GetRelatedTablesToVehicle();
-        IList<string> GetListRelatedTablesToVehicle();
+        IList<DriverHeadRowServiceModel> GetDriverRowDataForTable(string tableName);
+        DriverVariableDataServiceModel GetDriverVariableTableData(string tableName, int driverCode);
+        IList<DriverRelatedTableServiceModel> GetRelatedTablesToDriver();
+        IList<string> GetListRelatedTablesToDriver();
         void GenerateReportForTable(string tableName, Stream streamData);
-        void GenerateReportForVehicle(int vehicleCode, Stream streamData);
+        void GenerateReportForDriver(int driverCode, Stream streamData);
     }
 }

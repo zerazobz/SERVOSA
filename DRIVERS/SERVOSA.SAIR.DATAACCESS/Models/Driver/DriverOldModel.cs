@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SERVOSA.SAIR.DATAACCESS.Models.Driver
+namespace SERVOSA.SAIR.DATAACCESS.Models.OldDriver
 {
     public class DriverOldModel
     {

@@ -1,4 +1,4 @@
-﻿using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+﻿using SERVOSA.SAIR.DATAACCESS.Models.Driver;
 using SERVOSA.SAIR.SERVICE.Core;
 using System;
 using System.Collections.Generic;

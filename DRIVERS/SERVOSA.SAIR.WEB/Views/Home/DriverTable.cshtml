@@ -32,8 +32,8 @@
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Codigo)
-                        <a href="/VehicleData/Data?vehicleCode=@item.Codigo"><span class="glyphicon glyphicon-dashboard"></span></a>
-                        <a href="/VehicleData/DownloadVehicleData?vehicleId=@item.Codigo"><span class="glyphicon glyphicon-file"></span></a>
+                        <a href="/DriverData/Data?driverCode=@item.Codigo"><span class="glyphicon glyphicon-dashboard"></span></a>
+                        <a href="/DriverData/DownloadDriverData?driverId=@item.Codigo"><span class="glyphicon glyphicon-file"></span></a>
                     </td>
                     @*<td>
                         @Html.DisplayFor(modelItem => item.DescripcionTipoUnidad)

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+using SERVOSA.SAIR.DATAACCESS.Models.Driver;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations

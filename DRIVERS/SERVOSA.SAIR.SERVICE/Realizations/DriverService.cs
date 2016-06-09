@@ -3,10 +3,10 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Xdr = DocumentFormat.OpenXml.Drawing.Spreadsheet;
 using SERVOSA.SAIR.DATAACCESS.Contracts;
-using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+using SERVOSA.SAIR.DATAACCESS.Models.Driver;
 using SERVOSA.SAIR.SERVICE.Contracts;
 using SERVOSA.SAIR.SERVICE.Models;
-using SERVOSA.SAIR.SERVICE.Models.Vehicle;
+using SERVOSA.SAIR.SERVICE.Models.Driver;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -83,19 +83,19 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return _vehicleRepository.Update(model);
         }
 
-        public IList<VehicleHeadRowServiceModel> GetVehicleRowDataForTable(string tableName)
+        public IList<DriverHeadRowServiceModel> GetDriverRowDataForTable(string tableName)
         {
-            VehicleHeadRowServiceModel modelResult = null;
+            DriverHeadRowServiceModel modelResult = null;
             var vehicleData = _vehicleRepository.GetRowDataForTable(tableName).Select(vD =>
             {
-                VehicleHeadRowServiceModel.ToServiceModel(vD, ref modelResult);
+                DriverHeadRowServiceModel.ToServiceModel(vD, ref modelResult);
                 return modelResult;
             }).ToList();
 
             return vehicleData;
         }
 
-        public DriverVariableDataServiceModel GetVehicleVariableTableData(string tableName, int vehicleCode)
+        public DriverVariableDataServiceModel GetDriverVariableTableData(string tableName, int vehicleCode)
         {
             DriverVariableDataServiceModel serviceModel = null;
             var dataResult = _vehicleRepository.GetDriverVariableTableData(tableName, vehicleCode);
@@ -104,7 +104,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return serviceModel;
         }
 
-        public IList<DriverRelatedTableServiceModel> GetRelatedTablesToVehicle()
+        public IList<DriverRelatedTableServiceModel> GetRelatedTablesToDriver()
         {
             DriverRelatedTableServiceModel vehicleRelatedVM = null;
             var relatedVehiclesCollection = _vehicleRepository.GetRelatedTablesToDriver().Select(rVT =>
@@ -115,9 +115,9 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return relatedVehiclesCollection;
         }
 
-        public IList<string> GetListRelatedTablesToVehicle()
+        public IList<string> GetListRelatedTablesToDriver()
         {
-            return GetRelatedTablesToVehicle().Select(rV => rV.ForeignTable).ToList();
+            return GetRelatedTablesToDriver().Select(rV => rV.ForeignTable).ToList();
         }
 
         public void GenerateReportForTable(string tableName, Stream streamData)
@@ -129,7 +129,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             }
         }
 
-        public void GenerateReportForVehicle(int vehicleCode, Stream streamData)
+        public void GenerateReportForDriver(int vehicleCode, Stream streamData)
         {
             using (SpreadsheetDocument package = SpreadsheetDocument.Create(streamData, SpreadsheetDocumentType.Workbook))
             {

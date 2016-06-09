@@ -1,9 +1,9 @@
 ﻿using SERVOSA.SAIR.DATAACCESS.Contracts;
+using SERVOSA.SAIR.DATAACCESS.Models.OldDriver;
 using SERVOSA.SAIR.DATAACCESS.Models.Driver;
-using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
 using SERVOSA.SAIR.SERVICE.Contracts;
 using SERVOSA.SAIR.SERVICE.Models;
-using SERVOSA.SAIR.SERVICE.Models.Driver;
+using SERVOSA.SAIR.SERVICE.Models.OldDriver;
 using System;
 using System.Collections.Generic;
 using System.Linq;

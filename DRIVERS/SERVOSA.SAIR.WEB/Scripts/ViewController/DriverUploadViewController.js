@@ -1,5 +1,5 @@
-﻿(function (vehicleUploadService, $, undefined) {
-    vehicleUploadService.UploadFiles = function (fileInputId, postUrl, formId, modalId) {
+﻿(function (driverUploadService, $, undefined) {
+    driverUploadService.UploadFiles = function (fileInputId, postUrl, formId, modalId) {
 
         var fileCollection = document.getElementById(fileInputId.substr(1));
         var fileData = new FormData();
@@ -24,11 +24,11 @@
                 $(modalId).find(".modal-content").html(htmlResult);
 
                 var tableToLoad = $(modalId).find("[name='TableName']").val();
-                var vehicleId = $(modalId).find("[name='Codigo']").val();
+                var driverId = $(modalId).find("[name='Codigo']").val();
                 var containerFileTableToLoad = $(modalId).find(".innerfilestable div").attr("id");
 
-                window.VehicleDataViewController.SetupJtableContainer(containerFileTableToLoad, tableToLoad, vehicleId);
-                window.VehicleDataViewController.LoadJTableContainer(containerFileTableToLoad);
+                window.DriverDataViewController.SetupJtableContainer(containerFileTableToLoad, tableToLoad, driverId);
+                window.DriverDataViewController.LoadJTableContainer(containerFileTableToLoad);
             }
         };
 
@@ -38,11 +38,11 @@
     };
 
     $(function () {
-        $(".body-content").on("click", "#uploadVehicleFile", null, function (e) {
+        $(".body-content").on("click", "#uploadDriverFile", null, function (e) {
             var $buttonContext = $(this);
 
-            vehicleUploadService.UploadFiles($buttonContext.data("fileinputid"), $buttonContext.data("posturl"), $buttonContext.data("formid"), $buttonContext.data("modalid"));
+            driverUploadService.UploadFiles($buttonContext.data("fileinputid"), $buttonContext.data("posturl"), $buttonContext.data("formid"), $buttonContext.data("modalid"));
         });
     });
 
-})(window.VehicleUploadService || {}, jQuery);
+})(window.DriverUploadService || {}, jQuery);

@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SERVOSA.SAIR.DATAACCESS.Models.Driver;
+using SERVOSA.SAIR.DATAACCESS.Models.OldDriver;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using SERVOSA.SAIR.DATAACCESS.Contracts;
 using System;
 using System.Collections.Generic;
-using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+using SERVOSA.SAIR.DATAACCESS.Models.Driver;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
