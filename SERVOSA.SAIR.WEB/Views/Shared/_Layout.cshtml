@@ -23,15 +23,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("General Vehiculos", MVC.Home.Index(), new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Vehiculos", MVC.Vehicle.Index())</li>
-                    <li>@Html.ActionLink("Vista General de Vehículos", MVC.Home.Index())</li>
+                    @*<li>@Html.ActionLink("Vista General de Vehículos", MVC.Home.Index())</li>*@
                     @*<li>@Html.ActionLink("Operarios", MVC.Driver.Index())</li>
                     <li>@Html.ActionLink("Vista General de Operarios", MVC.Driver.DriversMainData())</li>*@
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
