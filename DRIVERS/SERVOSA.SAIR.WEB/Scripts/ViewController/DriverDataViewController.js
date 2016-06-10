@@ -13,9 +13,9 @@
                 ComposedPrimaryKey: { key: 'true', list: false },
                 Identity: { title: 'Identity', list: false },
                 DriverId: { title: 'DriverId', list: false },
-                TableName: { title: 'TableName', list: true },
+                TableName: { title: 'Nombre de Tabla', list: true },
                 //DataFile: { title: 'DataFile', list: false },
-                FileName: { title: 'FileName', list: true },
+                FileName: { title: 'Nombre de Archivo', list: true },
                 //FileContentType: { title: 'FileContentType', list: true },
                 //FileLocationStored: { title: 'FileLocationStored', list: true },
                 DateCreated: { title: 'DateCreated', type : 'date', displayFormat: 'dd/mm/yy', list: false }

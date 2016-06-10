@@ -222,7 +222,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
                     AlertName = dateName,
                     DateToAlert = dateAlert,
                     DaysToAlert = daysToAlert,
-                    VehicleId = vehicleId
+                    DriverId = vehicleId
                 };
             return modelToInsert;
         }

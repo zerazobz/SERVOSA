@@ -72,37 +72,6 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 model.IsSuccessful = executionResponse.Item1;
                 model.Message = executionResponse.Item3;
 
-                //var tableDictionaryData = new Dictionary<string, Tuple<SERVOSASqlTypes, Object>>();
-                //tableDictionaryData = model.ColumnsCollection.ToDictionary(col => col.ColumnName, col => new Tuple<SERVOSASqlTypes, object>(col.ColumnNamedType, col.ColumnValue));
-
-                //var columnFK = model.ColumnsCollection.Where(c => c.ColumnName == "SAIR_VEHIID").FirstOrDefault();
-                //string fkValue = String.Empty;
-                //var rawFkConvertion = columnFK.ColumnValue as string[];
-                //if (rawFkConvertion.Length > 0)
-                //    fkValue = rawFkConvertion[0];
-
-                //var columnIdentity = model.ColumnsCollection.Where(c => c.ColumnName == "id").FirstOrDefault();
-                //string identityValue = String.Empty;
-                //var rawIdentityConvertion = columnIdentity.ColumnValue as string[];
-                //if (rawIdentityConvertion.Length > 0)
-                //    identityValue = rawIdentityConvertion[0];
-
-                
-                //if (columnIdentity != null && !String.IsNullOrWhiteSpace(identityValue))
-                //{
-                //    var updateResponse = _tableDataService.UpdateTableData(model.TableName, Convert.ToInt32(fkValue), tableDictionaryData);
-                //    rowsAffected = updateResponse.Item2;
-                //    model.IsSuccessful = updateResponse.Item1;
-                //    model.Message = updateResponse.Item3;
-                //}
-                //else
-                //{
-                //    var insertResponse = _tableDataService.InsertTableData(model.TableName, tableDictionaryData);
-                //    rowsAffected = insertResponse.Item2;
-                //    model.IsSuccessful = insertResponse.Item1;
-                //    model.Message = insertResponse.Item3;
-                //}
-
                 Debug.WriteLine("La ejecución termino con un: {0}", rowsAffected);
             }
             else

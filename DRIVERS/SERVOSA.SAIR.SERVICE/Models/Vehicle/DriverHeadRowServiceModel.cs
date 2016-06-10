@@ -16,7 +16,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
 
         public string TableName { get; set; }
         public int ObjectId { get; set; }
-        public int VehicleId { get; set; }
+        public int DriverId { get; set; }
         public int ColumnIdValue { get; set; }
         public bool WithAlert { get; set; }
         public IList<DriverDetailRowServiceModel> DataForRow { get; set; }
@@ -29,7 +29,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 {
                     ObjectId = serviceModel.ObjectId,
                     TableName = serviceModel.TableName,
-                    VehicleId = serviceModel.VehicleId
+                    VehicleId = serviceModel.DriverId
                 };
 
                 var tmp = new List<DriverDetailRowDataModel>();
@@ -55,7 +55,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 {
                     ObjectId = dataModel.ObjectId,
                     TableName = dataModel.TableName,
-                    VehicleId = dataModel.VehicleId
+                    DriverId = dataModel.VehicleId
                 };
 
                 DateTime? lastDate = null;

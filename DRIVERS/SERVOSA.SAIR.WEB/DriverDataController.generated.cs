@@ -220,9 +220,15 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string CabeceraVehiculo = "CabeceraVehiculo";
                 public readonly string Data = "Data";
+                public readonly string DatosVariableVehiculo = "DatosVariableVehiculo";
+                public readonly string GetFileModalManager = "GetFileModalManager";
             }
+            public readonly string CabeceraVehiculo = "~/Views/DriverData/CabeceraVehiculo.cshtml";
             public readonly string Data = "~/Views/DriverData/Data.cshtml";
+            public readonly string DatosVariableVehiculo = "~/Views/DriverData/DatosVariableVehiculo.cshtml";
+            public readonly string GetFileModalManager = "~/Views/DriverData/GetFileModalManager.cshtml";
         }
     }
 

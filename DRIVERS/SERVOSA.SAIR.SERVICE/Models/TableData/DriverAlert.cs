@@ -15,7 +15,7 @@ namespace SERVOSA.SAIR.SERVICE.Models.TableData
         public DateTime DateToAlert { get; set; }
         public string AlertName { get; set; }
         public bool AlertSended { get; set; }
-        public int VehicleId { get; set; }
+        public int DriverId { get; set; }
 
         public static void ToServiceModel(DriverAlertDataModel model, ref DriverAlert serviceModel)
         {
@@ -28,7 +28,7 @@ namespace SERVOSA.SAIR.SERVICE.Models.TableData
                     DaysToAlert = model.VEAL_DaysToAlert,
                     TableName = model.VEAL_TableName,
                     VehicleAlertId = model.VEAL_Id,
-                    VehicleId = model.VEHI_ID
+                    DriverId = model.VEHI_ID
                 };
             else
                 serviceModel = null;
@@ -45,7 +45,7 @@ namespace SERVOSA.SAIR.SERVICE.Models.TableData
                     VEAL_DaysToAlert = servicemodel.DaysToAlert,
                     VEAL_Id = servicemodel.VehicleAlertId,
                     VEAL_TableName = servicemodel.TableName,
-                    VEHI_ID = servicemodel.VehicleId
+                    VEHI_ID = servicemodel.DriverId
                 };
             else
                 dataModel = null;
