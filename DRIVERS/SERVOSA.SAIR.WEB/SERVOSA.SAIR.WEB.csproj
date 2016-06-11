@@ -217,7 +217,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\OldDriverController.cs" />
     <Compile Include="Controllers\OldDriverDataController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\DriverDashboardController.cs" />
     <Compile Include="Controllers\LoadFileController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\VariableTasksController.cs" />
@@ -228,14 +228,14 @@
     <Compile Include="DriverController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="DriverDashboardController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="DriverDataController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="HomeController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="LoadFileController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -532,7 +532,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\DriverDashboard\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -553,9 +553,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\DriverTable.cshtml" />
+    <Content Include="Views\DriverDashboard\DriverTable.cshtml" />
     <Content Include="Views\Vehicle\Index.cshtml" />
-    <Content Include="Views\Home\DriverDataTable.cshtml" />
+    <Content Include="Views\DriverDashboard\DriverDataTable.cshtml" />
     <Content Include="Views\VariableTasks\CreateTable.cshtml" />
     <Content Include="Views\VariableTasks\CreateColumn.cshtml" />
     <Content Include="Views\DriverData\Data.cshtml" />

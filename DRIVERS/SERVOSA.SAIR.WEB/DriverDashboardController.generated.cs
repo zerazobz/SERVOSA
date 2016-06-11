@@ -25,10 +25,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace SERVOSA.SAIR.WEB.Controllers
 {
-    public partial class HomeController
+    public partial class DriverDashboardController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected HomeController(Dummy d) { }
+        protected DriverDashboardController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -64,13 +64,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public HomeController Actions { get { return MVC.Home; } }
+        public DriverDashboardController Actions { get { return MVC.DriverDashboard; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Home";
+        public readonly string Name = "DriverDashboard";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Home";
+        public const string NameConst = "DriverDashboard";
         [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -114,16 +114,16 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 public readonly string DriverTable = "DriverTable";
                 public readonly string Index = "Index";
             }
-            public readonly string DriverDataTable = "~/Views/Home/DriverDataTable.cshtml";
-            public readonly string DriverTable = "~/Views/Home/DriverTable.cshtml";
-            public readonly string Index = "~/Views/Home/Index.cshtml";
+            public readonly string DriverDataTable = "~/Views/DriverDashboard/DriverDataTable.cshtml";
+            public readonly string DriverTable = "~/Views/DriverDashboard/DriverTable.cshtml";
+            public readonly string Index = "~/Views/DriverDashboard/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_HomeController : SERVOSA.SAIR.WEB.Controllers.HomeController
+    public partial class T4MVC_DriverDashboardController : SERVOSA.SAIR.WEB.Controllers.DriverDashboardController
     {
-        public T4MVC_HomeController() : base(Dummy.Instance) { }
+        public T4MVC_DriverDashboardController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);

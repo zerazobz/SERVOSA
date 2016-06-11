@@ -10,13 +10,13 @@ using System.Web.Mvc;
 namespace SERVOSA.SAIR.WEB.Controllers
 {
     [Authorize]
-    public partial class HomeController : Controller
+    public partial class DriverDashboardController : Controller
     {
         private IDriverService _driverServices;
         private readonly IDriverDBServices _dbServices;
         private IDriverAlertService _driverAlertService;
 
-        public HomeController(IDriverService injectedDriverRep, IDriverDBServices injectedDbService, IDriverAlertService vehiceAlertInjectedService)
+        public DriverDashboardController(IDriverService injectedDriverRep, IDriverDBServices injectedDbService, IDriverAlertService vehiceAlertInjectedService)
         {
             _driverServices = injectedDriverRep;
             _dbServices = injectedDbService;
@@ -38,12 +38,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 TableColumnViewModel nTable = new TableColumnViewModel();
                 nTable.TableNormalizedName = iTableColumn.Key;
                 nTable.Columns = new List<ColumnViewModel>();
+                nTable.TableName = iTableColumn.FirstOrDefault()?.TableName;
+                nTable.TableId = (iTableColumn.FirstOrDefault()?.TableId)?? 0;
 
                 ColumnViewModel nColumn;
                 foreach (var iDisaggregated in iTableColumn.Where(c => !String.IsNullOrWhiteSpace(c.ColumnName)))
                 {
-                    nTable.TableName = iDisaggregated.TableName;
-                    nTable.TableId = iDisaggregated.TableId;
+                    //nTable.TableName = iDisaggregated.TableName;
+                    //nTable.TableId = iDisaggregated.TableId;
                     nColumn = new ColumnViewModel();
                     nColumn.ColumnName = iDisaggregated.ColumnName;
                     nColumn.ColumnNormalizedName = iDisaggregated.ColumnNormalizedName;
@@ -55,7 +57,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 collectionTables.Add(nTable);
             }
 
-            return View(MVC.Home.Views.Index, collectionTables);
+            return View(MVC.DriverDashboard.Views.Index, collectionTables);
         }
 
         [ChildActionOnly]
@@ -64,13 +66,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             var driverData = _driverServices.GetAll();
 
-            return PartialView(MVC.Home.Views.DriverTable, driverData);
+            return PartialView(MVC.DriverDashboard.Views.DriverTable, driverData);
         }
 
         [HttpGet]
         public virtual ActionResult DriverDataTable(DriverTableServiceModel model)
         {
-            return PartialView(MVC.Home.Views.DriverDataTable, model);
+            return PartialView(MVC.DriverDashboard.Views.DriverDataTable, model);
         }
     }
 }

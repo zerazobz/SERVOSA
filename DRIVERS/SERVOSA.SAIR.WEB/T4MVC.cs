@@ -29,8 +29,8 @@ public static partial class MVC
 {
     public static SERVOSA.SAIR.WEB.Controllers.AccountController Account = new SERVOSA.SAIR.WEB.Controllers.T4MVC_AccountController();
     public static SERVOSA.SAIR.WEB.Controllers.DriverController Driver = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverController();
+    public static SERVOSA.SAIR.WEB.Controllers.DriverDashboardController DriverDashboard = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverDashboardController();
     public static SERVOSA.SAIR.WEB.Controllers.DriverDataController DriverData = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverDataController();
-    public static SERVOSA.SAIR.WEB.Controllers.HomeController Home = new SERVOSA.SAIR.WEB.Controllers.T4MVC_HomeController();
     public static SERVOSA.SAIR.WEB.Controllers.LoadFileController LoadFile = new SERVOSA.SAIR.WEB.Controllers.T4MVC_LoadFileController();
     public static SERVOSA.SAIR.WEB.Controllers.ManageController Manage = new SERVOSA.SAIR.WEB.Controllers.T4MVC_ManageController();
     public static SERVOSA.SAIR.WEB.Controllers.OldDriverController OldDriver = new SERVOSA.SAIR.WEB.Controllers.T4MVC_OldDriverController();

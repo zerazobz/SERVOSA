@@ -23,7 +23,7 @@ namespace SERVOSA.SAIR.WEB.Tests.Controllers
             var dbServices = container.Resolve<IDriverDBServices>();
             var vehicleAlertServices = container.Resolve<IDriverAlertService>();
             // Arrange
-            HomeController controller = new HomeController(repository, dbServices, vehicleAlertServices);
+            DriverDashboardController controller = new DriverDashboardController(repository, dbServices, vehicleAlertServices);
 
             // Act
             ViewResult result = controller.Index() as ViewResult;

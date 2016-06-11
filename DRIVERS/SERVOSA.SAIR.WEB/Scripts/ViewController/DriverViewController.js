@@ -111,7 +111,7 @@
             console.debug('Cargando columnas y datos');
         });
 
-        $(document).on("click", "#createVariableSubmit", null, function (e) {
+        $(document).off("click", "#createVariableSubmit").on("click", "#createVariableSubmit", null, function (e) {
             var resultValidation = $("#createTableForm").validationEngine('validate');
             if (resultValidation == true) {
                 $.post("/VariableTasks/CreateTable", $("#createTableForm").serialize(), function (data) {

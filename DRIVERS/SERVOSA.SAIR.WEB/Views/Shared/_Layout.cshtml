@@ -23,12 +23,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Inicio", "Index", "DriverDashboard", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Conductores", MVC.Driver.Index())</li>
-                    <li>@Html.ActionLink("Vista General de Conductores", MVC.Home.Index())</li>
+                    <li>@Html.ActionLink("Vista General de Conductores", MVC.DriverDashboard.Index())</li>
                     @*<li>@Html.ActionLink("Operarios", MVC.Driver.Index())</li>
                     <li>@Html.ActionLink("Vista General de Operarios", MVC.Driver.DriversMainData())</li>*@
                 </ul>
