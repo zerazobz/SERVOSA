@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SERVOSA.SAIR.SERVICE.Models.DriverServiceModel>
+﻿@model IEnumerable<SERVOSA.SAIR.SERVICE.Models.OldDriverServiceModel>
 
 <form action="/" method="post" id="tableData">
     <table class="table table-hover table-bordered servosatable">
@@ -33,7 +33,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.CodigoOperario)
                         <a href="/DriverData/Data?driverCode=@item.CodigoOperario"><span class="glyphicon glyphicon-dashboard"></span></a>
-                        <a href="/DriverData/DownloadVehicleData?driverCode=@item.CodigoOperario"><span class="glyphicon glyphicon-file"></span></a>
+                        <a href="/DriverData/DownloadDriverData?driverCode=@item.CodigoOperario"><span class="glyphicon glyphicon-file"></span></a>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.NombreOperario)

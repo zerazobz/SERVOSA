@@ -215,8 +215,8 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DriverController.cs" />
-    <Compile Include="Controllers\DriverDataController.cs" />
+    <Compile Include="Controllers\OldDriverController.cs" />
+    <Compile Include="Controllers\OldDriverDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoadFileController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -465,10 +465,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\ViewController\DriverViewController.js" />
-    <Content Include="Scripts\ViewController\Driver\DriverDataViewController.js" />
-    <Content Include="Scripts\ViewController\Driver\DriverUploadViewController.js" />
-    <Content Include="Scripts\ViewController\Driver\DriverViewController.js" />
+    <Content Include="Scripts\ViewController\OldDriverViewController.js" />
+    <Content Include="Scripts\ViewController\Driver\OldDriverDataViewController.js" />
+    <Content Include="Scripts\ViewController\Driver\OldDriverUploadViewController.js" />
+    <Content Include="Scripts\ViewController\Driver\OldDriverViewController.js" />
     <Content Include="Scripts\ViewController\SERVOSAViewController.js" />
     <Content Include="Scripts\ViewController\VehicleDataViewController.js" />
     <Content Include="Scripts\ViewController\VehicleUploadViewController.js" />
@@ -551,14 +551,14 @@
     <Content Include="Views\VehicleData\Data.cshtml" />
     <Content Include="Views\VehicleData\CabeceraVehiculo.cshtml" />
     <Content Include="Views\VehicleData\DatosVariableVehiculo.cshtml" />
-    <Content Include="Views\Driver\Index.cshtml" />
-    <Content Include="Views\Driver\Operarios.cshtml" />
+    <Content Include="Views\OldDriver\OldIndex.cshtml" />
+    <Content Include="Views\OldDriver\Operarios.cshtml" />
     <Content Include="Views\VehicleData\GetFileModalManager.cshtml" />
     <Content Include="Views\Vehicle\VehicleDataTable.cshtml" />
-    <Content Include="Views\Driver\DriversMainData.cshtml" />
-    <Content Include="Views\Driver\DriversTable.cshtml" />
-    <Content Include="Views\Driver\DriverDataTable.cshtml" />
-    <Content Include="Views\DriverData\Data.cshtml" />
+    <Content Include="Views\OldDriver\OldDriversMainData.cshtml" />
+    <Content Include="Views\OldDriver\OldDriversTable.cshtml" />
+    <Content Include="Views\OldDriver\OldDriverDataTable.cshtml" />
+    <Content Include="Views\OldDriverData\OldData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

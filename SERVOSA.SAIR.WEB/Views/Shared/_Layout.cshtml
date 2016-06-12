@@ -6,9 +6,16 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/ViewController/DriverSERVOSA.Core.js" type="text/javascript"></script>
     <script src="~/Scripts/ViewController/SERVOSA.Core.js" type="text/javascript"></script>
 </head>
 <body>
+    @foreach (var iConstanColumn in SERVOSA.SAIR.SERVICE.Core.ServosaDriverSingleton.Instance.AllConstantColumns)
+    {
+        <script>
+            DRIVERSERVOSACORE.AddConstantDriverColumn("@iConstanColumn");
+        </script>
+    }
     @foreach (var iConstanColumn in SERVOSA.SAIR.SERVICE.Core.ServosaSingleton.Instance.AllConstantColumns)
     {
         <script>
@@ -29,6 +36,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Vehiculos", MVC.Vehicle.Index())</li>
                     @*<li>@Html.ActionLink("Vista General de Vehículos", MVC.Home.Index())</li>*@
+                    <li>@Html.ActionLink("Conductores", MVC.Driver.Index())</li>
+                    <li>@Html.ActionLink("Vista General de Conductores", MVC.DriverDashboard.Index())</li>
                     @*<li>@Html.ActionLink("Operarios", MVC.Driver.Index())</li>
                     <li>@Html.ActionLink("Vista General de Operarios", MVC.Driver.DriversMainData())</li>*@
                 </ul>

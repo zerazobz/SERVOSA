@@ -73,7 +73,7 @@
   <ItemGroup>
     <Compile Include="Contracts\Common\IServiceRepository.cs" />
     <Compile Include="Contracts\IDBServices.cs" />
-    <Compile Include="Contracts\IDriverService.cs" />
+    <Compile Include="Contracts\IOldDriverService.cs" />
     <Compile Include="Contracts\ITableDataService.cs" />
     <Compile Include="Contracts\ITypeService.cs" />
     <Compile Include="Contracts\IVehicleAlertService.cs" />
@@ -84,8 +84,8 @@
     <Compile Include="Core\ServosaSingleton.cs" />
     <Compile Include="Core\SERVOSASqlTypes.cs" />
     <Compile Include="Models\ColumnServiceModel.cs" />
-    <Compile Include="Models\DriverServiceModel.cs" />
-    <Compile Include="Models\Driver\DriverRelatedTableServiceModel.cs" />
+    <Compile Include="Models\OldDriverServiceModel.cs" />
+    <Compile Include="Models\Driver\OldDriverRelatedTableServiceModel.cs" />
     <Compile Include="Models\ITableServiceModel.cs" />
     <Compile Include="Models\Vehicle\IVehicleServiceModel.cs" />
     <Compile Include="Models\TableColumnServiceModel.cs" />
@@ -101,7 +101,7 @@
     <Compile Include="Models\Vehicle\VehicleRelatedTableServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Realizations\DBServices.cs" />
-    <Compile Include="Realizations\DriverService.cs" />
+    <Compile Include="Realizations\OldDriverService.cs" />
     <Compile Include="Realizations\TableDataService.cs" />
     <Compile Include="Realizations\TypeService.cs" />
     <Compile Include="Realizations\VehicleAlertService.cs" />

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Contracts
 {
-    public interface IDBServices
+    public interface IDBServices  
     {
         Tuple<int, TableServiceModel> CreateTable(TableServiceModel viewModel);
         IList<TableServiceModel> ListAllTables();

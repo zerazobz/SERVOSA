@@ -31,11 +31,11 @@ public static partial class MVC
     public static SERVOSA.SAIR.WEB.Controllers.DriverController Driver = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverController();
     public static SERVOSA.SAIR.WEB.Controllers.DriverDashboardController DriverDashboard = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverDashboardController();
     public static SERVOSA.SAIR.WEB.Controllers.DriverDataController DriverData = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverDataController();
-    public static SERVOSA.SAIR.WEB.Controllers.LoadFileController LoadFile = new SERVOSA.SAIR.WEB.Controllers.T4MVC_LoadFileController();
+    public static SERVOSA.SAIR.WEB.Controllers.DriverVariableTasksController DriverVariableTasks = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverVariableTasksController();
     public static SERVOSA.SAIR.WEB.Controllers.ManageController Manage = new SERVOSA.SAIR.WEB.Controllers.T4MVC_ManageController();
     public static SERVOSA.SAIR.WEB.Controllers.OldDriverController OldDriver = new SERVOSA.SAIR.WEB.Controllers.T4MVC_OldDriverController();
     public static SERVOSA.SAIR.WEB.Controllers.OldDriverDataController OldDriverData = new SERVOSA.SAIR.WEB.Controllers.T4MVC_OldDriverDataController();
-    public static SERVOSA.SAIR.WEB.Controllers.VariableTasksController VariableTasks = new SERVOSA.SAIR.WEB.Controllers.T4MVC_VariableTasksController();
+    public static T4MVC.LoadFileController LoadFile = new T4MVC.LoadFileController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
     public static T4MVC.VehicleController Vehicle = new T4MVC.VehicleController();
     public static T4MVC.VehicleDataController VehicleData = new T4MVC.VehicleDataController();
@@ -444,11 +444,11 @@ namespace Links
             }
         
             public static readonly string DriverDataViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverDataViewController.min.js") ? Url("DriverDataViewController.min.js") : Url("DriverDataViewController.js");
+            public static readonly string DriverSERVOSA_Core_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverSERVOSA.Core.min.js") ? Url("DriverSERVOSA.Core.min.js") : Url("DriverSERVOSA.Core.js");
+            public static readonly string DriverSERVOSAViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverSERVOSAViewController.min.js") ? Url("DriverSERVOSAViewController.min.js") : Url("DriverSERVOSAViewController.js");
             public static readonly string DriverUploadViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverUploadViewController.min.js") ? Url("DriverUploadViewController.min.js") : Url("DriverUploadViewController.js");
             public static readonly string DriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverViewController.min.js") ? Url("DriverViewController.min.js") : Url("DriverViewController.js");
             public static readonly string OldDriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/OldDriverViewController.min.js") ? Url("OldDriverViewController.min.js") : Url("OldDriverViewController.js");
-            public static readonly string SERVOSA_Core_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SERVOSA.Core.min.js") ? Url("SERVOSA.Core.min.js") : Url("SERVOSA.Core.js");
-            public static readonly string SERVOSAViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SERVOSAViewController.min.js") ? Url("SERVOSAViewController.min.js") : Url("SERVOSAViewController.js");
         }
     
     }
@@ -788,11 +788,11 @@ namespace Links
                 public static class Assets
                 {
                     public const string DriverDataViewController_js = "~/Scripts/ViewController/DriverDataViewController.js"; 
+                    public const string DriverSERVOSA_Core_js = "~/Scripts/ViewController/DriverSERVOSA.Core.js"; 
+                    public const string DriverSERVOSAViewController_js = "~/Scripts/ViewController/DriverSERVOSAViewController.js"; 
                     public const string DriverUploadViewController_js = "~/Scripts/ViewController/DriverUploadViewController.js"; 
                     public const string DriverViewController_js = "~/Scripts/ViewController/DriverViewController.js"; 
                     public const string OldDriverViewController_js = "~/Scripts/ViewController/OldDriverViewController.js"; 
-                    public const string SERVOSA_Core_js = "~/Scripts/ViewController/SERVOSA.Core.js"; 
-                    public const string SERVOSAViewController_js = "~/Scripts/ViewController/SERVOSAViewController.js"; 
                 }
             }
             public static class Assets

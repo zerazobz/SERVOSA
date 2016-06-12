@@ -8,7 +8,7 @@
     <h4 class="modal-title">FORMULARIO DE CREACIÓN</h4>
 </div>
 <div class="modal-body">
-    @using (Html.BeginForm(MVC.VariableTasks.Actions.CreateColumn(), FormMethod.Post, new { id = "createColumnForm" }))
+    @using (Html.BeginForm(MVC.DriverVariableTasks.Actions.DriverCreateColumn(), FormMethod.Post, new { id = "createColumnForm" }))
     {
         @Html.AntiForgeryToken()
         <div class="messagePanel">

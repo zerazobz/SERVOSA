@@ -10,17 +10,17 @@ using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
-    public class DriverRepository : IDriverRepository
+    public class DriverOldRepository : IVehicleRepository
     {
         private Database _servosaDB;
 
-        public DriverRepository()
+        public DriverOldRepository()
         {
             DatabaseProviderFactory _databaseFactory = new DatabaseProviderFactory();
             _servosaDB = _databaseFactory.CreateDefault();
         }
 
-        public int Create(DriverModel entity)
+        public int Create(Models.Driver.DriverModel entity)
         {
             object[] parameters = new object[] { entity.OPER_cApellidoPaterno, entity.OPER_cApellidoMaterno, entity.OPER_cNombre, entity.OPER_cCorreo, entity.VEHI_Id,entity.PUES_Id,null};
             using (var insertCommand = _servosaDB.GetStoredProcCommand("SAIR_OPERI", parameters))
@@ -32,25 +32,25 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             }
         }
 
-        public int Delete(DriverModel entity)
+        public int Delete(Models.Driver.DriverModel entity)
         {
             object[] parameters = new object[] { entity.OPER_Id };
             var resultExecution = _servosaDB.ExecuteNonQuery("SAIR_OPERD", parameters);
             return resultExecution;
         }
 
-        public IList<DriverModel> GetAll()
+        public IList<Models.Driver.DriverModel> GetAll()
         {
             object[] parameters = new object[] { };
-            IRowMapper<DriverModel> driverRowMapper = CreateRowMapperForSAIR_OPERS();
+            IRowMapper<Models.Driver.DriverModel> driverRowMapper = CreateRowMapperForSAIR_OPERS();
             var driverCollection = _servosaDB.ExecuteSprocAccessor("SAIR_OPERS", driverRowMapper, parameters);
             return driverCollection.ToList();
         }
 
-        public IList<DriverModel> GetAllFiltered(int minRow, int maxRow)
+        public IList<Models.Driver.DriverModel> GetAllFiltered(int minRow, int maxRow)
         {
             object[] parameters = new object[] { minRow, maxRow };
-            IRowMapper<DriverModel> driverRowMapper = MapBuilder<DriverModel>.MapAllProperties().Build();
+            IRowMapper<Models.Driver.DriverModel> driverRowMapper = MapBuilder<Models.Driver.DriverModel>.MapAllProperties().Build();
             var driverCollection = _servosaDB.ExecuteSprocAccessor("SAIR_OPERS_Filtrado", driverRowMapper, parameters);
             return driverCollection.ToList();
         }
@@ -58,12 +58,12 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public DriverModel GetById(int id)
         {
             object[] parameteres = new object[] { id };
-            IRowMapper<DriverModel> driverRowMapper = GetMapperSimple();
+            IRowMapper<Models.Driver.DriverModel> driverRowMapper = GetMapperSimple();
             var driverCollection = _servosaDB.ExecuteSprocAccessor("SAIR_OPERS_UnReg", driverRowMapper, parameteres);
             return driverCollection.FirstOrDefault();
         }
 
-        public int Update(DriverModel entity)
+        public int Update(Models.Driver.DriverModel entity)
         {
             object[] parameters = new object[] { entity.OPER_Id, entity.OPER_cApellidoPaterno, entity.OPER_cApellidoMaterno, entity.OPER_cNombre, entity.OPER_cCorreo,entity.VEHI_Id,entity.PUES_Id};
             using (var updateCommand = _servosaDB.GetStoredProcCommand("SAIR_OPERU", parameters))
@@ -72,15 +72,15 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                 return executionResult;
             }
         }
-        private IRowMapper<DriverModel> GetMapperSimple()
+        private IRowMapper<Models.Driver.DriverModel> GetMapperSimple()
         {
-            return MapBuilder<DriverModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
+            return MapBuilder<Models.Driver.DriverModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
                 .DoNotMap(prop => prop.TotalRows).Build();
         }
-        public IList<DriverModel> GetRowDataForTable(string tableName)
+        public IList<Models.Driver.DriverModel> GetRowDataForTable(string tableName)
         {
             object[] parameters = new object[] { GetMapperSimple() };
-            IRowMapper<DriverModel> driverRowMapper = MapBuilder<DriverModel>.MapAllProperties().Build();
+            IRowMapper<Models.Driver.DriverModel> driverRowMapper = MapBuilder<Models.Driver.DriverModel>.MapAllProperties().Build();
             var driverCollection = _servosaDB.ExecuteSprocAccessor("SAIR_OPERS", driverRowMapper, parameters);
             return driverCollection.ToList();
         }
@@ -93,9 +93,9 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             return relatedTableCollection.ToList();
         }
 
-        private IRowMapper<DriverModel> CreateRowMapperForSAIR_OPERS()
+        private IRowMapper<Models.Driver.DriverModel> CreateRowMapperForSAIR_OPERS()
         {
-            return MapBuilder<DriverModel>.MapNoProperties().MapByName(prop => prop.OPER_Id).MapByName(prop => prop.OPER_cApellidoPaterno)
+            return MapBuilder<Models.Driver.DriverModel>.MapNoProperties().MapByName(prop => prop.OPER_Id).MapByName(prop => prop.OPER_cApellidoPaterno)
                 .MapByName(prop => prop.OPER_cApellidoMaterno).MapByName(prop => prop.OPER_cNombre).MapByName(prop => prop.OPER_cCorreo)
                 .MapByName(prop => prop.VEHI_Id).MapByName(prop => prop.VEHI_cDescripcion).MapByName(prop => prop.PUES_Id).Build();
         }

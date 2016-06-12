@@ -25,10 +25,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace SERVOSA.SAIR.WEB.Controllers
 {
-    public partial class VariableTasksController
+    public partial class DriverVariableTasksController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected VariableTasksController(Dummy d) { }
+        protected DriverVariableTasksController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -58,13 +58,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public VariableTasksController Actions { get { return MVC.VariableTasks; } }
+        public DriverVariableTasksController Actions { get { return MVC.DriverVariableTasks; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "VariableTasks";
+        public readonly string Name = "DriverVariableTasks";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "VariableTasks";
+        public const string NameConst = "DriverVariableTasks";
         [GeneratedCode("T4MVC", "2.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -73,14 +73,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public class ActionNamesClass
         {
             public readonly string CreateTable = "CreateTable";
-            public readonly string CreateColumn = "CreateColumn";
+            public readonly string DriverCreateColumn = "DriverCreateColumn";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string CreateTable = "CreateTable";
-            public const string CreateColumn = "CreateColumn";
+            public const string DriverCreateColumn = "DriverCreateColumn";
         }
 
 
@@ -92,11 +92,11 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             public readonly string viewModel = "viewModel";
         }
-        static readonly ActionParamsClass_CreateColumn s_params_CreateColumn = new ActionParamsClass_CreateColumn();
+        static readonly ActionParamsClass_DriverCreateColumn s_params_DriverCreateColumn = new ActionParamsClass_DriverCreateColumn();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_CreateColumn CreateColumnParams { get { return s_params_CreateColumn; } }
+        public ActionParamsClass_DriverCreateColumn DriverCreateColumnParams { get { return s_params_DriverCreateColumn; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_CreateColumn
+        public class ActionParamsClass_DriverCreateColumn
         {
             public readonly string viewModel = "viewModel";
         }
@@ -110,18 +110,18 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string CreateColumn = "CreateColumn";
-                public readonly string CreateTable = "CreateTable";
+                public readonly string DriverCreateColumn = "DriverCreateColumn";
+                public readonly string DriverCreateTable = "DriverCreateTable";
             }
-            public readonly string CreateColumn = "~/Views/VariableTasks/CreateColumn.cshtml";
-            public readonly string CreateTable = "~/Views/VariableTasks/CreateTable.cshtml";
+            public readonly string DriverCreateColumn = "~/Views/DriverVariableTasks/DriverCreateColumn.cshtml";
+            public readonly string DriverCreateTable = "~/Views/DriverVariableTasks/DriverCreateTable.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_VariableTasksController : SERVOSA.SAIR.WEB.Controllers.VariableTasksController
+    public partial class T4MVC_DriverVariableTasksController : SERVOSA.SAIR.WEB.Controllers.DriverVariableTasksController
     {
-        public T4MVC_VariableTasksController() : base(Dummy.Instance) { }
+        public T4MVC_DriverVariableTasksController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void CreateTableOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -147,25 +147,25 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [NonAction]
-        partial void CreateColumnOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void DriverCreateColumnOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CreateColumn()
+        public override System.Web.Mvc.ActionResult DriverCreateColumn()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateColumn);
-            CreateColumnOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DriverCreateColumn);
+            DriverCreateColumnOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void CreateColumnOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.DriverColumnServiceModel viewModel);
+        partial void DriverCreateColumnOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.DriverColumnServiceModel viewModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CreateColumn(SERVOSA.SAIR.SERVICE.Models.DriverColumnServiceModel viewModel)
+        public override System.Web.Mvc.ActionResult DriverCreateColumn(SERVOSA.SAIR.SERVICE.Models.DriverColumnServiceModel viewModel)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateColumn);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DriverCreateColumn);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
-            CreateColumnOverride(callInfo, viewModel);
+            DriverCreateColumnOverride(callInfo, viewModel);
             return callInfo;
         }
 

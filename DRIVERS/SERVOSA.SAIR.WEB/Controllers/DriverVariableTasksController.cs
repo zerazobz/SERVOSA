@@ -9,11 +9,11 @@ using System.Web.Mvc;
 namespace SERVOSA.SAIR.WEB.Controllers
 {
     [Authorize]
-    public partial class VariableTasksController : Controller
+    public partial class DriverVariableTasksController : Controller
     {
         private readonly IDriverDBServices _dbService;
 
-        public VariableTasksController(IDriverDBServices  injectedDbService)
+        public DriverVariableTasksController(IDriverDBServices  injectedDbService)
         {
             _dbService = injectedDbService;
         }
@@ -22,7 +22,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public virtual ActionResult CreateTable()
         {
             DriverTableServiceModel model = new DriverTableServiceModel();
-            return PartialView(MVC.VariableTasks.Views.CreateTable, model);
+            return PartialView(MVC.DriverVariableTasks.Views.DriverCreateTable, model);
         }
 
         [HttpPost]
@@ -42,19 +42,19 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 viewModel.Message = "Por favor corrija los valores ingresados.";
             }
 
-            return PartialView(MVC.VariableTasks.Views.CreateTable, viewModel);
+            return PartialView(MVC.DriverVariableTasks.Views.DriverCreateTable, viewModel);
         }
 
         [HttpGet]
-        public virtual ActionResult CreateColumn()
+        public virtual ActionResult DriverCreateColumn()
         {
             DriverColumnServiceModel viewModel = new DriverColumnServiceModel();
             viewModel.ListaTipos = new SelectList(GetListColumnTypes(), "Codigo", "Descripcion");
-            return PartialView(MVC.VariableTasks.Views.CreateColumn, viewModel);
+            return PartialView(MVC.DriverVariableTasks.Views.DriverCreateColumn, viewModel);
         }
 
         [HttpPost]
-        public virtual ActionResult CreateColumn(DriverColumnServiceModel viewModel)
+        public virtual ActionResult DriverCreateColumn(DriverColumnServiceModel viewModel)
         {
             viewModel.ListaTipos = new SelectList(GetListColumnTypes(), "Codigo", "Descripcion");
             if (ModelState.IsValid)
@@ -71,7 +71,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 viewModel.Message = "Por favor revise los campos requeridos.";
             }
 
-            return PartialView(MVC.VariableTasks.Views.CreateColumn, viewModel);
+            return PartialView(MVC.DriverVariableTasks.Views.DriverCreateColumn, viewModel);
         }
 
         public IList<TipoColumna> GetListColumnTypes()

@@ -1,12 +1,78 @@
 ﻿(function (driverNamespace, $, undefined) {
-    var driversTable = "#tabledataDrivers";
-    driverNamespace.CargarTablaDrivers = function () {
-        $(driversTable).jtable('load');
+
+    var driverTemplate = "";
+
+    driverNamespace.LoadDriverAutoCompleteTemplate = function () {
+        $.get("/Templates/AutoComplete/Driver/DriverRowAutoComplete.html", function (htmlTemplate) {
+            driverTemplate = htmlTemplate;
+        });
+    };
+
+    driverNamespace.GetDriverAutoCompleteTemplate = function () {
+        return driverTemplate;
+    };
+
+    driverNamespace.LoadDriverTable = function () {
+        $("#driverTable").jtable('load');
+    };
+
+    driverNamespace.LoadTableHeadDetails = function (nameTable) {
+
+    };
+
+    driverNamespace.LoadTableData = function (containerContext, tableName) {
+        $.post("/Driver/LoadTablaData", {
+            tableName: tableName
+        }, function (dataResult) {
+            var $container = $(containerContext);
+            var resultHtml = [];
+            $.each(dataResult, function (i, element) {
+                var withAlert = element.WithAlert;
+                var identityValue = element.DataForRow[0].Value;
+                //console.log('Identity Value: ' + identityValue + '.');
+                var columnList = '';
+                if (identityValue == '') {
+                    columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-driverid='" + element.DriverId + "' data-tablename='" + element.TableName + "' ></span></td>";
+                }
+                else {
+                    columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-driverid='" + element.DriverId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file insertRemoveFile' data-driverid='" + element.DriverId + "' data-tablename='" + element.TableName + "'></span></td>";
+                }
+
+                for (i = 2; i < element.DataForRow.length - 3; i++) {
+                    var column = $("<td>").attr("data-drivercode", element.DriverId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
+                    columnList += column;
+                }
+
+                var $tableRow = $("<tr></tr>").attr("data-drivercode", element.DriverId).attr("data-tablename", element.TableName);
+                if (withAlert)
+                    $tableRow.addClass("withAlert").css("background-color", "red").css("color", "#FFFFFF");
+                $tableRow.html(columnList);
+                resultHtml.push($tableRow.prop("outerHTML"));
+            });
+
+            $container.find("tbody").html(resultHtml.join(''));
+        }).fail(function () {
+            console.debug("No se pudo cargar los datos de la tabla: " + $(containerContext).attr("data-tableName"));
+        }).complete(function () {
+            console.debug("Culmino el procesamiento de la tabla: " + $(containerContext).attr("data-tableName"));
+        });
+    };
+
+    driverNamespace.LoadDataForTablesYetLoaded = function () {
+        var allTables = $(".containerdatatable>table");
+        $.each(allTables, function (i, tableContext) {
+            var $tableName = $(tableContext).data('tablename');
+            driverNamespace.LoadTableData(tableContext, $tableName);
+            console.debug('Cargando datos de la tabla: ' + $tableName);
+        });
     };
 
     $(function () {
-        $(driversTable).jtable({
-            title: 'Operarios',
+
+        driverNamespace.LoadDriverAutoCompleteTemplate();
+
+        $("#driverTable").jtable({
+            title: 'Listado de Conductores',
             paging: true,
             pageSize: 10,
             actions: {
@@ -16,30 +82,177 @@
                 createAction: '/Driver/CreateDriver'
             },
             fields: {
-                CodigoOperario: { key: true, title: 'Codigo', create: false, edit: false },
-                ApellidoPaternoOperario: { title: 'Apellido Paterno' },
-                ApellidoMaternoOperario: { title: 'Apellido Materno' },
-                NombreOperario: { title: 'Nombre' },
-                CodigoVehiculo: { title: "Unidad a Cargo", options: '/Vehicle/GetVehiculos' },
-                CodigoPuesto: { title: 'Puesto', options: { 0: 'Auxiliar', 1: 'Conductor' } }
+                //Item: { title: 'Item', create: false, edit: false, width: '5%' },
+                Codigo: { key: true, title: 'Codigo', width: '5%' },
+                //CodigoTipoUnidad: { title: 'Tipo de Unidad', options: '/Driver/GetDriversUnitTypes' },
+                Placa: { title: 'Nombre y Apellidos' },
+                BirthDate: { title: 'Fecha de Nacimiento', type: 'date', displayFormat: 'dd/mm/yy' },
+                Address: { title: 'Dirección'}
+                //MarcaConcatenada: {
+                //    title: 'Codigo Marca',
+                //    options: '/Driver/GetDriverBrands'
+                //},
+                //EstadoConcatenado: {
+                //    title: 'Codigo Estado',
+                //    options: '/Driver/GetDriverStates'
+                //}
             }
         });
-        $(document).on("click", "#modal-file #modal-submit-ok", null, function () {
-            var fileName = $('[name="excelFile"]').val().trim();
-            var pos = fileName.lastIndexOf('.');
-            var extension = (pos <= 0) ? '' : fileName.substring(pos);
-            if (extension != '.xlsx') {
-                alert('Please browse a correct excel file to upload');
-                return;
-            }
-            $('form').submit();
-        }
-        );
-      
-        $("#btnBuscar").click(function () {
-            driverNamespace.CargarTablaDrivers();
-        });
-    });
-    driverNamespace.CargarTablaDrivers();
 
-})(window.driverNamespace = window.driverNamespace || {}, jQuery);
+        $("#containerforalltables").on('load', ".containerdatatable>table", null, function (eventObject) {
+            var tableName = $(this).data('tablename');
+            console.debug('La tabla cargada es: ' + tableName);
+            console.debug('Cargando columnas y datos');
+        });
+
+        $(".containerdatatable>table").load(function () {
+            var tableName = $(this).data('tablename');
+            console.debug('La tabla cargada es: ' + tableName);
+            console.debug('Cargando columnas y datos');
+        });
+
+        $(document).off("click", "#createVariableSubmit").on("click", "#createVariableSubmit", null, function (e) {
+            var resultValidation = $("#createTableForm").validationEngine('validate');
+            if (resultValidation == true) {
+                $.post("/VariableTasks/CreateTable", $("#createTableForm").serialize(), function (data) {
+                    $("#createTableModal .modal-content").empty();
+                    $("#createTableModal .modal-content").html(data);
+                    var isSuccessfull = $("#createTableModal .modal-body").find("input[name='IsSuccessful']").val();
+                    var message = $("#createTableModal .modal-body").find("input[name='Message']").val();
+
+                    if (isSuccessfull.toLowerCase() == "true") {
+                        $("#createTableModal .modal-body").find(".mesagepanel").SERVOSASuccessNotification(message);
+                        $("#createVariableSubmit").prop("disabled", true);
+                        
+                        var tableName = $("#createTableModal .modal-body").find("input[name='TableName']").val()
+                        var normalizedTableName = $("#createTableModal .modal-body").find("input[name='TableNormalizedName']").val()
+
+                        $.get("/templates/drivertabletemplate.html", function (data) {
+
+                            var handletemplate = Handlebars.compile($(data).html());
+                            var data = {
+                                tableName: tableName,
+                                normalizedTableName: normalizedTableName
+                            };
+                            var htmlgenerated = handletemplate(data);
+                            $("#containerforalltables").append(htmlgenerated);
+                        });
+                    }
+                    else
+                        $("#createTableModal .modal-body").find(".mesagepanel").SERVOSAErrorNotification(message);
+
+                }).fail(function () {
+                    console.info('Error en la consulta Ajax Post');
+                }).complete(function () {
+                    console.info('Finalizo el Ajax Post');
+                });
+            }
+            else {
+                $("#createTableModal .modal-body").find(".mesagepanel").SERVOSAErrorNotification("Por favor llene los campos requeridos");
+            }
+        });
+
+        $("#createTableModal").on("hidden.bs.modal", function (e) {
+            $("#createTableModal .modal-content").load("/VariableTasks/CreateTable");
+        });
+
+        $(document).on("click", ".addNewColumnToVariable", null, function (e) {
+            var $currentButton = $(this);
+            var normalizedTableName = $currentButton.data('normalizedtablename');
+            var tableName = $currentButton.data('tablename');
+
+            $.get("/VariableTasks/CreateColumn", function (dataResult) {
+                $("#createColumnModal").modal("show");
+                $("#createColumnModal .modal-content").empty();
+                $("#createColumnModal .modal-content").append(dataResult);
+                $("#createColumnModal .modal-content").find("input[name='TableName']").val(tableName);
+                $("#createColumnModal .modal-content").find("input[name='TableNormalizedName']").val(normalizedTableName);
+            });
+        });
+
+        $(document).on("click", "#createColumnSubmit", null, function (e) {
+            var resultValidation = $("#createColumnForm").validationEngine('validate');
+            if (resultValidation == true) {
+                $.post("/VariableTasks/CreateColumn", $("#createColumnForm").serialize(), function (dataResult) {
+                    $("#createColumnModal .modal-content").empty();
+                    $("#createColumnModal .modal-content").html(dataResult);
+                    var isSuccessfull = $("#createColumnForm ").find("input[name='IsSuccessful']").val();
+                    var message = $("#createColumnForm ").find("input[name='Message']").val();
+
+                    if (isSuccessfull.toLowerCase() == "true") {
+                        $("#createColumnModal").find(".messagePanel").SERVOSASuccessNotification(message);
+                        $("#createColumnSubmit").prop("disabled", true);
+                        
+                        var tableName = $("#createColumnModal").find("input[name='TableNormalizedName']").val();
+                        var columnName = $("#createColumnModal").find("input[name='ColumnName']").val();
+                        var columnNormalizedName = $("#createColumnModal ").find("input[name='ColumnNormalizedName']").val();
+
+                        var $currentTable = $("table[data-tablename = '" + tableName + "']");
+                        $currentTable.find("thead tr:eq(1)").append("<th>" + columnNormalizedName + "</th>");
+                        $currentTable.find("tr:gt(1)").append("<td></td>");
+                        var oldColSpan = parseInt($currentTable.find("thead tr:first-child th").attr("colspan"));
+                        $currentTable.find("thead tr:first-child th").attr("colspan", oldColSpan + 1);
+
+                        driverNamespace.LoadTableData($currentTable, tableName);
+                    }
+                    else {
+                        $("#createColumnModal ").find(".messagePanel").SERVOSAErrorNotification(message);
+                    }
+                }).fail(function (e) {
+                    console.info('Error en la consulta Ajax Post');
+                }).complete(function (e) {
+                    console.info('Finalizo el Ajax Post');
+                });
+            }
+            else {
+                $("#createColumnModal .modal-body").find(".messagepanel").SERVOSAErrorNotification("Por favor ingrese/seleccione los campos requeridos.");
+            }
+        });
+
+        $(document).on("click", ".downloadFileForVariable", null, function (e) {
+            var tableName = $(this).data("normalizedtablename");
+            console.debug("Download File for: " + tableName);
+            window.location = "/DriverData/DownloadVariable?tableName=" + tableName
+        });
+
+        $("#driverAutoComplete").autocomplete({
+            minLength: 3,
+            source: function (request, response) {
+                $.post("/Driver/SearchDriverForAutoComplete", { searchText : request.term, maxResults : 10 }, function (data, textStatus, jqXHR) {
+                    response($.map(data, function (item) {
+                        return {
+                            label: item.Placa + "-" + item.Address,
+                            value: item.Placa || "" + "-" + item.Address || "",
+                            data: item,
+                            id: item.Codigo
+                        }
+                    }));
+                }).fail(function(e) {
+                });
+            },
+            select: function (event, ui) {
+                var elem = $(event.originalEvent.toElement);
+                if (elem.hasClass('downloaddriverdata')) {
+                    var driverId = elem.data("driverid");
+                    window.location = "/DriverData/DownloadDriverData?driverId=" + driverId
+                }
+            }
+        })
+        .data("ui-autocomplete")
+        ._renderItem = function (ul, item) {
+            var htmlTemplate = driverNamespace.GetDriverAutoCompleteTemplate();
+            var handleTemplate = Handlebars.compile(htmlTemplate);
+            var data = {
+                DriverPlate: item.data.Placa,
+                DriverBrand: item.data.Marca,
+                DriverId: item.data.Codigo
+            };
+            var htmlGenerated = handleTemplate(data);
+            return $(htmlGenerated).appendTo(ul);
+        };
+
+        driverNamespace.LoadDriverTable();
+        driverNamespace.LoadDataForTablesYetLoaded();
+    });
+
+})(window.DriverNamespace = window.DriverNamespace || {}, jQuery);

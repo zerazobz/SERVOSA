@@ -1,75 +1,30 @@
 ﻿using SERVOSA.SAIR.SERVICE.Contracts;
 using SERVOSA.SAIR.SERVICE.Models;
-using SERVOSA.SAIR.WEB.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
 namespace SERVOSA.SAIR.WEB.Controllers
 {
+    [Authorize]
     public partial class DriverController : Controller
     {
         private IDriverService _driverService;
-        private readonly IDBServices _dbServices;
+        private IDriverTypeService _typeService;
 
-        public DriverController(IDriverService injectedDriverServ, IDBServices injectedDBService)
+        public DriverController(IDriverService injectedDriverServ, IDriverTypeService injectedTypeService)
         {
             _driverService = injectedDriverServ;
-            _dbServices = injectedDBService;
+            _typeService = injectedTypeService;
         }
 
         [HttpGet]
         public virtual ActionResult Index()
         {
             return View();
-        }
-
-        public virtual ActionResult DriversMainData()
-        {
-            var allCompleteTable = _dbServices.ListVehicleVarsTablesWithDefinition();
-            var tableDataGrouped = allCompleteTable.GroupBy(t => t.TableNormalizedName);
-
-            IList<TableColumnViewModel> collectionTables = new List<TableColumnViewModel>();
-
-            foreach (var iTableColumn in tableDataGrouped)
-            {
-                TableColumnViewModel nTable = new TableColumnViewModel();
-                nTable.TableNormalizedName = iTableColumn.Key;
-                nTable.Columns = new List<ColumnViewModel>();
-
-                ColumnViewModel nColumn;
-                foreach (var iDisaggregated in iTableColumn.Where(c => !String.IsNullOrWhiteSpace(c.ColumnName)))
-                {
-                    nTable.TableName = iDisaggregated.TableName;
-                    nTable.TableId = iDisaggregated.TableId;
-                    nColumn = new ColumnViewModel();
-                    nColumn.ColumnName = iDisaggregated.ColumnName;
-                    nColumn.ColumnNormalizedName = iDisaggregated.ColumnNormalizedName;
-                    nColumn.SystemType = iDisaggregated.SystemType;
-                    nColumn.TypeName = iDisaggregated.TypeName;
-                    nColumn.UserType = iDisaggregated.UserType;
-                    nTable.Columns.Add(nColumn);
-                }
-                collectionTables.Add(nTable);
-            }
-            return View(collectionTables);
-        }
-
-        [ChildActionOnly]
-        [HttpGet]
-        public virtual ActionResult DriversTable()
-        {
-            var driversData = _driverService.GetAll();
-
-            return PartialView(driversData);
-        }
-
-        [HttpGet]
-        public virtual ActionResult DriverDataTable(TableServiceModel model)
-        {
-            return PartialView(model);
         }
 
         [HttpPost]
@@ -91,13 +46,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public virtual JsonResult DeleteDriver(int CodigoOperario)
+        public virtual JsonResult DeleteDriver(int Codigo)
         {
             try
             {
-                var deleteResult = _driverService.Create(new DriverServiceModel()
+                var deleteResult = _driverService.Delete(new DriverServiceModel()
                 {
-                    CodigoOperario = CodigoOperario
+                    Codigo = Codigo
                 });
                 if (deleteResult > 0)
                     return Json(new { Result = "OK" });
@@ -106,10 +61,9 @@ namespace SERVOSA.SAIR.WEB.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new { Result = "ERROR", Message = "No se puede eliminar el operario por que el operario esta asignado a un vehiculo" });
+                return Json(new { Result = "ERROR", Message = ex.Message });
             }
         }
-
 
         [HttpPost]
         public virtual JsonResult UpdateDriver(DriverServiceModel model)
@@ -150,16 +104,79 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 return Json(new { Result = "ERROR", Message = ex.Message });
             }
         }
+
         [HttpPost]
-        public virtual ActionResult UploadFile(HttpPostedFileBase excelFile)
+        public virtual JsonResult LoadTablaData(string tableName)
         {
-            return View("Index");
+            var dataResult = _driverService.GetDriverRowDataForTable(tableName);
+            return Json(dataResult);
         }
-        [HttpGet]
-        public virtual ActionResult LoadFiles()
+
+        [HttpPost]
+        public virtual JsonResult GetVehiculos()
         {
-            DriverServiceModel model = new DriverServiceModel();
-            return PartialView("LoadFiles", model);
+            try
+            {
+                var allVehiculos = _driverService.GetAll().Select(op => new { DisplayText = op.DescripcionTipoUnidad + '/' +op.Placa, Value = op.Codigo});
+                return Json(new { Result = "OK", Options = allVehiculos });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public virtual JsonResult GetDriverBrands()
+        {
+            try
+            {
+                var allTypes = _typeService.GetAllTypesByTable("BRND").Select(bT => new { DisplayText = bT.Description, Value = bT.ConcatenatedCode });
+                return Json(new { Result = "OK", Options = allTypes });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public virtual JsonResult GetDriverStates()
+        {
+            try
+            {
+                var driverStates = _typeService.GetAllTypesByTable("VSTA").Select(vS => new { DisplayText = vS.Description, Value = vS.ConcatenatedCode });
+                return Json(new { Result = "OK", Options = driverStates });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public virtual JsonResult GetDriversUnitTypes()
+        {
+            try
+            {
+                Dictionary<string, string> driverUnitTypes = new Dictionary<string, string>()
+                {
+                    { "R", "Remolque" },
+                    { "S", "Semi-Remolque" }
+                };
+                return Json(new { Result = "OK", Options = driverUnitTypes.Select(uT => new { DisplayText = uT.Value, Value = uT.Key }) });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        public virtual JsonResult SearchDriverForAutoComplete(string searchText, int maxResults)
+        {
+            var collectionDrivers = _driverService.GetAllFilteredBySearchTerm(searchText);
+            return Json(collectionDrivers);
         }
     }
 }

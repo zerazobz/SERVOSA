@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.DATAACCESS.Contracts
 {
-    public interface IDriverRepository : IRepository<DriverModel>
+    public interface IOldDriverRepository : IRepository<OldDriverModel>
     {
-        IList<DriverModel> GetAllFiltered(int minRow, int maxRow);
-        IList<DriverModel> GetRowDataForTable(string tableName);
+        IList<OldDriverModel> GetAllFiltered(int minRow, int maxRow);
+        IList<OldDriverModel> GetRowDataForTable(string tableName);
         IList<RelatedTableToEntityModel> GetRelatedTablesToVehicle();
     }
 }

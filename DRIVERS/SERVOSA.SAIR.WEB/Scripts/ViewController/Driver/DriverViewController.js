@@ -114,7 +114,7 @@
         $(document).on("click", "#createVariableSubmit", null, function (e) {
             var resultValidation = $("#createTableForm").validationEngine('validate');
             if (resultValidation == true) {
-                $.post("/VariableTasks/CreateTable", $("#createTableForm").serialize(), function (data) {
+                $.post("/DriverVariableTasks/CreateTable", $("#createTableForm").serialize(), function (data) {
                     $("#createTableModal .modal-content").empty();
                     $("#createTableModal .modal-content").html(data);
                     var isSuccessfull = $("#createTableModal .modal-body").find("input[name='IsSuccessful']").val();
@@ -153,7 +153,7 @@
         });
 
         $("#createTableModal").on("hidden.bs.modal", function (e) {
-            $("#createTableModal .modal-content").load("/VariableTasks/CreateTable");
+            $("#createTableModal .modal-content").load("/DriverVariableTasks/CreateTable");
         });
 
         $(document).on("click", ".addNewColumnToVariable", null, function (e) {
@@ -161,7 +161,7 @@
             var normalizedTableName = $currentButton.data('normalizedtablename');
             var tableName = $currentButton.data('tablename');
 
-            $.get("/VariableTasks/CreateColumn", function (dataResult) {
+            $.get("/DriverVariableTasks/DriverCreateColumn", function (dataResult) {
                 $("#createColumnModal").modal("show");
                 $("#createColumnModal .modal-content").empty();
                 $("#createColumnModal .modal-content").append(dataResult);
@@ -173,7 +173,7 @@
         $(document).on("click", "#createColumnSubmit", null, function (e) {
             var resultValidation = $("#createColumnForm").validationEngine('validate');
             if (resultValidation == true) {
-                $.post("/VariableTasks/CreateColumn", $("#createColumnForm").serialize(), function (dataResult) {
+                $.post("/DriverVariableTasks/DriverCreateColumn", $("#createColumnForm").serialize(), function (dataResult) {
                     $("#createColumnModal .modal-content").empty();
                     $("#createColumnModal .modal-content").html(dataResult);
                     var isSuccessfull = $("#createColumnForm ").find("input[name='IsSuccessful']").val();

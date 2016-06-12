@@ -9,6 +9,9 @@
 </style>
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <link href="~/Scripts/jtable/themes/jqueryui/jtable_jqueryui.css" rel="stylesheet" />
+<div class="row" style="display: none;">
+    <input type="hidden" name="driverAutoComplete" id="driverAutoComplete" value="" />    
+</div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -35,62 +38,48 @@
             </div>
         </div>
     </div>
-    @*
-        <div class="col-sm-12 col-md-12">
-            <div class="row-fluid">
-                <div class="form-group">
-                    <label class="control-label col-md-2 " for="etapa"> Cobertura:</label>
-                    <div class="col-sm-9">
-                        @Html.TextBoxFor(model => model.NombreOperario, htmlAttributes: new { @class = "wide" })
-                    </div>
-                    <button type="submit" id="btnGuardarCobertura" class="btn text-uppercase btn-sm btn-default"><i class="fa fa-save"></i> Agregar</button>
-
-                </div>
-            </div>
-        </div>
-    *@
     <div class="row">
-        <div id="tabledataDrivers">
+        <div id="driverTable">
         </div>
     </div>
 </div>
 @*
-<div id="modal-file" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fileModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-times"></i></span>
-                </button>
-                <h5>Carga de Datos</h5>
-            </div>
-            <div class="modal-body" id="selectorPolicyModalFileBody">
-                <div id="messageFilePanel">
+    <div id="modal-file" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fileModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                    </button>
+                    <h5>Carga de Datos</h5>
                 </div>
-                <h5>Primero descargue los códigos de Vehiculos y Puestos</h5>
-                <div class="row">
-                    <button type="button" class="btn btn-default"><i class="fa fa-chain"></i>Códigos de Vehiculos y Puestos</button>
-                    <button type="button" class="btn btn-default"><i class="fa fa-chain"></i>Ejemplo de Datos Requeridos</button>
+                <div class="modal-body" id="selectorPolicyModalFileBody">
+                    <div id="messageFilePanel">
+                    </div>
+                    <h5>Primero descargue los códigos de Vehiculos y Puestos</h5>
+                    <div class="row">
+                        <button type="button" class="btn btn-default"><i class="fa fa-chain"></i>Códigos de Vehiculos y Puestos</button>
+                        <button type="button" class="btn btn-default"><i class="fa fa-chain"></i>Ejemplo de Datos Requeridos</button>
+                    </div>
+                    <hr />
+                    <h5>
+                        Suba el excel con toda la información a importar , tomando como ejemplo el archivo "Ejemplo de Datos Requeridos" y
+                        usando los códigos válidos de "Códigos de Vehículos y Puestos"
+                    </h5>
                 </div>
-                <hr />
-                <h5>
-                    Suba el excel con toda la información a importar , tomando como ejemplo el archivo "Ejemplo de Datos Requeridos" y
-                    usando los códigos válidos de "Códigos de Vehículos y Puestos"
-                </h5>
-            </div>
-            <div class="modal-footer">
-                <div>
-                    <button type="button" class="btn btn-default pull-left" id="modal-submit-ok"><i class="fa fa-chain"></i>Importar Datos</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-                </div>
-                <hr />
-                <div>
-                    <button type="button" class="btn btn-default pull-left disabled" id="modal-file-ok"><i class="fa fa-chain"></i>Guardar Registros Validos</button>
+                <div class="modal-footer">
+                    <div>
+                        <button type="button" class="btn btn-default pull-left" id="modal-submit-ok"><i class="fa fa-chain"></i>Importar Datos</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+                    </div>
+                    <hr />
+                    <div>
+                        <button type="button" class="btn btn-default pull-left disabled" id="modal-file-ok"><i class="fa fa-chain"></i>Guardar Registros Validos</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 *@
 <div class="modal fade" id="modal-file" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

@@ -1,4 +1,4 @@
-﻿@model IList<SERVOSA.SAIR.WEB.Models.TableColumnViewModel>
+﻿@model IList<SERVOSA.SAIR.WEB.Models.DriverTableColumnViewModel>
 @{
     ViewBag.Title = "Datos de Conductor";
 }
@@ -67,7 +67,7 @@
 <div class="modal fade" id="createDriverTableModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            @{ Html.RenderAction(MVC.VariableTasks.CreateTable()); }
+            @{ Html.RenderAction(MVC.DriverVariableTasks.CreateTable()); }
         </div>
     </div>
 </div>
@@ -153,7 +153,7 @@
 
     <script src="~/Scripts/ViewController/DriverDataViewController.js" type="text/javascript"></script>
     <script src="~/Scripts/ViewController/Driver/DriverDataViewController.js" type="text/javascript"></script>
-    <script src="~/Scripts/ViewController/SERVOSAViewController.js" type="text/javascript"></script>
+    <script src="~/Scripts/ViewController/DriverSERVOSAViewController.js" type="text/javascript"></script>
     <script src="~/Scripts/ViewController/DriverViewController.js" type="text/javascript"></script>
     <script src="~/Scripts/ViewController/DriverViewController.js" type="text/javascript"></script>
     <script src="~/Scripts/ViewController/Driver/DriverUploadViewController.js" type="text/javascript"></script>

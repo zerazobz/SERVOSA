@@ -82,8 +82,8 @@ namespace SERVOSA.SAIR.SERVICE.Models
                         daysToAlert = tmpInt;
                 }
 
-                if (lastDate.HasValue && daysToAlert.HasValue)
-                    serviceModel.WithAlert = DateTime.Today >= lastDate.Value.AddDays(-daysToAlert.Value);
+                //if (lastDate.HasValue && daysToAlert.HasValue)
+                //    serviceModel.WithAlert = DateTime.Today >= lastDate.Value.AddDays(-daysToAlert.Value);
             }
         }
     }

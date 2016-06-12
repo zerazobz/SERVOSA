@@ -218,9 +218,8 @@
     <Compile Include="Controllers\OldDriverController.cs" />
     <Compile Include="Controllers\OldDriverDataController.cs" />
     <Compile Include="Controllers\DriverDashboardController.cs" />
-    <Compile Include="Controllers\LoadFileController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\VariableTasksController.cs" />
+    <Compile Include="Controllers\DriverVariableTasksController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\DriverDataController.cs" />
     <Compile Include="Core\WebContainerInjector.cs" />
@@ -234,6 +233,9 @@
     <Compile Include="DriverDataController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="DriverVariableTasksController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -244,10 +246,10 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ColumnViewModel.cs" />
+    <Compile Include="Models\DriverColumnViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\TableColumnViewModel.cs" />
+    <Compile Include="Models\DriverTableColumnViewModel.cs" />
     <Compile Include="OldDriverController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -262,9 +264,6 @@
     <Compile Include="T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VariableTasksController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="VehicleController.generated.cs">
@@ -479,7 +478,7 @@
     <Content Include="Scripts\ViewController\Driver\DriverDataViewController.js" />
     <Content Include="Scripts\ViewController\Driver\DriverUploadViewController.js" />
     <Content Include="Scripts\ViewController\Driver\DriverViewController.js" />
-    <Content Include="Scripts\ViewController\SERVOSAViewController.js" />
+    <Content Include="Scripts\ViewController\DriverSERVOSAViewController.js" />
     <Content Include="Scripts\ViewController\DriverDataViewController.js" />
     <Content Include="Scripts\ViewController\DriverUploadViewController.js" />
     <Content Include="Scripts\ViewController\DriverViewController.js" />
@@ -504,7 +503,7 @@
     <Content Include="Scripts\jtable\themes\jtable_theme_base.less" />
     <Content Include="Scripts\jtable\themes\jqueryui\jtable_jqueryui.less" />
     <Content Include="Scripts\jtable\themes\basic\jtable_basic.less" />
-    <Content Include="Scripts\ViewController\SERVOSA.Core.js" />
+    <Content Include="Scripts\ViewController\DriverSERVOSA.Core.js" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
@@ -556,8 +555,6 @@
     <Content Include="Views\DriverDashboard\DriverTable.cshtml" />
     <Content Include="Views\Vehicle\Index.cshtml" />
     <Content Include="Views\DriverDashboard\DriverDataTable.cshtml" />
-    <Content Include="Views\VariableTasks\CreateTable.cshtml" />
-    <Content Include="Views\VariableTasks\CreateColumn.cshtml" />
     <Content Include="Views\DriverData\Data.cshtml" />
     <Content Include="Views\DriverData\CabeceraVehiculo.cshtml" />
     <Content Include="Views\DriverData\DatosVariableVehiculo.cshtml" />
@@ -568,11 +565,12 @@
     <Content Include="Views\Driver\DriversMainData.cshtml" />
     <Content Include="Views\Driver\DriversTable.cshtml" />
     <Content Include="Views\Driver\DriverDataTable.cshtml" />
+    <Content Include="Views\DriverVariableTasks\DriverCreateColumn.cshtml" />
+    <Content Include="Views\DriverVariableTasks\DriverCreateTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ExcelUtilities\" />
-    <Folder Include="Views\LoadFile\" />
     <Folder Include="Views\VehicleData\" />
   </ItemGroup>
   <ItemGroup>

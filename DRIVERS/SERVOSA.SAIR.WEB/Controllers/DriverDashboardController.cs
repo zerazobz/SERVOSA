@@ -31,22 +31,22 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var allCompleteTable = _dbServices.ListDriversVarsTablesWithDefinition();
             var tableDataGrouped = allCompleteTable.GroupBy(t => t.TableNormalizedName);
 
-            IList<TableColumnViewModel> collectionTables = new List<TableColumnViewModel>();
+            IList<DriverTableColumnViewModel> collectionTables = new List<DriverTableColumnViewModel>();
 
             foreach (var iTableColumn in tableDataGrouped)
             {
-                TableColumnViewModel nTable = new TableColumnViewModel();
+                DriverTableColumnViewModel nTable = new DriverTableColumnViewModel();
                 nTable.TableNormalizedName = iTableColumn.Key;
-                nTable.Columns = new List<ColumnViewModel>();
+                nTable.Columns = new List<DriverColumnViewModel>();
                 nTable.TableName = iTableColumn.FirstOrDefault()?.TableName;
                 nTable.TableId = (iTableColumn.FirstOrDefault()?.TableId)?? 0;
 
-                ColumnViewModel nColumn;
+                DriverColumnViewModel nColumn;
                 foreach (var iDisaggregated in iTableColumn.Where(c => !String.IsNullOrWhiteSpace(c.ColumnName)))
                 {
                     //nTable.TableName = iDisaggregated.TableName;
                     //nTable.TableId = iDisaggregated.TableId;
-                    nColumn = new ColumnViewModel();
+                    nColumn = new DriverColumnViewModel();
                     nColumn.ColumnName = iDisaggregated.ColumnName;
                     nColumn.ColumnNormalizedName = iDisaggregated.ColumnNormalizedName;
                     nColumn.SystemType = iDisaggregated.SystemType;

@@ -9,10 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 namespace SERVOSA.SAIR.SERVICE.Contracts
 {
-    public interface IDriverService : IServiceRepository<DriverServiceModel>
+    public interface IOldDriverService : IServiceRepository<OldDriverServiceModel>
     {
-        IList<DriverServiceModel> GetAllFiltered(int minRow, int maxRow);
-        IList<DriverRelatedTableServiceModel> GetRelatedTablesToDriver();
+        IList<OldDriverServiceModel> GetAllFiltered(int minRow, int maxRow);
+        IList<OldDriverRelatedTableServiceModel> GetRelatedTablesToDriver();
         IList<string> GetListRelatedTablesToDriver();
     }
 }

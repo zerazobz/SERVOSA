@@ -16,7 +16,7 @@ namespace SERVOSA.SAIR.SERVICE.Core
         protected override void Initialize()
         {
             Container.RegisterType<IVehicleRepository, VehicleRepository>();
-            Container.RegisterType<IDriverRepository, DriverRepository>();
+            Container.RegisterType<IOldDriverRepository, OldDriverRepository>();
             Container.RegisterType<IDBTablesRepository, DBRepository>();
             Container.RegisterType<IDBColumnsRepository, DBRepository>();
             Container.RegisterType<ITableDataRepository, TableDataRepository>();

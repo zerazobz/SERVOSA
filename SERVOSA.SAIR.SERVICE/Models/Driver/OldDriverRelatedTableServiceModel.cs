@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Models.Driver
 {
-    public class DriverRelatedTableServiceModel : VehicleRelatedTableServiceModel
+    public class OldDriverRelatedTableServiceModel : VehicleRelatedTableServiceModel
     {
-
-        public static void ToDataModel(DriverRelatedTableServiceModel serviceModel, ref RelatedTableToEntityModel dataModel)
+        public static void ToDataModel(OldDriverRelatedTableServiceModel serviceModel, ref RelatedTableToEntityModel dataModel)
         {
             if (serviceModel != null)
                 dataModel = new RelatedTableToEntityModel()
@@ -26,10 +25,10 @@ namespace SERVOSA.SAIR.SERVICE.Models.Driver
                 dataModel = null;
         }
 
-        public static void ToServiceModel(RelatedTableToEntityModel dataModel, ref DriverRelatedTableServiceModel serviceModel)
+        public static void ToServiceModel(RelatedTableToEntityModel dataModel, ref OldDriverRelatedTableServiceModel serviceModel)
         {
             if (dataModel != null)
-                serviceModel = new DriverRelatedTableServiceModel()
+                serviceModel = new OldDriverRelatedTableServiceModel()
                 {
                     ForeignColumn = dataModel.foreign_column,
                     ForeignKeyName = dataModel.foreign_key_name,

@@ -12,80 +12,80 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.SERVICE.Realizations
 {
-    public class DriverService:IDriverService
+    public class OldDriverService:IOldDriverService
     {
-         private readonly IDriverRepository _driverRepository;
+         private readonly IOldDriverRepository _driverRepository;
 
-        public DriverService(IDriverRepository injectedDriverRepo)
+        public OldDriverService(IOldDriverRepository injectedDriverRepo)
         {
             _driverRepository = injectedDriverRepo;
         }
 
-        public int Create(DriverServiceModel viewModel)
+        public int Create(OldDriverServiceModel viewModel)
         {
-            DriverModel model = null;
-            DriverServiceModel.ToModel(viewModel, ref model);
+            OldDriverModel model = null;
+            OldDriverServiceModel.ToModel(viewModel, ref model);
             return _driverRepository.Create(model);
         }
 
-        public int Delete(DriverServiceModel viewModel)
+        public int Delete(OldDriverServiceModel viewModel)
         {
-            DriverModel model = null;
-            DriverServiceModel.ToModel(viewModel, ref model);
+            OldDriverModel model = null;
+            OldDriverServiceModel.ToModel(viewModel, ref model);
             return _driverRepository.Delete(model);
         }
 
-        public IList<DriverServiceModel> GetAll()
+        public IList<OldDriverServiceModel> GetAll()
         {
-            DriverServiceModel viewModel = null;
+            OldDriverServiceModel viewModel = null;
             return _driverRepository.GetAll().Select(v =>
             {
-                DriverServiceModel.ToViewModel(v, ref viewModel);
+                OldDriverServiceModel.ToViewModel(v, ref viewModel);
                 return viewModel;
             }).ToList();
         }
 
-        public IList<DriverServiceModel> GetAllFiltered(int minRow, int maxRow)
+        public IList<OldDriverServiceModel> GetAllFiltered(int minRow, int maxRow)
         {
-            DriverServiceModel vehicleViewModel = null;
+            OldDriverServiceModel vehicleViewModel = null;
             return _driverRepository.GetAllFiltered(minRow, maxRow).Select(v =>
             {
-                DriverServiceModel.ToViewModel(v, ref vehicleViewModel);
+                OldDriverServiceModel.ToViewModel(v, ref vehicleViewModel);
                 return vehicleViewModel;
             }).ToList();
         }
 
-        public DriverServiceModel GetById(int id)
+        public OldDriverServiceModel GetById(int id)
         {
-            DriverServiceModel DriverServiceModel = null;
+            OldDriverServiceModel DriverServiceModel = null;
             var vehicleResult = _driverRepository.GetById(id);
-            DriverServiceModel.ToViewModel(vehicleResult, ref DriverServiceModel);
+            OldDriverServiceModel.ToViewModel(vehicleResult, ref DriverServiceModel);
             return DriverServiceModel;
         }
 
-        public int Update(DriverServiceModel viewModel)
+        public int Update(OldDriverServiceModel viewModel)
         {
-            DriverModel model = null;
-            DriverServiceModel.ToModel(viewModel, ref model);
+            OldDriverModel model = null;
+            OldDriverServiceModel.ToModel(viewModel, ref model);
             return _driverRepository.Update(model);
         }
 
-        public IList<DriverServiceModel> GetVehicleRowDataForTable(string tableName)
+        public IList<OldDriverServiceModel> GetVehicleRowDataForTable(string tableName)
         {
-            DriverServiceModel viewModel = null;
+            OldDriverServiceModel viewModel = null;
             return _driverRepository.GetAll().Select(v =>
             {
-                DriverServiceModel.ToViewModel(v, ref viewModel);
+                OldDriverServiceModel.ToViewModel(v, ref viewModel);
                 return viewModel;
             }).ToList();
         }
 
-        public IList<DriverRelatedTableServiceModel> GetRelatedTablesToDriver()
+        public IList<OldDriverRelatedTableServiceModel> GetRelatedTablesToDriver()
         {
-            DriverRelatedTableServiceModel vehicleRelatedVM = null;
+            OldDriverRelatedTableServiceModel vehicleRelatedVM = null;
             var relatedVehiclesCollection = _driverRepository.GetRelatedTablesToVehicle().Select(rVT =>
             {
-                DriverRelatedTableServiceModel.ToServiceModel(rVT, ref vehicleRelatedVM);
+                OldDriverRelatedTableServiceModel.ToServiceModel(rVT, ref vehicleRelatedVM);
                 return vehicleRelatedVM;
             }).ToList();
             return relatedVehiclesCollection;

@@ -155,7 +155,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
                 .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.Estado)
-                .DoNotMap(prop => prop.RowNumber).DoNotMap(prop => prop.VEHI_DescriptionUnitType).Build();
+                .DoNotMap(prop => prop.RowNumber).Build();
         }
 
         private IRowMapper<VehicleModel> GetMapperForFilteredSP()

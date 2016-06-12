@@ -6,13 +6,13 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script src="~/Scripts/ViewController/SERVOSA.Core.js" type="text/javascript"></script>
+    <script src="~/Scripts/ViewController/DriverSERVOSA.Core.js" type="text/javascript"></script>
 </head>
 <body>
     @foreach (var iConstanColumn in SERVOSA.SAIR.SERVICE.Core.ServosaDriverSingleton.Instance.AllConstantColumns)
     {
         <script>
-            SERVOSACORE.AddConstantDriverColumn("@iConstanColumn");
+            DRIVERSERVOSACORE.AddConstantDriverColumn("@iConstanColumn");
         </script>
     }
     <div class="navbar navbar-inverse navbar-fixed-top">

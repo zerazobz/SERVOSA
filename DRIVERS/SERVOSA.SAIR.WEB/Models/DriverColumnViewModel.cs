@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SERVOSA.SAIR.WEB.Models
 {
-    public class ColumnViewModel
+    public class DriverColumnViewModel
     {
         public string ColumnNormalizedName { get; set; }
         public string ColumnName { get; set; }
