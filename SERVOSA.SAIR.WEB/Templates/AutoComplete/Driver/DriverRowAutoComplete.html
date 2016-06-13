@@ -1,10 +1,12 @@
 ﻿<li>
     <div class="row driverautocompletecontainer">
         <div class="col-md-7">
-            <p class="lead">{{VehiclePlate}} - {{VehicleBrand}}</p>
+            <p class="lead">{{Name}}</p>
         </div>
         <div class="col-md-5">
-            <a href="#"> <span data-driverid="{{DriverId}}" class="downloaddriverdata glyphicon glyphicon-arrow-down"> Datos</span> </a>
+            <!--<a href="#"> <span data-driverid="{{DriverId}}" class="downloaddriverdata glyphicon glyphicon-arrow-down"> Datos</span> </a>-->
+            <a style="display: inline;" href="/DriverData/Data?driverCode={{DriverId}}" title="Panel General"><span class="glyphicon glyphicon-dashboard"></span></a>
+            <a style="display: inline;" href="/DriverData/DownloadDriverData?driverId={{DriverId}}" title="Descargar Datos del Conductor"><span class="glyphicon glyphicon-download"></span></a>
         </div>
     </div>
 </li>

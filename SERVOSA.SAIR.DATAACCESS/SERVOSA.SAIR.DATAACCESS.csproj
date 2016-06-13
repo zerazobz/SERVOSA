@@ -58,6 +58,7 @@
     <Compile Include="Contracts\IDriverRepository.cs" />
     <Compile Include="Contracts\IDBColumnsRepository.cs" />
     <Compile Include="Contracts\IDBTablesRepository.cs" />
+    <Compile Include="Contracts\IOperationRepository.cs" />
     <Compile Include="Contracts\ITableDataRepository.cs" />
     <Compile Include="Contracts\IOldDriverRepository.cs" />
     <Compile Include="Contracts\ITypeRepository.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Realizations\DriverDBRepository.cs" />
     <Compile Include="Realizations\DriverTableDataRepository.cs" />
     <Compile Include="Realizations\DBRepository.cs" />
+    <Compile Include="Realizations\OperationRepository.cs" />
     <Compile Include="Realizations\TableDataRepository.cs" />
     <Compile Include="Realizations\OldDriverRepository.cs" />
     <Compile Include="Realizations\DriverTypeRepository.cs" />

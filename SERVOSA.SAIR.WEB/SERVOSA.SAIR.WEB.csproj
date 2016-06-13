@@ -224,6 +224,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoadFileController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OperationsController.cs" />
     <Compile Include="Controllers\VariableTasksController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Controllers\VehicleDataController.cs" />
@@ -499,6 +500,7 @@
     <Content Include="Scripts\ViewController\Driver\OldDriverDataViewController.js" />
     <Content Include="Scripts\ViewController\Driver\OldDriverUploadViewController.js" />
     <Content Include="Scripts\ViewController\Driver\OldDriverViewController.js" />
+    <Content Include="Scripts\ViewController\Operations\OperationViewController.js" />
     <Content Include="Scripts\ViewController\SERVOSAViewController.js" />
     <Content Include="Scripts\ViewController\VehicleDataViewController.js" />
     <Content Include="Scripts\ViewController\VehicleUploadViewController.js" />
@@ -603,6 +605,7 @@
     <Content Include="Views\Driver\DriversTable.cshtml" />
     <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Driver\Operarios.cshtml" />
+    <Content Include="Views\Operations\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

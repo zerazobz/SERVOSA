@@ -245,7 +245,8 @@
             var data = {
                 //DriverPlate: item.data.Placa,
                 //DriverBrand: item.data.Marca,
-                DriverId: item.data.Codigo
+                DriverId: item.data.Codigo,
+                Name: item.data.Placa
             };
             var htmlGenerated = handleTemplate(data);
             return $(htmlGenerated).appendTo(ul);

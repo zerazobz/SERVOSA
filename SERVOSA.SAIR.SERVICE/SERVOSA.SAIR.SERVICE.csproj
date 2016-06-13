@@ -80,6 +80,7 @@
     <Compile Include="Contracts\IDriverAlertService.cs" />
     <Compile Include="Contracts\IDriverFileService.cs" />
     <Compile Include="Contracts\IDriverService.cs" />
+    <Compile Include="Contracts\IOperationService.cs" />
     <Compile Include="Contracts\ITableDataService.cs" />
     <Compile Include="Contracts\ITypeService.cs" />
     <Compile Include="Contracts\IVehicleAlertService.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Realizations\DriverAlertService.cs" />
     <Compile Include="Realizations\DriverFileService.cs" />
     <Compile Include="Realizations\DriverService.cs" />
+    <Compile Include="Realizations\OperationService.cs" />
     <Compile Include="Realizations\TableDataService.cs" />
     <Compile Include="Realizations\TypeService.cs" />
     <Compile Include="Realizations\VehicleAlertService.cs" />
