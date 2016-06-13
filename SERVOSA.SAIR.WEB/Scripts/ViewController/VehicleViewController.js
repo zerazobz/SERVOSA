@@ -232,6 +232,16 @@
             });
         });
 
+        $(".body-content").off("click", ".removevehicletable").on("click", ".removevehicletable", null, function (e) {
+            var confirmationResult = confirm("Al eliminar la tabla, todos los datos serán eliminados.");
+            var tableNormalizedName = $(this).data("normalizedtablename");
+            if (confirmationResult) {
+                $.post("/Home/RemoveTable", { tableName: tableNormalizedName }, function (data, textStatus, jqXHR) {
+                    $("table[data-tablename='" + tableNormalizedName + "']").remove()
+                });
+            }
+        });
+
         $("#vehicleAutoComplete").autocomplete({
             minLength: 3,
             source: function (request, response) {

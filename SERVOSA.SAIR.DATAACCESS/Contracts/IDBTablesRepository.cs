@@ -14,5 +14,6 @@ namespace SERVOSA.SAIR.DATAACCESS.Contracts
         IList<TableColumnModel> ListAllVehicleVarsTablesWithDefinition();
         IList<TableColumnModel> ListAllDriverVarsTablesWithDefinition();
         string ChangeTableName(string schemaName, string tableName, string newTableName);
+        int RemoveTable(string tableName, string typeEntity);
     }
 }

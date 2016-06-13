@@ -35,8 +35,8 @@
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Codigo)
-                        <a href="/VehicleData/Data?vehicleCode=@item.Codigo"><span class="glyphicon glyphicon-dashboard"></span></a>
-                        <a href="/VehicleData/DownloadVehicleData?vehicleId=@item.Codigo"><span class="glyphicon glyphicon-download"></span></a>
+                        <a href="/VehicleData/Data?vehicleCode=@item.Codigo" title="Panel General"><span class="glyphicon glyphicon-dashboard"></span></a>
+                        <a href="/VehicleData/DownloadVehicleData?vehicleId=@item.Codigo" title="Descargar Datos de Vehiculo"><span class="glyphicon glyphicon-download"></span></a>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DescripcionTipoUnidad)

@@ -272,4 +272,14 @@
         });
     });
 
+    $(".body-content").off("click", ".removedrivertable").on("click", ".removedrivertable", null, function (e) {
+        var confirmationResult = confirm("Al eliminar la tabla, todos los datos serán eliminados.");
+        var tableNormalizedName = $(this).data("normalizedtablename");
+        if (confirmationResult) {
+            $.post("/DriverDashboard/RemoveTable", { tableName: tableNormalizedName }, function (data, textStatus, jqXHR) {
+                $("table[data-tablename='" + tableNormalizedName + "']").remove()
+            });
+        }
+    });
+
 })(window.DriverNamespace = window.DriverNamespace || {}, jQuery);

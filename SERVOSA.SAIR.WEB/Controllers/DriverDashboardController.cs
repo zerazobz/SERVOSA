@@ -83,5 +83,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var executionResult = _dbServices.ChangeDriverTableName(oldTableName, newTableName);
             return Json(executionResult);
         }
+
+        [HttpPost]
+        public JsonResult RemoveTable(string tableName)
+        {
+            var executionResult = _dbServices.RemoveDriverTable(tableName);
+            return Json(executionResult);
+        }
     }
 }

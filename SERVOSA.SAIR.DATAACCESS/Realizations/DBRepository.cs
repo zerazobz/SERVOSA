@@ -169,6 +169,13 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                 return String.Empty;
         }
 
+        public int RemoveTable(string tableName, string typeEntity)
+        {
+            object[] removeTableParameters = new object[] { tableName, typeEntity };
+            var executionResult = _servosaDB.ExecuteNonQuery("SAIR_REMOVETABLE", removeTableParameters);
+            return executionResult;
+        }
+
         TableModel IRepository<TableModel>.GetById(int id)
         {
             throw new NotImplementedException();

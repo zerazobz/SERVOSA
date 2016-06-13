@@ -11,9 +11,10 @@
                 <th colspan="@(qytColumns + 1)">
                     <div style="display: inline-block;">
                         <p style="display: inline;">@Model.TableName</p>
-                        <button data-normalizedtablename="@Model.TableNormalizedName" data-tablename="@Model.TableNormalizedName" class="btn btn-default addNewColumnToVariable" type="button" style="display: inline;"> <span class="glyphicon glyphicon-plus"></span> </button>
-                        <button data-normalizedtablename="@Model.TableNormalizedName" data-tablename="@Model.TableNormalizedName" class="downloadFileForVariable btn btn-default" type="button" style="display: inline;"> <span class="glyphicon glyphicon-file"></span> </button>
-                        <button data-normalizedtablename="@Model.TableNormalizedName" data-tablename="@Model.TableName" class="editdrivertablename btn btn-default" type="button" style="display: inline;"> <span class="glyphicon glyphicon-edit"></span> </button>
+                        <button data-normalizedtablename="@Model.TableNormalizedName" data-tablename="@Model.TableNormalizedName" class="btn btn-default addNewColumnToVariable" type="button" style="display: inline;" title="Agregar Columna"> <span class="glyphicon glyphicon-plus"></span> </button>
+                        <button data-normalizedtablename="@Model.TableNormalizedName" data-tablename="@Model.TableNormalizedName" class="downloadFileForVariable btn btn-default" type="button" style="display: inline;" title="Descargar Datos de Variable"> <span class="glyphicon glyphicon-download"></span> </button>
+                        <button data-normalizedtablename="@Model.TableNormalizedName" data-tablename="@Model.TableName" class="editdrivertablename btn btn-default" type="button" style="display: inline;" title="Cambiar Nombre"> <span class="glyphicon glyphicon-edit"></span> </button>
+                        <button data-normalizedtablename="@Model.TableNormalizedName" data-tablename="@Model.TableName" class="removedrivertable btn btn-default" type="button" style="display: inline;" title="Eliminar Variable"> <span class="glyphicon glyphicon-trash"></span> </button>
                     </div>
                 </th>
             </tr>

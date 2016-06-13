@@ -38,12 +38,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 TableColumnViewModel nTable = new TableColumnViewModel();
                 nTable.TableNormalizedName = iTableColumn.Key;
                 nTable.Columns = new List<ColumnViewModel>();
+                nTable.TableName = iTableColumn.FirstOrDefault()?.TableName;
+                nTable.TableId = (iTableColumn.FirstOrDefault()?.TableId) ?? 0;
 
                 ColumnViewModel nColumn;
                 foreach (var iDisaggregated in iTableColumn.Where(c => !String.IsNullOrWhiteSpace(c.ColumnName)))
                 {
-                    nTable.TableName = iDisaggregated.TableName;
-                    nTable.TableId = iDisaggregated.TableId;
+                    //nTable.TableName = iDisaggregated.TableName;
+                    //nTable.TableId = iDisaggregated.TableId;
                     nColumn = new ColumnViewModel();
                     nColumn.ColumnName = iDisaggregated.ColumnName;
                     nColumn.ColumnNormalizedName = iDisaggregated.ColumnNormalizedName;
@@ -77,6 +79,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public JsonResult ChangeTableName(string oldTableName, string newTableName)
         {
             var executionResult = _dbServices.ChangeVehicleTableName(oldTableName, newTableName);
+            return Json(executionResult);
+        }
+
+        [HttpPost]
+        public JsonResult RemoveTable(string tableName)
+        {
+            var executionResult = _dbServices.RemoveVehicleTable(tableName);
             return Json(executionResult);
         }
     }

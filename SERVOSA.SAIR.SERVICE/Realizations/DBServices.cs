@@ -87,5 +87,15 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
         {
             return _tableRepository.ChangeTableName("drivervars", tableName, newTableName);
         }
+
+        public int RemoveVehicleTable(string tableName)
+        {
+            return _tableRepository.RemoveTable(tableName, "V");
+        }
+
+        public int RemoveDriverTable(string tableName)
+        {
+            return _tableRepository.RemoveTable(tableName, "D");
+        }
     }
 }

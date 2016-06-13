@@ -16,5 +16,7 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
         IList<TableColumnServiceModel> ListDriversVarsTablesWithDefinition();
         string ChangeVehicleTableName(string tableName, string newTableName);
         string ChangeDriverTableName(string tableName, string newTableName);
+        int RemoveVehicleTable(string tableName);
+        int RemoveDriverTable(string tableName);
     }
 }
