@@ -13,5 +13,6 @@ namespace SERVOSA.SAIR.DATAACCESS.Contracts
         Tuple<int, TableModel> CreateTableAndReturnsNormalizedName(TableModel entity);
         IList<TableColumnModel> ListAllVehicleVarsTablesWithDefinition();
         IList<TableColumnModel> ListAllDriverVarsTablesWithDefinition();
+        string ChangeTableName(string schemaName, string tableName, string newTableName);
     }
 }

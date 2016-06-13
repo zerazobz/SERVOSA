@@ -159,6 +159,16 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             return allTables.ToList();
         }
 
+        public string ChangeTableName(string schemaName, string tableName, string newTableName)
+        {
+            object[] parameters = new object[] { schemaName, tableName, newTableName };
+            var executionResult = _servosaDB.ExecuteNonQuery("SAIR_RENAMETABLENAME", parameters);
+            if (executionResult > 0)
+                return newTableName;
+            else
+                return String.Empty;
+        }
+
         TableModel IRepository<TableModel>.GetById(int id)
         {
             throw new NotImplementedException();

@@ -255,4 +255,21 @@
         driverNamespace.LoadDataForTablesYetLoaded();
     });
 
+    $(".body-content").off("click", ".editdrivertablename").on("click", ".editdrivertablename", null, function (e) {
+        $("#changeDriverTableNameModal").modal("show");
+        $("#changeDriverTableNameModal").find("input[name='oldTableName']").val($(this).data("normalizedtablename"));
+    });
+
+    $(".body-content").off("click", "#changeTableName").on("click", "#changeTableName", null, function (e) {
+        $.post("/DriverDashboard/ChangeTableName", {
+            oldTableName: $("#changeDriverTableNameModal").find("input[name='oldTableName']").val(),
+            newTableName: $("#changeDriverTableNameModal").find("input[name='newTableName']").val()
+        }, function (data, textStatus, jqXHR) {
+            $(document).find("button[data-normalizedtablename='" + $("#changeDriverTableNameModal")
+               .find("input[name='oldTableName']").val() + "']").parent().find("p")
+               .text($("#changeDriverTableNameModal").find("input[name='newTableName']").val());
+            $("#changeDriverTableNameModal").modal("hide");
+        });
+    });
+
 })(window.DriverNamespace = window.DriverNamespace || {}, jQuery);

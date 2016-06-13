@@ -77,6 +77,32 @@
     </div>
 </div>
 
+<div class="modal fade" id="changeVehicleTableNameModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" data-containerid="#changeVehicleTableNameContainer">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Cambiar el Nombre de la Tabla</h4>
+            </div>
+            <div class="modal-body">
+                <p class="lead">Ingrese el nuevo nombre de la tabla</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="oldTableName" value="" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="newTableName" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="changeTableName" class="btn btn-primary">Cambiar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="createUpdateTableDataModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content" data-containerid="#createUpdateTableDataModal">

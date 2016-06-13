@@ -14,5 +14,7 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
         Tuple<int, ColumnServiceModel> CreateColumn(ColumnServiceModel viewModel);
         IList<TableColumnServiceModel> ListVehicleVarsTablesWithDefinition();
         IList<TableColumnServiceModel> ListDriversVarsTablesWithDefinition();
+        string ChangeVehicleTableName(string tableName, string newTableName);
+        string ChangeDriverTableName(string tableName, string newTableName);
     }
 }

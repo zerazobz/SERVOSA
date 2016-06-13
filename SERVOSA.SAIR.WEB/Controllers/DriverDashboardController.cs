@@ -13,14 +13,16 @@ namespace SERVOSA.SAIR.WEB.Controllers
     public partial class DriverDashboardController : Controller
     {
         private IDriverService _driverServices;
-        private readonly IDriverDBServices _dbServices;
+        private readonly IDBServices _dbServices;
+        private readonly IDriverDBServices _dbDriverServices;
         private IDriverAlertService _driverAlertService;
 
-        public DriverDashboardController(IDriverService injectedDriverRep, IDriverDBServices injectedDbService, IDriverAlertService vehiceAlertInjectedService)
+        public DriverDashboardController(IDriverService injectedDriverRep, IDriverDBServices injectedDriverDbService, IDriverAlertService vehiceAlertInjectedService, IDBServices injectedDbService)
         {
             _driverServices = injectedDriverRep;
-            _dbServices = injectedDbService;
+            _dbDriverServices = injectedDriverDbService;
             _driverAlertService = vehiceAlertInjectedService;
+            _dbServices = injectedDbService;
         }
 
         [HttpGet]
@@ -28,7 +30,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             int alertsSended = _driverAlertService.ProcessAlerts(new string[] { "51950313361" });
             
-            var allCompleteTable = _dbServices.ListDriversVarsTablesWithDefinition();
+            var allCompleteTable = _dbDriverServices.ListDriversVarsTablesWithDefinition();
             var tableDataGrouped = allCompleteTable.GroupBy(t => t.TableNormalizedName);
 
             IList<DriverTableColumnViewModel> collectionTables = new List<DriverTableColumnViewModel>();
@@ -73,6 +75,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public virtual ActionResult DriverDataTable(DriverTableServiceModel model)
         {
             return PartialView(MVC.DriverDashboard.Views.DriverDataTable, model);
+        }
+
+        [HttpPost]
+        public JsonResult ChangeTableName(string oldTableName, string newTableName)
+        {
+            var executionResult = _dbServices.ChangeDriverTableName(oldTableName, newTableName);
+            return Json(executionResult);
         }
     }
 }

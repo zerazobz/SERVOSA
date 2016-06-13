@@ -215,6 +215,23 @@
             window.location = "/VehicleData/DownloadVariable?tableName=" + tableName
         });
 
+        $(document).off("click", ".editvehicletablename").on("click", ".editvehicletablename", null, function (e) {
+            $("#changeVehicleTableNameModal").modal("show");
+            $("#changeVehicleTableNameModal").find("input[name='oldTableName']").val($(this).data("normalizedtablename"));
+        });
+
+        $(".body-content").off("click", "#changeTableName").on("click", "#changeTableName", null, function (e) {
+            $.post("/Home/ChangeTableName", {
+                oldTableName: $("#changeVehicleTableNameModal").find("input[name='oldTableName']").val(),
+                newTableName: $("#changeVehicleTableNameModal").find("input[name='newTableName']").val()
+            }, function (data, textStatus, jqXHR) {
+                $(document).find("button[data-normalizedtablename='" + $("#changeVehicleTableNameModal")
+                   .find("input[name='oldTableName']").val() + "']").parent().find("p")
+                   .text($("#changeVehicleTableNameModal").find("input[name='newTableName']").val());
+                $("#changeVehicleTableNameModal").modal("hide");
+            });
+        });
+
         $("#vehicleAutoComplete").autocomplete({
             minLength: 3,
             source: function (request, response) {

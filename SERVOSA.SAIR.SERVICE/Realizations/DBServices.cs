@@ -77,5 +77,15 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             }).ToList();
             return listTables;
         }
+
+        public string ChangeVehicleTableName(string tableName, string newTableName)
+        {
+            return _tableRepository.ChangeTableName("vehiclevars", tableName, newTableName);
+        }
+
+        public string ChangeDriverTableName(string tableName, string newTableName)
+        {
+            return _tableRepository.ChangeTableName("drivervars", tableName, newTableName);
+        }
     }
 }

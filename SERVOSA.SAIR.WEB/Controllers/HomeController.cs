@@ -72,5 +72,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             return PartialView(MVC.Home.Views.VehicleDataTable, model);
         }
+
+        [HttpPost]
+        public JsonResult ChangeTableName(string oldTableName, string newTableName)
+        {
+            var executionResult = _dbServices.ChangeVehicleTableName(oldTableName, newTableName);
+            return Json(executionResult);
+        }
     }
 }
