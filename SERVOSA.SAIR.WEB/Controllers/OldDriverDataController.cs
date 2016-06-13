@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace SERVOSA.SAIR.WEB.Controllers
 {
-    public class OldDriverDataController : Controller
+    public partial class OldDriverDataController : Controller
     {
         private readonly IOldDriverService _driverService;
 
@@ -17,7 +17,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult Data(int driverCode)
+        public virtual ActionResult Data(int driverCode)
         {
             ViewBag.DriverCode = driverCode;
             var listRelatedTablesVehicle = _driverService.GetListRelatedTablesToDriver();

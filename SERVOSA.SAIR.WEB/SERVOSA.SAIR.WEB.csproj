@@ -215,6 +215,10 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DriverController.cs" />
+    <Compile Include="Controllers\DriverDashboardController.cs" />
+    <Compile Include="Controllers\DriverDataController.cs" />
+    <Compile Include="Controllers\DriverVariableTasksController.cs" />
     <Compile Include="Controllers\OldDriverController.cs" />
     <Compile Include="Controllers\OldDriverDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -226,6 +230,15 @@
     <Compile Include="Core\WebContainerInjector.cs" />
     <Compile Include="Core\WebSingleton.cs" />
     <Compile Include="DriverController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DriverDashboardController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DriverDataController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DriverVariableTasksController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -242,9 +255,17 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ColumnViewModel.cs" />
+    <Compile Include="Models\DriverColumnViewModel.cs" />
+    <Compile Include="Models\DriverTableColumnViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TableColumnViewModel.cs" />
+    <Compile Include="OldDriverController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OldDriverDataController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -346,6 +367,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.9.2.js" />
     <Content Include="Scripts\jquery-ui-1.9.2.min.js" />
+    <Content Include="Scripts\jquery.ui.datepicker-es.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -465,6 +487,14 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ViewController\DriverDataViewController.js" />
+    <Content Include="Scripts\ViewController\DriverSERVOSA.Core.js" />
+    <Content Include="Scripts\ViewController\DriverSERVOSAViewController.js" />
+    <Content Include="Scripts\ViewController\DriverUploadViewController.js" />
+    <Content Include="Scripts\ViewController\DriverViewController.js" />
+    <Content Include="Scripts\ViewController\Driver\DriverDataViewController.js" />
+    <Content Include="Scripts\ViewController\Driver\DriverUploadViewController.js" />
+    <Content Include="Scripts\ViewController\Driver\DriverViewController.js" />
     <Content Include="Scripts\ViewController\OldDriverViewController.js" />
     <Content Include="Scripts\ViewController\Driver\OldDriverDataViewController.js" />
     <Content Include="Scripts\ViewController\Driver\OldDriverUploadViewController.js" />
@@ -559,6 +589,20 @@
     <Content Include="Views\OldDriver\OldDriversTable.cshtml" />
     <Content Include="Views\OldDriver\OldDriverDataTable.cshtml" />
     <Content Include="Views\OldDriverData\OldData.cshtml" />
+    <Content Include="Views\DriverDashboard\DriverDataTable.cshtml" />
+    <Content Include="Views\DriverDashboard\DriverTable.cshtml" />
+    <Content Include="Views\DriverDashboard\Index.cshtml" />
+    <Content Include="Views\DriverData\CabeceraVehiculo.cshtml" />
+    <Content Include="Views\DriverData\Data.cshtml" />
+    <Content Include="Views\DriverData\DatosVariableVehiculo.cshtml" />
+    <Content Include="Views\DriverData\GetFileModalManager.cshtml" />
+    <Content Include="Views\DriverVariableTasks\DriverCreateColumn.cshtml" />
+    <Content Include="Views\DriverVariableTasks\DriverCreateTable.cshtml" />
+    <Content Include="Views\Driver\DriverDataTable.cshtml" />
+    <Content Include="Views\Driver\DriversMainData.cshtml" />
+    <Content Include="Views\Driver\DriversTable.cshtml" />
+    <Content Include="Views\Driver\Index.cshtml" />
+    <Content Include="Views\Driver\Operarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SERVOSA.SAIR.SERVICE.Models.DriverServiceModel>
+
+<form action="/" method="post" id="tableData">
+    <table class="table table-hover table-bordered servosatable">
+        <thead>
+            <tr>
+                <th colspan="6">
+                    <div style="display: inline-block;">
+                        <p style="display: inline;">Datos de Conductor</p>
+                        <button class="btn btn-default" type="button" style="display: inline;margin-left: -900px;">A</button>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Codigo)
+                </th>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.DescripcionTipoUnidad)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Placa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Codigo)
+                        <a href="/DriverData/Data?driverCode=@item.Codigo"><span class="glyphicon glyphicon-dashboard"></span></a>
+                        <a href="/DriverData/DownloadDriverData?driverId=@item.Codigo"><span class="glyphicon glyphicon-file"></span></a>
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.DescripcionTipoUnidad)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Placa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

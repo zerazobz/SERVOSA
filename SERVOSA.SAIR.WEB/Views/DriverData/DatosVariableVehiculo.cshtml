@@ -1,0 +1,94 @@
+﻿@model SERVOSA.SAIR.SERVICE.Models.DriverVariableDataServiceModel
+
+@using (Html.BeginForm(MVC.DriverData.DatosVariableVehiculo(), FormMethod.Post, new { id = "postVariableData", data_posturl = Url.Action(MVC.DriverData.DatosVariableVehiculo()) }))
+{
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Crear/Actualizar Datos</h4>
+    </div>
+    <div class="modal-body">
+        <div class="messagePanel">
+
+        </div>
+
+        <div>
+            @Html.HiddenFor(model => model.ObjectId)
+            @Html.HiddenFor(model => model.TableName)
+            <input type="hidden" name="Message" value="@Model.Message" />
+            <input type="hidden" name="IsSuccessful" value="@Model.IsSuccessful.ToString()" />
+        </div>
+        @Html.AntiForgeryToken()
+        @for (int i = 0; i < Model.ColumnsCollection.Count; i++)
+        {
+            if (SERVOSA.SAIR.SERVICE.Core.ServosaDriverSingleton.Instance.HiddenColumnsForMainForm.Contains(Model.ColumnsCollection[i].ColumnName))
+            {
+                <div class="row" style="margin-top: 15px; display: none;">
+                    <div class="col-md-6">
+                        @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnId)
+                        @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnType)
+                        @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnName)
+                        @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnNamedType)
+                        @Html.Label(Model.ColumnsCollection[i].ColumnName)
+                    </div>
+                    <div class="col-md-6">
+                        @if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.DateTime)
+                        {
+                            @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
+                        }
+                        else if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.Int)
+                        {
+                            @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { type = "currency", @class = "form-control" })
+                        }
+                        else if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.NVarChar)
+                        {
+                            @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { @class = "form-control" })
+                        }
+                        else
+                        {
+                            @Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue, new { @class = "form-control" })
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-md-6">
+                        @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnId)
+                        @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnType)
+                        @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnName)
+                        @Html.HiddenFor(model => model.ColumnsCollection[i].ColumnNamedType)
+                        @Html.Label(Model.ColumnsCollection[i].ColumnName)
+                    </div>
+                    <div class="col-md-6">
+                        @if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.DateTime)
+                        {
+                            @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
+                        }
+                        else if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.Int || Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.Decimal)
+                        {
+                            @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { type = "number", @class = "form-control" })
+                        }
+                        else if (Model.ColumnsCollection[i].ColumnNamedType == SERVOSA.SAIR.SERVICE.Core.SERVOSASqlTypes.NVarChar)
+                        {
+                            @Html.TextBoxFor(model => model.ColumnsCollection[i].ColumnValue, new { @class = "form-control" })
+                        }
+                        else
+                        {
+                            @Html.TextBoxFor(model => model.ColumnsCollection[i].TableValue, new { @class = "form-control" })
+                        }
+                    </div>
+                </div>
+            }
+        }
+        <div class="row">
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">Cerrar</button>
+            <input type="submit" name="submitDatosVariables" class="btn btn-default" value="Guardar" />
+        </div>
+}

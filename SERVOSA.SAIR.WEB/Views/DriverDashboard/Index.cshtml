@@ -1,4 +1,4 @@
-﻿@model IList<SERVOSA.SAIR.WEB.Models.TableColumnViewModel>
+﻿@model IList<SERVOSA.SAIR.WEB.Models.DriverTableColumnViewModel>
 
 @{
     ViewBag.Title = "Sistema de Alerta e Incidencias Reuniones";
@@ -24,7 +24,7 @@
         white-space: nowrap;
     }
 
-    #allVehicleInformation table tbody td {
+    #allDriverInformation table tbody td {
         white-space: nowrap;
     }
 
@@ -44,10 +44,10 @@
 
 <div class="row" style="margin-top: 15px;">
     <div class="col-md-2">
-        <label for="vehicleAutoComplete">Filtro de Vehículos</label>
+        <label for="driverAutoComplete">Filtro de Conductores</label>
     </div>
     <div class="col-md-8">
-        <input class="form-control" type="text" placeholder="Ingrese Vehiculo a Buscar" name="vehicleAutoComplete" id="vehicleAutoComplete" value="" />
+        <input class="form-control" type="text" placeholder="Ingrese Conductor a Buscar" name="driverAutoComplete" id="driverAutoComplete" value="" />
     </div>
 </div>
 
@@ -58,13 +58,13 @@
 </div>
 
 <div class="row" style="margin-top: 15px;">
-    <div id="allVehicleInformation" class="col-md-5" style="padding-right: 0px;">
-        @{ Html.RenderAction(MVC.Home.VehicleTable()); }
+    <div id="allDriverInformation" class="col-md-5" style="padding-right: 0px;">
+        @{ Html.RenderAction(MVC.DriverDashboard.DriverTable()); }
     </div>
     <div id="containerforalltables" class="col-md-7" style="overflow-x: auto; padding-left: 0px;">
         @foreach (var iTable in Model)
             {
-                { Html.RenderPartial(MVC.Home.Views.VehicleDataTable, iTable); }
+                { Html.RenderPartial(MVC.DriverDashboard.Views.DriverDataTable, iTable); }
             }
     </div>
 </div>
@@ -72,7 +72,7 @@
 <div class="modal fade" id="createTableModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            @{ Html.RenderAction(MVC.VariableTasks.CreateTable()); }
+            @{ Html.RenderAction(MVC.DriverVariableTasks.DriverCreateTable()); }
         </div>
     </div>
 </div>
@@ -156,11 +156,11 @@
     <script src="~/Scripts/jquery.validationEngine.js" type="text/javascript"></script>
     <script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
 
-    <script src="~/Scripts/ViewController/VehicleDataViewController.js" type="text/javascript"></script>
-    <script src="~/Scripts/ViewController/SERVOSAViewController.js" type="text/javascript"></script>
-    <script src="~/Scripts/ViewController/VehicleViewController.js" type="text/javascript"></script>
-    @*<script src="~/Scripts/ViewController/DriverViewController.js" type="text/javascript"></script>*@
-    <script src="~/Scripts/ViewController/VehicleUploadViewController.js" type="text/javascript"></script>
+    <script src="~/Scripts/ViewController/DriverDataViewController.js" type="text/javascript"></script>
+    <script src="~/Scripts/ViewController/DriverSERVOSAViewController.js" type="text/javascript"></script>
+    <script src="~/Scripts/ViewController/DriverViewController.js" type="text/javascript"></script>
+    <script src="~/Scripts/ViewController/DriverViewController.js" type="text/javascript"></script>
+    <script src="~/Scripts/ViewController/DriverUploadViewController.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
 

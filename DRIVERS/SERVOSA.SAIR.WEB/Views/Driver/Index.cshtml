@@ -43,48 +43,48 @@
         </div>
     </div>
 </div>
-@*
-    <div id="modal-file" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fileModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i class="fa fa-times"></i></span>
-                    </button>
-                    <h5>Carga de Datos</h5>
+
+<div id="uploadDownloadDriverDataModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Cargar Descargar Datos de Conductores</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="lead">
+                            Para empezar descargue los Códigos de:
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-default">Códigos de Marcas</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-default">Códigos de Estados</button>
+                    </div>
                 </div>
-                <div class="modal-body" id="selectorPolicyModalFileBody">
-                    <div id="messageFilePanel">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="text-info">
+                            Suba el excel con la información a importar.
+                        </p>
                     </div>
-                    <h5>Primero descargue los códigos de Vehiculos y Puestos</h5>
-                    <div class="row">
-                        <button type="button" class="btn btn-default"><i class="fa fa-chain"></i>Códigos de Vehiculos y Puestos</button>
-                        <button type="button" class="btn btn-default"><i class="fa fa-chain"></i>Ejemplo de Datos Requeridos</button>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-default">Importar</button>
                     </div>
-                    <hr />
-                    <h5>
-                        Suba el excel con toda la información a importar , tomando como ejemplo el archivo "Ejemplo de Datos Requeridos" y
-                        usando los códigos válidos de "Códigos de Vehículos y Puestos"
-                    </h5>
                 </div>
-                <div class="modal-footer">
-                    <div>
-                        <button type="button" class="btn btn-default pull-left" id="modal-submit-ok"><i class="fa fa-chain"></i>Importar Datos</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-                    </div>
-                    <hr />
-                    <div>
-                        <button type="button" class="btn btn-default pull-left disabled" id="modal-file-ok"><i class="fa fa-chain"></i>Guardar Registros Validos</button>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-default">Guardar Registros Validos</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-*@
-<div class="modal fade" id="modal-file" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            @*@{ Html.RenderAction("LoadFiles"); }*@
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
         </div>
     </div>
 </div>

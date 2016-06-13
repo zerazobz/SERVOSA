@@ -28,10 +28,15 @@ using T4MVC;
 public static partial class MVC
 {
     public static SERVOSA.SAIR.WEB.Controllers.AccountController Account = new SERVOSA.SAIR.WEB.Controllers.T4MVC_AccountController();
-    public static SERVOSA.SAIR.WEB.Controllers.OldDriverController Driver = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverController();
+    public static SERVOSA.SAIR.WEB.Controllers.DriverController Driver = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverController();
+    public static SERVOSA.SAIR.WEB.Controllers.DriverDashboardController DriverDashboard = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverDashboardController();
+    public static SERVOSA.SAIR.WEB.Controllers.DriverDataController DriverData = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverDataController();
+    public static SERVOSA.SAIR.WEB.Controllers.DriverVariableTasksController DriverVariableTasks = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverVariableTasksController();
     public static SERVOSA.SAIR.WEB.Controllers.HomeController Home = new SERVOSA.SAIR.WEB.Controllers.T4MVC_HomeController();
     public static SERVOSA.SAIR.WEB.Controllers.LoadFileController LoadFile = new SERVOSA.SAIR.WEB.Controllers.T4MVC_LoadFileController();
     public static SERVOSA.SAIR.WEB.Controllers.ManageController Manage = new SERVOSA.SAIR.WEB.Controllers.T4MVC_ManageController();
+    public static SERVOSA.SAIR.WEB.Controllers.OldDriverController OldDriver = new SERVOSA.SAIR.WEB.Controllers.T4MVC_OldDriverController();
+    public static SERVOSA.SAIR.WEB.Controllers.OldDriverDataController OldDriverData = new SERVOSA.SAIR.WEB.Controllers.T4MVC_OldDriverDataController();
     public static SERVOSA.SAIR.WEB.Controllers.VariableTasksController VariableTasks = new SERVOSA.SAIR.WEB.Controllers.T4MVC_VariableTasksController();
     public static SERVOSA.SAIR.WEB.Controllers.VehicleController Vehicle = new SERVOSA.SAIR.WEB.Controllers.T4MVC_VehicleController();
     public static SERVOSA.SAIR.WEB.Controllers.VehicleDataController VehicleData = new SERVOSA.SAIR.WEB.Controllers.T4MVC_VehicleDataController();
@@ -116,6 +121,7 @@ namespace Links
         public static readonly string jquery_1_10_2_min_map = Url("jquery-1.10.2.min.map");
         public static readonly string jquery_ui_1_9_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-ui-1.9.2.min.js") ? Url("jquery-ui-1.9.2.min.js") : Url("jquery-ui-1.9.2.js");
         public static readonly string jquery_ui_1_9_2_min_js = Url("jquery-ui-1.9.2.min.js");
+        public static readonly string jquery_ui_datepicker_es_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.ui.datepicker-es.min.js") ? Url("jquery.ui.datepicker-es.min.js") : Url("jquery.ui.datepicker-es.js");
         public static readonly string jquery_validate_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate-vsdoc.min.js") ? Url("jquery.validate-vsdoc.min.js") : Url("jquery.validate-vsdoc.js");
         public static readonly string jquery_validate_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.min.js") ? Url("jquery.validate.min.js") : Url("jquery.validate.js");
         public static readonly string jquery_validate_min_js = Url("jquery.validate.min.js");
@@ -429,7 +435,25 @@ namespace Links
             private const string URLPATH = "~/Scripts/ViewController";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Driver {
+                private const string URLPATH = "~/Scripts/ViewController/Driver";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string DriverDataViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverDataViewController.min.js") ? Url("DriverDataViewController.min.js") : Url("DriverDataViewController.js");
+                public static readonly string DriverUploadViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverUploadViewController.min.js") ? Url("DriverUploadViewController.min.js") : Url("DriverUploadViewController.js");
+                public static readonly string DriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverViewController.min.js") ? Url("DriverViewController.min.js") : Url("DriverViewController.js");
+                public static readonly string OldDriverDataViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/OldDriverDataViewController.min.js") ? Url("OldDriverDataViewController.min.js") : Url("OldDriverDataViewController.js");
+                public static readonly string OldDriverUploadViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/OldDriverUploadViewController.min.js") ? Url("OldDriverUploadViewController.min.js") : Url("OldDriverUploadViewController.js");
+                public static readonly string OldDriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/OldDriverViewController.min.js") ? Url("OldDriverViewController.min.js") : Url("OldDriverViewController.js");
+            }
+        
+            public static readonly string DriverDataViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverDataViewController.min.js") ? Url("DriverDataViewController.min.js") : Url("DriverDataViewController.js");
+            public static readonly string DriverSERVOSA_Core_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverSERVOSA.Core.min.js") ? Url("DriverSERVOSA.Core.min.js") : Url("DriverSERVOSA.Core.js");
+            public static readonly string DriverSERVOSAViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverSERVOSAViewController.min.js") ? Url("DriverSERVOSAViewController.min.js") : Url("DriverSERVOSAViewController.js");
+            public static readonly string DriverUploadViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverUploadViewController.min.js") ? Url("DriverUploadViewController.min.js") : Url("DriverUploadViewController.js");
             public static readonly string DriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverViewController.min.js") ? Url("DriverViewController.min.js") : Url("DriverViewController.js");
+            public static readonly string OldDriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/OldDriverViewController.min.js") ? Url("OldDriverViewController.min.js") : Url("OldDriverViewController.js");
             public static readonly string SERVOSA_Core_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SERVOSA.Core.min.js") ? Url("SERVOSA.Core.min.js") : Url("SERVOSA.Core.js");
             public static readonly string SERVOSAViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SERVOSAViewController.min.js") ? Url("SERVOSAViewController.min.js") : Url("SERVOSAViewController.js");
             public static readonly string VehicleDataViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/VehicleDataViewController.min.js") ? Url("VehicleDataViewController.min.js") : Url("VehicleDataViewController.js");
@@ -762,9 +786,26 @@ namespace Links
             }
             public static partial class ViewController 
             {
+                public static partial class Driver 
+                {
+                    public static class Assets
+                    {
+                        public const string DriverDataViewController_js = "~/Scripts/ViewController/Driver/DriverDataViewController.js"; 
+                        public const string DriverUploadViewController_js = "~/Scripts/ViewController/Driver/DriverUploadViewController.js"; 
+                        public const string DriverViewController_js = "~/Scripts/ViewController/Driver/DriverViewController.js"; 
+                        public const string OldDriverDataViewController_js = "~/Scripts/ViewController/Driver/OldDriverDataViewController.js"; 
+                        public const string OldDriverUploadViewController_js = "~/Scripts/ViewController/Driver/OldDriverUploadViewController.js"; 
+                        public const string OldDriverViewController_js = "~/Scripts/ViewController/Driver/OldDriverViewController.js"; 
+                    }
+                }
                 public static class Assets
                 {
+                    public const string DriverDataViewController_js = "~/Scripts/ViewController/DriverDataViewController.js"; 
+                    public const string DriverSERVOSA_Core_js = "~/Scripts/ViewController/DriverSERVOSA.Core.js"; 
+                    public const string DriverSERVOSAViewController_js = "~/Scripts/ViewController/DriverSERVOSAViewController.js"; 
+                    public const string DriverUploadViewController_js = "~/Scripts/ViewController/DriverUploadViewController.js"; 
                     public const string DriverViewController_js = "~/Scripts/ViewController/DriverViewController.js"; 
+                    public const string OldDriverViewController_js = "~/Scripts/ViewController/OldDriverViewController.js"; 
                     public const string SERVOSA_Core_js = "~/Scripts/ViewController/SERVOSA.Core.js"; 
                     public const string SERVOSAViewController_js = "~/Scripts/ViewController/SERVOSAViewController.js"; 
                     public const string VehicleDataViewController_js = "~/Scripts/ViewController/VehicleDataViewController.js"; 
@@ -784,6 +825,7 @@ namespace Links
                 public const string jquery_1_10_2_min_js = "~/Scripts/jquery-1.10.2.min.js"; 
                 public const string jquery_ui_1_9_2_js = "~/Scripts/jquery-ui-1.9.2.js"; 
                 public const string jquery_ui_1_9_2_min_js = "~/Scripts/jquery-ui-1.9.2.min.js"; 
+                public const string jquery_ui_datepicker_es_js = "~/Scripts/jquery.ui.datepicker-es.js"; 
                 public const string jquery_validate_js = "~/Scripts/jquery.validate.js"; 
                 public const string jquery_validate_min_js = "~/Scripts/jquery.validate.min.js"; 
                 public const string jquery_validate_unobtrusive_js = "~/Scripts/jquery.validate.unobtrusive.js"; 

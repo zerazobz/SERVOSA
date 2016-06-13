@@ -75,13 +75,13 @@ namespace SERVOSA.SAIR.SERVICE.Models
         }
     }
 
-    public class ColumnDataModel
-    {
-        public string ColumnName { get; set; }
-        public int ColumnId { get; set; }
-        public string TableValue { get; set; }
-        public string ColumnType { get; set; }
-        public object ColumnValue { get; set; }
-        public SERVOSASqlTypes ColumnNamedType { get; set; }
-    }
+    //public class ColumnDataModel
+    //{
+    //    public string ColumnName { get; set; }
+    //    public int ColumnId { get; set; }
+    //    public string TableValue { get; set; }
+    //    public string ColumnType { get; set; }
+    //    public object ColumnValue { get; set; }
+    //    public SERVOSASqlTypes ColumnNamedType { get; set; }
+    //}
 }
