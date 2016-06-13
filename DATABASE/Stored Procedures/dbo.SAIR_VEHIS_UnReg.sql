@@ -9,6 +9,11 @@ AS
 BEGIN
 	SELECT VEHI.Item, VEHI.Codigo, VEHi.TYPE_cTABBRND, VEHI.TYPE_cCODBRND, VEHI.TYPE_cTABVSTA, VEHI.TYPE_cCODVSTA
 		, VEHI.VEHI_UnitType, VEHI.VEHI_VehiclePlate
+		, CASE WHEN VEHI.VEHI_UnitType = 'R' THEN
+			'Remolque'
+		ELSE
+			'Semi Remolque'
+		END VEHI_DescriptionUnitType
 		FROM SAIR_VEHICLE VEHI
 	WHERE VEHI.Codigo = @Codigo;
 END

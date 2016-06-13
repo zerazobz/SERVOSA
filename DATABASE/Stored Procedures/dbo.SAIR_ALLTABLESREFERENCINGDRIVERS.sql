@@ -1,3 +1,4 @@
+
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
@@ -19,7 +20,10 @@ BEGIN
     inner join sysobjects p on r.rkeyid = p.id
     inner join syscolumns rc on r.rkeyid = rc.id and r.rkey1 = rc.colid
     inner join syscolumns fc on r.fkeyid = fc.id and r.fkey1 = fc.colid
-    where f.type = 'F' AND p.name = 'SAIR_OPERARIOS' AND fc.name = 'OPER_Id'
+    where f.type = 'F' AND p.name = 'SAIR_DRIVER' AND fc.name = 'SAIR_VEHIID'
     AND sc.name NOT IN ('driverconst')
 END
+
+
+
 GO
