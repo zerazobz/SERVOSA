@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
@@ -86,8 +90,10 @@
     <Compile Include="Contracts\IVehicleAlertService.cs" />
     <Compile Include="Contracts\IVehicleFileService.cs" />
     <Compile Include="Contracts\IVehicleService.cs" />
+    <Compile Include="Core\AutoMapperServiceConfiguration.cs" />
     <Compile Include="Core\MessageViewModel.cs" />
     <Compile Include="Core\ServiceContainerInjector.cs" />
+    <Compile Include="Core\ServiceDataConfiguration.cs" />
     <Compile Include="Core\ServosaDriverSingleton.cs" />
     <Compile Include="Core\ServosaSingleton.cs" />
     <Compile Include="Core\SERVOSASqlTypes.cs" />
@@ -96,6 +102,7 @@
     <Compile Include="Models\OldDriverServiceModel.cs" />
     <Compile Include="Models\Driver\OldDriverRelatedTableServiceModel.cs" />
     <Compile Include="Models\IDriverTableServiceModel.cs" />
+    <Compile Include="Models\Operaion\OperationServiceModel.cs" />
     <Compile Include="Models\Vehicle\IDriverServiceModel.cs" />
     <Compile Include="Models\DriverTableColumnServiceModel.cs" />
     <Compile Include="Models\TableData\DriverAlert.cs" />

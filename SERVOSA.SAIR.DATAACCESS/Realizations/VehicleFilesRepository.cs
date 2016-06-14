@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using SERVOSA.SAIR.DATAACCESS.Core;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
@@ -15,7 +16,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public VehicleFilesRepository()
         {
             DatabaseProviderFactory providerFactory = new DatabaseProviderFactory();
-            _servosaDb = providerFactory.CreateDefault();
+            _servosaDb = DataAccessDatabaseConfiguration.GetDataBase();
         }
 
         public int DeleteVehicle(VehicleFileModel model)

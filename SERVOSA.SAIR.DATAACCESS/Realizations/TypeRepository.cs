@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SERVOSA.SAIR.DATAACCESS.Models.Types;
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using SERVOSA.SAIR.DATAACCESS.Core;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
@@ -16,7 +17,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public TypeRepository()
         {
             DatabaseProviderFactory providerFactory = new DatabaseProviderFactory();
-            _servosaDatabase = providerFactory.CreateDefault();
+            _servosaDatabase = DataAccessDatabaseConfiguration.GetDataBase();
         }
 
         public IList<TypeModel> GetAllByTable(string tableCode)

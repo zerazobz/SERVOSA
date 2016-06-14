@@ -31,6 +31,8 @@ namespace SERVOSA.SAIR.WEB.Core
             Container.RegisterType<IVehicleAlertService, VehicleAlertService>();
             Container.RegisterType<ITypeService, TypeService>();
             Container.RegisterType<IVehicleFileService, VehicleFileService>();
+            Container.RegisterType<IOperationService, OperationService>();
+
             Container.RegisterType<DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());
             Container.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());
             Container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());

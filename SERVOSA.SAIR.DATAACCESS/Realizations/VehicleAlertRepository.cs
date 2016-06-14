@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SERVOSA.SAIR.DATAACCESS.Models.Alerts;
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using SERVOSA.SAIR.DATAACCESS.Core;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
@@ -15,7 +16,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public VehicleAlertRepository()
         {
             DatabaseProviderFactory databaseFactory = new DatabaseProviderFactory();
-            _servosaDB = databaseFactory.CreateDefault();
+            _servosaDB = DataAccessDatabaseConfiguration.GetDataBase();
         }
 
         public IList<VehicleAlertDataModel> GetAlertsNotSeneded()

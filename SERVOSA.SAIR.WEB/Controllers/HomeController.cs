@@ -76,14 +76,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public JsonResult ChangeTableName(string oldTableName, string newTableName)
+        public virtual JsonResult ChangeTableName(string oldTableName, string newTableName)
         {
             var executionResult = _dbServices.ChangeVehicleTableName(oldTableName, newTableName);
             return Json(executionResult);
         }
 
         [HttpPost]
-        public JsonResult RemoveTable(string tableName)
+        public virtual JsonResult RemoveTable(string tableName)
         {
             var executionResult = _dbServices.RemoveVehicleTable(tableName);
             return Json(executionResult);

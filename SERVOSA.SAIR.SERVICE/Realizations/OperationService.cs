@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SERVOSA.SAIR.SERVICE.Models.Operaion;
+using AutoMapper;
+using SERVOSA.SAIR.SERVICE.Core;
 
 namespace SERVOSA.SAIR.SERVICE.Realizations
 {
@@ -20,6 +23,17 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
         public string CreateOperation(string operationName)
         {
             return _operationRepository.CreateOperation(operationName);
+        }
+
+        public IList<OperationServiceModel> ListAllOperations()
+        {
+            OperationServiceModel mapResult = null;
+
+            return _operationRepository.ListAllOperations().Select(oP =>
+            {
+                mapResult = Mapper.Map<OperationServiceModel>(oP);
+                return mapResult;
+            }).ToList();
         }
     }
 }

@@ -37,6 +37,7 @@ public static partial class MVC
     public static SERVOSA.SAIR.WEB.Controllers.ManageController Manage = new SERVOSA.SAIR.WEB.Controllers.T4MVC_ManageController();
     public static SERVOSA.SAIR.WEB.Controllers.OldDriverController OldDriver = new SERVOSA.SAIR.WEB.Controllers.T4MVC_OldDriverController();
     public static SERVOSA.SAIR.WEB.Controllers.OldDriverDataController OldDriverData = new SERVOSA.SAIR.WEB.Controllers.T4MVC_OldDriverDataController();
+    public static SERVOSA.SAIR.WEB.Controllers.OperationsController Operations = new SERVOSA.SAIR.WEB.Controllers.T4MVC_OperationsController();
     public static SERVOSA.SAIR.WEB.Controllers.VariableTasksController VariableTasks = new SERVOSA.SAIR.WEB.Controllers.T4MVC_VariableTasksController();
     public static SERVOSA.SAIR.WEB.Controllers.VehicleController Vehicle = new SERVOSA.SAIR.WEB.Controllers.T4MVC_VehicleController();
     public static SERVOSA.SAIR.WEB.Controllers.VehicleDataController VehicleData = new SERVOSA.SAIR.WEB.Controllers.T4MVC_VehicleDataController();
@@ -454,6 +455,14 @@ namespace Links
             public static readonly string DriverUploadViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverUploadViewController.min.js") ? Url("DriverUploadViewController.min.js") : Url("DriverUploadViewController.js");
             public static readonly string DriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverViewController.min.js") ? Url("DriverViewController.min.js") : Url("DriverViewController.js");
             public static readonly string OldDriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/OldDriverViewController.min.js") ? Url("OldDriverViewController.min.js") : Url("OldDriverViewController.js");
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Operations {
+                private const string URLPATH = "~/Scripts/ViewController/Operations";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string OperationViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/OperationViewController.min.js") ? Url("OperationViewController.min.js") : Url("OperationViewController.js");
+            }
+        
             public static readonly string SERVOSA_Core_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SERVOSA.Core.min.js") ? Url("SERVOSA.Core.min.js") : Url("SERVOSA.Core.js");
             public static readonly string SERVOSAViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SERVOSAViewController.min.js") ? Url("SERVOSAViewController.min.js") : Url("SERVOSAViewController.js");
             public static readonly string VehicleDataViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/VehicleDataViewController.min.js") ? Url("VehicleDataViewController.min.js") : Url("VehicleDataViewController.js");
@@ -796,6 +805,13 @@ namespace Links
                         public const string OldDriverDataViewController_js = "~/Scripts/ViewController/Driver/OldDriverDataViewController.js"; 
                         public const string OldDriverUploadViewController_js = "~/Scripts/ViewController/Driver/OldDriverUploadViewController.js"; 
                         public const string OldDriverViewController_js = "~/Scripts/ViewController/Driver/OldDriverViewController.js"; 
+                    }
+                }
+                public static partial class Operations 
+                {
+                    public static class Assets
+                    {
+                        public const string OperationViewController_js = "~/Scripts/ViewController/Operations/OperationViewController.js"; 
                     }
                 }
                 public static class Assets

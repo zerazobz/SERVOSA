@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data;
+using SERVOSA.SAIR.DATAACCESS.Core;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
@@ -17,7 +18,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public VehicleRepository()
         {
             DatabaseProviderFactory _databaseFactory = new DatabaseProviderFactory();
-            _servosaDB = _databaseFactory.CreateDefault();
+            _servosaDB = DataAccessDatabaseConfiguration.GetDataBase();
         }
 
         public int Create(VehicleModel entity)

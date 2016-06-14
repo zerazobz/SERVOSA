@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SERVOSA.SAIR.WEB.Core;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace SERVOSA.SAIR.WEB
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapperWebBootstrap.Configure();
         }
     }
 }

@@ -32,6 +32,7 @@ namespace SERVOSA.SAIR.SERVICE.Core
             Container.RegisterType<IDriverAlertService, DriverAlertService>();
             Container.RegisterType<IDriverTypeRepository, DriverTypeRepository>();
             Container.RegisterType<IDriverFilesRepository, DriverFilesRepository>();
+            Container.RegisterType<IOperationRepository, OperationRepository>();
         }
     }
 }

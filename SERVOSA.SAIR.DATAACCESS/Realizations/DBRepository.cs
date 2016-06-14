@@ -17,7 +17,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public DBRepository()
         {
             DatabaseProviderFactory _databaseFactory = new DatabaseProviderFactory();
-            _servosaDB = _databaseFactory.CreateDefault();
+            _servosaDB = DataAccessDatabaseConfiguration.GetDataBase();
         }
 
         public int Create(TableModel entity)

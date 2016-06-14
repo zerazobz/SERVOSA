@@ -13,4 +13,6 @@
         }
     });
 
+    $("#operationsTable").jtable('load');
+
 })(window.OperationsVC = window.OperationsVC || {}, jQuery);

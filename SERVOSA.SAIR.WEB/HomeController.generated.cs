@@ -62,6 +62,18 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.VehicleDataTable);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult ChangeTableName()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ChangeTableName);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult RemoveTable()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.RemoveTable);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public HomeController Actions { get { return MVC.Home; } }
@@ -81,6 +93,8 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public readonly string Index = "Index";
             public readonly string VehicleTable = "VehicleTable";
             public readonly string VehicleDataTable = "VehicleDataTable";
+            public readonly string ChangeTableName = "ChangeTableName";
+            public readonly string RemoveTable = "RemoveTable";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -89,6 +103,8 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public const string Index = "Index";
             public const string VehicleTable = "VehicleTable";
             public const string VehicleDataTable = "VehicleDataTable";
+            public const string ChangeTableName = "ChangeTableName";
+            public const string RemoveTable = "RemoveTable";
         }
 
 
@@ -99,6 +115,23 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public class ActionParamsClass_VehicleDataTable
         {
             public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_ChangeTableName s_params_ChangeTableName = new ActionParamsClass_ChangeTableName();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ChangeTableName ChangeTableNameParams { get { return s_params_ChangeTableName; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ChangeTableName
+        {
+            public readonly string oldTableName = "oldTableName";
+            public readonly string newTableName = "newTableName";
+        }
+        static readonly ActionParamsClass_RemoveTable s_params_RemoveTable = new ActionParamsClass_RemoveTable();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_RemoveTable RemoveTableParams { get { return s_params_RemoveTable; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_RemoveTable
+        {
+            public readonly string tableName = "tableName";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -156,6 +189,31 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.VehicleDataTable);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             VehicleDataTableOverride(callInfo, model);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ChangeTableNameOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string oldTableName, string newTableName);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult ChangeTableName(string oldTableName, string newTableName)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ChangeTableName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "oldTableName", oldTableName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "newTableName", newTableName);
+            ChangeTableNameOverride(callInfo, oldTableName, newTableName);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void RemoveTableOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string tableName);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult RemoveTable(string tableName)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.RemoveTable);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "tableName", tableName);
+            RemoveTableOverride(callInfo, tableName);
             return callInfo;
         }
 

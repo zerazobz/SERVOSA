@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SERVOSA.SAIR.DATAACCESS.Models.Operations;
+using SERVOSA.SAIR.DATAACCESS.Core;
 
 namespace SERVOSA.SAIR.DATAACCESS.Realizations
 {
@@ -15,7 +17,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public OperationRepository()
         {
             DatabaseProviderFactory databaseFactory = new DatabaseProviderFactory();
-            _servosaDB = databaseFactory.CreateDefault();
+            _servosaDB = DataAccessDatabaseConfiguration.GetDataBase();
         }
 
         public string CreateOperation(string operationName)
@@ -26,6 +28,15 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             var executionResultDataDatabase = _servosaDB.ExecuteNonQuery("SAIR_POPULATEOPERATION", operationParameters);
 
             return operationName;
+        }
+
+        public IList<OperationModel> ListAllOperations()
+        {
+            object[] listOperationParameters = new object[] { };
+            var operationRowMapper = MapBuilder<OperationModel>.MapNoProperties().MapByName(prop => prop.OperationId)
+                .MapByName(prop => prop.OperationName).Build();
+            var listOperations = _servosaDB.ExecuteSprocAccessor("SAIR_LISTOPERATIONS", operationRowMapper, listOperationParameters);
+            return listOperations.ToList();
         }
     }
 }

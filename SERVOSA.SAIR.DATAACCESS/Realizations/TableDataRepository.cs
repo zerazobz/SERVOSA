@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Data;
 using SERVOSA.SAIR.DATAACCESS.Contracts;
+using SERVOSA.SAIR.DATAACCESS.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,7 +18,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public TableDataRepository()
         {
             DatabaseProviderFactory _databaseFactory = new DatabaseProviderFactory();
-            _servosaDB = _databaseFactory.CreateDefault();
+            _servosaDB = DataAccessDatabaseConfiguration.GetDataBase();
         }
         
         public int InsertDataToTable(string tableName, Dictionary<string, string> dataPrepared, bool variableData)

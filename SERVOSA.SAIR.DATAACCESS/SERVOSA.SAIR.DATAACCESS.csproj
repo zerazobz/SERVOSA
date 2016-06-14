@@ -65,12 +65,14 @@
     <Compile Include="Contracts\IVehicleAlertRepository.cs" />
     <Compile Include="Contracts\IVehicleFilesRepository.cs" />
     <Compile Include="Contracts\IVehicleRepository.cs" />
+    <Compile Include="Core\DataAccessDatabaseConfiguration.cs" />
     <Compile Include="Core\IRepository.cs" />
     <Compile Include="Models\Alerts\DriverAlertDataModel.cs" />
     <Compile Include="Models\DB\DriverColumnModel.cs" />
     <Compile Include="Models\DB\DriverTableColumnModel.cs" />
     <Compile Include="Models\DB\DriverTableModel.cs" />
     <Compile Include="Models\Driver\DriverOldModel.cs" />
+    <Compile Include="Models\Operations\OperationModel.cs" />
     <Compile Include="Models\Types\DriverTypeModel.cs" />
     <Compile Include="Models\Vehicle\DriverRelatedTableToEntityModel.cs" />
     <Compile Include="Models\Vehicle\DriverDetailRowDataModel.cs" />
