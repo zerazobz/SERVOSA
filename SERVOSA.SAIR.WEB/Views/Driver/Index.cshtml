@@ -1,15 +1,6 @@
 ﻿@model SERVOSA.SAIR.SERVICE.Models.OldDriverServiceModel
 @{
     ViewBag.Title = "Mantenimiento de Operarios";
-    if ((HttpContext.Current.Session["CommonUser"] as bool?).HasValue && (HttpContext.Current.Session["CommonUser"] as bool?).Value)
-    {
-        Layout = "~/Views/Shared/_LayoutCommonUser.cshtml";
-
-    }
-    else
-    {
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
 }
 <style type="text/css">
     .wide {

@@ -1,3 +1,17 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if(this.User.Identity.IsAuthenticated)
+    {
+        if (this.User.IsInRole("Admin"))
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_LayoutCommonUser.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_AnonymousLayout.cshtml";
+    }
 }
