@@ -59,7 +59,9 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             transfer.DestinationServer = connectionBuilder.DataSource;
             //Create The Database in Destination Server
             transfer.CreateTargetDatabase = false;
-            transfer.CopyAllDefaults = true;
+            //transfer.CopyAllDefaults = true;
+            //transfer.Options.DriDefaults = true;
+            transfer.Options.DriAll = true;
             ////Set Destination Database Name
             //Microsoft.SqlServer.Management.Smo.Database destionationDatabase = new Microsoft.SqlServer.Management.Smo.Database(server, operationDatabaseName);
             ////Create Empty Database at Destination
