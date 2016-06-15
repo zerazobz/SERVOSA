@@ -85,6 +85,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
             }
         }
 
+
+        //[HttpGet]
+        //public ActionResult LoadOperation(string operationName)
+        //{
+        //    return 
+        //}
+
         public ApplicationUserManager UserManager
         {
             get

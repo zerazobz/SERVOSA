@@ -617,6 +617,7 @@
     <Content Include="Views\Operations\Manage.cshtml" />
     <Content Include="Views\Shared\_LayoutCommonUser.cshtml" />
     <Content Include="Views\Shared\_AnonymousLayout.cshtml" />
+    <Content Include="Views\Shared\_LayoutManagementOperation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
