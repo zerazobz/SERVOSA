@@ -2,6 +2,8 @@
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +17,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Core
 
         public static void SetOperation(string operationName)
         {
-            _dataBaseName = $"SAIR_{operationName}";
+            _dataBaseName = operationName;
         }
 
         public static Database GetDataBase()
@@ -24,9 +26,13 @@ namespace SERVOSA.SAIR.DATAACCESS.Core
                 return _databaseFactory.CreateDefault();
             else
             {
-                string myConnectionString = "";
+                SqlConnectionStringBuilder commonConnection = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["SERVOSAIR"].ConnectionString);
+                SqlConnectionStringBuilder connectionBuilder = new SqlConnectionStringBuilder();
+                connectionBuilder.DataSource = commonConnection.DataSource;
+                connectionBuilder.InitialCatalog = _dataBaseName;
+                connectionBuilder.IntegratedSecurity = true;
 
-                SqlDatabase sqlDatabase = new SqlDatabase(myConnectionString);
+                SqlDatabase sqlDatabase = new SqlDatabase(connectionBuilder.ConnectionString);
                 return sqlDatabase;
             }
         }

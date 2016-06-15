@@ -9,6 +9,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SERVOSA.SAIR.WEB.Models;
+using SERVOSA.SAIR.SERVICE.Core;
+using SERVOSA.SAIR.WEB.App_Start;
+using SERVOSA.SAIR.SERVICE.Contracts;
+using SERVOSA.SAIR.SERVICE.Realizations;
+using Microsoft.Practices.Unity;
 
 namespace SERVOSA.SAIR.WEB.Controllers
 {
@@ -17,15 +22,19 @@ namespace SERVOSA.SAIR.WEB.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IOperationService _operationService;
 
         public AccountController()
         {
+            var container = UnityConfig.GetConfiguredContainer() as UnityContainer;
+            _operationService = container.Resolve<IOperationService>();
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IOperationService operationService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _operationService = operationService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -72,38 +81,22 @@ namespace SERVOSA.SAIR.WEB.Controllers
             {
                 return View(model);
             }
-
-            SignInStatus signResult = SignInStatus.Failure;
-
-            if (new string[] { "usuario1vehiculos", "usuario2vehiculos" }.Contains(model.Email) && new string[] { "123456", "123456" }.Contains(model.Password))
-            {
-                signResult = SignInStatus.Success;
-                var ident = new ClaimsIdentity(
-                  new[] { 
-              // adding following 2 claim just for supporting default antiforgery provider
-              new Claim(ClaimTypes.NameIdentifier, model.Email),
-              new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity", "http://www.w3.org/2001/XMLSchema#string"),
-
-              new Claim(ClaimTypes.Name,model.Email),
-
-              // optionally you could add roles if any
-              new Claim(ClaimTypes.Role, "RoleName"),
-              new Claim(ClaimTypes.Role, "AnotherRole"),
-
-                  },
-                  DefaultAuthenticationTypes.ApplicationCookie);
-
-                HttpContext.GetOwinContext().Authentication.SignIn(
-                   new AuthenticationProperties { IsPersistent = false }, ident);
-            }
-
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            SignInStatus signResult = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (signResult)
             {
                 case SignInStatus.Success:
+                    var user = UserManager.FindByName(model.Email);
+                    string databaseName = String.Empty;
+                    if(user.OperationId > 0)
+                    {
+                        Session["CommonUser"] = true;
+                        var currentOperation = _operationService.GetOperationById(user.OperationId.Value);
+                        databaseName = currentOperation.DataBaseName;
+                    }
+                    else
+                        Session["CommonUser"] = false;
+                    ServiceDataConfiguration.SetOperation(databaseName);
+                    UnityWebActivator.Start();
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

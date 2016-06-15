@@ -232,6 +232,7 @@
     <Compile Include="Controllers\VariableTasksController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Controllers\VehicleDataController.cs" />
+    <Compile Include="Core\Authentication\IdentityExtensions.cs" />
     <Compile Include="Core\AutoMapperWebBootstrap.cs" />
     <Compile Include="Core\WebContainerInjector.cs" />
     <Compile Include="Core\WebSingleton.cs" />
@@ -614,6 +615,7 @@
     <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Driver\Operarios.cshtml" />
     <Content Include="Views\Operations\Manage.cshtml" />
+    <Content Include="Views\Shared\_LayoutCommonUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,6 +2,14 @@
 
 @{
     ViewBag.Title = "Sistema de Alerta e Incidencias Reuniones";
+    if((HttpContext.Current.Session["CommonUser"] as bool?).HasValue && (HttpContext.Current.Session["CommonUser"] as bool?).Value)
+    {
+        Layout = "~/Views/Shared/_LayoutCommonUser.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
 
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />

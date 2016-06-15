@@ -9,7 +9,8 @@ namespace SERVOSA.SAIR.DATAACCESS.Contracts
 {
     public interface IOperationRepository
     {
-        string CreateOperation(string operationName);
-        IList<OperationModel> ListAllOperations();
+        OperationDbModel CreateOperation(string operationName);
+        IList<OperationDbModel> ListAllOperations();
+        OperationDbModel GetOperationById(int idOperation);
     }
 }

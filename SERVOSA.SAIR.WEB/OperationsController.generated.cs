@@ -58,9 +58,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult CreateOperation()
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> CreateOperation()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateOperation);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateOperation);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -160,12 +161,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
         partial void CreateOperationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, SERVOSA.SAIR.SERVICE.Models.Operaion.OperationServiceModel model);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CreateOperation(SERVOSA.SAIR.SERVICE.Models.Operaion.OperationServiceModel model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> CreateOperation(SERVOSA.SAIR.SERVICE.Models.Operaion.OperationServiceModel model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateOperation);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             CreateOperationOverride(callInfo, model);
-            return callInfo;
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
     }

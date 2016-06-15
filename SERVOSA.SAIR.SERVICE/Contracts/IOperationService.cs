@@ -9,7 +9,8 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
 {
     public interface IOperationService
     {
-        string CreateOperation(string operationName);
+        OperationServiceModel CreateOperation(string operationName);
         IList<OperationServiceModel> ListAllOperations();
+        OperationServiceModel GetOperationById(int idOperation);
     }
 }

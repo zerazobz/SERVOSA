@@ -5,16 +5,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.Owin;
+using SERVOSA.SAIR.WEB.Models;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
 namespace SERVOSA.SAIR.WEB.Controllers
 {
     public partial class OperationsController : Controller
     {
         private readonly IOperationService _operationService;
+        private ApplicationUserManager _userManager;
 
-        public OperationsController(IOperationService injectedOperationService)
+        public OperationsController(IOperationService injectedOperationService, ApplicationUserManager userManager)
         {
             _operationService = injectedOperationService;
+            UserManager = userManager;
         }
 
         [HttpGet]
@@ -40,23 +46,55 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult CreateOperation(OperationServiceModel model)
+        [AsyncTimeout(300000)]
+        public virtual async Task<ActionResult> CreateOperation(OperationServiceModel model)
         {
             try
             {
-                var resultCreation = _operationService.CreateOperation(model.OperationName);
-                return Json(new { Result = "OK", Record = model });
+                bool resultExecution = false;
+                var operationResult = _operationService.CreateOperation(model.OperationName);
+                if(operationResult != null)
+                {
+                    model.OperationId = operationResult.OperationId;
+
+                    var user = new ApplicationUser();
+                    user.UserName = $"{operationResult.DataBaseName}_user";
+                    user.Email = $"{operationResult.DataBaseName}@gmail.com";
+                    user.OperationId = operationResult.OperationId;
+
+                    string userPWD = $"{operationResult.DataBaseName}_123456";
+                    model.DataBaseName = operationResult.DataBaseName;
+
+                    IdentityResult userAdminResultCreation = await UserManager.CreateAsync(user, userPWD);
+
+                    if (userAdminResultCreation.Succeeded)
+                    {
+                        var addRoleResult = await UserManager.AddToRoleAsync(user.Id, "UserForOperation");
+                        resultExecution = addRoleResult.Succeeded;
+                    }
+                }
+
+                if(resultExecution)
+                    return Json(new { Result = "OK", Record = model });
+                else
+                    return Json(new { Result = "ERROR", Record = model });
             }
             catch (Exception ex)
             {
                 return Json(new { Result = "ERROR", Message = ex.Message });
             }
         }
-    }
 
-    public class OperationModel
-    {
-        public string OperationId { get; set; }
-        public string OperationName { get; set; }
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
     }
 }

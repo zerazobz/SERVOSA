@@ -13,7 +13,7 @@ namespace SERVOSA.SAIR.SERVICE.Core
     {
         protected override void Configure()
         {
-            CreateMap<OperationModel, OperationServiceModel>();
+            CreateMap<OperationDbModel, OperationServiceModel>();
         }
     }
 }

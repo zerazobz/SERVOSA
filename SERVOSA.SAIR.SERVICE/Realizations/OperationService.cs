@@ -20,9 +20,18 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             _operationRepository = injectedOperaiontRep;
         }
 
-        public string CreateOperation(string operationName)
+        public OperationServiceModel CreateOperation(string operationName)
         {
-            return _operationRepository.CreateOperation(operationName);
+            var operationEntity = _operationRepository.CreateOperation(operationName);
+            var operationServiceModel = Mapper.Map<OperationServiceModel>(operationEntity);
+            return operationServiceModel;
+        }
+
+        public OperationServiceModel GetOperationById(int idOperation)
+        {
+            var operationIdentity = _operationRepository.GetOperationById(idOperation);
+            var operationServiceModel = Mapper.Map<OperationServiceModel>(operationIdentity);
+            return operationServiceModel;
         }
 
         public IList<OperationServiceModel> ListAllOperations()
