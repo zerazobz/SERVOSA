@@ -1,0 +1,13 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE PROCEDURE [dbo].[SAIR_OPERS_ById]
+	@operationId int
+AS
+BEGIN
+	SELECT OPER_Id AS OperationId, OPER_Name AS OperationName, OPER_DBName AS DataBaseName, OPER_DBId AS DataBaseId
+	FROM dbo.SAIR_OPERATIONS
+	WHERE OPER_Id = @operationId
+END
+GO
