@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity.Owin;
 using SERVOSA.SAIR.WEB.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
+using SERVOSA.SAIR.SERVICE.Core;
+using SERVOSA.SAIR.WEB.App_Start;
 
 namespace SERVOSA.SAIR.WEB.Controllers
 {
@@ -25,6 +27,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
         [HttpGet]
         public virtual ActionResult Manage()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public virtual ActionResult Choose()
         {
             return View();
         }
@@ -85,12 +93,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
             }
         }
 
-
-        //[HttpGet]
-        //public ActionResult LoadOperation(string operationName)
-        //{
-        //    return 
-        //}
+        [HttpGet]
+        public virtual ActionResult LoadOperation(string operationName, int operationId)
+        {
+            ServiceDataConfiguration.SetOperation(operationName);
+            UnityWebActivator.Start();
+            return RedirectToAction(MVC.Home.Index(operationId));
+        }
 
         public ApplicationUserManager UserManager
         {

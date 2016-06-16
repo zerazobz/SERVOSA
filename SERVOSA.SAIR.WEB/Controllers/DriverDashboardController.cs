@@ -26,8 +26,11 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpGet]
-        public virtual ActionResult Index()
+        public virtual ActionResult Index(int? operationCode)
         {
+            //if (!operationCode.HasValue)
+            //    return RedirectToAction(MVC.Account.ProgrammaticallyLogOff());
+
             int alertsSended = _driverAlertService.ProcessAlerts(new string[] { "51950313361" });
             
             var allCompleteTable = _dbDriverServices.ListDriversVarsTablesWithDefinition();

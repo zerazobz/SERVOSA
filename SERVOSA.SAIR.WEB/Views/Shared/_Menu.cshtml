@@ -1,0 +1,6 @@
+﻿@using SERVOSA.SAIR.WEB.Core.Authentication
+
+<li>@Html.ActionLink("General Vehículos", MVC.Home.Index(User.Identity.GetOperationId()))</li>
+<li>@Html.ActionLink("Vehiculos", MVC.Vehicle.Index(User.Identity.GetOperationId()))</li>
+<li>@Html.ActionLink("General Conductores", MVC.DriverDashboard.Index(User.Identity.GetOperationId()))</li>
+<li>@Html.ActionLink("Conductores", MVC.Driver.Index(User.Identity.GetOperationId()))</li>

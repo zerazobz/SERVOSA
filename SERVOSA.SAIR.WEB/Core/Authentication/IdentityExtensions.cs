@@ -10,11 +10,13 @@ namespace SERVOSA.SAIR.WEB.Core.Authentication
 {
     public static class IdentityExtensions
     {
-        public static string GetOperationId(this IIdentity identity)
+        public static int? GetOperationId(this IIdentity identity)
         {
             var claim = ((ClaimsIdentity)identity).FindFirst("OperationId");
             // Test for null to avoid issues during local testing
-            return (claim != null) ? claim.Value : string.Empty;
+            int tempValue;
+            int? operationId = (claim != null) && Int32.TryParse(claim.Value, out tempValue)? tempValue: (int?)null;
+            return operationId;
         }
     }
 }

@@ -30,11 +30,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Administrar Operaciones", MVC.Operations.Manage(), new { @class = "navbar-brand" })
+                @Html.ActionLink("Administrar Operaciones", MVC.Operations.Choose(), new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Operaciones", MVC.Operations.Manage())</li>
+                    <li>@Html.ActionLink("Operaciones", MVC.Operations.Choose())</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

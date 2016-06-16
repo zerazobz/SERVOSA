@@ -97,7 +97,11 @@ namespace SERVOSA.SAIR.WEB.Controllers
                         Session["CommonUser"] = false;
                     ServiceDataConfiguration.SetOperation(databaseName);
                     UnityWebActivator.Start();
-                    return RedirectToLocal(returnUrl);
+                    if (user.OperationId > 0)
+                        return RedirectToAction(MVC.Home.Index(user.OperationId));
+                    else
+                        return RedirectToAction(MVC.Operations.Choose());
+                //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -107,6 +111,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
                     ModelState.AddModelError("", "Intento de Login invalido.");
                     return View(model);
             }
+        }
+
+        public virtual ActionResult ProgrammaticallyLogOff()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction(MVC.Account.Login());
         }
 
         //

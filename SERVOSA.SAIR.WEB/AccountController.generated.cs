@@ -126,6 +126,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public class ActionNamesClass
         {
             public readonly string Login = "Login";
+            public readonly string ProgrammaticallyLogOff = "ProgrammaticallyLogOff";
             public readonly string VerifyCode = "VerifyCode";
             public readonly string Register = "Register";
             public readonly string ConfirmEmail = "ConfirmEmail";
@@ -145,6 +146,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public class ActionNameConstants
         {
             public const string Login = "Login";
+            public const string ProgrammaticallyLogOff = "ProgrammaticallyLogOff";
             public const string VerifyCode = "VerifyCode";
             public const string Register = "Register";
             public const string ConfirmEmail = "ConfirmEmail";
@@ -317,6 +319,17 @@ namespace SERVOSA.SAIR.WEB.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
             LoginOverride(callInfo, model, returnUrl);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void ProgrammaticallyLogOffOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ProgrammaticallyLogOff()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ProgrammaticallyLogOff);
+            ProgrammaticallyLogOffOverride(callInfo);
+            return callInfo;
         }
 
         [NonAction]

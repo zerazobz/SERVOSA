@@ -58,6 +58,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Index()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.JsonResult DeleteVehicle()
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DeleteVehicle);
@@ -132,6 +138,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
 
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Index
+        {
+            public readonly string operationCode = "operationCode";
+        }
         static readonly ActionParamsClass_ListVehicles s_params_ListVehicles = new ActionParamsClass_ListVehicles();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ListVehicles ListVehiclesParams { get { return s_params_ListVehicles; } }
@@ -207,13 +221,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public T4MVC_VehicleController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? operationCode);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index()
+        public override System.Web.Mvc.ActionResult Index(int? operationCode)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            IndexOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "operationCode", operationCode);
+            IndexOverride(callInfo, operationCode);
             return callInfo;
         }
 

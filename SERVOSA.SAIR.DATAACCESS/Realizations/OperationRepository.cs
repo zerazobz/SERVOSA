@@ -21,7 +21,8 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         public OperationRepository()
         {
             DatabaseProviderFactory databaseFactory = new DatabaseProviderFactory();
-            _servosaDB = DataAccessDatabaseConfiguration.GetDataBase();
+            _servosaDB = databaseFactory.CreateDefault();
+                //DataAccessDatabaseConfiguration.GetDataBase();
         }
 
         public OperationDbModel CreateOperation(string operationName)

@@ -34,10 +34,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("General Vehiculos", MVC.Home.Index())</li>
+                    @{ Html.RenderPartial(MVC.Shared.Views._Menu); }
+                    @*<li>@Html.ActionLink("General Vehiculos", MVC.Home.Index())</li>
                     <li>@Html.ActionLink("Vehiculos", MVC.Vehicle.Index())</li>
                     <li>@Html.ActionLink("General Conductores", MVC.DriverDashboard.Index())</li>
-                    <li>@Html.ActionLink("Conductores", MVC.Driver.Index())</li>
+                    <li>@Html.ActionLink("Conductores", MVC.Driver.Index())</li>*@
+                    <li>@Html.ActionLink("Operaciones", MVC.Operations.Manage())</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

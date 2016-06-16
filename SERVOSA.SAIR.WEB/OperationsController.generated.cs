@@ -63,6 +63,12 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateOperation);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult LoadOperation()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadOperation);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public OperationsController Actions { get { return MVC.Operations; } }
@@ -80,16 +86,20 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public class ActionNamesClass
         {
             public readonly string Manage = "Manage";
+            public readonly string Choose = "Choose";
             public readonly string ListOperations = "ListOperations";
             public readonly string CreateOperation = "CreateOperation";
+            public readonly string LoadOperation = "LoadOperation";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Manage = "Manage";
+            public const string Choose = "Choose";
             public const string ListOperations = "ListOperations";
             public const string CreateOperation = "CreateOperation";
+            public const string LoadOperation = "LoadOperation";
         }
 
 
@@ -111,6 +121,15 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             public readonly string model = "model";
         }
+        static readonly ActionParamsClass_LoadOperation s_params_LoadOperation = new ActionParamsClass_LoadOperation();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_LoadOperation LoadOperationParams { get { return s_params_LoadOperation; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_LoadOperation
+        {
+            public readonly string operationName = "operationName";
+            public readonly string operationId = "operationId";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -121,8 +140,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Choose = "Choose";
                 public readonly string Manage = "Manage";
             }
+            public readonly string Choose = "~/Views/Operations/Choose.cshtml";
             public readonly string Manage = "~/Views/Operations/Manage.cshtml";
         }
     }
@@ -140,6 +161,17 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Manage);
             ManageOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ChooseOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Choose()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Choose);
+            ChooseOverride(callInfo);
             return callInfo;
         }
 
@@ -167,6 +199,19 @@ namespace SERVOSA.SAIR.WEB.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             CreateOperationOverride(callInfo, model);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
+        }
+
+        [NonAction]
+        partial void LoadOperationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string operationName, int operationId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult LoadOperation(string operationName, int operationId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadOperation);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "operationName", operationName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "operationId", operationId);
+            LoadOperationOverride(callInfo, operationName, operationId);
+            return callInfo;
         }
 
     }

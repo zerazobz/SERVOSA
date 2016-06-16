@@ -38,15 +38,21 @@ namespace T4MVC
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string _AnonymousLayout = "_AnonymousLayout";
                 public readonly string _Layout = "_Layout";
                 public readonly string _LayoutCommonUser = "_LayoutCommonUser";
+                public readonly string _LayoutManagementOperation = "_LayoutManagementOperation";
                 public readonly string _LoginPartial = "_LoginPartial";
+                public readonly string _Menu = "_Menu";
                 public readonly string Error = "Error";
                 public readonly string Lockout = "Lockout";
             }
+            public readonly string _AnonymousLayout = "~/Views/Shared/_AnonymousLayout.cshtml";
             public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
             public readonly string _LayoutCommonUser = "~/Views/Shared/_LayoutCommonUser.cshtml";
+            public readonly string _LayoutManagementOperation = "~/Views/Shared/_LayoutManagementOperation.cshtml";
             public readonly string _LoginPartial = "~/Views/Shared/_LoginPartial.cshtml";
+            public readonly string _Menu = "~/Views/Shared/_Menu.cshtml";
             public readonly string Error = "~/Views/Shared/Error.cshtml";
             public readonly string Lockout = "~/Views/Shared/Lockout.cshtml";
         }

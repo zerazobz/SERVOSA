@@ -17,10 +17,26 @@
                 display: function (data) {
                     return '<p> ' + data.record.DataBaseName + '_user</p>'
                 }
+            },
+            Cambiar: {
+                title: 'Ver Operación',
+                create: false,
+                display: function (data) {
+                    return '<a href="#" class="changeOperation" data-operationid=' + data.record.OperationId + ' data-databasename=' + data.record.DataBaseName + ' > <span class="glyphicon glyphicon-log-in"></span> </a>';
+                }
             }
         }
     });
 
     $("#operationsTable").jtable('load');
+
+    $("#operationsContainer").off("click", ".changeOperation").on("click", ".changeOperation", null, function (e) {
+        var $linkContext = $(this);
+        var dataBaseName = $linkContext.data("databasename");
+        var operationId = $linkContext.data("operationid");
+        if (typeof dataBaseName !== "undefined" && dataBaseName !== "") {
+            window.location = "/Operations/LoadOperation?operationName=" + dataBaseName + "&operationId=" + operationId;
+        }
+    });
 
 })(window.OperationsVC = window.OperationsVC || {}, jQuery);
