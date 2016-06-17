@@ -30,7 +30,9 @@ namespace SERVOSA.SAIR.DATAACCESS.Core
                 SqlConnectionStringBuilder connectionBuilder = new SqlConnectionStringBuilder();
                 connectionBuilder.DataSource = commonConnection.DataSource;
                 connectionBuilder.InitialCatalog = _dataBaseName;
-                connectionBuilder.IntegratedSecurity = true;
+                connectionBuilder.IntegratedSecurity = false;
+                connectionBuilder.UserID = commonConnection.UserID;
+                connectionBuilder.Password = commonConnection.Password;
 
                 SqlDatabase sqlDatabase = new SqlDatabase(connectionBuilder.ConnectionString);
                 return sqlDatabase;
