@@ -1,0 +1,3 @@
+CREATE SCHEMA [driverconst]
+AUTHORIZATION [dbo]
+GO
