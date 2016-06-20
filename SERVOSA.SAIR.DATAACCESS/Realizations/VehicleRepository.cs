@@ -103,9 +103,15 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
                         for (int i = 2; i < sizeColumnData; i++)
                         {
+                            var rawValueAsString = readerProcedure.IsDBNull(i) ? String.Empty : readerProcedure.GetValue(i).ToString();
+                            var valuesSplited = rawValueAsString.Split(new string[] { "|@|" }, StringSplitOptions.None);
+                            string valueOfColumn = valuesSplited.Length > 1 ? valuesSplited[1] : valuesSplited.Length > 0? valuesSplited.FirstOrDefault() : String.Empty;
+                            string nameOfColumn = valuesSplited.Length > 1 ? valuesSplited[0] : String.Empty;
+
                             headModel.DataForRow.Add(new VehicleDetailRowDataModel()
                             {
-                                Value = readerProcedure.IsDBNull(i)? String.Empty : readerProcedure.GetValue(i).ToString()
+                                Value = valueOfColumn,
+                                ColumnName = nameOfColumn
                             });
                         }
                         headDataCollection.Add(headModel);

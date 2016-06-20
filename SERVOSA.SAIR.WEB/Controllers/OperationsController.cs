@@ -96,9 +96,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
         [HttpGet]
         public virtual ActionResult LoadOperation(string operationName, int operationId)
         {
+            Session[Resources.SAIRApplicationResources.OperationID] = operationId;
             ServiceDataConfiguration.SetOperation(operationName);
             UnityWebActivator.Start();
-            return RedirectToAction(MVC.Home.Index(operationId));
+            return RedirectToAction(MVC.Home.Index());
         }
 
         public ApplicationUserManager UserManager

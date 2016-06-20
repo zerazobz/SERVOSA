@@ -58,12 +58,6 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Index()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.JsonResult DeleteDriver()
         {
             return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DeleteDriver);
@@ -138,14 +132,6 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
 
-        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Index
-        {
-            public readonly string operationCode = "operationCode";
-        }
         static readonly ActionParamsClass_ListDrivers s_params_ListDrivers = new ActionParamsClass_ListDrivers();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ListDrivers ListDriversParams { get { return s_params_ListDrivers; } }
@@ -227,14 +213,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public T4MVC_DriverController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int? operationCode);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index(int? operationCode)
+        public override System.Web.Mvc.ActionResult Index()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "operationCode", operationCode);
-            IndexOverride(callInfo, operationCode);
+            IndexOverride(callInfo);
             return callInfo;
         }
 

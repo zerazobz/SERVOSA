@@ -277,6 +277,11 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\SAIRApplicationResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SAIRApplicationResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -642,6 +647,12 @@
       <Project>{06869e68-4d91-41ea-aa1e-0670825156e9}</Project>
       <Name>SERVOSA.SAIR.SERVICE</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SAIRApplicationResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SAIRApplicationResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

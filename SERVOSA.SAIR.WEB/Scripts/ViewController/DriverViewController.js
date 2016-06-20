@@ -38,9 +38,12 @@
                     columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-driverid='" + element.DriverId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file insertRemoveFile' data-driverid='" + element.DriverId + "' data-tablename='" + element.TableName + "'></span></td>";
                 }
 
+                var constantDriverColumns = DRIVERSERVOSACORE.GetConstantDriverColumns();
                 for (i = 2; i < element.DataForRow.length - 3; i++) {
-                    var column = $("<td>").attr("data-drivercode", element.DriverId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
-                    columnList += column;
+                    if (constantDriverColumns.indexOf(element.DataForRow[i].ColumnName) == -1) {
+                        var column = $("<td>").attr("data-drivercode", element.DriverId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
+                        columnList += column;
+                    }
                 }
 
                 var $tableRow = $("<tr></tr>").attr("data-drivercode", element.DriverId).attr("data-tablename", element.TableName);

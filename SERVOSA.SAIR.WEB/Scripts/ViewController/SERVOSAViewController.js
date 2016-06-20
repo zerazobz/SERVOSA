@@ -130,7 +130,7 @@
             });
         });
 
-        $(document).on("submit", "#postVariableData", null, function (e) {
+        $(document).off("submit", "#postVariableData").on("submit", "#postVariableData", null, function (e) {
             e.preventDefault();
             var $formContext = $(this);
             var containerId = $(this).parent().data("containerid");

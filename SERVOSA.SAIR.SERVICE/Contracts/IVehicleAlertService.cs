@@ -10,9 +10,10 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
     public interface IVehicleAlertService
     {
         IList<VehicleAlert> GetAlertsNotSended();
-        int ProcessAlerts(IEnumerable<string> phoneNumbers);
+        Task<int> ProcessAlerts(IEnumerable<string> phoneNumbers);
         int RegisterAlert(VehicleAlert model);
         int UpdateAlertSended(int alertId, string smsToken, DateTime sendDate, string recipients);
         string SendAlertBySMS(IEnumerable<string> phonesNumbers, string message, int alertId);
+        string SendAlertByEmail(IEnumerable<string> phonesNumbers, string message, int alertId);
     }
 }

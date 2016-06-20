@@ -89,16 +89,17 @@ namespace SERVOSA.SAIR.WEB.Controllers
                     string databaseName = String.Empty;
                     if(user.OperationId > 0)
                     {
-                        Session["CommonUser"] = true;
+                        //Session["CommonUser"] = true;
                         var currentOperation = _operationService.GetOperationById(user.OperationId.Value);
                         databaseName = currentOperation.DataBaseName;
                     }
-                    else
-                        Session["CommonUser"] = false;
+                    //else
+                    //    Session["CommonUser"] = false;
                     ServiceDataConfiguration.SetOperation(databaseName);
                     UnityWebActivator.Start();
+                    Session[Resources.SAIRApplicationResources.OperationID] = user.OperationId;
                     if (user.OperationId > 0)
-                        return RedirectToAction(MVC.Home.Index(user.OperationId));
+                        return RedirectToAction(MVC.Home.Index());
                     else
                         return RedirectToAction(MVC.Operations.Choose());
                 //return RedirectToLocal(returnUrl);

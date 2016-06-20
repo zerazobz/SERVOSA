@@ -10,5 +10,6 @@ namespace SERVOSA.SAIR.SERVICE.Models
     {
         public string Value { get; set; }
         public string Type { get; set; }
+        public string ColumnName { get; set; }
     }
 }

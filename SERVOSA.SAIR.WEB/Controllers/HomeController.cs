@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -25,12 +26,15 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpGet]
-        public virtual ActionResult Index(int? operationCode)
+        public virtual ActionResult Index()
         {
-            //if (!operationCode.HasValue)
-            //    return RedirectToAction(MVC.Account.ProgrammaticallyLogOff());
+            int tmpValue;
+            int? operationCode = Int32.TryParse(Convert.ToString(Session[Resources.SAIRApplicationResources.OperationID]), out tmpValue) ? tmpValue : (int?)null;
 
-            int alertsSended = _vehicleAlertService.ProcessAlerts(new string[] { "51950313361" });
+            if (!operationCode.HasValue || operationCode.Value <= 0)
+                return RedirectToAction(MVC.Account.ProgrammaticallyLogOff());
+
+            HostingEnvironment.QueueBackgroundWorkItem(sA => _vehicleAlertService.ProcessAlerts(new string[] { "zerazobz@gmail.com" }));
             
             var allCompleteTable = _dbServices.ListVehicleVarsTablesWithDefinition();
             var tableDataGrouped = allCompleteTable.GroupBy(t => t.TableNormalizedName);

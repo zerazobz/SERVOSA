@@ -8,6 +8,9 @@ using SERVOSA.SAIR.SERVICE.Models.TableData;
 using SERVOSA.SAIR.DATAACCESS.Contracts;
 using SERVOSA.SAIR.DATAACCESS.Models.Alerts;
 using Elibom.APIClient;
+using System.Threading;
+using System.Net.Mail;
+using System.Net;
 
 namespace SERVOSA.SAIR.SERVICE.Realizations
 {
@@ -31,7 +34,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return vehicleCollection;
         }
 
-        public int ProcessAlerts(IEnumerable<string> phoneNumbers)
+        public async Task<int> ProcessAlerts(IEnumerable<string> phoneNumbers)
         {
             int rowsInserted = 0;
             var allVehicleAlerts = GetAlertsNotSended();
@@ -39,8 +42,9 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             {
                 if (DateTime.Now > iAlert.DateToAlert.AddDays(-iAlert.DaysToAlert))
                 {
-                    var alertMessage = "Alerta para el Vehiculo con codigo {iAlert.VehicleId}, del Documento: {iAlert.TableName}-{iAlert.AlertName}. Alerta programada para la fecha: {iAlert.DateToAlert.ToShortDateString()}";
-                    var alertSendResult = SendAlertBySMS(phoneNumbers, alertMessage, iAlert.VehicleAlertId);
+                    var alertMessage = $"Alerta para el Vehiculo con codigo {iAlert.VehicleId}, del Documento: {iAlert.TableName}-{iAlert.AlertName}. Alerta programada para la fecha: {iAlert.DateToAlert.ToShortDateString()}";
+                    //var alertSendResult = await Task.Run(() => SendAlertBySMS(phoneNumbers, alertMessage, iAlert.VehicleAlertId));
+                    var alertSendResult = await Task.Run(() => SendAlertByEmail(phoneNumbers, alertMessage, iAlert.VehicleAlertId));
                     rowsInserted++;
                 }
             }
@@ -65,6 +69,53 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
                 //string deliveryToken = "TMPTEST";
                 deliveryToken = elibom.sendMessage(processedPhones, message);
                 UpdateAlertSended(alertId, deliveryToken, DateTime.Now, processedPhones);
+                Console.WriteLine(deliveryToken);
+                return deliveryToken;
+            }
+            catch (Exception ex)
+            {
+                return deliveryToken;
+            }
+        }
+
+        public string SendAlertByEmail(IEnumerable<string> phonesNumbers, string alertmessage, int alertId)
+        {
+            string deliveryToken = String.Empty;
+            try
+            {
+                string processedEmails = String.Join(",", phonesNumbers);
+                var fromAddress = new MailAddress("zdelnaja@gmail.com", "Operador Sistema");
+                //var toAddress = new MailAddress("zerazobz@example.com", "To Name");
+                const string fromPassword = "doors.inxs88";
+                const string subject = "Envio de Alerta";
+                string body = alertmessage;
+
+                var smtp = new SmtpClient()
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                
+                var message = new MailMessage(fromAddress.Address, processedEmails)
+                {
+                    Subject = subject,
+                    Body = body
+                };
+                
+                smtp.SendCompleted += (send, ev) =>
+                {
+                    if (ev.Cancelled || ev.Error != null)
+                        ;
+                    else
+                        UpdateAlertSended(alertId, deliveryToken, DateTime.Now, processedEmails);
+                    smtp.Dispose();
+
+                };
+                smtp.SendAsync(message, null);
                 Console.WriteLine(deliveryToken);
                 return deliveryToken;
             }

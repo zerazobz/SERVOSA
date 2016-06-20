@@ -42,12 +42,12 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             }
 
             ////Set Source SQL Server Instance Information
-            //SqlConnectionStringBuilder connectionBuilder = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["SERVOSAIR"].ConnectionString);
+            //SqlConnectionStringBuilder connectionBuilder = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["SERVOSASAIR_CLEAN"].ConnectionString);
             //Server server = new Server(connectionBuilder.DataSource);
 
             ////Set Source Database Name [Database to Copy]
             //Microsoft.SqlServer.Management.Smo.Database database = server.Databases["SERVOSASAIR_CLEAN"];
-            //server.ConnectionContext.ConnectTimeout = 300000;
+            ////server.ConnectionContext.ConnectTimeout = 300000;
             //Transfer transfer = new Transfer(database);
             ////transfer.BulkCopyTimeout = 0;
 

@@ -26,10 +26,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpGet]
-        public virtual ActionResult Index(int? operationCode)
+        public virtual ActionResult Index()
         {
-            //if (!operationCode.HasValue)
-            //    return RedirectToAction(MVC.Account.ProgrammaticallyLogOff());
+            int tmpValue;
+            int? operationCode = Int32.TryParse(Convert.ToString(Session[Resources.SAIRApplicationResources.OperationID]), out tmpValue) ? tmpValue : (int?)null;
+
+            if (!operationCode.HasValue || operationCode.Value <= 0)
+                return RedirectToAction(MVC.Account.ProgrammaticallyLogOff());
 
             int alertsSended = _driverAlertService.ProcessAlerts(new string[] { "51950313361" });
             

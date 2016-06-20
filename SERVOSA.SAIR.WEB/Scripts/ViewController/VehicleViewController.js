@@ -38,9 +38,12 @@
                     columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file insertRemoveFile' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "'></span></td>";
                 }
 
+                var constantVehicleColumns = SERVOSACORE.GetConstantVehicleColumns();
                 for (i = 2; i < element.DataForRow.length - 3; i++) {
-                    var column = $("<td>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
-                    columnList += column;
+                    if (constantVehicleColumns.indexOf(element.DataForRow[i].ColumnName) == -1) {
+                        var column = $("<td>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
+                        columnList += column;
+                    }
                 }
 
                 var $tableRow = $("<tr></tr>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName);
@@ -111,7 +114,7 @@
             console.debug('Cargando columnas y datos');
         });
 
-        $(document).on("click", "#createVariableSubmit", null, function (e) {
+        $(document).off("click", "#createVariableSubmit").on("click", "#createVariableSubmit", null, function (e) {
             var resultValidation = $("#createTableForm").validationEngine('validate');
             if (resultValidation == true) {
                 $.post("/VariableTasks/CreateTable", $("#createTableForm").serialize(), function (data) {

@@ -1,4 +1,5 @@
 ﻿using SERVOSA.SAIR.DATAACCESS.Models.Vehicle;
+using SERVOSA.SAIR.SERVICE.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,8 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 serviceModel.DataForRow.ToList().ForEach(dR => tmp.Add(new VehicleDetailRowDataModel
                 {
                     Type = String.Empty,
-                    Value = dR.Value
+                    Value = dR.Value,
+                    ColumnName = dR.ColumnName
                 }));
                 dataModel.DataForRow = tmp;
                 //tmp.Where(dR=> dR.Type)
@@ -58,32 +60,33 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     VehicleId = dataModel.VehicleId
                 };
 
-                DateTime? lastDate = null;
+                DateTime? dateToAlert = null;
                 int? daysToAlert = null;
 
                 var tmpList = new List<VehicleDetailRowServiceModel>();
                 dataModel.DataForRow.ToList().ForEach(dr =>
                 {
-                    DateTime tmpDate;
-                    if(DateTime.TryParse(dr.Value, out tmpDate))
-                        lastDate = tmpDate;
-
                     tmpList.Add(new VehicleDetailRowServiceModel
                     {
                         Type = String.Empty,
-                        Value = dr.Value
+                        Value = dr.Value,
+                        ColumnName = dr.ColumnName
                     });
                 });
                 serviceModel.DataForRow = tmpList;
-                int tmpInt;
-                if(tmpList.Count > 3)
-                {
-                    if(Int32.TryParse(tmpList[2].Value, out tmpInt))
-                        daysToAlert = tmpInt;
-                }
 
-                if (lastDate.HasValue && daysToAlert.HasValue)
-                    serviceModel.WithAlert = DateTime.Today >= lastDate.Value.AddDays(-daysToAlert.Value);
+                var rawDateToAlert = tmpList.Where(d => !String.IsNullOrWhiteSpace(d.ColumnName) && ServosaSingleton.Instance.ConstantExpirationDate.Contains(d.ColumnName)).Select(data => data.Value).FirstOrDefault();
+                DateTime tmpDate;
+                if (DateTime.TryParse(rawDateToAlert, out tmpDate))
+                    dateToAlert = tmpDate;
+
+                var rawDaysToAlert = tmpList.Where(d => !String.IsNullOrWhiteSpace(d.ColumnName) && ServosaSingleton.Instance.ConstantDayToAlert.Contains(d.ColumnName)).Select(data => data.Value).FirstOrDefault();
+                int tmpInt;
+                if (Int32.TryParse(rawDaysToAlert, out tmpInt))
+                    daysToAlert = tmpInt;
+
+                if (dateToAlert.HasValue && daysToAlert.HasValue)
+                    serviceModel.WithAlert = DateTime.Today >= dateToAlert.Value.AddDays(-daysToAlert.Value);
             }
         }
     }
