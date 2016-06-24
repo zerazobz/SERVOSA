@@ -24,25 +24,26 @@ namespace SERVOSA.SAIR.WEB
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      //"~/Scripts/bootstrap.js",
-                      "~/Scripts/bootstrap-corlate.min.js",
-                      "~/Scripts/html5shiv.js",
-                      "~/Scripts/jquery.isotope.min.js",
-                      "~/Scripts/jquery.prettyPhoto.js",
-                      "~/Scripts/main.js",
-                      "~/Scripts/wow.min.js"
-                      , "~/Scripts/respond.js"
+                      "~/Scripts/bootstrap.js"
+                      //"~/Scripts/bootstrap-corlate.min.js",
+                      //"~/Scripts/html5shiv.js",
+                      //"~/Scripts/jquery.isotope.min.js",
+                      //"~/Scripts/jquery.prettyPhoto.js",
+                      //"~/Scripts/main.js",
+                      //"~/Scripts/wow.min.js"
+                      //, "~/Scripts/respond.js"
                       //, "~/Scripts/quirk.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       //"~/Content/bootstrap.css",
-                      "~/Content/animate.min.css",
-                      "~/Content/bootstrap-corlate.min.css",
-                      "~/Content/font-awesome.min.css",
-                      "~/Content/main.css",
-                      "~/Content/prettyPhoto.css",
-                      "~/Content/responsive.css"
+                      //"~/Content/animate.min.css",
+                      "~/Content/bootstrap-flatly.css"
+                      //"~/Content/bootstrap-corlate.min.css",
+                      //"~/Content/font-awesome.min.css",
+                      //"~/Content/main.css",
+                      //"~/Content/prettyPhoto.css",
+                      //"~/Content/responsive.css"
                       , "~/Content/site.css"
                       //, "~/Content/quirk.css"
                       ));

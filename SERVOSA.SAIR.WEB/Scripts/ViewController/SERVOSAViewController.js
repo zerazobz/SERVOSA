@@ -68,6 +68,8 @@
     }
 
     $(function () {
+        $(document).find("ul[class*='nav']:not(.loginnav) li").removeClass("active");
+
         function ProccessAlertMessage(htmlTemplate, message, $divContainer) {
             var handleTemplate = Handlebars.compile(htmlTemplate);
             var data = { message: message };
@@ -101,6 +103,12 @@
                     ProccessAlertMessage(htmlTemplate, message, $divContainer);
                 });
             }
+        });
+
+        $(document).off("click", "ul[class*='nav']:not(.loginnav) li").on("click", "ul[class*='nav']:not(.loginnav) li", null, function (e) {
+            $(document).find("ul[class*='nav']:not(.loginnav) li").removeClass("active");
+            var $currentLi = $(this);
+            $currentLi.addClass("active");
         });
 
         $(document).on("click", ".createUpdateData", null, function () {

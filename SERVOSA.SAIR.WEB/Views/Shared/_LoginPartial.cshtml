@@ -5,7 +5,7 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="loginnav nav navbar-nav navbar-right">
         <li>
             @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "", null, new { href = "#" })
         </li>

@@ -304,6 +304,7 @@
   <ItemGroup>
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap-corlate.min.css" />
+    <Content Include="Content\bootstrap-flatly.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
