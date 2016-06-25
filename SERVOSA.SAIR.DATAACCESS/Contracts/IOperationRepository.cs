@@ -12,5 +12,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Contracts
         OperationDbModel CreateOperation(string operationName);
         IList<OperationDbModel> ListAllOperations();
         OperationDbModel GetOperationById(int idOperation);
+        int UpdateOperationModel(int operationId, string newOperationName);
+        int DeleteOperation(int operationId, string operationDatabaseName);
     }
 }

@@ -1,14 +1,14 @@
 ﻿@using SERVOSA.SAIR.WEB.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Iniciar Sesión";
+    ViewBag.Title = "Iniciar";
 }
 
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
         <div class="panel panel-default">
             <div class="panel-body">
-                <h2 class="text-info text-center">@ViewBag.Title.</h2>
+                <h2 class="text-info text-center">@ViewBag.Title</h2>
                 <section id="loginForm">
                     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {

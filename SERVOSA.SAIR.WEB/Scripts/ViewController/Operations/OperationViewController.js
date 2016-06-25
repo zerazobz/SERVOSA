@@ -24,6 +24,13 @@
                 display: function (data) {
                     return '<a href="#" class="changeOperation" data-operationid=' + data.record.OperationId + ' data-databasename=' + data.record.DataBaseName + ' > <span class="glyphicon glyphicon-log-in"></span> </a>';
                 }
+            },
+            EliminarOperacion: {
+                title: 'Eliminar Operación',
+                create: false,
+                display: function (data) {
+                    return '<a href="#" class="removeOperation" data-operationid=' + data.record.OperationId + ' data-databasename=' + data.record.DataBaseName + ' > <span class="glyphicon glyphicon-trash"></span> </a>';
+                }
             }
         }
     });
@@ -36,6 +43,24 @@
         var operationId = $linkContext.data("operationid");
         if (typeof dataBaseName !== "undefined" && dataBaseName !== "") {
             window.location = "/Operations/LoadOperation?operationName=" + dataBaseName + "&operationId=" + operationId;
+        }
+    });
+
+    $("#operationsContainer").off("click", ".removeOperation").on("click", ".removeOperation", null, function (e) {
+        var $linkContext = $(this);
+        var dataBaseName = $linkContext.data("databasename");
+        var operationId = $linkContext.data("operationid");
+        if (typeof dataBaseName !== "undefined" && dataBaseName !== "") {
+            $.post("/Operations/DeleteOperation", { operationId: operationId, databaseName: dataBaseName }, function (dataResult) {
+                if (dataResult.Result == "OK") {
+                    var $closestTr = $linkContext.closest("tr");
+                    console.debug("Closest TR: " + $closestTr);
+                    $closestTr.remove();
+                }
+                else {
+
+                }
+            });
         }
     });
 

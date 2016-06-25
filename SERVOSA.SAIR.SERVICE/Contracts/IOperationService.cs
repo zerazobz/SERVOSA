@@ -12,5 +12,7 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
         OperationServiceModel CreateOperation(string operationName);
         IList<OperationServiceModel> ListAllOperations();
         OperationServiceModel GetOperationById(int idOperation);
+        int UpdateOperationName(int operationId, string newOperationName);
+        int DeleteOperation(int operationId, string operationName);
     }
 }

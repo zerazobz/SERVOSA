@@ -27,6 +27,11 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             return operationServiceModel;
         }
 
+        public int DeleteOperation(int operationId, string operationName)
+        {
+            return _operationRepository.DeleteOperation(operationId, operationName);
+        }
+
         public OperationServiceModel GetOperationById(int idOperation)
         {
             var operationIdentity = _operationRepository.GetOperationById(idOperation);
@@ -43,6 +48,11 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
                 mapResult = Mapper.Map<OperationServiceModel>(oP);
                 return mapResult;
             }).ToList();
+        }
+
+        public int UpdateOperationName(int operationId, string newOperationName)
+        {
+            return _operationRepository.UpdateOperationModel(operationId, newOperationName);
         }
     }
 }

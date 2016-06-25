@@ -102,6 +102,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
             return RedirectToAction(MVC.Home.Index());
         }
 
+        [HttpPost]
+        public JsonResult DeleteOperation(int operationId, string databaseName)
+        {
+            int executionResult = _operationService.DeleteOperation(operationId, databaseName);
+            return Json(new { Result = executionResult > 0 });
+        }
+
         public ApplicationUserManager UserManager
         {
             get

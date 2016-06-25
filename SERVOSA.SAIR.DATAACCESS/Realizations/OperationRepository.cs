@@ -87,6 +87,12 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             };
         }
 
+        public int DeleteOperation(int operationId, string operationDatabaseName)
+        {
+            var executionResult = _servosaDB.ExecuteNonQuery("SAIR_OPERD", new object[] { operationId, operationDatabaseName });
+            return executionResult;
+        }
+
         public OperationDbModel GetOperationById(int idOperation)
         {
             object[] idOperationParameter = new object[] { idOperation };
@@ -107,6 +113,12 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                 .Build();
             var listOperations = _servosaDB.ExecuteSprocAccessor("SAIR_LISTOPERATIONS", operationRowMapper, listOperationParameters);
             return listOperations.ToList();
+        }
+
+        public int UpdateOperationModel(int operationId, string newOperationName)
+        {
+            var executionResult = _servosaDB.ExecuteNonQuery("SAIR_OPERU", new object[] { operationId, newOperationName });
+            return executionResult;
         }
     }
 }

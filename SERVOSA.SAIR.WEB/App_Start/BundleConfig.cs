@@ -18,6 +18,9 @@ namespace SERVOSA.SAIR.WEB
                         "~/Scripts/jquery-ui-1.9.2.js",
                         "~/Scripts/jquery.ui.datepicker-es.js"));
 
+            bundles.Add(new ScriptBundle("~/servosamaincore").Include(
+                        "~/Scripts/Core/ServosaMainCore.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
