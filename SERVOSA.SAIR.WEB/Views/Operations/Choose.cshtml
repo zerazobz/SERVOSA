@@ -5,6 +5,11 @@
 
 <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
 <link href="~/Scripts/jtable/themes/jqueryui/jtable_jqueryui.css" rel="stylesheet" />
+<div class="row">
+    <div id="messagePanel">
+
+    </div>
+</div>
 <div class="row" id="operationsContainer">
     <div class="col-md-12">
         <h3>Administración de Operaciones</h3>
@@ -14,6 +19,33 @@
     <div class="col-md-12">
         <div id="operationsTable">
 
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="changeOperationNameModal" tabindex="-1" role="dialog" aria-labelledby="changeOperationNameModal-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="changeOperationNameModal-label">Cambiar Nombre de Operación</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="currentOperationName">Actual Nombre</label>
+                        <input id="currentOperationName"  class="col-md-6 form-control" type="text" value="" readonly />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="newOperationName">Nuevo Nombre de Operación</label>
+                        <input id="newOperationName" type="text" class="col-md-6 form-control" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="changeOperationNameButton" class="btn btn-primary">Cambiar</button>
+            </div>
         </div>
     </div>
 </div>

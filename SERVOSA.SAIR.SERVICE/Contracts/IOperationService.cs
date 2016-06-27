@@ -9,7 +9,7 @@ namespace SERVOSA.SAIR.SERVICE.Contracts
 {
     public interface IOperationService
     {
-        OperationServiceModel CreateOperation(string operationName);
+        OperationServiceModel CreateOperation(string operationName, bool azureRemoteGeneration);
         IList<OperationServiceModel> ListAllOperations();
         OperationServiceModel GetOperationById(int idOperation);
         int UpdateOperationName(int operationId, string newOperationName);

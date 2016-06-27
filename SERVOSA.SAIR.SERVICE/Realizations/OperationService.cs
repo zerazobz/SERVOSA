@@ -20,9 +20,9 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             _operationRepository = injectedOperaiontRep;
         }
 
-        public OperationServiceModel CreateOperation(string operationName)
+        public OperationServiceModel CreateOperation(string operationName, bool azureRemoteGeneration)
         {
-            var operationEntity = _operationRepository.CreateOperation(operationName);
+            var operationEntity = _operationRepository.CreateOperation(operationName, azureRemoteGeneration);
             var operationServiceModel = Mapper.Map<OperationServiceModel>(operationEntity);
             return operationServiceModel;
         }

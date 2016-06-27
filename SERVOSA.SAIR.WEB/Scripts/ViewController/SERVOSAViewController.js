@@ -76,32 +76,32 @@
             $divContainer.fadeIn(450, function () { $divContainer.fadeOut(450, function () { $divContainer.fadeIn(450, function () { }) }) });
         }
 
-        $.fn.extend({
-            SERVOSAErrorNotification: function (message) {
-                var $divContainer = $(this);
-                $.get("/Templates/Notifications/NotificationError.html", function (htmlTemplate) {
-                    ProccessAlertMessage(htmlTemplate, message, $divContainer);
-                });
-            },
-            SERVOSAWarningNotification: function (message) {
-                var $divContainer = $(this);
-                $.get("/Templates/Notifications/NotificationWarning.html", function (htmlTemplate) {
-                    ProccessAlertMessage(htmlTemplate, message, $divContainer);
-                });
-            },
-            SERVOSAInfoNotification: function (message) {
-                var $divContainer = $(this);
-                $.get("/Templates/Notifications/NotificationInfo.html", function (htmlTemplate) {
-                    ProccessAlertMessage(htmlTemplate, message, $divContainer);
-                });
-            },
-            SERVOSASuccessNotification: function (message) {
-                var $divContainer = $(this);
-                $.get("/Templates/Notifications/NotificationSuccess.html", function (htmlTemplate) {
-                    ProccessAlertMessage(htmlTemplate, message, $divContainer);
-                });
-            }
-        });
+        //$.fn.extend({
+        //    SERVOSAErrorNotification: function (message) {
+        //        var $divContainer = $(this);
+        //        $.get("/Templates/Notifications/NotificationError.html", function (htmlTemplate) {
+        //            ProccessAlertMessage(htmlTemplate, message, $divContainer);
+        //        });
+        //    },
+        //    SERVOSAWarningNotification: function (message) {
+        //        var $divContainer = $(this);
+        //        $.get("/Templates/Notifications/NotificationWarning.html", function (htmlTemplate) {
+        //            ProccessAlertMessage(htmlTemplate, message, $divContainer);
+        //        });
+        //    },
+        //    SERVOSAInfoNotification: function (message) {
+        //        var $divContainer = $(this);
+        //        $.get("/Templates/Notifications/NotificationInfo.html", function (htmlTemplate) {
+        //            ProccessAlertMessage(htmlTemplate, message, $divContainer);
+        //        });
+        //    },
+        //    SERVOSASuccessNotification: function (message) {
+        //        var $divContainer = $(this);
+        //        $.get("/Templates/Notifications/NotificationSuccess.html", function (htmlTemplate) {
+        //            ProccessAlertMessage(htmlTemplate, message, $divContainer);
+        //        });
+        //    }
+        //});
 
         $(document).on("click", ".createUpdateData", null, function () {
             var $buttonContext = $(this);

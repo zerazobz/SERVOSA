@@ -10,7 +10,7 @@
         fields: {
             OperationId: { key: true, list: false },
             OperationName: { title: 'Operacion' },
-            DataBaseName: { title: 'Base de Datos', create: false },
+            DataBaseName: { title: 'Base de Datos', list: false, create: false },
             Usuario: {
                 title: 'Usuario',
                 create: false,
@@ -22,7 +22,14 @@
                 title: 'Ver Operación',
                 create: false,
                 display: function (data) {
-                    return '<a href="#" class="changeOperation" data-operationid=' + data.record.OperationId + ' data-databasename=' + data.record.DataBaseName + ' > <span class="glyphicon glyphicon-log-in"></span> </a>';
+                    return '<a href="#" class="changeOperation" data-operationid=' + data.record.OperationId + ' data-databasename=' + data.record.DataBaseName + ' data-operationname="' + data.record.OperationName + '" > <span class="glyphicon glyphicon-log-in"></span> </a>';
+                }
+            },
+            CambiarNombreOperacion: {
+                title: 'Cambiar Nombre',
+                create: false,
+                display: function (data) {
+                    return '<a href="#" class="changeOperationName" data-operationid=' + data.record.OperationId + ' data-databasename=' + data.record.DataBaseName + ' data-operationname="' + data.record.OperationName + '" > <span class="glyphicon glyphicon-edit"></span> </a>';
                 }
             },
             EliminarOperacion: {
@@ -56,12 +63,46 @@
                     var $closestTr = $linkContext.closest("tr");
                     console.debug("Closest TR: " + $closestTr);
                     $closestTr.remove();
+                    $("#messagePanel").SERVOSASuccessNotification("Se elimino correctamente la operación.");
                 }
                 else {
-
+                    $("#messagePanel").SERVOSAErrorNotification("No se pudo eliminar la operación.");
                 }
             });
         }
+    });
+
+
+    $("#operationsContainer").off("click", ".changeOperationName").on("click", ".changeOperationName", null, function (e) {
+        var $linkContext = $(this);
+        var dataBaseName = $linkContext.data("operationname");
+        var operationId = $linkContext.data("operationid");
+        if (typeof dataBaseName !== "undefined" && dataBaseName !== "") {
+            $("#newOperationName").val("");
+            $("#changeOperationNameModal").modal('show');
+            $("#changeOperationNameModal").find("[id='changeOperationNameButton']").data("operationId", operationId);
+            $("#changeOperationNameModal").find("input[id='currentOperationName']").val(dataBaseName);
+        }
+    });
+    $("#changeOperationNameButton").click(function (e) {
+        //e.preventDefault();
+        var operationId = $(this).data("operationId");
+        var newOperationName = $("#newOperationName").val();
+        $.post("/Operations/ChangeOperationName", { operationId: operationId, newOperationName: newOperationName },
+            function (data, textStatus, jqXHR) {
+                console.debug("El resultado de la ejecución es: " + data.Result);
+                if (data.Result == "OK") {
+                    $("#messagePanel").SERVOSASuccessNotification("Se cambio correctamente el nombre de la operación.");
+                    $("#operationsTable").jtable('reload');
+                }
+                else {
+                    $("#messagePanel").SERVOSAErrorNotification("No se pudo cambiar el nombre de la operación.");
+                }
+            }).fail(function (e) {
+                $("#messagePanel").SERVOSAWarningNotification("No se pudo conectar con el servidor.");
+            }).complete(function () {
+                $("#changeOperationNameModal").modal('hide');
+            });
     });
 
 })(window.OperationsVC = window.OperationsVC || {}, jQuery);

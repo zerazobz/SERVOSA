@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using SERVOSA.SAIR.SERVICE.Core;
 using SERVOSA.SAIR.WEB.App_Start;
+using System.Configuration;
+using SERVOSA.SAIR.WEB.Resources;
 
 namespace SERVOSA.SAIR.WEB.Controllers
 {
@@ -60,7 +62,8 @@ namespace SERVOSA.SAIR.WEB.Controllers
             try
             {
                 bool resultExecution = false;
-                var operationResult = _operationService.CreateOperation(model.OperationName);
+                bool azureRemoteGeneration = Convert.ToBoolean(ConfigurationManager.AppSettings[SAIRApplicationResources.AzureRemoteExecution]);
+                var operationResult = _operationService.CreateOperation(model.OperationName, azureRemoteGeneration);
                 if(operationResult != null)
                 {
                     model.OperationId = operationResult.OperationId;
@@ -106,7 +109,16 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public JsonResult DeleteOperation(int operationId, string databaseName)
         {
             int executionResult = _operationService.DeleteOperation(operationId, databaseName);
-            return Json(new { Result = executionResult > 0 });
+            return Json(new { Result = executionResult > 0? "OK" : "ERROR" });
+        }
+
+
+        [HttpPost]
+        public JsonResult ChangeOperationName(int operationId, string newOperationName)
+        {
+            int executionResult = _operationService.UpdateOperationName(operationId, newOperationName);
+            string executionResultMessage = executionResult > 0 ? "OK" : "ERROR";
+            return Json(new { Result = executionResultMessage });
         }
 
         public ApplicationUserManager UserManager

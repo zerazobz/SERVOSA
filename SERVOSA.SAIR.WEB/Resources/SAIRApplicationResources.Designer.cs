@@ -61,6 +61,15 @@ namespace SERVOSA.SAIR.WEB.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cution.
+        /// </summary>
+        internal static string AzureRemoteExecution {
+            get {
+                return ResourceManager.GetString("AzureRemoteExecution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OperationID.
         /// </summary>
         internal static string OperationID {

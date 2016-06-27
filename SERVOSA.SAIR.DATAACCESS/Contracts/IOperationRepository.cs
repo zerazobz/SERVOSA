@@ -9,7 +9,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Contracts
 {
     public interface IOperationRepository
     {
-        OperationDbModel CreateOperation(string operationName);
+        OperationDbModel CreateOperation(string operationName, bool azureRemoteGeneration);
         IList<OperationDbModel> ListAllOperations();
         OperationDbModel GetOperationById(int idOperation);
         int UpdateOperationModel(int operationId, string newOperationName);
