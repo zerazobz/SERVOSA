@@ -44,6 +44,7 @@ namespace T4MVC
                 public readonly string _LayoutManagementOperation = "_LayoutManagementOperation";
                 public readonly string _LoginPartial = "_LoginPartial";
                 public readonly string _Menu = "_Menu";
+                public readonly string _SharedFooter = "_SharedFooter";
                 public readonly string Error = "Error";
                 public readonly string Lockout = "Lockout";
             }
@@ -53,6 +54,7 @@ namespace T4MVC
             public readonly string _LayoutManagementOperation = "~/Views/Shared/_LayoutManagementOperation.cshtml";
             public readonly string _LoginPartial = "~/Views/Shared/_LoginPartial.cshtml";
             public readonly string _Menu = "~/Views/Shared/_Menu.cshtml";
+            public readonly string _SharedFooter = "~/Views/Shared/_SharedFooter.cshtml";
             public readonly string Error = "~/Views/Shared/Error.cshtml";
             public readonly string Lockout = "~/Views/Shared/Lockout.cshtml";
         }

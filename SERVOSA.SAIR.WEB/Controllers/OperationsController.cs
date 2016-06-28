@@ -106,15 +106,15 @@ namespace SERVOSA.SAIR.WEB.Controllers
         }
 
         [HttpPost]
-        public JsonResult DeleteOperation(int operationId, string databaseName)
+        public virtual JsonResult DeleteOperation(int operationId, string databaseName)
         {
             int executionResult = _operationService.DeleteOperation(operationId, databaseName);
-            return Json(new { Result = executionResult > 0? "OK" : "ERROR" });
+            return Json(new { Result = executionResult > 0 ? "OK" : "ERROR" });
         }
 
 
         [HttpPost]
-        public JsonResult ChangeOperationName(int operationId, string newOperationName)
+        public virtual JsonResult ChangeOperationName(int operationId, string newOperationName)
         {
             int executionResult = _operationService.UpdateOperationName(operationId, newOperationName);
             string executionResultMessage = executionResult > 0 ? "OK" : "ERROR";

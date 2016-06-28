@@ -112,16 +112,28 @@ namespace Links
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
         public static readonly string _references_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/_references.min.js") ? Url("_references.min.js") : Url("_references.js");
+        public static readonly string bootstrap_corlate_min_js = Url("bootstrap-corlate.min.js");
         public static readonly string bootstrap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap.min.js") ? Url("bootstrap.min.js") : Url("bootstrap.js");
         public static readonly string bootstrap_min_js = Url("bootstrap.min.js");
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class Core {
+            private const string URLPATH = "~/Scripts/Core";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string ServosaMainCore_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/ServosaMainCore.min.js") ? Url("ServosaMainCore.min.js") : Url("ServosaMainCore.js");
+        }
+    
         public static readonly string handlebars_latest_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/handlebars-latest.min.js") ? Url("handlebars-latest.min.js") : Url("handlebars-latest.js");
         public static readonly string handlebars_min_latest_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/handlebars.min-latest.min.js") ? Url("handlebars.min-latest.min.js") : Url("handlebars.min-latest.js");
+        public static readonly string html5shiv_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/html5shiv.min.js") ? Url("html5shiv.min.js") : Url("html5shiv.js");
         public static readonly string jquery_1_10_2_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.10.2.intellisense.min.js") ? Url("jquery-1.10.2.intellisense.min.js") : Url("jquery-1.10.2.intellisense.js");
         public static readonly string jquery_1_10_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.10.2.min.js") ? Url("jquery-1.10.2.min.js") : Url("jquery-1.10.2.js");
         public static readonly string jquery_1_10_2_min_js = Url("jquery-1.10.2.min.js");
         public static readonly string jquery_1_10_2_min_map = Url("jquery-1.10.2.min.map");
         public static readonly string jquery_ui_1_9_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-ui-1.9.2.min.js") ? Url("jquery-ui-1.9.2.min.js") : Url("jquery-ui-1.9.2.js");
         public static readonly string jquery_ui_1_9_2_min_js = Url("jquery-ui-1.9.2.min.js");
+        public static readonly string jquery_isotope_min_js = Url("jquery.isotope.min.js");
+        public static readonly string jquery_prettyPhoto_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.prettyPhoto.min.js") ? Url("jquery.prettyPhoto.min.js") : Url("jquery.prettyPhoto.js");
         public static readonly string jquery_ui_datepicker_es_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.ui.datepicker-es.min.js") ? Url("jquery.ui.datepicker-es.min.js") : Url("jquery.ui.datepicker-es.js");
         public static readonly string jquery_validate_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate-vsdoc.min.js") ? Url("jquery.validate-vsdoc.min.js") : Url("jquery.validate-vsdoc.js");
         public static readonly string jquery_validate_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.min.js") ? Url("jquery.validate.min.js") : Url("jquery.validate.js");
@@ -428,7 +440,9 @@ namespace Links
         
         }
     
+        public static readonly string main_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/main.min.js") ? Url("main.min.js") : Url("main.js");
         public static readonly string modernizr_2_6_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.6.2.min.js") ? Url("modernizr-2.6.2.min.js") : Url("modernizr-2.6.2.js");
+        public static readonly string quirk_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/quirk.min.js") ? Url("quirk.min.js") : Url("quirk.js");
         public static readonly string respond_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/respond.min.js") ? Url("respond.min.js") : Url("respond.js");
         public static readonly string respond_min_js = Url("respond.min.js");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -477,8 +491,17 @@ namespace Links
         private const string URLPATH = "~/Content";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        public static readonly string animate_min_css = Url("animate.min.css");
+        public static readonly string bootstrap_corlate_min_css = Url("bootstrap-corlate.min.css");
+        public static readonly string bootstrap_flatly_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap-flatly.min.css") ? Url("bootstrap-flatly.min.css") : Url("bootstrap-flatly.css");
         public static readonly string bootstrap_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap.min.css") ? Url("bootstrap.min.css") : Url("bootstrap.css");
         public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
+        public static readonly string font_awesome_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/font-awesome.min.css") ? Url("font-awesome.min.css") : Url("font-awesome.css");
+        public static readonly string font_awesome_min_css = Url("font-awesome.min.css");
+        public static readonly string main_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/main.min.css") ? Url("main.min.css") : Url("main.css");
+        public static readonly string prettyPhoto_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/prettyPhoto.min.css") ? Url("prettyPhoto.min.css") : Url("prettyPhoto.css");
+        public static readonly string quirk_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/quirk.min.css") ? Url("quirk.min.css") : Url("quirk.css");
+        public static readonly string responsive_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/responsive.min.css") ? Url("responsive.min.css") : Url("responsive.css");
         public static readonly string Site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Site.min.css") ? Url("Site.min.css") : Url("Site.css");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class themes {
@@ -584,6 +607,13 @@ namespace Links
     {
         public static partial class Scripts 
         {
+            public static partial class Core 
+            {
+                public static class Assets
+                {
+                    public const string ServosaMainCore_js = "~/Scripts/Core/ServosaMainCore.js"; 
+                }
+            }
             public static partial class jtable 
             {
                 public static partial class extensions 
@@ -832,15 +862,19 @@ namespace Links
             public static class Assets
             {
                 public const string _references_js = "~/Scripts/_references.js"; 
+                public const string bootstrap_corlate_min_js = "~/Scripts/bootstrap-corlate.min.js"; 
                 public const string bootstrap_js = "~/Scripts/bootstrap.js"; 
                 public const string bootstrap_min_js = "~/Scripts/bootstrap.min.js"; 
                 public const string handlebars_latest_js = "~/Scripts/handlebars-latest.js"; 
                 public const string handlebars_min_latest_js = "~/Scripts/handlebars.min-latest.js"; 
+                public const string html5shiv_js = "~/Scripts/html5shiv.js"; 
                 public const string jquery_1_10_2_intellisense_js = "~/Scripts/jquery-1.10.2.intellisense.js"; 
                 public const string jquery_1_10_2_js = "~/Scripts/jquery-1.10.2.js"; 
                 public const string jquery_1_10_2_min_js = "~/Scripts/jquery-1.10.2.min.js"; 
                 public const string jquery_ui_1_9_2_js = "~/Scripts/jquery-ui-1.9.2.js"; 
                 public const string jquery_ui_1_9_2_min_js = "~/Scripts/jquery-ui-1.9.2.min.js"; 
+                public const string jquery_isotope_min_js = "~/Scripts/jquery.isotope.min.js"; 
+                public const string jquery_prettyPhoto_js = "~/Scripts/jquery.prettyPhoto.js"; 
                 public const string jquery_ui_datepicker_es_js = "~/Scripts/jquery.ui.datepicker-es.js"; 
                 public const string jquery_validate_js = "~/Scripts/jquery.validate.js"; 
                 public const string jquery_validate_min_js = "~/Scripts/jquery.validate.min.js"; 
@@ -848,7 +882,9 @@ namespace Links
                 public const string jquery_validate_unobtrusive_min_js = "~/Scripts/jquery.validate.unobtrusive.min.js"; 
                 public const string jquery_validationEngine_es_js = "~/Scripts/jquery.validationEngine-es.js"; 
                 public const string jquery_validationEngine_js = "~/Scripts/jquery.validationEngine.js"; 
+                public const string main_js = "~/Scripts/main.js"; 
                 public const string modernizr_2_6_2_js = "~/Scripts/modernizr-2.6.2.js"; 
+                public const string quirk_js = "~/Scripts/quirk.js"; 
                 public const string respond_js = "~/Scripts/respond.js"; 
                 public const string respond_min_js = "~/Scripts/respond.min.js"; 
             }
@@ -921,8 +957,17 @@ namespace Links
             }
             public static class Assets
             {
+                public const string animate_min_css = "~/Content/animate.min.css";
+                public const string bootstrap_corlate_min_css = "~/Content/bootstrap-corlate.min.css";
+                public const string bootstrap_flatly_css = "~/Content/bootstrap-flatly.css";
                 public const string bootstrap_css = "~/Content/bootstrap.css";
                 public const string bootstrap_min_css = "~/Content/bootstrap.min.css";
+                public const string font_awesome_css = "~/Content/font-awesome.css";
+                public const string font_awesome_min_css = "~/Content/font-awesome.min.css";
+                public const string main_css = "~/Content/main.css";
+                public const string prettyPhoto_css = "~/Content/prettyPhoto.css";
+                public const string quirk_css = "~/Content/quirk.css";
+                public const string responsive_css = "~/Content/responsive.css";
                 public const string Site_css = "~/Content/Site.css";
                 public const string validationEngine_jquery_css = "~/Content/validationEngine.jquery.css";
             }

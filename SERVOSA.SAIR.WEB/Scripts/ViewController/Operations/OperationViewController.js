@@ -57,21 +57,23 @@
         var $linkContext = $(this);
         var dataBaseName = $linkContext.data("databasename");
         var operationId = $linkContext.data("operationid");
-        if (typeof dataBaseName !== "undefined" && dataBaseName !== "") {
-            $.post("/Operations/DeleteOperation", { operationId: operationId, databaseName: dataBaseName }, function (dataResult) {
-                if (dataResult.Result == "OK") {
-                    var $closestTr = $linkContext.closest("tr");
-                    console.debug("Closest TR: " + $closestTr);
-                    $closestTr.remove();
-                    $("#messagePanel").SERVOSASuccessNotification("Se elimino correctamente la operación.");
-                }
-                else {
-                    $("#messagePanel").SERVOSAErrorNotification("No se pudo eliminar la operación.");
-                }
-            });
+        var confirmationResult = confirm("Al eliminar la operación, desapareceran todos los datos existentes dentro de la operación.");
+        if (confirmationResult == true) {
+            if (typeof dataBaseName !== "undefined" && dataBaseName !== "") {
+                $.post("/Operations/DeleteOperation", { operationId: operationId, databaseName: dataBaseName }, function (dataResult) {
+                    if (dataResult.Result == "OK") {
+                        var $closestTr = $linkContext.closest("tr");
+                        console.debug("Closest TR: " + $closestTr);
+                        $closestTr.remove();
+                        $("#messagePanel").SERVOSASuccessNotification("Se elimino correctamente la operación.");
+                    }
+                    else {
+                        $("#messagePanel").SERVOSAErrorNotification("No se pudo eliminar la operación.");
+                    }
+                });
+            }
         }
     });
-
 
     $("#operationsContainer").off("click", ".changeOperationName").on("click", ".changeOperationName", null, function (e) {
         var $linkContext = $(this);

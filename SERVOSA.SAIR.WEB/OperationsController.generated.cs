@@ -69,6 +69,18 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.LoadOperation);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult DeleteOperation()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DeleteOperation);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult ChangeOperationName()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ChangeOperationName);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public OperationsController Actions { get { return MVC.Operations; } }
@@ -90,6 +102,8 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public readonly string ListOperations = "ListOperations";
             public readonly string CreateOperation = "CreateOperation";
             public readonly string LoadOperation = "LoadOperation";
+            public readonly string DeleteOperation = "DeleteOperation";
+            public readonly string ChangeOperationName = "ChangeOperationName";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -100,6 +114,8 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public const string ListOperations = "ListOperations";
             public const string CreateOperation = "CreateOperation";
             public const string LoadOperation = "LoadOperation";
+            public const string DeleteOperation = "DeleteOperation";
+            public const string ChangeOperationName = "ChangeOperationName";
         }
 
 
@@ -129,6 +145,24 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             public readonly string operationName = "operationName";
             public readonly string operationId = "operationId";
+        }
+        static readonly ActionParamsClass_DeleteOperation s_params_DeleteOperation = new ActionParamsClass_DeleteOperation();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DeleteOperation DeleteOperationParams { get { return s_params_DeleteOperation; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DeleteOperation
+        {
+            public readonly string operationId = "operationId";
+            public readonly string databaseName = "databaseName";
+        }
+        static readonly ActionParamsClass_ChangeOperationName s_params_ChangeOperationName = new ActionParamsClass_ChangeOperationName();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ChangeOperationName ChangeOperationNameParams { get { return s_params_ChangeOperationName; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ChangeOperationName
+        {
+            public readonly string operationId = "operationId";
+            public readonly string newOperationName = "newOperationName";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -211,6 +245,32 @@ namespace SERVOSA.SAIR.WEB.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "operationName", operationName);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "operationId", operationId);
             LoadOperationOverride(callInfo, operationName, operationId);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DeleteOperationOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int operationId, string databaseName);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult DeleteOperation(int operationId, string databaseName)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.DeleteOperation);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "operationId", operationId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "databaseName", databaseName);
+            DeleteOperationOverride(callInfo, operationId, databaseName);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ChangeOperationNameOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int operationId, string newOperationName);
+
+        [NonAction]
+        public override System.Web.Mvc.JsonResult ChangeOperationName(int operationId, string newOperationName)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.ChangeOperationName);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "operationId", operationId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "newOperationName", newOperationName);
+            ChangeOperationNameOverride(callInfo, operationId, newOperationName);
             return callInfo;
         }
 

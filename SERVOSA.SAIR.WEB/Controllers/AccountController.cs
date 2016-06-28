@@ -109,7 +109,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Intento de Login invalido.");
+                    ModelState.AddModelError("", "Intento de inicio de sesión invalido.");
                     return View(model);
             }
         }
