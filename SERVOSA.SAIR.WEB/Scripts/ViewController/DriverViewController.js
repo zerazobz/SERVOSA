@@ -2,6 +2,13 @@
 
     var driverTemplate = "";
 
+    var jTableFieldOptions = {
+        Codigo: { key: true, title: 'Codigo', width: '5%' },
+        Placa: { title: 'Nombre y Apellidos' },
+        BirthDate: { title: 'Fecha de Nacimiento', type: 'date', displayFormat: 'dd/mm/yy' },
+        Address: { title: 'Dirección' }
+    };
+
     driverNamespace.LoadDriverAutoCompleteTemplate = function () {
         $.get("/Templates/AutoComplete/Driver/DriverRowAutoComplete.html", function (htmlTemplate) {
             driverTemplate = htmlTemplate;
@@ -14,6 +21,31 @@
 
     driverNamespace.LoadDriverTable = function () {
         $("#driverTable").jtable('load');
+    };
+
+    driverNamespace.SetupJTable = function (isAdmin) {
+        var jTableActions = {};
+        if (isAdmin) {
+            jTableActions = {
+                listAction: '/Driver/ListDrivers'
+            };
+        }
+        else {
+            jTableActions = {
+                listAction: '/Driver/ListDrivers',
+                deleteAction: '/Driver/DeleteDriver',
+                updateAction: '/Driver/UpdateDriver',
+                createAction: '/Driver/CreateDriver'
+            }
+        }
+
+        $("#driverTable").jtable({
+            title: 'Listado de Conductores',
+            paging: true,
+            pageSize: 10,
+            actions: jTableActions,
+            fields: jTableFieldOptions
+        });
     };
 
     driverNamespace.LoadTableHeadDetails = function (nameTable) {
@@ -85,20 +117,10 @@
                 createAction: '/Driver/CreateDriver'
             },
             fields: {
-                //Item: { title: 'Item', create: false, edit: false, width: '5%' },
                 Codigo: { key: true, title: 'Codigo', width: '5%' },
-                //CodigoTipoUnidad: { title: 'Tipo de Unidad', options: '/Driver/GetDriversUnitTypes' },
                 Placa: { title: 'Nombre y Apellidos' },
                 BirthDate: { title: 'Fecha de Nacimiento', type: 'date', displayFormat: 'dd/mm/yy' },
                 Address: { title: 'Dirección'}
-                //MarcaConcatenada: {
-                //    title: 'Codigo Marca',
-                //    options: '/Driver/GetDriverBrands'
-                //},
-                //EstadoConcatenado: {
-                //    title: 'Codigo Estado',
-                //    options: '/Driver/GetDriverStates'
-                //}
             }
         });
 
@@ -257,33 +279,34 @@
 
         driverNamespace.LoadDriverTable();
         driverNamespace.LoadDataForTablesYetLoaded();
-    });
 
-    $(".body-content").off("click", ".editdrivertablename").on("click", ".editdrivertablename", null, function (e) {
-        $("#changeDriverTableNameModal").modal("show");
-        $("#changeDriverTableNameModal").find("input[name='oldTableName']").val($(this).data("normalizedtablename"));
-    });
-
-    $(".body-content").off("click", "#changeTableName").on("click", "#changeTableName", null, function (e) {
-        $.post("/DriverDashboard/ChangeTableName", {
-            oldTableName: $("#changeDriverTableNameModal").find("input[name='oldTableName']").val(),
-            newTableName: $("#changeDriverTableNameModal").find("input[name='newTableName']").val()
-        }, function (data, textStatus, jqXHR) {
-            $(document).find("button[data-normalizedtablename='" + $("#changeDriverTableNameModal")
-               .find("input[name='oldTableName']").val() + "']").parent().find("p")
-               .text($("#changeDriverTableNameModal").find("input[name='newTableName']").val());
-            $("#changeDriverTableNameModal").modal("hide");
+        $(".body-content").off("click", ".editdrivertablename").on("click", ".editdrivertablename", null, function (e) {
+            $("#changeDriverTableNameModal").modal("show");
+            $("#changeDriverTableNameModal").find("input[name='oldTableName']").val($(this).data("normalizedtablename"));
         });
-    });
 
-    $(".body-content").off("click", ".removedrivertable").on("click", ".removedrivertable", null, function (e) {
-        var confirmationResult = confirm("Al eliminar la tabla, todos los datos serán eliminados.");
-        var tableNormalizedName = $(this).data("normalizedtablename");
-        if (confirmationResult) {
-            $.post("/DriverDashboard/RemoveTable", { tableName: tableNormalizedName }, function (data, textStatus, jqXHR) {
-                $("table[data-tablename='" + tableNormalizedName + "']").remove()
+        $(".body-content").off("click", "#changeTableName").on("click", "#changeTableName", null, function (e) {
+            $.post("/DriverDashboard/ChangeTableName", {
+                oldTableName: $("#changeDriverTableNameModal").find("input[name='oldTableName']").val(),
+                newTableName: $("#changeDriverTableNameModal").find("input[name='newTableName']").val()
+            }, function (data, textStatus, jqXHR) {
+                $(document).find("button[data-normalizedtablename='" + $("#changeDriverTableNameModal")
+                   .find("input[name='oldTableName']").val() + "']").parent().find("p")
+                   .text($("#changeDriverTableNameModal").find("input[name='newTableName']").val());
+                $("#changeDriverTableNameModal").modal("hide");
             });
-        }
+        });
+
+        $(".body-content").off("click", ".removedrivertable").on("click", ".removedrivertable", null, function (e) {
+            var confirmationResult = confirm("Al eliminar la tabla, todos los datos serán eliminados.");
+            var tableNormalizedName = $(this).data("normalizedtablename");
+            if (confirmationResult) {
+                $.post("/DriverDashboard/RemoveTable", { tableName: tableNormalizedName }, function (data, textStatus, jqXHR) {
+                    $("table[data-tablename='" + tableNormalizedName + "']").remove()
+                });
+            }
+        });
+
     });
 
 })(window.DriverNamespace = window.DriverNamespace || {}, jQuery);

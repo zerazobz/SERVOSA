@@ -2,6 +2,21 @@
 
     var vehicleTemplate = "";
 
+    var vehicleJTableFields = {
+        Item: { title: 'Item', create: false, edit: false, width: '5%' },
+        Codigo: { key: true, title: 'Codigo', width: '5%' },
+        CodigoTipoUnidad: { title: 'Tipo de Unidad', options: '/Vehicle/GetVehiclesUnitTypes' },
+        Placa: { title: 'Placa' },
+        MarcaConcatenada: {
+            title: 'Codigo Marca',
+            options: '/Vehicle/GetVehicleBrands'
+        },
+        EstadoConcatenado: {
+            title: 'Codigo Estado',
+            options: '/Vehicle/GetVehicleStates'
+        }
+    };
+
     vehicleNamespace.LoadVehicleAutoCompleteTemplate = function () {
         $.get("/Templates/AutoComplete/Vehicle/VehicleRowAutoComplete.html", function (htmlTemplate) {
             vehicleTemplate = htmlTemplate;
@@ -10,6 +25,31 @@
 
     vehicleNamespace.GetVehicleAutoCompleteTemplate = function () {
         return vehicleTemplate;
+    };
+
+    vehicleNamespace.SetupVehicleJTable = function (forAdmin) {
+        console.log("Is for admin: " + forAdmin);
+        var jtableActions = {};
+        if (forAdmin) {
+            jtableActions = {
+                listAction: '/Vehicle/ListVehicles'
+            };
+        }
+        else {
+            jtableActions = {
+                listAction: '/Vehicle/ListVehicles',
+                deleteAction: '/Vehicle/DeleteVehicle',
+                updateAction: '/Vehicle/UpdateVehicle',
+                createAction: '/Vehicle/CreateVehicle'
+            };
+        }
+        $("#vehicleTable").jtable({
+            title: 'Listado de Vehiculos',
+            paging: true,
+            pageSize: 10,
+            actions: jtableActions,
+            fields: vehicleJTableFields
+        });
     };
 
     vehicleNamespace.LoadVehicleTable = function () {
@@ -74,33 +114,33 @@
 
         vehicleNamespace.LoadVehicleAutoCompleteTemplate();
 
-        $("#vehicleTable").jtable({
-            title: 'Listado de Vehiculos',
-            paging: true,
-            pageSize: 10,
-            actions: {
-                listAction: '/Vehicle/ListVehicles',
-                deleteAction: '/Vehicle/DeleteVehicle',
-                updateAction: '/Vehicle/UpdateVehicle',
-                createAction: '/Vehicle/CreateVehicle'
-            },
-            fields: {
-                Item: { title: 'Item', create: false, edit: false, width: '5%' },
-                Codigo: { key: true, title: 'Codigo', width: '5%' },
-                CodigoTipoUnidad: { title: 'Tipo de Unidad', options: '/Vehicle/GetVehiclesUnitTypes' },
-                Placa: { title: 'Placa' },
-                //PlacaTracto: { title: 'Placa Tracto' },
-                //PlacaTolva: { title: 'Placa Tolva' },
-                MarcaConcatenada: {
-                    title: 'Codigo Marca',
-                    options: '/Vehicle/GetVehicleBrands'
-                },
-                EstadoConcatenado: {
-                    title: 'Codigo Estado',
-                    options: '/Vehicle/GetVehicleStates'
-                }
-            }
-        });
+        //$("#vehicleTable").jtable({
+        //    title: 'Listado de Vehiculos',
+        //    paging: true,
+        //    pageSize: 10,
+        //    actions: {
+        //        listAction: '/Vehicle/ListVehicles',
+        //        deleteAction: '/Vehicle/DeleteVehicle',
+        //        updateAction: '/Vehicle/UpdateVehicle',
+        //        createAction: '/Vehicle/CreateVehicle'
+        //    },
+        //    fields: {
+        //        Item: { title: 'Item', create: false, edit: false, width: '5%' },
+        //        Codigo: { key: true, title: 'Codigo', width: '5%' },
+        //        CodigoTipoUnidad: { title: 'Tipo de Unidad', options: '/Vehicle/GetVehiclesUnitTypes' },
+        //        Placa: { title: 'Placa' },
+        //        //PlacaTracto: { title: 'Placa Tracto' },
+        //        //PlacaTolva: { title: 'Placa Tolva' },
+        //        MarcaConcatenada: {
+        //            title: 'Codigo Marca',
+        //            options: '/Vehicle/GetVehicleBrands'
+        //        },
+        //        EstadoConcatenado: {
+        //            title: 'Codigo Estado',
+        //            options: '/Vehicle/GetVehicleStates'
+        //        }
+        //    }
+        //});
 
         $("#containerforalltables").on('load', ".containerdatatable>table", null, function (eventObject) {
             var tableName = $(this).data('tablename');

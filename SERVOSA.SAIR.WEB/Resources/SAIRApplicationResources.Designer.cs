@@ -22,7 +22,7 @@ namespace SERVOSA.SAIR.WEB.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class SAIRApplicationResources {
+    public class SAIRApplicationResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace SERVOSA.SAIR.WEB.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SERVOSA.SAIR.WEB.Resources.SAIRApplicationResources", typeof(SAIRApplicationResources).Assembly);
@@ -51,7 +51,7 @@ namespace SERVOSA.SAIR.WEB.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,18 @@ namespace SERVOSA.SAIR.WEB.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin.
+        /// </summary>
+        public static string AdminRole {
+            get {
+                return ResourceManager.GetString("AdminRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to cution.
         /// </summary>
-        internal static string AzureRemoteExecution {
+        public static string AzureRemoteExecution {
             get {
                 return ResourceManager.GetString("AzureRemoteExecution", resourceCulture);
             }
@@ -72,9 +81,18 @@ namespace SERVOSA.SAIR.WEB.Resources {
         /// <summary>
         ///   Looks up a localized string similar to OperationID.
         /// </summary>
-        internal static string OperationID {
+        public static string OperationID {
             get {
                 return ResourceManager.GetString("OperationID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UserForOperation.
+        /// </summary>
+        public static string UserForOperationRole {
+            get {
+                return ResourceManager.GetString("UserForOperationRole", resourceCulture);
             }
         }
     }

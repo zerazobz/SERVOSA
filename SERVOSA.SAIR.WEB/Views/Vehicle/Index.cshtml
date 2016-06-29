@@ -82,4 +82,7 @@
     <script src="~/Scripts/jtable/jquery.jtable.js" type="text/javascript"></script>
     <script src="~/Scripts/jtable/localization/jquery.jtable.es.js" type="text/javascript"></script>
     <script src="~/Scripts/ViewController/VehicleViewController.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.VehicleNamespace.SetupVehicleJTable(@Json.Encode(User.IsInRole(SAIRApplicationResources.AdminRole)));
+    </script>
 }

@@ -117,10 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdminRole" xml:space="preserve">
+    <value>Admin</value>
+  </data>
   <data name="AzureRemoteExecution" xml:space="preserve">
     <value>cution</value>
   </data>
   <data name="OperationID" xml:space="preserve">
     <value>OperationID</value>
+  </data>
+  <data name="UserForOperationRole" xml:space="preserve">
+    <value>UserForOperation</value>
   </data>
 </root>

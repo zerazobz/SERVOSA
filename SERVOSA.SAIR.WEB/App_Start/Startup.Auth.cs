@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using SERVOSA.SAIR.WEB.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SERVOSA.SAIR.WEB.Resources;
 
 namespace SERVOSA.SAIR.WEB
 {
@@ -81,7 +82,7 @@ namespace SERVOSA.SAIR.WEB
 
                 // first we create Admin rool   
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Admin";
+                role.Name = SAIRApplicationResources.AdminRole;
                 var roleAdminCreationResult = roleManager.Create(role);
 
                 //Here we create a Admin super user who will maintain the website
@@ -106,7 +107,7 @@ namespace SERVOSA.SAIR.WEB
             if (!roleManager.RoleExists("UserForOperation"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "UserForOperation";
+                role.Name = SAIRApplicationResources.UserForOperationRole;
                 var roleCreationResult = roleManager.Create(role);
             }
 
