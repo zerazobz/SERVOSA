@@ -571,6 +571,12 @@
     <Content Include="Templates\Notifications\NotificationSuccess.html" />
     <Content Include="Templates\Notifications\NotificationWarning.html" />
     <Content Include="Templates\VehicleTableTemplate.html" />
+    <Content Include="Views\OldDriverData\OldData.cshtml" />
+    <Content Include="Views\OldDriver\OldDriverDataTable.cshtml" />
+    <Content Include="Views\OldDriver\OldDriversMainData.cshtml" />
+    <Content Include="Views\OldDriver\OldDriversTable.cshtml" />
+    <Content Include="Views\OldDriver\OldIndex.cshtml" />
+    <Content Include="Views\OldDriver\Operarios.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -613,14 +619,8 @@
     <Content Include="Views\VehicleData\Data.cshtml" />
     <Content Include="Views\VehicleData\CabeceraVehiculo.cshtml" />
     <Content Include="Views\VehicleData\DatosVariableVehiculo.cshtml" />
-    <Content Include="Views\OldDriver\OldIndex.cshtml" />
-    <Content Include="Views\OldDriver\Operarios.cshtml" />
     <Content Include="Views\VehicleData\GetFileModalManager.cshtml" />
     <Content Include="Views\Vehicle\VehicleDataTable.cshtml" />
-    <Content Include="Views\OldDriver\OldDriversMainData.cshtml" />
-    <Content Include="Views\OldDriver\OldDriversTable.cshtml" />
-    <Content Include="Views\OldDriver\OldDriverDataTable.cshtml" />
-    <Content Include="Views\OldDriverData\OldData.cshtml" />
     <Content Include="Views\DriverDashboard\DriverDataTable.cshtml" />
     <Content Include="Views\DriverDashboard\DriverTable.cshtml" />
     <Content Include="Views\DriverDashboard\Index.cshtml" />
