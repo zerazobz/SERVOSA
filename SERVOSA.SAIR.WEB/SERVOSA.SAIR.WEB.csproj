@@ -229,6 +229,7 @@
     <Compile Include="Controllers\LoadFileController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OperationsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VariableTasksController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Controllers\VehicleDataController.cs" />
@@ -289,6 +290,9 @@
     <Compile Include="T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="VariableTasksController.generated.cs">
@@ -532,6 +536,7 @@
     <Content Include="Scripts\ViewController\Driver\OldDriverViewController.js" />
     <Content Include="Scripts\ViewController\Operations\OperationViewController.js" />
     <Content Include="Scripts\ViewController\SERVOSAViewController.js" />
+    <Content Include="Scripts\ViewController\Users\UsersViewController.js" />
     <Content Include="Scripts\ViewController\VehicleDataViewController.js" />
     <Content Include="Scripts\ViewController\VehicleUploadViewController.js" />
     <Content Include="Scripts\ViewController\VehicleViewController.js" />
@@ -642,6 +647,7 @@
     <Content Include="Views\Operations\Choose.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Shared\_SharedFooter.cshtml" />
+    <Content Include="Views\Users\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

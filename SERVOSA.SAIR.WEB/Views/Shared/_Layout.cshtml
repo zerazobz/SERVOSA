@@ -36,6 +36,7 @@
                 <ul class="nav navbar-nav nav-pills">
                     @{ Html.RenderPartial(MVC.Shared.Views._Menu); }
                     <li>@Html.ActionLink("Operaciones", MVC.Operations.Choose())</li>
+                    <li>@Html.ActionLink("Usuarios", MVC.Users.Manage())</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

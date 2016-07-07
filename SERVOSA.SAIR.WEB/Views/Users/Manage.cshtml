@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Administrar Usuarios";
+}
+
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Scripts/jtable/themes/jqueryui/jtable_jqueryui.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-md-12">
+        <p class="well text-info">
+            Cambie el nombre de usurio, contraseña, de baja a los usuarios existentes.
+        </p>
+    </div>
+    <div class="row"></div>
+    <div class="row">
+        <div id="userManagementTable">
+
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery-ui-1.9.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.ui.datepicker-es.js" type="text/javascript"></script>
+    <script src="~/Scripts/handlebars-latest.js" type="text/javascript"></script>
+    <script src="~/Scripts/jtable/jquery.jtable.js" type="text/javascript"></script>
+    <script src="~/Scripts/jtable/localization/jquery.jtable.es.js" type="text/javascript"></script>
+    <script src="~/Scripts/ViewController/Users/UsersViewController.js" type="text/javascript"></script>
+}

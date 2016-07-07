@@ -88,7 +88,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 if(resultExecution)
                     return Json(new { Result = "OK", Record = model });
                 else
-                    return Json(new { Result = "ERROR", Record = model });
+                    return Json(new { Result = "ERROR", Message = "No se pudo crear correctamente la Operación" });
             }
             catch (Exception ex)
             {
