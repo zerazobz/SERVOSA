@@ -5,6 +5,12 @@
         $(tableIdForUserManagement).jtable('load');
     };
 
+    usersManagementVC.CleanModalUpdatePassword = function () {
+        $("confirmationNewPassword").val("");
+        $("newPassword").val("");
+        $("currentPassword").val("");
+    };
+
     $(function () {
         $(tableIdForUserManagement).jtable({
             title: 'Listado de Conductores',
@@ -45,11 +51,60 @@
                     list: false,
                     edit: true,
                     type: 'hidden'
+                },
+                ChangeUserPasword: {
+                    title: 'Cambiar Contraseña',
+                    edit: false,
+                    display: function (data) {
+                        return '<button type="button" data-userid=' + data.record.Id + ' class="btn btn-default changepassword" >Cambiar Contraseña</button>';
+                    }
                 }
             }
         });
 
+        $(".body-content").off("click", ".changepassword").on("click", ".changepassword", null, function (data) {
+            var userid = $(this).data("userid");
+
+            $("#changeUserPasswordModal").find("#changeUserPasswordAction").data("userid", userid);
+
+            $("#changeUserPasswordModal").modal("show");
+        });
+
+        $(".body-content").off("click", "#changeUserPasswordAction").on("click", "#changeUserPasswordAction", null, function (data) {
+            var userId = $(this).data("userid");
+            var currentPassword = $("#changeUserPasswordModal #currentPassword").val();
+            var newPassword = $("#changeUserPasswordModal #newPassword").val();
+            $.post("/Users/UpdateUserPassword", {
+                userId: userId,
+                currentPassword: currentPassword,
+                newPassword: newPassword
+            }, function (dataResult) {
+                if (dataResult.Result == "OK") {
+                    $(".messagePanel").SERVOSASuccessNotification("Se actualizo correctamente la contraseña.");
+                    //$("#changeUserPasswordModal").modal("hide");
+                }
+                else {
+                    $(".messagePanel").SERVOSAErrorNotification(dataResult.Message);
+                }
+                usersManagementVC.CleanModalUpdatePassword();
+            });
+        });
+
         usersManagementVC.LoadTableUsers();
     });
+
+    function validatePassword() {
+        var pass2 = document.getElementById("confirmationNewPassword").value;
+        var pass1 = document.getElementById("newPassword").value;
+        if (pass1 != pass2)
+            document.getElementById("confirmationNewPassword").setCustomValidity("Las contraseñas no coinciden.");
+        else
+            document.getElementById("confirmationNewPassword").setCustomValidity('');
+    }
+
+    window.onload = function () {
+        document.getElementById("newPassword").onchange = validatePassword;
+        document.getElementById("confirmationNewPassword").onchange = validatePassword;
+    };
 
 })(window.UsersManagement = window.UsersManagement || {}, jQuery);
