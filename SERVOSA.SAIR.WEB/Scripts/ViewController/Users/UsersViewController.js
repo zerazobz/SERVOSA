@@ -72,22 +72,25 @@
 
         $(".body-content").off("click", "#changeUserPasswordAction").on("click", "#changeUserPasswordAction", null, function (data) {
             var userId = $(this).data("userid");
-            var currentPassword = $("#changeUserPasswordModal #currentPassword").val();
             var newPassword = $("#changeUserPasswordModal #newPassword").val();
-            $.post("/Users/UpdateUserPassword", {
-                userId: userId,
-                currentPassword: currentPassword,
-                newPassword: newPassword
-            }, function (dataResult) {
-                if (dataResult.Result == "OK") {
-                    $(".messagePanel").SERVOSASuccessNotification("Se actualizo correctamente la contraseña.");
-                    //$("#changeUserPasswordModal").modal("hide");
-                }
-                else {
-                    $(".messagePanel").SERVOSAErrorNotification(dataResult.Message);
-                }
-                usersManagementVC.CleanModalUpdatePassword();
-            });
+            var passwordValidity = document.getElementById("confirmationNewPassword").checkValidity();
+            if (passwordValidity) {
+                $.post("/Users/UpdateUserPassword", {
+                    userId: userId,
+                    newPassword: newPassword
+                }, function (dataResult) {
+                    if (dataResult.Result == "OK") {
+                        $(".messagePanel").SERVOSASuccessNotification("Se actualizo correctamente la contraseña.");
+                        //$("#changeUserPasswordModal").modal("hide");
+                    }
+                    else {
+                        $(".messagePanel").SERVOSAErrorNotification(dataResult.Message);
+                    }
+                    usersManagementVC.CleanModalUpdatePassword();
+                });
+            }
+            else
+                document.getElementById("confirmationNewPassword").reportValidity();
         });
 
         usersManagementVC.LoadTableUsers();
@@ -100,6 +103,7 @@
             document.getElementById("confirmationNewPassword").setCustomValidity("Las contraseñas no coinciden.");
         else
             document.getElementById("confirmationNewPassword").setCustomValidity('');
+        document.getElementById("confirmationNewPassword").reportValidity();
     }
 
     window.onload = function () {

@@ -34,23 +34,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-offset-3 col-md-6">
+                    <div class="col-md-offset-2 col-md-8">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label for="currentPassword">Contraseña Actual</label>
+                                        <label for="newPassword">Nueva Contraseña</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <input id="currentPassword" name="currentPassword" type="password" value="" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="newPassword">Nueva Actual</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input id="newPassword" name="newPassword" type="password" value="" />
+                                        <input id="newPassword" class="form-control" name="newPassword" type="password" value="" pattern=".{6,0}" required title="La cantidad mínima de carácteres es 6." />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -58,7 +50,7 @@
                                         <label for="confirmationNewPassword">Confirme Nueva Contraseña</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <input id="confirmationNewPassword" name="confirmationNewPassword" type="password" value="" />
+                                        <input id="confirmationNewPassword" class="form-control" name="confirmationNewPassword" type="password" value="" />
                                     </div>
                                 </div>
                             </div>

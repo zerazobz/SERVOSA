@@ -66,6 +66,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.UpdateUser);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.JsonResult);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.JsonResult> UpdateUserPassword()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.UpdateUserPassword);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.JsonResult);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public UsersController Actions { get { return MVC.Users; } }
@@ -85,6 +92,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public readonly string Manage = "Manage";
             public readonly string ListAllUsers = "ListAllUsers";
             public readonly string UpdateUser = "UpdateUser";
+            public readonly string UpdateUserPassword = "UpdateUserPassword";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -93,6 +101,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             public const string Manage = "Manage";
             public const string ListAllUsers = "ListAllUsers";
             public const string UpdateUser = "UpdateUser";
+            public const string UpdateUserPassword = "UpdateUserPassword";
         }
 
 
@@ -103,6 +112,15 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public class ActionParamsClass_UpdateUser
         {
             public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_UpdateUserPassword s_params_UpdateUserPassword = new ActionParamsClass_UpdateUserPassword();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UpdateUserPassword UpdateUserPasswordParams { get { return s_params_UpdateUserPassword; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UpdateUserPassword
+        {
+            public readonly string userId = "userId";
+            public readonly string newPassword = "newPassword";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -156,6 +174,19 @@ namespace SERVOSA.SAIR.WEB.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.UpdateUser);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             UpdateUserOverride(callInfo, model);
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.JsonResult);
+        }
+
+        [NonAction]
+        partial void UpdateUserPasswordOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string userId, string newPassword);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.JsonResult> UpdateUserPassword(string userId, string newPassword)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.UpdateUserPassword);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "userId", userId);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "newPassword", newPassword);
+            UpdateUserPasswordOverride(callInfo, userId, newPassword);
             return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.JsonResult);
         }
 

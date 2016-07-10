@@ -114,6 +114,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             var operationRowMapper = MapBuilder<OperationDbModel>.MapNoProperties()
                 .MapByName(prop => prop.OperationId).MapByName(prop => prop.OperationName)
                 .MapByName(prop => prop.DataBaseId).MapByName(prop => prop.DataBaseName)
+                .MapByName(prop => prop.UserName)
                 .Build();
             var listOperations = _servosaDB.ExecuteSprocAccessor("SAIR_LISTOPERATIONS", operationRowMapper, listOperationParameters);
             return listOperations.ToList();

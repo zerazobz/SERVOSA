@@ -12,5 +12,6 @@ namespace SERVOSA.SAIR.DATAACCESS.Models.Operations
         public string OperationName { get; set; }
         public int DataBaseId { get; set; }
         public string DataBaseName { get; set; }
+        public string UserName { get; set; }
     }
 }

@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity.Owin;
 using SERVOSA.SAIR.WEB.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
+using System.Data;
+using System.Transactions;
 
 namespace SERVOSA.SAIR.WEB.Controllers
 {
@@ -40,11 +42,20 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             try
             {
-                var updateResult = await UserManager.UpdateAsync(model);
-                if (updateResult.Succeeded)
-                    return Json(new { Result = "OK" });
+                var userModel = await UserManager.FindByIdAsync(model.Id);
+                if (userModel != null)
+                {
+                    userModel.UserName = model.UserName;
+                    userModel.Email = model.Email;
+
+                    var updateResult = await UserManager.UpdateAsync(userModel);
+                    if (updateResult.Succeeded)
+                        return Json(new { Result = "OK" });
+                    else
+                        return Json(new { Result = "ERROR" });
+                }
                 else
-                    return Json(new { Result = "ERROR" });
+                    return Json(new { Result = "ERROR", Message = "Problema de incoherencia de datos, reporte el nombre de usuario." });
             }
             catch (Exception ex)
             {
@@ -54,43 +65,64 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
 
         [HttpPost]
-        public async Task<JsonResult> UpdateUserPassword(string userId, string currentPassword, string newPassword)
+        public virtual async Task<JsonResult> UpdateUserPassword(string userId, string newPassword)
         {
-            try
+            using (var dbContext = HttpContext.GetOwinContext().Get<ApplicationDbContext>())
             {
-                var userModel = UserManager.Users.Where(u => u.Id == userId).FirstOrDefault();
-                var passwordHashVerification = UserManager.PasswordHasher.VerifyHashedPassword(userModel.PasswordHash, currentPassword);
-                bool passwordVerificationResult = false;
-
-                switch (passwordHashVerification)
+                using (TransactionScope transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                 {
-                    case PasswordVerificationResult.Failed:
-                        passwordVerificationResult = false;
-                        break;
-                    case PasswordVerificationResult.Success:
-                        passwordVerificationResult = true;
-                        break;
-                    case PasswordVerificationResult.SuccessRehashNeeded:
-                        passwordVerificationResult = true;
-                        break;
-                    default:
-                        passwordVerificationResult = false;
-                        break;
+                    try
+                    {
+                        var userModel = UserManager.Users.Where(u => u.Id == userId).FirstOrDefault();
+                        var removePasswordResult = await UserManager.RemovePasswordAsync(userId);
+                        if (!removePasswordResult.Succeeded)
+                        {
+
+                            return Json(new { Result = "ERROR", Message = "No se pudo completar con el cambio de contraseña." });
+                        }
+
+                        var updatePasswordResult = await UserManager.AddPasswordAsync(userId, newPassword);
+                        if (updatePasswordResult.Succeeded)
+                        {
+                            transactionScope.Complete();
+                            return Json(new { Result = "OK" });
+                        }
+                        else
+                        {
+                            transactionScope.Dispose();
+                            return Json(new { Result = "ERROR", Message = "No se pudo actualizar la contraseña del Usuario" });
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        transactionScope.Dispose();
+                        return Json(new { Result = "ERROR", Message = ex.Message });
+                    }
                 }
-
-                if (!passwordVerificationResult)
-                    return Json(new { Result = "ERROR", Message = "La contraseña actual especificada es invalida." });
-
-                var updatePasswordResult = await UserManager.ChangePasswordAsync(userId, currentPassword, newPassword);
-                if(updatePasswordResult.Succeeded)
-                    return Json(new { Result = "OK" });
-                else
-                    return Json(new { Result = "ERROR", Message = "No se pudo actualizar la contraseña del Usuario" });
             }
-            catch (Exception ex)
-            {
-                return Json(new { Result = "ERROR", Message = ex.Message });
-            }
+
+            //try
+            //{
+            //    var userModel = UserManager.Users.Where(u => u.Id == userId).FirstOrDefault();
+            //    var removePasswordResult = await UserManager.RemovePasswordAsync(userId);
+            //    if(!removePasswordResult.Succeeded)
+            //    {
+
+            //        return Json(new { Result = "ERROR", Message = "No se pudo completar con el cambio de contraseña." });
+            //    }
+
+            //    var updatePasswordResult = await UserManager.AddPasswordAsync(userId, newPassword);
+            //    if(updatePasswordResult.Succeeded)
+            //        return Json(new { Result = "OK" });
+            //    else
+            //    {
+            //        return Json(new { Result = "ERROR", Message = "No se pudo actualizar la contraseña del Usuario" });
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return Json(new { Result = "ERROR", Message = ex.Message });
+            //}
         }
 
         public ApplicationUserManager UserManager

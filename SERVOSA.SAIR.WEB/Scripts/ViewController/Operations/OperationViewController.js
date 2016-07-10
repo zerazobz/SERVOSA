@@ -11,12 +11,9 @@
             OperationId: { key: true, list: false },
             OperationName: { title: 'Operacion' },
             DataBaseName: { title: 'Base de Datos', list: false, create: false },
-            Usuario: {
+            UserName: {
                 title: 'Usuario',
-                create: false,
-                display: function (data) {
-                    return '<p> ' + data.record.DataBaseName + '_user</p>'
-                }
+                create: false
             },
             Cambiar: {
                 title: 'Ver Operación',
