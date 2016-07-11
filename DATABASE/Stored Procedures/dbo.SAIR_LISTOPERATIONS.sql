@@ -1,3 +1,4 @@
+
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
@@ -5,10 +6,10 @@ GO
 CREATE PROCEDURE [dbo].[SAIR_LISTOPERATIONS]
 AS
 BEGIN
-	--SELECT name AS OperationName, database_id AS OperationId FROM sys.databases
-	--WHERE name LIKE 'SAIR%'
-	SELECT OPER_Id AS OperationId, OPER_Name AS OperationName, OPER_DBName AS DataBaseName, OPER_DBId AS DataBaseId
-	FROM dbo.SAIR_OPERATIONS
+	SELECT OPERAT.OPER_Id AS OperationId, OPERAT.OPER_Name AS OperationName, OPERAT.OPER_DBName AS DataBaseName, OPERAT.OPER_DBId AS DataBaseId
+	, USERS.UserName AS UserName
+	FROM dbo.SAIR_OPERATIONS OPERAT
+	LEFT JOIN dbo.AspNetUsers USERS
+	ON OPERAT.OPER_Id = USERS.OperationId
 END
-
 GO

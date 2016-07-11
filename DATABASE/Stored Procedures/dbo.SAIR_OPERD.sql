@@ -1,7 +1,9 @@
+
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
+
 CREATE PROCEDURE [dbo].[SAIR_OPERD]
 	@OPER_Id INT,
 	@OPER_DBName NVARCHAR(80)
@@ -20,10 +22,11 @@ BEGIN
 
 	--IF @@TRANCOUNT > 0
 	--BEGIN
-		DECLARE @SQL varchar(max)
+		DECLARE @SQL NVARCHAR(max)
 		SELECT @SQL = COALESCE(@SQL,'') + 'Kill ' + Convert(varchar, SPId) + ';'
 		FROM MASTER..SysProcesses
 		WHERE DBId = DB_ID(@OPER_DBName) AND SPId <> @@SPId
+		EXECUTE sp_executesql @SQL;
 
 		DECLARE @deleteSQL NVARCHAR(MAX) = 'DROP DATABASE ' + @OPER_DBName + ';';
 		EXECUTE sp_executesql @deleteSQL;
