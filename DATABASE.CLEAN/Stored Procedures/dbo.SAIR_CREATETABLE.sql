@@ -1,8 +1,8 @@
+
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
-
 CREATE PROCEDURE [dbo].[SAIR_CREATETABLE]
 (
     @newTableName NVARCHAR(200),
@@ -25,10 +25,23 @@ BEGIN
 
     PRINT 'EL antiguo nombre es: ' + @newTableName
 
+	EXEC sys.sp_addextendedproperty 
+	@name = N'MS_Description', 
+	@value = 'FechaVencimiento', 
+	@level0type = N'SCHEMA', @level0name = 'vehicleconst', 
+	@level1type = N'TABLE',  @level1name = @tableNormalizedName,
+	@level2type = N'COLUMN',  @level2name = 'FechaVencimiento';
+
     EXEC sys.sp_addextendedproperty 
     @name = N'MS_Description', 
     @value = @newTableName, 
     @level0type = N'SCHEMA', @level0name = 'vehiclevars', 
+    @level1type = N'TABLE',  @level1name = @tableNormalizedName;
+
+    EXEC sys.sp_addextendedproperty 
+    @name = N'MS_Description', 
+    @value = @newTableName, 
+    @level0type = N'SCHEMA', @level0name = 'vehicleconst', 
     @level1type = N'TABLE',  @level1name = @tableNormalizedName;
 
     declare @foreignKeyVehicleVarsSQL NVARCHAR(MAX)
@@ -61,5 +74,4 @@ BEGIN
     SET @objectId = OBJECT_ID('vehiclevars.' + @tableNormalizedName)
     PRINT 'El objecto ID de : ' + @tableNormalizedName + ' es: ' + CAST(@objectId as NVARCHAR(100))
 END
-
 GO

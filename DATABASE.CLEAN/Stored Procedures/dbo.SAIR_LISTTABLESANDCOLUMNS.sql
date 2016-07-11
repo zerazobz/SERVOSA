@@ -1,3 +1,4 @@
+
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
@@ -19,6 +20,7 @@ BEGIN
 	ON COl.object_id = EPC.major_id AND col.column_id = EPC.minor_id
 	LEFT JOIN sys.types TYP
 	ON TYP.system_type_id = COL.system_type_id AND TYP.user_type_id = COL.user_type_id
-	WHERE SCH.name = @schemaName;
+	WHERE SCH.name IN ('vehicleconst', 'vehiclevars') AND
+	NOT(SCH.name = 'vehicleconst' AND COL.name IN('cid', 'CSAIR_VEHIID', 'DiasAlerta', 'RutaDocumento'));
 END
 GO
