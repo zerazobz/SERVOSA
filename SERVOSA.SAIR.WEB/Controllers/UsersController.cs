@@ -63,7 +63,6 @@ namespace SERVOSA.SAIR.WEB.Controllers
             }
         }
 
-
         [HttpPost]
         public virtual async Task<JsonResult> UpdateUserPassword(string userId, string newPassword)
         {

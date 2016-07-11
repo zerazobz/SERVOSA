@@ -79,7 +79,8 @@
                 }
 
                 var constantVehicleColumns = SERVOSACORE.GetConstantVehicleColumns();
-                for (i = 2; i < element.DataForRow.length - 3; i++) {
+                //for (i = 2; i < element.DataForRow.length - 3; i++) {
+                for (i = 2; i < element.DataForRow.length; i++) {
                     if (constantVehicleColumns.indexOf(element.DataForRow[i].ColumnName) == -1) {
                         var column = $("<td>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
                         columnList += column;
