@@ -10,6 +10,9 @@ CREATE TABLE [dbo].[SAIR_VEHICLE]
 [VEHI_VehiclePlate] [nvarchar] (80) COLLATE Modern_Spanish_CI_AS NULL
 ) ON [PRIMARY]
 GO
+EXEC sp_addextendedproperty N'MS_Description', 'Placa de Vehiculo', 'SCHEMA', N'dbo', 'TABLE', N'SAIR_VEHICLE', 'COLUMN', N'VEHI_VehiclePlate'
+GO
+
 ALTER TABLE [dbo].[SAIR_VEHICLE] ADD CONSTRAINT [VEHI_CK_UnitType] CHECK (([VEHI_UnitType]='S' OR [VEHI_UnitType]='R'))
 GO
 ALTER TABLE [dbo].[SAIR_VEHICLE] ADD CONSTRAINT [SAIR_VEHIPK] PRIMARY KEY CLUSTERED  ([Codigo]) ON [PRIMARY]

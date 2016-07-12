@@ -1,3 +1,4 @@
+
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
@@ -8,14 +9,15 @@ AS
 BEGIN
     DECLARE @selectSQL NVARCHAR(MAX);
     SET @selectSQL = 'SELECT VTBL.*
-           , VEHI.VEHI_VehiclePlate, CASE WHEN VEHI.VEHI_UnitType = ''R'' THEN
+           , VEHI.VEHI_VehiclePlate [Placa Vehiculo], CASE WHEN VEHI.VEHI_UnitType = ''R'' THEN
                 ''Remolque''
             WHEN VEHI.VEHI_UnitType = ''S'' THEN
                 ''Semi-Remolque''
             ELSE
                 NULL
-            END VEHI_DescriptionUnitType,
-            CASE WHEN DATEDIFF(dd, CTBL.FechaVencimiento, GETDATE()) > CTBL.DiasAlerta THEN
+            END [Tipo de Unidad]
+			, CTBL.FechaVencimiento
+			, CASE WHEN DATEDIFF(dd, CTBL.FechaVencimiento, GETDATE()) > CTBL.DiasAlerta THEN
                 ''GREEN''
             WHEN DATEDIFF(dd, CTBL.FechaVencimiento, GETDATE()) < CTBL.DiasAlerta THEN
                 ''RED''

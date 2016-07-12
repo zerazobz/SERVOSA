@@ -1,8 +1,8 @@
+
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
-
 CREATE PROCEDURE [dbo].[SAIR_DatosVariableDriver]
     @variableName NVARCHAR(80)
 AS
@@ -15,8 +15,9 @@ BEGIN
                 ''Semi-Remolque''
             ELSE
                 NULL
-            END VEHI_DescriptionUnitType,
-            CASE WHEN DATEDIFF(dd, CTBL.FechaVencimiento, GETDATE()) > CTBL.DiasAlerta THEN
+            END VEHI_DescriptionUnitType
+            , CTBL.FechaVencimiento
+            , CASE WHEN DATEDIFF(dd, CTBL.FechaVencimiento, GETDATE()) > CTBL.DiasAlerta THEN
                 ''GREEN''
             WHEN DATEDIFF(dd, CTBL.FechaVencimiento, GETDATE()) < CTBL.DiasAlerta THEN
                 ''RED''
@@ -31,6 +32,4 @@ BEGIN
     PRINT @selectSQL
     EXECUTE sp_executesql @selectSQL
 END
-
-
 GO

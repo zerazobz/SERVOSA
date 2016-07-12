@@ -25,13 +25,6 @@ BEGIN
 
     PRINT 'EL antiguo nombre es: ' + @newTableName
 
-	EXEC sys.sp_addextendedproperty 
-	@name = N'MS_Description', 
-	@value = 'FechaVencimiento', 
-	@level0type = N'SCHEMA', @level0name = 'vehicleconst', 
-	@level1type = N'TABLE',  @level1name = @tableNormalizedName,
-	@level2type = N'COLUMN',  @level2name = 'FechaVencimiento';
-
     EXEC sys.sp_addextendedproperty 
     @name = N'MS_Description', 
     @value = @newTableName, 
@@ -43,6 +36,13 @@ BEGIN
     @value = @newTableName, 
     @level0type = N'SCHEMA', @level0name = 'vehicleconst', 
     @level1type = N'TABLE',  @level1name = @tableNormalizedName;
+
+    EXEC sys.sp_addextendedproperty 
+    @name = N'MS_Description', 
+    @value = 'FechaVencimiento', 
+    @level0type = N'SCHEMA', @level0name = 'vehicleconst', 
+    @level1type = N'TABLE',  @level1name = @tableNormalizedName,
+    @level2type = N'COLUMN',  @level2name = 'FechaVencimiento';
 
     declare @foreignKeyVehicleVarsSQL NVARCHAR(MAX)
     declare @foreignKeyVehicleConstSQL NVARCHAR(MAX)
