@@ -32,6 +32,7 @@ public static partial class MVC
     public static SERVOSA.SAIR.WEB.Controllers.DriverDashboardController DriverDashboard = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverDashboardController();
     public static SERVOSA.SAIR.WEB.Controllers.DriverDataController DriverData = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverDataController();
     public static SERVOSA.SAIR.WEB.Controllers.DriverVariableTasksController DriverVariableTasks = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverVariableTasksController();
+    public static SERVOSA.SAIR.WEB.Controllers.EmailController Email = new SERVOSA.SAIR.WEB.Controllers.T4MVC_EmailController();
     public static SERVOSA.SAIR.WEB.Controllers.HomeController Home = new SERVOSA.SAIR.WEB.Controllers.T4MVC_HomeController();
     public static SERVOSA.SAIR.WEB.Controllers.LoadFileController LoadFile = new SERVOSA.SAIR.WEB.Controllers.T4MVC_LoadFileController();
     public static SERVOSA.SAIR.WEB.Controllers.ManageController Manage = new SERVOSA.SAIR.WEB.Controllers.T4MVC_ManageController();
@@ -469,6 +470,14 @@ namespace Links
             public static readonly string DriverSERVOSAViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverSERVOSAViewController.min.js") ? Url("DriverSERVOSAViewController.min.js") : Url("DriverSERVOSAViewController.js");
             public static readonly string DriverUploadViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverUploadViewController.min.js") ? Url("DriverUploadViewController.min.js") : Url("DriverUploadViewController.js");
             public static readonly string DriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverViewController.min.js") ? Url("DriverViewController.min.js") : Url("DriverViewController.js");
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Email {
+                private const string URLPATH = "~/Scripts/ViewController/Email";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string EmailViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/EmailViewController.min.js") ? Url("EmailViewController.min.js") : Url("EmailViewController.js");
+            }
+        
             public static readonly string OldDriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/OldDriverViewController.min.js") ? Url("OldDriverViewController.min.js") : Url("OldDriverViewController.js");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class Operations {
@@ -844,6 +853,13 @@ namespace Links
                         public const string OldDriverDataViewController_js = "~/Scripts/ViewController/Driver/OldDriverDataViewController.js"; 
                         public const string OldDriverUploadViewController_js = "~/Scripts/ViewController/Driver/OldDriverUploadViewController.js"; 
                         public const string OldDriverViewController_js = "~/Scripts/ViewController/Driver/OldDriverViewController.js"; 
+                    }
+                }
+                public static partial class Email 
+                {
+                    public static class Assets
+                    {
+                        public const string EmailViewController_js = "~/Scripts/ViewController/Email/EmailViewController.js"; 
                     }
                 }
                 public static partial class Operations 

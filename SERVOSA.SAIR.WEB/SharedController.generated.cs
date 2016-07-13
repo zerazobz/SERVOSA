@@ -57,6 +57,21 @@ namespace T4MVC
             public readonly string _SharedFooter = "~/Views/Shared/_SharedFooter.cshtml";
             public readonly string Error = "~/Views/Shared/Error.cshtml";
             public readonly string Lockout = "~/Views/Shared/Lockout.cshtml";
+            static readonly _ConstantsClass s_Constants = new _ConstantsClass();
+            public _ConstantsClass Constants { get { return s_Constants; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public partial class _ConstantsClass
+            {
+                static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+                public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+                public class _ViewNamesClass
+                {
+                    public readonly string _ConstansDrivers = "_ConstansDrivers";
+                    public readonly string _ConstansVehicles = "_ConstansVehicles";
+                }
+                public readonly string _ConstansDrivers = "~/Views/Shared/Constants/_ConstansDrivers.cshtml";
+                public readonly string _ConstansVehicles = "~/Views/Shared/Constants/_ConstansVehicles.cshtml";
+            }
         }
     }
 

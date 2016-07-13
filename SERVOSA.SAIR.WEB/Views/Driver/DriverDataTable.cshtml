@@ -18,12 +18,12 @@
                 </th>
             </tr>
             <tr>
-                <th>
+                <th data-tablename="Tareas">
                     Tareas
                 </th>
                 @foreach (var iColumn in Model.Columns)
                 {
-                    <th>@iColumn.ColumnName</th>
+                    <th data-tablename="@iColumn.ColumnNormalizedName">@iColumn.ColumnName</th>
                 }
             </tr>
         </thead>

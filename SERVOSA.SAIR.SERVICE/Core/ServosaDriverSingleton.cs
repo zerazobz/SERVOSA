@@ -40,7 +40,15 @@ namespace SERVOSA.SAIR.SERVICE.Core
         {
             get
             {
-                return new List<string> { ConstantIdentity, ConstantVehicleId, ConstantDayToAlert, "RutaDocumento", ConstantExpirationDate };
+                return new List<string> { ConstantIdentity, ConstantVehicleId, ConstantDayToAlert, "RutaDocumento", FechaVencimientoConst };
+            }
+        }
+
+        public List<string> NotAllowedConstantColumns
+        {
+            get
+            {
+                return new List<string> { ConstantIdentity, ConstantVehicleId, ConstantDayToAlert, "RutaDocumento" };
             }
         }
 
@@ -100,7 +108,7 @@ namespace SERVOSA.SAIR.SERVICE.Core
             }
         }
 
-        public string ConstantExpirationDate
+        public string FechaVencimientoConst
         {
             get
             {

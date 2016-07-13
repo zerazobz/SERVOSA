@@ -64,16 +64,17 @@
                 //console.log('Identity Value: ' + identityValue + '.');
                 var columnList = '';
                 if (identityValue == '') {
-                    columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-driverid='" + element.DriverId + "' data-tablename='" + element.TableName + "' ></span></td>";
+                    columnList = "<td data-tablename='Tareas'><span class='glyphicon glyphicon-edit createUpdateData' data-driverid='" + element.DriverId + "' data-tablename='" + element.TableName + "' ></span></td>";
                 }
                 else {
-                    columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-driverid='" + element.DriverId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file insertRemoveFile' data-driverid='" + element.DriverId + "' data-tablename='" + element.TableName + "'></span></td>";
+                    columnList = "<td data-tablename='Tareas'><span class='glyphicon glyphicon-edit createUpdateData' data-driverid='" + element.DriverId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file insertRemoveFile' data-driverid='" + element.DriverId + "' data-tablename='" + element.TableName + "'></span></td>";
                 }
 
-                var constantDriverColumns = DRIVERSERVOSACORE.GetConstantDriverColumns();
-                for (i = 2; i < element.DataForRow.length - 3; i++) {
-                    if (constantDriverColumns.indexOf(element.DataForRow[i].ColumnName) == -1) {
-                        var column = $("<td>").attr("data-drivercode", element.DriverId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
+                var constantNotAllowedDriverColumns = DRIVERSERVOSACORE.GetNotAllowedConstantColumn();
+                //for (i = 2; i < element.DataForRow.length - 3; i++) {
+                for (i = 2; i < element.DataForRow.length; i++) {
+                    if (constantNotAllowedDriverColumns.indexOf(element.DataForRow[i].ColumnName) == -1 && element.DataForRow[i].ColumnName !== "") {
+                        var column = $("<td>").attr("data-drivercode", element.DriverId).attr("data-tablename", element.TableName).attr("data-columnname", element.DataForRow[i].ColumnName).text(element.DataForRow[i].Value).prop("outerHTML");
                         columnList += column;
                     }
                 }
@@ -213,8 +214,13 @@
                         var columnNormalizedName = $("#createColumnModal ").find("input[name='ColumnNormalizedName']").val();
 
                         var $currentTable = $("table[data-tablename = '" + tableName + "']");
-                        $currentTable.find("thead tr:eq(1)").append("<th>" + columnNormalizedName + "</th>");
-                        $currentTable.find("tr:gt(1)").append("<td></td>");
+                        var totalHeadColumns = $currentTable.find("thead tr:eq(1) th").length;
+                        $currentTable.find("thead tr:eq(1)").find("th:nth(" + (totalHeadColumns - 1) + ")").before("<th data-columnname='" + columnNormalizedName + "'>" + columnNormalizedName + "</th>");
+                        //$currentTable.find("thead tr:eq(1)").append("<th>" + columnNormalizedName + "</th>");
+
+                        var totalInnerColumns = $currentTable.find("tr:eq(2) td").length;
+                        $currentTable.find("tr:gt(1)").find("td:nth(" + (totalInnerColumns - 1) +")").before("<td data-columnname='" + columnNormalizedName + "'></td>");
+                        //$currentTable.find("tr:gt(1)").append("<td></td>");
                         var oldColSpan = parseInt($currentTable.find("thead tr:first-child th").attr("colspan"));
                         $currentTable.find("thead tr:first-child th").attr("colspan", oldColSpan + 1);
 

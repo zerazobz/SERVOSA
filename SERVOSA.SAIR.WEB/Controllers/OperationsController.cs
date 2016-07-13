@@ -82,6 +82,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
                     {
                         var addRoleResult = await UserManager.AddToRoleAsync(user.Id, "UserForOperation");
                         resultExecution = addRoleResult.Succeeded;
+                        model.UserName = user.UserName;
                     }
                 }
 

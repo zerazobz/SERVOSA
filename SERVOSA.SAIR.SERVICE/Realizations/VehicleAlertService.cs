@@ -37,15 +37,18 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
         public async Task<int> ProcessAlerts(IEnumerable<string> phoneNumbers)
         {
             int rowsInserted = 0;
-            var allVehicleAlerts = GetAlertsNotSended();
-            foreach (var iAlert in allVehicleAlerts)
+            if(phoneNumbers.Count() > 0)
             {
-                if (DateTime.Now > iAlert.DateToAlert.AddDays(-iAlert.DaysToAlert))
+                var allVehicleAlerts = GetAlertsNotSended();
+                foreach (var iAlert in allVehicleAlerts)
                 {
-                    var alertMessage = $"Alerta para el Vehiculo con codigo {iAlert.VehicleId}, del Documento: {iAlert.TableName}-{iAlert.AlertName}. Alerta programada para la fecha: {iAlert.DateToAlert.ToShortDateString()}";
-                    //var alertSendResult = await Task.Run(() => SendAlertBySMS(phoneNumbers, alertMessage, iAlert.VehicleAlertId));
-                    var alertSendResult = await Task.Run(() => SendAlertByEmail(phoneNumbers, alertMessage, iAlert.VehicleAlertId));
-                    rowsInserted++;
+                    if (DateTime.Now > iAlert.DateToAlert.AddDays(-iAlert.DaysToAlert))
+                    {
+                        var alertMessage = $"Alerta para el Vehiculo con codigo {iAlert.VehicleId}, del Documento: {iAlert.TableName}-{iAlert.AlertName}. Alerta programada para la fecha: {iAlert.DateToAlert.ToShortDateString()}";
+                        //var alertSendResult = await Task.Run(() => SendAlertBySMS(phoneNumbers, alertMessage, iAlert.VehicleAlertId));
+                        var alertSendResult = await Task.Run(() => SendAlertByEmail(phoneNumbers, alertMessage, iAlert.VehicleAlertId));
+                        rowsInserted++;
+                    }
                 }
             }
             return rowsInserted;
@@ -78,15 +81,15 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             }
         }
 
-        public string SendAlertByEmail(IEnumerable<string> phonesNumbers, string alertmessage, int alertId)
+        public string SendAlertByEmail(IEnumerable<string> emailRecipents, string alertmessage, int alertId)
         {
             string deliveryToken = String.Empty;
             try
             {
-                string processedEmails = String.Join(",", phonesNumbers);
+                string processedEmails = String.Join(",", emailRecipents);
                 var fromAddress = new MailAddress("zdelnaja@gmail.com", "Operador Sistema");
                 //var toAddress = new MailAddress("zerazobz@example.com", "To Name");
-                const string fromPassword = "doors.inxs88";
+                const string fromPassword = "without a p@ssw0rd";
                 const string subject = "Envio de Alerta";
                 string body = alertmessage;
 

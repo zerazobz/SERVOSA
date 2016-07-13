@@ -22,8 +22,9 @@ namespace SERVOSA.SAIR.WEB.Tests.Controllers
             var repository = container.Resolve<IVehicleService>();
             var dbServices = container.Resolve<IDBServices>();
             var vehicleAlertServices = container.Resolve<IVehicleAlertService>();
+            var emailServices = container.Resolve<IEmailRecipentService>();
             // Arrange
-            HomeController controller = new HomeController(repository, dbServices, vehicleAlertServices);
+            HomeController controller = new HomeController(repository, dbServices, vehicleAlertServices, emailServices);
 
             // Act
             ViewResult result = controller.Index() as ViewResult;

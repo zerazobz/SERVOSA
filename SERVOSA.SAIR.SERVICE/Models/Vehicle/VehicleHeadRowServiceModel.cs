@@ -75,7 +75,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 });
                 serviceModel.DataForRow = tmpList;
 
-                var rawDateToAlert = tmpList.Where(d => !String.IsNullOrWhiteSpace(d.ColumnName) && ServosaSingleton.Instance.ConstantExpirationDate.Contains(d.ColumnName)).Select(data => data.Value).FirstOrDefault();
+                var rawDateToAlert = tmpList.Where(d => !String.IsNullOrWhiteSpace(d.ColumnName) && ServosaSingleton.Instance.FechaVencimiento.Contains(d.ColumnName)).Select(data => data.Value).FirstOrDefault();
                 DateTime tmpDate;
                 if (DateTime.TryParse(rawDateToAlert, out tmpDate))
                     dateToAlert = tmpDate;

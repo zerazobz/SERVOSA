@@ -34,7 +34,10 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
                 viewModel.IsSuccessful = !String.IsNullOrWhiteSpace(resultCreation.Item2.TableNormalizedName);
                 viewModel.TableNormalizedName = resultCreation.Item2.TableNormalizedName;
-                viewModel.Message = "Se creo correctamente el Encabezado de Variable.";
+                if (viewModel.IsSuccessful)
+                    viewModel.Message = "Se creo correctamente el Encabezado de Variable.";
+                else
+                    viewModel.Message = "No se pudo crear la variable.";
             }
             else
             {

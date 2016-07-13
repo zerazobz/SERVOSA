@@ -209,7 +209,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             Int32.TryParse(prmDataToSearch.Where(kvp => kvp.Key == ServosaDriverSingleton.Instance.ConstantVehicleId).Select(kvp => kvp.Value).FirstOrDefault(), out vehicleId);
             Int32.TryParse(prmDataToSearch.Where(kvp => kvp.Key == ServosaDriverSingleton.Instance.ConstantDayToAlert).Select(kvp => kvp.Value).FirstOrDefault(), out daysToAlert);
 
-            var dataFilterred = prmDataToSearch.Where(kvp => ServosaDriverSingleton.Instance.ConstantExpirationDate.Contains(kvp.Key));
+            var dataFilterred = prmDataToSearch.Where(kvp => ServosaDriverSingleton.Instance.FechaVencimientoConst.Contains(kvp.Key));
             foreach (var iKVP in dataFilterred)
             {
                 if (DateTime.TryParse(iKVP.Value.Replace("'", ""), out dateAlert))

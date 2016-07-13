@@ -32,7 +32,7 @@ namespace SERVOSA.SAIR.SERVICE.Core
         {
             get
             {
-                return new List<string> { "id", "SAIR_VEHIID", "cid", "CSAIR_VEHIID", "RutaDocumento" };
+                return new List<string> { "id", "SAIR_VEHIID", "cid", "CSAIR_VEHIID", RutaDocumento };
             }
         }
 
@@ -40,7 +40,15 @@ namespace SERVOSA.SAIR.SERVICE.Core
         {
             get
             {
-                return new List<string> { ConstantIdentity, ConstantVehicleId, ConstantDayToAlert, "RutaDocumento", ConstantExpirationDate };
+                return new List<string> { ConstantIdentity, ConstantVehicleId, ConstantDayToAlert, RutaDocumento, FechaVencimiento };
+            }
+        }
+
+        public List<string> NotAllowedConstantColumns
+        {
+            get
+            {
+                return new List<string> { ConstantIdentity, ConstantVehicleId, ConstantDayToAlert, RutaDocumento };
             }
         }
 
@@ -100,7 +108,15 @@ namespace SERVOSA.SAIR.SERVICE.Core
             }
         }
 
-        public string ConstantExpirationDate
+        public string RutaDocumento
+        {
+            get
+            {
+                return "RutaDocumento";
+            }
+        }
+
+        public string FechaVencimiento
         {
             get
             {

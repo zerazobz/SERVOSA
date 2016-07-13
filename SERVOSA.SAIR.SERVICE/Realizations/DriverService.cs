@@ -125,7 +125,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             using (SpreadsheetDocument package = SpreadsheetDocument.Create(streamData, SpreadsheetDocumentType.Workbook))
             {
                 var dataResultToExport = _vehicleRepository.GetVariableDataToExport(tableName);
-                CreateWorkBookFromDataSet(package, dataResultToExport);
+                CreateWorkBookFromDataSet(package, dataResultToExport, tableName);
             }
         }
 
@@ -138,7 +138,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             }
         }
 
-        private void CreateWorkBookFromDataSet(SpreadsheetDocument workbook, DataSet ds)
+        private void CreateWorkBookFromDataSet(SpreadsheetDocument workbook, DataSet ds, string tableName = null)
         {
             var workbookPart = workbook.AddWorkbookPart();
 
@@ -218,7 +218,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
                         sheets.Elements<DocumentFormat.OpenXml.Spreadsheet.Sheet>().Select(s => s.SheetId.Value).Max() + 1;
                 }
 
-                DocumentFormat.OpenXml.Spreadsheet.Sheet sheet = new DocumentFormat.OpenXml.Spreadsheet.Sheet() { Id = relationshipId, SheetId = sheetId, Name = table.TableName };
+                DocumentFormat.OpenXml.Spreadsheet.Sheet sheet = new DocumentFormat.OpenXml.Spreadsheet.Sheet() { Id = relationshipId, SheetId = sheetId, Name = tableName?? table.TableName };
                 sheets.Append(sheet);
 
                 DocumentFormat.OpenXml.Spreadsheet.Row headerRow = new DocumentFormat.OpenXml.Spreadsheet.Row();

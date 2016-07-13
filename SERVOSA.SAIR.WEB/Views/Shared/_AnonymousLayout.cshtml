@@ -10,18 +10,9 @@
     <script src="~/Scripts/ViewController/SERVOSA.Core.js" type="text/javascript"></script>
 </head>
 <body>
-    @foreach (var iConstanColumn in SERVOSA.SAIR.SERVICE.Core.ServosaDriverSingleton.Instance.AllConstantColumns)
-    {
-        <script>
-            DRIVERSERVOSACORE.AddConstantDriverColumn("@iConstanColumn");
-        </script>
-    }
-    @foreach (var iConstanColumn in SERVOSA.SAIR.SERVICE.Core.ServosaSingleton.Instance.AllConstantColumns)
-    {
-        <script>
-            SERVOSACORE.AddConstantVehicleColumn("@iConstanColumn");
-        </script>
-    }
+    @{ Html.RenderAction(MVC.Shared.Views.Constants._ConstansDrivers); }
+
+    @{ Html.RenderPartial(MVC.Shared.Views.Constants._ConstansVehicles); }
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">

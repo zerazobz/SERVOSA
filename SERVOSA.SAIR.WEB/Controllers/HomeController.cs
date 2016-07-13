@@ -17,12 +17,14 @@ namespace SERVOSA.SAIR.WEB.Controllers
         private IVehicleService _vehicleServices;
         private readonly IDBServices _dbServices;
         private IVehicleAlertService _vehicleAlertService;
+        private readonly IEmailRecipentService _emailRecipentService;
 
-        public HomeController(IVehicleService injectedVehicleRep, IDBServices injectedDbService, IVehicleAlertService vehiceAlertInjectedService)
+        public HomeController(IVehicleService injectedVehicleRep, IDBServices injectedDbService, IVehicleAlertService vehiceAlertInjectedService, IEmailRecipentService injectedEmailService)
         {
             _vehicleServices = injectedVehicleRep;
             _dbServices = injectedDbService;
             _vehicleAlertService = vehiceAlertInjectedService;
+            _emailRecipentService = injectedEmailService;
         }
 
         [HttpGet]
@@ -33,8 +35,8 @@ namespace SERVOSA.SAIR.WEB.Controllers
 
             if (!operationCode.HasValue || operationCode.Value <= 0)
                 return RedirectToAction(MVC.Account.ProgrammaticallyLogOff());
-
-            HostingEnvironment.QueueBackgroundWorkItem(sA => _vehicleAlertService.ProcessAlerts(new string[] { "zerazobz@gmail.com" }));
+            
+            HostingEnvironment.QueueBackgroundWorkItem(sA => _vehicleAlertService.ProcessAlerts(_emailRecipentService.GetAll().Select(e => e.Email)));
             
             var allCompleteTable = _dbServices.ListVehicleVarsTablesWithDefinition();
             var tableDataGrouped = allCompleteTable.GroupBy(t => t.TableNormalizedName);

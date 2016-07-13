@@ -69,20 +69,19 @@
             $.each(dataResult, function (i, element) {
                 var withAlert = element.WithAlert;
                 var identityValue = element.DataForRow[0].Value;
-                //console.log('Identity Value: ' + identityValue + '.');
                 var columnList = '';
                 if (identityValue == '') {
-                    columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span></td>";
+                    columnList = "<td data-tablename='Tareas'><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span></td>";
                 }
                 else {
-                    columnList = "<td><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file insertRemoveFile' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "'></span></td>";
+                    columnList = "<td data-tablename='Tareas'><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span> <span class='glyphicon glyphicon-file insertRemoveFile' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "'></span></td>";
                 }
 
-                var constantVehicleColumns = SERVOSACORE.GetConstantVehicleColumns();
+                var constantNotAllowedVehicleColumns = SERVOSACORE.GetNotAllowedConstantColumn();
                 //for (i = 2; i < element.DataForRow.length - 3; i++) {
                 for (i = 2; i < element.DataForRow.length; i++) {
-                    if (constantVehicleColumns.indexOf(element.DataForRow[i].ColumnName) == -1) {
-                        var column = $("<td>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName).text(element.DataForRow[i].Value).prop("outerHTML");
+                    if (constantNotAllowedVehicleColumns.indexOf(element.DataForRow[i].ColumnName) == -1 && element.DataForRow[i].ColumnName !== "") {
+                        var column = $("<td>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName).attr("data-columnname", element.DataForRow[i].ColumnName).text(element.DataForRow[i].Value).prop("outerHTML");
                         columnList += column;
                     }
                 }
@@ -114,34 +113,6 @@
     $(function () {
 
         vehicleNamespace.LoadVehicleAutoCompleteTemplate();
-
-        //$("#vehicleTable").jtable({
-        //    title: 'Listado de Vehiculos',
-        //    paging: true,
-        //    pageSize: 10,
-        //    actions: {
-        //        listAction: '/Vehicle/ListVehicles',
-        //        deleteAction: '/Vehicle/DeleteVehicle',
-        //        updateAction: '/Vehicle/UpdateVehicle',
-        //        createAction: '/Vehicle/CreateVehicle'
-        //    },
-        //    fields: {
-        //        Item: { title: 'Item', create: false, edit: false, width: '5%' },
-        //        Codigo: { key: true, title: 'Codigo', width: '5%' },
-        //        CodigoTipoUnidad: { title: 'Tipo de Unidad', options: '/Vehicle/GetVehiclesUnitTypes' },
-        //        Placa: { title: 'Placa' },
-        //        //PlacaTracto: { title: 'Placa Tracto' },
-        //        //PlacaTolva: { title: 'Placa Tolva' },
-        //        MarcaConcatenada: {
-        //            title: 'Codigo Marca',
-        //            options: '/Vehicle/GetVehicleBrands'
-        //        },
-        //        EstadoConcatenado: {
-        //            title: 'Codigo Estado',
-        //            options: '/Vehicle/GetVehicleStates'
-        //        }
-        //    }
-        //});
 
         $("#containerforalltables").on('load', ".containerdatatable>table", null, function (eventObject) {
             var tableName = $(this).data('tablename');
@@ -232,8 +203,11 @@
                         var columnNormalizedName = $("#createColumnModal ").find("input[name='ColumnNormalizedName']").val();
 
                         var $currentTable = $("table[data-tablename = '" + tableName + "']");
-                        $currentTable.find("thead tr:eq(1)").append("<th>" + columnNormalizedName + "</th>");
-                        $currentTable.find("tr:gt(1)").append("<td></td>");
+                        var totalHeadColumns = $currentTable.find("thead tr:eq(1) th").length;
+                        $currentTable.find("thead tr:eq(1)").find("th:nth(" + (totalHeadColumns - 1) + ")").before("<th data-columnname='" + columnNormalizedName + "'>" + columnNormalizedName + "</th>");
+
+                        var totalInnerColumns = $currentTable.find("tr:eq(2) td").length;
+                        $currentTable.find("tr:gt(1)").find("td:nth(" + (totalInnerColumns - 1) +")").before("<td data-columnname='" + columnNormalizedName + "'></td>");
                         var oldColSpan = parseInt($currentTable.find("thead tr:first-child th").attr("colspan"));
                         $currentTable.find("thead tr:first-child th").attr("colspan", oldColSpan + 1);
 

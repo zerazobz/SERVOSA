@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Data;
+using System.Data.Linq;
 using System;
 
 namespace SERVOSA.SAIR.SERVICE.Realizations
@@ -125,7 +126,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             using (SpreadsheetDocument package = SpreadsheetDocument.Create(streamData, SpreadsheetDocumentType.Workbook))
             {
                 var dataResultToExport = _vehicleRepository.GetVariableDataToExport(tableName);
-                CreateWorkBookFromDataSet(package, dataResultToExport);
+                CreateWorkBookFromDataSet(package, dataResultToExport, tableName);
             }
         }
 
@@ -134,11 +135,26 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             using (SpreadsheetDocument package = SpreadsheetDocument.Create(streamData, SpreadsheetDocumentType.Workbook))
             {
                 var dataResultToExport = _vehicleRepository.GetVehicleDataToExport(vehicleCode);
+
+                var namesDataTable = dataResultToExport.Tables[0];
+
+                var tablesNames = namesDataTable
+                                .AsEnumerable().Select(row => row.Field<string>("TABLE_NAME"))
+                                .ToList();
+
+                dataResultToExport.Tables.Remove(namesDataTable);
+                int tablesQuantity = dataResultToExport.Tables.Count;
+                for (int i = 0; i < tablesQuantity; i++)
+                {
+                    DataTable iDataTable = dataResultToExport.Tables[i];
+                    iDataTable.TableName = tablesNames[i % tablesNames.Count];
+                }
+
                 CreateWorkBookFromDataSet(package, dataResultToExport);
             }
         }
 
-        private void CreateWorkBookFromDataSet(SpreadsheetDocument workbook, DataSet ds)
+        private void CreateWorkBookFromDataSet(SpreadsheetDocument workbook, DataSet ds, string tableName = null)
         {
             var workbookPart = workbook.AddWorkbookPart();
 
@@ -152,7 +168,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
                 var sheetData = new DocumentFormat.OpenXml.Spreadsheet.SheetData();
                 sheetPart.Worksheet = new DocumentFormat.OpenXml.Spreadsheet.Worksheet(sheetData);
 
-                if(iIterator == 0)
+                if (iIterator == 0)
                 {
                     var stylesPart = workbook.WorkbookPart.AddNewPart<WorkbookStylesPart>();
                     stylesPart.Stylesheet = new Stylesheet();
@@ -216,7 +232,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
                         sheets.Elements<DocumentFormat.OpenXml.Spreadsheet.Sheet>().Select(s => s.SheetId.Value).Max() + 1;
                 }
 
-                DocumentFormat.OpenXml.Spreadsheet.Sheet sheet = new DocumentFormat.OpenXml.Spreadsheet.Sheet() { Id = relationshipId, SheetId = sheetId, Name = table.TableName };
+                DocumentFormat.OpenXml.Spreadsheet.Sheet sheet = new DocumentFormat.OpenXml.Spreadsheet.Sheet() { Id = relationshipId, SheetId = sheetId, Name = tableName ?? table.TableName };
                 sheets.Append(sheet);
 
                 DocumentFormat.OpenXml.Spreadsheet.Row headerRow = new DocumentFormat.OpenXml.Spreadsheet.Row();
@@ -244,7 +260,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
                         cell.DataType = DocumentFormat.OpenXml.Spreadsheet.CellValues.String;
                         var valueToInsert = dsrow[col].ToString();
                         cell.CellValue = new DocumentFormat.OpenXml.Spreadsheet.CellValue(valueToInsert); //
-                        if(col == "Flag")
+                        if (col == "Flag")
                         {
                             if (valueToInsert == "RED")
                                 cell.StyleIndex = 1;

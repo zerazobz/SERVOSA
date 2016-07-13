@@ -1,0 +1,15 @@
+﻿@foreach (var iConstanColumn in SERVOSA.SAIR.SERVICE.Core.ServosaSingleton.Instance.AllConstantColumns)
+{
+    <script>
+        
+        SERVOSACORE.AddConstantVehicleColumn("@iConstanColumn");
+    </script>
+}
+
+
+@foreach (var iNotAllowedConstantColumn in SERVOSA.SAIR.SERVICE.Core.ServosaSingleton.Instance.NotAllowedConstantColumns)
+{
+    <script>
+        SERVOSACORE.AddNotAllowedConstantColumn("@iNotAllowedConstantColumn");
+    </script>
+}

@@ -22,13 +22,13 @@
                     return '<a href="#" class="changeOperation" data-operationid=' + data.record.OperationId + ' data-databasename=' + data.record.DataBaseName + ' data-operationname="' + data.record.OperationName + '" > <span class="glyphicon glyphicon-log-in"></span> </a>';
                 }
             },
-            CambiarNombreOperacion: {
-                title: 'Cambiar Nombre',
-                create: false,
-                display: function (data) {
-                    return '<a href="#" class="changeOperationName" data-operationid=' + data.record.OperationId + ' data-databasename=' + data.record.DataBaseName + ' data-operationname="' + data.record.OperationName + '" > <span class="glyphicon glyphicon-edit"></span> </a>';
-                }
-            },
+            //CambiarNombreOperacion: {
+            //    title: 'Cambiar Nombre',
+            //    create: false,
+            //    display: function (data) {
+            //        return '<a href="#" class="changeOperationName" data-operationid=' + data.record.OperationId + ' data-databasename=' + data.record.DataBaseName + ' data-operationname="' + data.record.OperationName + '" > <span class="glyphicon glyphicon-edit"></span> </a>';
+            //    }
+            //},
             EliminarOperacion: {
                 title: 'Eliminar Operación',
                 create: false,
@@ -36,6 +36,9 @@
                     return '<a href="#" class="removeOperation" data-operationid=' + data.record.OperationId + ' data-databasename=' + data.record.DataBaseName + ' > <span class="glyphicon glyphicon-trash"></span> </a>';
                 }
             }
+        },
+        recordAdded: function (data) {
+            $("#operationsTable").jtable('reload');
         }
     });
 

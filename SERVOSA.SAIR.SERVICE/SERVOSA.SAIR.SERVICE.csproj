@@ -61,6 +61,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -83,6 +84,7 @@
     <Compile Include="Contracts\IDriverService.cs" />
     <Compile Include="Contracts\IDriverTableDataService.cs" />
     <Compile Include="Contracts\IDriverTypeService.cs" />
+    <Compile Include="Contracts\IEmailRecipentService.cs" />
     <Compile Include="Contracts\IOldDriverService.cs" />
     <Compile Include="Contracts\IOperationService.cs" />
     <Compile Include="Contracts\ITableDataService.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="Models\DriverColumnServiceModel.cs" />
     <Compile Include="Models\DriverTableColumnServiceModel.cs" />
     <Compile Include="Models\DriverTableServiceModel.cs" />
+    <Compile Include="Models\EmailRecipent\EmailRecipentServiceModel.cs" />
     <Compile Include="Models\IDriverTableServiceModel.cs" />
     <Compile Include="Models\OldDriverServiceModel.cs" />
     <Compile Include="Models\Driver\OldDriverRelatedTableServiceModel.cs" />
@@ -136,6 +139,7 @@
     <Compile Include="Realizations\DriverService.cs" />
     <Compile Include="Realizations\DriverTableDataService.cs" />
     <Compile Include="Realizations\DriverTypeService.cs" />
+    <Compile Include="Realizations\EmailRecipentService.cs" />
     <Compile Include="Realizations\OldDriverService.cs" />
     <Compile Include="Realizations\OperationService.cs" />
     <Compile Include="Realizations\TableDataService.cs" />
