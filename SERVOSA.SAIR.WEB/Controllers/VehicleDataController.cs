@@ -239,8 +239,13 @@ namespace SERVOSA.SAIR.WEB.Controllers
         {
             using (var memStream = new MemoryStream())
             {
+                var currentVehicle = _vehicleService.GetById(vehicleId);
+                var currentVehiclePlate = currentVehicle?.Placa ?? String.Empty;
+                foreach (var invalidChar in System.IO.Path.GetInvalidFileNameChars())
+                    currentVehiclePlate = currentVehiclePlate.Replace(invalidChar, '_');
+
                 _vehicleService.GenerateReportForVehicle(vehicleId, memStream);
-                string fileName = String.Format(" Datos del Vehiculo {0}_{1}.xlsx", vehicleId, DateTime.Now.ToString("ddMMyyyy_HHmm"));
+                string fileName = String.Format(" Datos del Vehiculo {0}_{1}.xlsx", currentVehiclePlate, DateTime.Now.ToString("ddMMyyyy_HHmm"));
                 return File(memStream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
             }
         }

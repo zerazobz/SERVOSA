@@ -188,8 +188,8 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
                     solidYellow.BackgroundColor = new BackgroundColor { Indexed = 64 };
 
                     var solidGreen = new PatternFill() { PatternType = PatternValues.Solid };
-                    solidGreen.ForegroundColor = new ForegroundColor { Rgb = HexBinaryValue.FromString("#FF008080") };
-                    solidGreen.BackgroundColor = new BackgroundColor { Indexed = 64 };
+                    solidGreen.ForegroundColor = new ForegroundColor { Rgb = HexBinaryValue.FromString("#FFFFFF00") };
+                    solidGreen.BackgroundColor = new BackgroundColor { Rgb = HexBinaryValue.FromString("#FF008080") };
 
                     var firstFill = stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = new PatternFill { PatternType = PatternValues.None } }); // required, reserved by Excel
                     stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = new PatternFill { PatternType = PatternValues.Gray125 } }); // required, reserved by Excel

@@ -17,10 +17,12 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
     public class VehicleAlertService : IVehicleAlertService
     {
         private readonly IVehicleAlertRepository _vehicleAlertRepo;
+        private readonly IVehicleRepository _vehicleRepo;
 
-        public VehicleAlertService(IVehicleAlertRepository injectedVehicleAlert)
+        public VehicleAlertService(IVehicleAlertRepository injectedVehicleAlert, IVehicleRepository injectedVehicleRepo)
         {
             _vehicleAlertRepo = injectedVehicleAlert;
+            _vehicleRepo = injectedVehicleRepo;
         }
 
         public IList<VehicleAlert> GetAlertsNotSended()
@@ -44,9 +46,10 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
                 {
                     if (DateTime.Now > iAlert.DateToAlert.AddDays(-iAlert.DaysToAlert))
                     {
-                        var alertMessage = $"Alerta para el Vehiculo con codigo {iAlert.VehicleId}, del Documento: {iAlert.TableName}-{iAlert.AlertName}. Alerta programada para la fecha: {iAlert.DateToAlert.ToShortDateString()}";
+                        var currentVehicle = _vehicleRepo.GetById(iAlert.VehicleId);
+                        var alertMessage = $"Alerta programada para el vehiculo con placa {currentVehicle?.VEHI_VehiclePlate ?? String.Empty} del documento {iAlert.TableName} tiene fecha de vencimiento {iAlert.DateToAlert.ToShortDateString()}. Por favor verificar.";
                         //var alertSendResult = await Task.Run(() => SendAlertBySMS(phoneNumbers, alertMessage, iAlert.VehicleAlertId));
-                        var alertSendResult = await Task.Run(() => SendAlertByEmail(phoneNumbers, alertMessage, iAlert.VehicleAlertId));
+                        var alertSendResult = await Task.Run(() => SendAlertByEmail(phoneNumbers, alertMessage, iAlert.VehicleAlertId, iAlert.TableName, currentVehicle?.VEHI_VehiclePlate??String.Empty));
                         rowsInserted++;
                     }
                 }
@@ -81,7 +84,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             }
         }
 
-        public string SendAlertByEmail(IEnumerable<string> emailRecipents, string alertmessage, int alertId)
+        public string SendAlertByEmail(IEnumerable<string> emailRecipents, string alertmessage, int alertId, string document, string vehiclePlate)
         {
             string deliveryToken = String.Empty;
             try
@@ -90,7 +93,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
                 var fromAddress = new MailAddress("zdelnaja@gmail.com", "Operador Sistema");
                 //var toAddress = new MailAddress("zerazobz@example.com", "To Name");
                 const string fromPassword = "without a p@ssw0rd";
-                const string subject = "Envio de Alerta";
+                string subject = $"Envio de alerta, vencimiento de documento {document} de unidad con placa {vehiclePlate}";
                 string body = alertmessage;
 
                 var smtp = new SmtpClient()
