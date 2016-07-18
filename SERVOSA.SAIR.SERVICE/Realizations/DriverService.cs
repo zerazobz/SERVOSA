@@ -170,12 +170,12 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
                     solidRed.BackgroundColor = new BackgroundColor { Indexed = 64 };
 
                     var solidYellow = new PatternFill() { PatternType = PatternValues.Solid };
-                    solidYellow.ForegroundColor = new ForegroundColor { Rgb = HexBinaryValue.FromString("#FFFFFF00") };
-                    solidYellow.BackgroundColor = new BackgroundColor { Indexed = 64 };
+                    solidYellow.ForegroundColor = new ForegroundColor { Rgb = HexBinaryValue.FromString("FFEAFF00") };
+                    solidYellow.BackgroundColor = new BackgroundColor { Rgb = HexBinaryValue.FromString("FFEAFF00") };
 
                     var solidGreen = new PatternFill() { PatternType = PatternValues.Solid };
-                    solidGreen.ForegroundColor = new ForegroundColor { Rgb = HexBinaryValue.FromString("#FF008080") };
-                    solidGreen.BackgroundColor = new BackgroundColor { Indexed = 64 };
+                    solidGreen.ForegroundColor = new ForegroundColor { Rgb = HexBinaryValue.FromString("FF0EC704") };
+                    solidGreen.BackgroundColor = new BackgroundColor { Rgb = HexBinaryValue.FromString("FF0EC704") };
 
                     var firstFill = stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = new PatternFill { PatternType = PatternValues.None } }); // required, reserved by Excel
                     stylesPart.Stylesheet.Fills.AppendChild(new Fill { PatternFill = new PatternFill { PatternType = PatternValues.Gray125 } }); // required, reserved by Excel

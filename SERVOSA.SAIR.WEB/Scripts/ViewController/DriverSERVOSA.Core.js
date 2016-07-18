@@ -2,11 +2,11 @@
     var _allConstantColumns = [];
     var _notAllowedConstantVehicleColumns = [];
 
-    servosaCore.AddNotAllowedConstantColumn = function (iColumn) {
+    driverServosaCore.AddNotAllowedConstantColumn = function (iColumn) {
         _notAllowedConstantVehicleColumns.push(iColumn);
     };
 
-    servosaCore.GetNotAllowedConstantColumn = function () {
+    driverServosaCore.GetNotAllowedConstantColumn = function () {
         return _notAllowedConstantVehicleColumns;
     };
 

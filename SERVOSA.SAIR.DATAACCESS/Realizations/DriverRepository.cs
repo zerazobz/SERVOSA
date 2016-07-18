@@ -108,6 +108,10 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                             string valueOfColumn = valuesSplited.Length > 1 ? valuesSplited[1] : valuesSplited.Length > 0 ? valuesSplited.FirstOrDefault() : String.Empty;
                             string nameOfColumn = valuesSplited.Length > 1 ? valuesSplited[0] : String.Empty;
 
+                            DateTime resultParse;
+                            if (DateTime.TryParse(valueOfColumn, out resultParse))
+                                valueOfColumn = resultParse.ToString("dd/MM/yyyy");
+
                             headModel.DataForRow.Add(new DriverDetailRowDataModel()
                             {
                                 Value = valueOfColumn,

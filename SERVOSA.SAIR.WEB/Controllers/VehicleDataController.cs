@@ -232,7 +232,6 @@ namespace SERVOSA.SAIR.WEB.Controllers
                 string fileName = String.Format(" Datos de {0}_{1}.xlsx", tableName, DateTime.Now.ToString("ddMMyyyy_HHmm"));
                 return File(memStream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
             }
-            //return View();
         }
 
         public virtual FileResult DownloadVehicleData(int vehicleId)

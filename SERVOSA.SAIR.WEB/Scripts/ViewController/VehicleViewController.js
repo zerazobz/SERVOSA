@@ -70,7 +70,7 @@
                 var withAlert = element.WithAlert;
                 var identityValue = element.DataForRow[0].Value;
                 var columnList = '';
-                if (identityValue == '') {
+                if (identityValue === '') {
                     columnList = "<td data-tablename='Tareas'><span class='glyphicon glyphicon-edit createUpdateData' data-vehicleid='" + element.VehicleId + "' data-tablename='" + element.TableName + "' ></span></td>";
                 }
                 else {
@@ -80,8 +80,13 @@
                 var constantNotAllowedVehicleColumns = SERVOSACORE.GetNotAllowedConstantColumn();
                 //for (i = 2; i < element.DataForRow.length - 3; i++) {
                 for (i = 2; i < element.DataForRow.length; i++) {
-                    if (constantNotAllowedVehicleColumns.indexOf(element.DataForRow[i].ColumnName) == -1 && element.DataForRow[i].ColumnName !== "") {
-                        var column = $("<td>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName).attr("data-columnname", element.DataForRow[i].ColumnName).text(element.DataForRow[i].Value).prop("outerHTML");
+                    if (constantNotAllowedVehicleColumns.indexOf(element.DataForRow[i].ColumnName) === -1 && element.DataForRow[i].ColumnName !== "") {
+                        var textToRender = element.DataForRow[i].Value;
+                        //var momentDate = moment(textToRender);
+                        //if (momentDate.isValid())
+                        //    textToRender = momentDate.format("dd/MM/yyyy");
+
+                        var column = $("<td>").attr("data-vehiclecode", element.VehicleId).attr("data-tablename", element.TableName).attr("data-columnname", element.DataForRow[i].ColumnName).text(textToRender).prop("outerHTML");
                         columnList += column;
                     }
                 }
@@ -128,14 +133,14 @@
 
         $(document).off("click", "#createVariableSubmit").on("click", "#createVariableSubmit", null, function (e) {
             var resultValidation = $("#createTableForm").validationEngine('validate');
-            if (resultValidation == true) {
+            if (resultValidation === true) {
                 $.post("/VariableTasks/CreateTable", $("#createTableForm").serialize(), function (data) {
                     $("#createTableModal .modal-content").empty();
                     $("#createTableModal .modal-content").html(data);
                     var isSuccessfull = $("#createTableModal .modal-body").find("input[name='IsSuccessful']").val();
                     var message = $("#createTableModal .modal-body").find("input[name='Message']").val();
 
-                    if (isSuccessfull.toLowerCase() == "true") {
+                    if (isSuccessfull.toLowerCase() === "true") {
                         $("#createTableModal .modal-body").find(".mesagepanel").SERVOSASuccessNotification(message);
                         $("#createVariableSubmit").prop("disabled", true);
                         
@@ -145,7 +150,7 @@
                         $.get("/templates/vehicletabletemplate.html", function (data) {
 
                             var handletemplate = Handlebars.compile($(data).html());
-                            var data = {
+                            data = {
                                 tableName: tableName,
                                 normalizedTableName: normalizedTableName
                             };
@@ -187,14 +192,14 @@
 
         $(document).on("click", "#createColumnSubmit", null, function (e) {
             var resultValidation = $("#createColumnForm").validationEngine('validate');
-            if (resultValidation == true) {
+            if (resultValidation === true) {
                 $.post("/VariableTasks/CreateColumn", $("#createColumnForm").serialize(), function (dataResult) {
                     $("#createColumnModal .modal-content").empty();
                     $("#createColumnModal .modal-content").html(dataResult);
                     var isSuccessfull = $("#createColumnForm ").find("input[name='IsSuccessful']").val();
                     var message = $("#createColumnForm ").find("input[name='Message']").val();
 
-                    if (isSuccessfull.toLowerCase() == "true") {
+                    if (isSuccessfull.toLowerCase() === "true") {
                         $("#createColumnModal").find(".messagePanel").SERVOSASuccessNotification(message);
                         $("#createColumnSubmit").prop("disabled", true);
                         

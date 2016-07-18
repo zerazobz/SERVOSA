@@ -23,7 +23,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public int Create(VehicleModel entity)
         {
-            object[] parameters = new object[] { entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, null };
+            object[] parameters = new object[] { entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, entity.VEHI_Company, null };
             using (var insertCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHII", parameters))
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(insertCommand);
@@ -74,7 +74,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public int Update(VehicleModel entity)
         {
-            object[] parameters = new object[] { entity.Codigo, entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate };
+            object[] parameters = new object[] { entity.Codigo, entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, entity.VEHI_Company };
             using (var updateCommand = _servosaDB.GetStoredProcCommand("SAIR_VEHIU", parameters))
             {
                 var executionResult = _servosaDB.ExecuteNonQuery(updateCommand);
@@ -105,8 +105,12 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                         {
                             var rawValueAsString = readerProcedure.IsDBNull(i) ? String.Empty : readerProcedure.GetValue(i).ToString();
                             var valuesSplited = rawValueAsString.Split(new string[] { "|@|" }, StringSplitOptions.None);
-                            string valueOfColumn = valuesSplited.Length > 1 ? valuesSplited[1] : valuesSplited.Length > 0? valuesSplited.FirstOrDefault() : String.Empty;
+                            string valueOfColumn = valuesSplited.Length > 1 ? valuesSplited[1] : valuesSplited.Length > 0 ? valuesSplited.FirstOrDefault() : String.Empty;
                             string nameOfColumn = valuesSplited.Length > 1 ? valuesSplited[0] : String.Empty;
+
+                            DateTime resultParse;
+                            if (DateTime.TryParse(valueOfColumn, out resultParse))
+                                valueOfColumn = resultParse.ToString("dd/MM/yyyy");
 
                             headModel.DataForRow.Add(new VehicleDetailRowDataModel()
                             {
@@ -154,27 +158,34 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         private IRowMapper<VehicleModel> GetMapperSimple()
         {
-            return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
-                .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.RowNumber).Build();
+            return MapBuilder<VehicleModel>.MapNoProperties().MapByName(prop => prop.Item).MapByName(prop => prop.Codigo)
+                .MapByName(prop => prop.TYPE_cTABBRND).MapByName(prop => prop.TYPE_cCODBRND).MapByName(prop => prop.TYPE_cTABVSTA)
+                .MapByName(prop => prop.TYPE_cCODVSTA).MapByName(prop => prop.Marca).MapByName(prop => prop.Estado)
+                .MapByName(prop => prop.VEHI_UnitType).MapByName(prop => prop.VEHI_VehiclePlate).MapByName(prop => prop.VEHI_DescriptionUnitType)
+                .MapByName(prop => prop.VEHI_Company).Build();
         }
 
         private IRowMapper<VehicleModel> GetMapperForOldSP()
         {
-            return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
-                .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.Estado)
-                .DoNotMap(prop => prop.RowNumber).Build();
+            return MapBuilder<VehicleModel>.MapNoProperties().MapByName(prop => prop.Item).MapByName(prop => prop.Codigo).MapByName(prop => prop.TYPE_cTABBRND)
+                .MapByName(prop => prop.TYPE_cCODBRND).MapByName(prop => prop.TYPE_cTABVSTA).MapByName(prop => prop.TYPE_cCODVSTA).MapByName(prop => prop.VEHI_UnitType)
+                .MapByName(prop => prop.VEHI_VehiclePlate).MapByName(prop => prop.VEHI_DescriptionUnitType).Build();
         }
 
         private IRowMapper<VehicleModel> GetMapperForFilteredSP()
         {
-            return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.Marca)
-                .DoNotMap(prop => prop.Estado).DoNotMap(prop => prop.VEHI_DescriptionUnitType).Build();
+            return MapBuilder<VehicleModel>.MapNoProperties().MapByName(prop => prop.RowNumber).MapByName(prop => prop.TotalRows)
+                .MapByName(prop => prop.Item).MapByName(prop => prop.Codigo).MapByName(prop => prop.TYPE_cTABBRND).MapByName(prop => prop.TYPE_cCODBRND)
+                .MapByName(prop => prop.TYPE_cTABVSTA).MapByName(prop => prop.TYPE_cCODVSTA).MapByName(prop => prop.VEHI_UnitType)
+                .MapByName(prop => prop.VEHI_VehiclePlate).Build();
         }
 
         private IRowMapper<VehicleModel> GetMapperForSearchFilteredByTerm()
         {
-            return MapBuilder<VehicleModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber).DoNotMap(prop => prop.TotalRows)
-                .DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.Estado).DoNotMap(prop => prop.VEHI_DescriptionUnitType).Build();
+            return MapBuilder<VehicleModel>.MapNoProperties().MapByName(prop => prop.Item).MapByName(prop => prop.Codigo)
+                .MapByName(prop => prop.TYPE_cTABBRND).MapByName(prop => prop.TYPE_cCODBRND).MapByName(prop => prop.TYPE_cTABVSTA)
+                .MapByName(prop => prop.TYPE_cCODVSTA).MapByName(prop => prop.VEHI_UnitType).MapByName(prop => prop.VEHI_VehiclePlate)
+                .MapByName(prop => prop.VEHI_DescriptionUnitType).Build();
         }
     }
 }

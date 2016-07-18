@@ -23,10 +23,8 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public string Marca { get; set; }
         [Display(Name = "Estado")]
         public string Estado { get; set; }
-
         public int RowNumber { get; set; }
         public int TotalRows { get; set; }
-
         public string TablaMarca { get; set; }
         public string CodigoMarca { get; set; }
         public string MarcaConcatenada { get; set; }
@@ -38,6 +36,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public string DescripcionTipoUnidad { get; set; }
         [Display(Name = "Placa")]
         public string Placa { get; set; }
+        public string Companhia { get; set; }
 
         public static void ToViewModel(VehicleModel model, ref VehicleServiceModel viewModel)
         {
@@ -56,10 +55,10 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     Estado = model.Estado,
                     Placa = model.VEHI_VehiclePlate,
                     CodigoTipoUnidad = model.VEHI_UnitType,
-                    //DescripcionTipoUnidad = model.VEHI_UnitType == "R"? "Remolque" : "Semiremolque",
                     DescripcionTipoUnidad = model.VEHI_DescriptionUnitType,
                     RowNumber = model.RowNumber,
-                    TotalRows = model.TotalRows
+                    TotalRows = model.TotalRows,
+                    Companhia = model.VEHI_Company
                 };
             else
                 viewModel = null;
@@ -81,7 +80,8 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     VEHI_VehiclePlate = viewModel.Placa,
                     VEHI_UnitType = viewModel.CodigoTipoUnidad,
                     RowNumber = viewModel.RowNumber,
-                    TotalRows = viewModel.TotalRows
+                    TotalRows = viewModel.TotalRows,
+                    VEHI_Company = viewModel.Companhia
                 };
             else
                 model = null;
