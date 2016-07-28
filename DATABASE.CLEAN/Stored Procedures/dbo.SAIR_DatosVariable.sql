@@ -9,17 +9,17 @@ AS
 BEGIN
     DECLARE @selectSQL NVARCHAR(MAX);
     SET @selectSQL = 'SELECT VTBL.*
-           , VEHI.VEHI_VehiclePlate [Placa Vehiculo], CASE WHEN VEHI.VEHI_UnitType = ''R'' THEN
+           , VEHI.VEHI_Company [Compañia], VEHI.VEHI_VehiclePlate [Placa Vehiculo], CASE WHEN VEHI.VEHI_UnitType = ''R'' THEN
                 ''Remolque''
             WHEN VEHI.VEHI_UnitType = ''S'' THEN
                 ''Semi-Remolque''
             ELSE
                 NULL
             END [Tipo de Unidad]
-			, CTBL.FechaVencimiento
-			, CASE WHEN DATEDIFF(dd, CTBL.FechaVencimiento, GETDATE()) > CTBL.DiasAlerta THEN
+                        , CTBL.FechaVencimiento
+            , CASE WHEN DATEDIFF(dd, GETDATE(), CTBL.FechaVencimiento) > CTBL.DiasAlerta THEN
                 ''GREEN''
-            WHEN DATEDIFF(dd, CTBL.FechaVencimiento, GETDATE()) < CTBL.DiasAlerta THEN
+            WHEN DATEDIFF(dd, GETDATE(), CTBL.FechaVencimiento) < CTBL.DiasAlerta THEN
                 ''RED''
             END Flag
             FROM vehiclevars.' + @variableName + ' VTBL

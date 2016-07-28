@@ -16,7 +16,8 @@ BEGIN
             ELSE
                 NULL
             END VEHI_DescriptionUnitType
-            , CTBL.FechaVencimiento
+            , CTBL.FechaVencimiento [Fecha de Vencimiento]
+			, VEHI.DRIV_Company [Compañía]
             , CASE WHEN DATEDIFF(dd, CTBL.FechaVencimiento, GETDATE()) > CTBL.DiasAlerta THEN
                 ''GREEN''
             WHEN DATEDIFF(dd, CTBL.FechaVencimiento, GETDATE()) < CTBL.DiasAlerta THEN

@@ -11,9 +11,9 @@ BEGIN
     SET @sqlQuery = 'SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
     WHERE TABLE_SCHEMA = ''vehiclevars''';
     SELECT @sqlQuery = COALESCE(@sqlQuery + ' ', '') + 'SELECT ' + ' var' + TABLE_NAME + '.*,' + ' const' + TABLE_NAME + '.DiasAlerta, ' + ' const' + TABLE_NAME + '.FechaVencimiento, '
-        + ' CASE WHEN DATEDIFF(dd, const' + TABLE_NAME + '.FechaVencimiento, GETDATE()) >  const' + TABLE_NAME + '.DiasAlerta THEN ' 
+        + ' CASE WHEN DATEDIFF(dd, GETDATE(), const' + TABLE_NAME + '.FechaVencimiento) >  const' + TABLE_NAME + '.DiasAlerta THEN ' 
             + '''GREEN'' '
-        + ' WHEN DATEDIFF(dd, const' + TABLE_NAME + '.FechaVencimiento, GETDATE()) < const' + TABLE_NAME + '.DiasAlerta THEN ' 
+        + ' WHEN DATEDIFF(dd, GETDATE(), const' + TABLE_NAME + '.FechaVencimiento) < const' + TABLE_NAME + '.DiasAlerta THEN ' 
             + '''RED'' '
         + 'END Flag'
 

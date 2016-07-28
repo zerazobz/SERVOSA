@@ -7,7 +7,8 @@ CREATE TABLE [dbo].[SAIR_VEHICLE]
 [TYPE_cTABVSTA] [nvarchar] (4) COLLATE Modern_Spanish_CI_AS NULL,
 [TYPE_cCODVSTA] [nvarchar] (4) COLLATE Modern_Spanish_CI_AS NULL,
 [VEHI_UnitType] [nvarchar] (1) COLLATE Modern_Spanish_CI_AS NULL,
-[VEHI_VehiclePlate] [nvarchar] (80) COLLATE Modern_Spanish_CI_AS NULL
+[VEHI_VehiclePlate] [nvarchar] (80) COLLATE Modern_Spanish_CI_AS NULL,
+[VEHI_Company] [nvarchar] (50) COLLATE Modern_Spanish_CI_AS NULL
 ) ON [PRIMARY]
 GO
 EXEC sp_addextendedproperty N'MS_Description', 'Placa de Vehiculo', 'SCHEMA', N'dbo', 'TABLE', N'SAIR_VEHICLE', 'COLUMN', N'VEHI_VehiclePlate'

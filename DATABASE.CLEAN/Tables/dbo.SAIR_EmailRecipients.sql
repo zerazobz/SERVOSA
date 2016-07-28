@@ -1,0 +1,8 @@
+CREATE TABLE [dbo].[SAIR_EmailRecipients]
+(
+[EMRE_Id] [int] NOT NULL IDENTITY(1, 1),
+[EMRE_Email] [nvarchar] (400) COLLATE Modern_Spanish_CI_AS NOT NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[SAIR_EmailRecipients] ADD CONSTRAINT [EMRE_PK] PRIMARY KEY CLUSTERED  ([EMRE_Id]) ON [PRIMARY]
+GO

@@ -1,8 +1,8 @@
+
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
-
 CREATE PROCEDURE [dbo].[SAIR_DRIVLISTTABLESANDCOLUMNS]
     @schemaName nvarchar(40)
 AS
@@ -20,8 +20,7 @@ BEGIN
     ON COl.object_id = EPC.major_id AND col.column_id = EPC.minor_id
     LEFT JOIN sys.types TYP
     ON TYP.system_type_id = COL.system_type_id AND TYP.user_type_id = COL.user_type_id
-    WHERE SCH.name = @schemaName;
+    WHERE SCH.name IN ('driverconst', 'drivervars') AND
+    NOT(SCH.name = 'driverconst' AND COL.name IN('cid', 'CSAIR_VEHIID', 'DiasAlerta', 'RutaDocumento'));
 END
-
-
 GO

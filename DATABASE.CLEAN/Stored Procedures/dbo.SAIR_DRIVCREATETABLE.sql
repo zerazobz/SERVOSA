@@ -1,8 +1,8 @@
+
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
-
 CREATE PROCEDURE [dbo].[SAIR_DRIVCREATETABLE]
 (
     @newTableName NVARCHAR(200),
@@ -30,6 +30,19 @@ BEGIN
     @value = @newTableName, 
     @level0type = N'SCHEMA', @level0name = 'drivervars', 
     @level1type = N'TABLE',  @level1name = @tableNormalizedName;
+
+    EXEC sys.sp_addextendedproperty 
+    @name = N'MS_Description', 
+    @value = @newTableName, 
+    @level0type = N'SCHEMA', @level0name = 'driverconst', 
+    @level1type = N'TABLE',  @level1name = @tableNormalizedName;
+
+    EXEC sys.sp_addextendedproperty 
+    @name = N'MS_Description', 
+    @value = 'FechaVencimiento', 
+    @level0type = N'SCHEMA', @level0name = 'driverconst', 
+    @level1type = N'TABLE',  @level1name = @tableNormalizedName,
+    @level2type = N'COLUMN',  @level2name = 'FechaVencimiento';
 
     declare @foreignKeyVehicleVarsSQL NVARCHAR(MAX)
     declare @foreignKeyVehicleConstSQL NVARCHAR(MAX)
@@ -61,7 +74,4 @@ BEGIN
     SET @objectId = OBJECT_ID('drivervars.' + @tableNormalizedName)
     PRINT 'El objecto ID de : ' + @tableNormalizedName + ' es: ' + CAST(@objectId as NVARCHAR(100))
 END
-
-
-
 GO

@@ -1,0 +1,16 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE PROCEDURE [dbo].[SAIR_EMREI]
+	@EMRE_Email	NVARCHAR(400),
+	@EMRE_Id INT OUTPUT
+AS
+BEGIN
+	INSERT INTO	dbo.SAIR_EmailRecipients
+	        ( EMRE_Email )
+	VALUES  ( @EMRE_Email  -- EMRE_Email - nvarchar(400)
+	          );
+	SET @EMRE_Id = SCOPE_IDENTITY();
+END
+GO

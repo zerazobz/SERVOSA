@@ -1,8 +1,8 @@
+
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
-
 CREATE PROCEDURE [dbo].[SAIR_DRIVS]
 AS
 BEGIN
@@ -14,14 +14,11 @@ BEGIN
             'Semi-Remolque'
         ELSE
             NULL
-        END VEHI_DescriptionUnitType, VEHI.DRIV_dBirthDate, VEHI.DRIV_cAddress
+        END VEHI_DescriptionUnitType, VEHI.DRIV_dBirthDate, VEHI.DRIV_cAddress, VEHI.DRIV_Company
     from SAIR_DRIVER VEHI
     LEFT JOIN SAIR_TYPES BRND
     ON VEHI.TYPE_cTABBRND = BRND.TYPE_cCodTable AND VEHI.TYPE_cCODBRND = BRND.TYPE_cCodType
     LEFT JOIN SAIR_TYPES VSTA
     ON VEHI.TYPE_cTABVSTA = VSTA.TYPE_cCodTable AND VEHI.TYPE_cCODVSTA = VSTA.TYPE_cCodType;
 END
-
-
-
 GO
