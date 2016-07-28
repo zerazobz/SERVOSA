@@ -44,6 +44,8 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public DateTime? BirthDate { get; set; }
         [Display(Name = "Dirección")]
         public string Address { get; set; }
+        [Display(Name = "Compañía")]
+        public string Company { get; set; }
 
         public static void ToViewModel(DriverModel model, ref DriverServiceModel viewModel)
         {
@@ -62,12 +64,12 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     Estado = model.Estado,
                     Placa = model.VEHI_VehiclePlate,
                     CodigoTipoUnidad = model.VEHI_UnitType,
-                    //DescripcionTipoUnidad = model.VEHI_UnitType == "R"? "Remolque" : "Semiremolque",
                     DescripcionTipoUnidad = model.VEHI_DescriptionUnitType,
                     RowNumber = model.RowNumber,
                     TotalRows = model.TotalRows,
                     BirthDate = model.DRIV_dBirthDate,
-                    Address = model.DRIV_cAddress
+                    Address = model.DRIV_cAddress,
+                    Company = model.DRIV_Company
                 };
             else
                 viewModel = null;
@@ -79,10 +81,6 @@ namespace SERVOSA.SAIR.SERVICE.Models
                 model = new DriverModel()
                 {
                     Codigo = viewModel.Codigo,
-                    //TYPE_cTABVSTA = viewModel.EstadoConcatenado.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(),
-                    //TYPE_cCODVSTA = viewModel.EstadoConcatenado.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault(),
-                    //TYPE_cTABBRND = viewModel.MarcaConcatenada.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(),
-                    //TYPE_cCODBRND = viewModel.MarcaConcatenada.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault(),
                     Item = viewModel.Item,
                     Marca = viewModel.Marca,
                     Estado = viewModel.Estado,
@@ -91,7 +89,8 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     RowNumber = viewModel.RowNumber,
                     TotalRows = viewModel.TotalRows,
                     DRIV_dBirthDate = viewModel.BirthDate,
-                    DRIV_cAddress = viewModel.Address
+                    DRIV_cAddress = viewModel.Address,
+                    DRIV_Company = viewModel.Company
                 };
             else
                 model = null;

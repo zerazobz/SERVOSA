@@ -10,8 +10,6 @@ namespace SERVOSA.SAIR.DATAACCESS.Models.Driver
     {
         public int Item { get; set; }
         public int Codigo { get; set; }
-        //public string PlacaTracto { get; set; }
-        //public string PlacaTolva { get; set; }
         public string TYPE_cTABBRND { get; set; }
         public string TYPE_cCODBRND { get; set; }
         public string Marca { get; set; }
@@ -23,6 +21,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Models.Driver
         public string VEHI_VehiclePlate { get; set; }
         public DateTime? DRIV_dBirthDate { get; set; }
         public string DRIV_cAddress { get; set; }
+        public string DRIV_Company { get; set; }
 
         public int RowNumber { get; set; }
         public int TotalRows { get; set; }

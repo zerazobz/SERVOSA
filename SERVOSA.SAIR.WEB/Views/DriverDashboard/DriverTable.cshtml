@@ -15,14 +15,14 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Codigo)
                 </th>
-                @*<th>
-                    @Html.DisplayNameFor(model => model.DescripcionTipoUnidad)
-                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.Placa)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.BirthDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Company)
                 </th>
             </tr>
         </thead>
@@ -35,14 +35,14 @@
                         <a href="/DriverData/Data?driverCode=@item.Codigo" title="Panel General"><span class="glyphicon glyphicon-dashboard"></span></a>
                         <a href="/DriverData/DownloadDriverData?driverId=@item.Codigo" title="Descargar Datos del Conductor"><span class="glyphicon glyphicon-download"></span></a>
                     </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.DescripcionTipoUnidad)
-                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.Placa)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
                     </td>
                 </tr>
             }

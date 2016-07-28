@@ -68,7 +68,8 @@ namespace SERVOSA.SAIR.SERVICE.Models
                     tmpList.Add(new DriverDetailRowServiceModel
                     {
                         Type = String.Empty,
-                        Value = dr.Value
+                        Value = dr.Value,
+                        ColumnName = dr.ColumnName
                     });
                 });
                 serviceModel.DataForRow = tmpList;

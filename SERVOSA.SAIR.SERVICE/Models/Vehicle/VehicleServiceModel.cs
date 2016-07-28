@@ -36,6 +36,7 @@ namespace SERVOSA.SAIR.SERVICE.Models
         public string DescripcionTipoUnidad { get; set; }
         [Display(Name = "Placa")]
         public string Placa { get; set; }
+        [Display(Name = "Compañía")]
         public string Companhia { get; set; }
 
         public static void ToViewModel(VehicleModel model, ref VehicleServiceModel viewModel)

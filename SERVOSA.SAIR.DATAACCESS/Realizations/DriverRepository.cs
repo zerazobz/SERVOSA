@@ -23,7 +23,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public int Create(DriverModel entity)
         {
-            object[] parameters = new object[] { entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, entity.DRIV_dBirthDate, entity.DRIV_cAddress, null };
+            object[] parameters = new object[] { entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, entity.DRIV_dBirthDate, entity.DRIV_cAddress, entity.DRIV_Company, null };
             using (var insertCommand = _servosaDB.GetStoredProcCommand("SAIR_DRIVI", parameters))
             {
                 var resultExecution = _servosaDB.ExecuteNonQuery(insertCommand);
@@ -74,7 +74,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
 
         public int Update(DriverModel entity)
         {
-            object[] parameters = new object[] { entity.Codigo, entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, entity.DRIV_dBirthDate, entity.DRIV_cAddress };
+            object[] parameters = new object[] { entity.Codigo, entity.TYPE_cTABBRND, entity.TYPE_cCODBRND, entity.TYPE_cTABVSTA, entity.TYPE_cCODVSTA, entity.VEHI_UnitType, entity.VEHI_VehiclePlate, entity.DRIV_dBirthDate, entity.DRIV_cAddress, entity.DRIV_Company };
             using (var updateCommand = _servosaDB.GetStoredProcCommand("SAIR_DRIVIU", parameters))
             {
                 var executionResult = _servosaDB.ExecuteNonQuery(updateCommand);
@@ -104,7 +104,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                         for (int i = 2; i < sizeColumnData; i++)
                         {
                             var rawValueAsString = readerProcedure.IsDBNull(i) ? String.Empty : readerProcedure.GetValue(i).ToString();
-                            var valuesSplited = rawValueAsString.Split(new string[] { "|@|" }, StringSplitOptions.RemoveEmptyEntries);
+                            var valuesSplited = rawValueAsString.Split(new string[] { "|@|" }, StringSplitOptions.None);
                             string valueOfColumn = valuesSplited.Length > 1 ? valuesSplited[1] : valuesSplited.Length > 0 ? valuesSplited.FirstOrDefault() : String.Empty;
                             string nameOfColumn = valuesSplited.Length > 1 ? valuesSplited[0] : String.Empty;
 
@@ -168,15 +168,16 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             return MapBuilder<DriverModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber)
                 .DoNotMap(prop => prop.TotalRows).DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.Estado)
                 .DoNotMap(prop => prop.RowNumber).DoNotMap(prop => prop.VEHI_DescriptionUnitType)
-                //.DoNotMap(prop => prop.DRIV_dBirthDate).DoNotMap(prop => prop.DRIV_cAddress)
+                .DoNotMap(prop => prop.DRIV_Company)
                 .Build();
         }
 
         private IRowMapper<DriverModel> GetMapperForFilteredSP()
         {
-            return MapBuilder<DriverModel>.MapAllProperties().DoNotMap(prop => prop.Marca)
-                .DoNotMap(prop => prop.Estado).DoNotMap(prop => prop.VEHI_DescriptionUnitType)
-                //.DoNotMap(prop => prop.DRIV_dBirthDate).DoNotMap(prop => prop.DRIV_cAddress)
+            return MapBuilder<DriverModel>.MapNoProperties().MapByName(prop => prop.Item).MapByName(prop => prop.Codigo).MapByName(prop => prop.TYPE_cTABBRND)
+                .MapByName(prop => prop.TYPE_cCODBRND).MapByName(prop => prop.TYPE_cTABVSTA).MapByName(prop => prop.TYPE_cCODVSTA)
+                .MapByName(prop => prop.VEHI_UnitType).MapByName(prop => prop.VEHI_VehiclePlate).MapByName(prop => prop.DRIV_dBirthDate)
+                .MapByName(prop => prop.DRIV_cAddress).MapByName(prop => prop.DRIV_Company)
                 .Build();
         }
 
@@ -184,7 +185,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
         {
             return MapBuilder<DriverModel>.MapAllProperties().DoNotMap(prop => prop.RowNumber).DoNotMap(prop => prop.TotalRows)
                 .DoNotMap(prop => prop.Marca).DoNotMap(prop => prop.Estado).DoNotMap(prop => prop.VEHI_DescriptionUnitType)
-                //.DoNotMap(prop => prop.DRIV_dBirthDate).DoNotMap(prop => prop.DRIV_cAddress)
+                .DoNotMap(prop => prop.DRIV_Company)
                 .Build();
         }
     }

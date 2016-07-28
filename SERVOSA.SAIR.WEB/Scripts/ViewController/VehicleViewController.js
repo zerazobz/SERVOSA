@@ -14,6 +14,9 @@
         EstadoConcatenado: {
             title: 'Codigo Estado',
             options: '/Vehicle/GetVehicleStates'
+        },
+        Companhia: {
+            title: 'Compañía Pertenencia'
         }
     };
 

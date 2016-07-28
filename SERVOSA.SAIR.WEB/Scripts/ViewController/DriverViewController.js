@@ -6,7 +6,8 @@
         Codigo: { key: true, title: 'Codigo', width: '5%' },
         Placa: { title: 'Nombre y Apellidos' },
         BirthDate: { title: 'Fecha de Nacimiento', type: 'date', displayFormat: 'dd/mm/yy' },
-        Address: { title: 'Dirección' }
+        Address: { title: 'Dirección' },
+        Company: { title: 'Compañía' }
     };
 
     driverNamespace.LoadDriverAutoCompleteTemplate = function () {

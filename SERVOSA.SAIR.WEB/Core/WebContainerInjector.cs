@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Mvc;
 using SERVOSA.SAIR.SERVICE.Contracts;
 using SERVOSA.SAIR.SERVICE.Realizations;
 using SERVOSA.SAIR.WEB.Controllers;
@@ -11,6 +12,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace SERVOSA.SAIR.WEB.Core
 {
@@ -37,7 +39,12 @@ namespace SERVOSA.SAIR.WEB.Core
             Container.RegisterType<DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());
             Container.RegisterType<UserManager<ApplicationUser>>(new HierarchicalLifetimeManager());
             Container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());
+
+            Container.RegisterType<IRoleStore<IdentityRole, string>, RoleStore<IdentityRole, string, IdentityUserRole>>(new HierarchicalLifetimeManager());
+            //Container.RegisterType<IRoleStore<IdentityRole>, RoleStore<IdentityRole>>(accountInjectionConstructor);
+
             Container.RegisterType<AccountController>(new InjectionConstructor());
+            DependencyResolver.SetResolver(new UnityDependencyResolver(Container));
         }
     }
 }

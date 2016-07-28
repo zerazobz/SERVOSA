@@ -61,10 +61,10 @@
 </div>
 
 <div class="row" style="margin-top: 15px;">
-    <div id="allDriverInformation" class="col-md-5" style="padding-right: 0px;">
+    <div id="allDriverInformation" class="col-md-6" style="padding-right: 0px;">
         @{ Html.RenderAction(MVC.DriverDashboard.DriverTable()); }
     </div>
-    <div id="containerforalltables" class="col-md-7" style="overflow-x: auto; padding-left: 0px;">
+    <div id="containerforalltables" class="col-md-6" style="overflow-x: auto; padding-left: 0px;">
         @foreach (var iTable in Model)
             {
                 { Html.RenderPartial(MVC.DriverDashboard.Views.DriverDataTable, iTable); }

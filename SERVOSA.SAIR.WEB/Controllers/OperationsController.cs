@@ -110,9 +110,18 @@ namespace SERVOSA.SAIR.WEB.Controllers
         public virtual JsonResult DeleteOperation(int operationId, string databaseName)
         {
             int executionResult = _operationService.DeleteOperation(operationId, databaseName);
+
+            var usersToDelete = UserManager.Users.Where(usr => usr.OperationId == operationId).ToList();
+            if(usersToDelete != null && usersToDelete.Count() > 0)
+            {
+                foreach (var iUser in usersToDelete)
+                {
+                    var removeResult = UserManager.Delete(iUser);
+                }
+            }
+
             return Json(new { Result = executionResult > 0 ? "OK" : "ERROR" });
         }
-
 
         [HttpPost]
         public virtual JsonResult ChangeOperationName(int operationId, string newOperationName)

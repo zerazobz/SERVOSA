@@ -177,7 +177,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             return MapBuilder<VehicleModel>.MapNoProperties().MapByName(prop => prop.RowNumber).MapByName(prop => prop.TotalRows)
                 .MapByName(prop => prop.Item).MapByName(prop => prop.Codigo).MapByName(prop => prop.TYPE_cTABBRND).MapByName(prop => prop.TYPE_cCODBRND)
                 .MapByName(prop => prop.TYPE_cTABVSTA).MapByName(prop => prop.TYPE_cCODVSTA).MapByName(prop => prop.VEHI_UnitType)
-                .MapByName(prop => prop.VEHI_VehiclePlate).Build();
+                .MapByName(prop => prop.VEHI_VehiclePlate).MapByName(prop => prop.VEHI_Company).Build();
         }
 
         private IRowMapper<VehicleModel> GetMapperForSearchFilteredByTerm()
