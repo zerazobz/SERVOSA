@@ -541,9 +541,6 @@
     <Content Include="Scripts\ViewController\Driver\DriverViewController.js" />
     <Content Include="Scripts\ViewController\Email\EmailViewController.js" />
     <Content Include="Scripts\ViewController\OldDriverViewController.js" />
-    <Content Include="Scripts\ViewController\Driver\OldDriverDataViewController.js" />
-    <Content Include="Scripts\ViewController\Driver\OldDriverUploadViewController.js" />
-    <Content Include="Scripts\ViewController\Driver\OldDriverViewController.js" />
     <Content Include="Scripts\ViewController\Operations\OperationViewController.js" />
     <Content Include="Scripts\ViewController\SERVOSAViewController.js" />
     <Content Include="Scripts\ViewController\Users\UsersViewController.js" />
