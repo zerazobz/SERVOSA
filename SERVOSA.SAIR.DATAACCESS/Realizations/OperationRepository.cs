@@ -44,8 +44,18 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
             if(!azureRemoteGeneration)
             {
                 //Set Source SQL Server Instance Information
-                SqlConnectionStringBuilder connectionBuilder = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["SERVOSASAIR_CLEAN"].ConnectionString);
-                Server server = new Server(connectionBuilder.DataSource);
+                SqlConnectionStringBuilder connectionBuilderCleanDataBase = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["SERVOSASAIR_CLEAN"].ConnectionString);
+                SqlConnectionStringBuilder connectionBuilderSERVOSA = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["SERVOSAIR"].ConnectionString);
+                //string sqlServerLogin = connectionBuilder.UserID;
+                //string sqlServerPassWord = connectionBuilder.Password;
+                string remoteServerName = connectionBuilderCleanDataBase.DataSource;
+
+                ServerConnection srvConnection = new ServerConnection(connectionBuilderCleanDataBase.DataSource);
+                srvConnection.LoginSecure = false;
+                srvConnection.Login = connectionBuilderCleanDataBase.UserID;
+                srvConnection.Password = connectionBuilderCleanDataBase.Password;
+                
+                Server server = new Server(srvConnection);
 
                 //Set Source Database Name [Database to Copy]
                 Microsoft.SqlServer.Management.Smo.Database database = server.Databases["SERVOSASAIR_CLEAN"];
@@ -62,7 +72,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                 //Copy Database Data Get Value from bCopyData Parameter
                 transfer.CopyData = true;
                 //Set Destination SQL Server Instance Name
-                transfer.DestinationServer = connectionBuilder.DataSource;
+                transfer.DestinationServer = connectionBuilderCleanDataBase.DataSource;
                 //Create The Database in Destination Server
                 transfer.CreateTargetDatabase = false;
                 //transfer.CopyAllDefaults = true;
@@ -72,8 +82,14 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                 //Microsoft.SqlServer.Management.Smo.Database destionationDatabase = new Microsoft.SqlServer.Management.Smo.Database(server, operationDatabaseName);
                 ////Create Empty Database at Destination
                 //destionationDatabase.Create();
-                //Set Destination Database Name
+                //Set Destination Parameters
                 transfer.DestinationDatabase = operationDatabaseName;
+                transfer.DestinationServer = connectionBuilderSERVOSA.DataSource;
+                transfer.DestinationLoginSecure = false;
+                transfer.DestinationLogin = connectionBuilderSERVOSA.UserID;
+                transfer.DestinationPassword = connectionBuilderSERVOSA.Password;
+                
+
                 //Include If Not Exists Clause in the Script
                 transfer.Options.IncludeIfNotExists = true;
                 //Start Transfer

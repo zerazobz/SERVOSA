@@ -444,6 +444,10 @@ namespace Links
     
         public static readonly string main_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/main.min.js") ? Url("main.min.js") : Url("main.js");
         public static readonly string modernizr_2_6_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.6.2.min.js") ? Url("modernizr-2.6.2.min.js") : Url("modernizr-2.6.2.js");
+        public static readonly string moment_with_locales_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/moment-with-locales.min.js") ? Url("moment-with-locales.min.js") : Url("moment-with-locales.js");
+        public static readonly string moment_with_locales_min_js = Url("moment-with-locales.min.js");
+        public static readonly string moment_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/moment.min.js") ? Url("moment.min.js") : Url("moment.js");
+        public static readonly string moment_min_js = Url("moment.min.js");
         public static readonly string quirk_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/quirk.min.js") ? Url("quirk.min.js") : Url("quirk.js");
         public static readonly string respond_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/respond.min.js") ? Url("respond.min.js") : Url("respond.js");
         public static readonly string respond_min_js = Url("respond.min.js");
@@ -460,9 +464,6 @@ namespace Links
                 public static readonly string DriverDataViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverDataViewController.min.js") ? Url("DriverDataViewController.min.js") : Url("DriverDataViewController.js");
                 public static readonly string DriverUploadViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverUploadViewController.min.js") ? Url("DriverUploadViewController.min.js") : Url("DriverUploadViewController.js");
                 public static readonly string DriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverViewController.min.js") ? Url("DriverViewController.min.js") : Url("DriverViewController.js");
-                public static readonly string OldDriverDataViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/OldDriverDataViewController.min.js") ? Url("OldDriverDataViewController.min.js") : Url("OldDriverDataViewController.js");
-                public static readonly string OldDriverUploadViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/OldDriverUploadViewController.min.js") ? Url("OldDriverUploadViewController.min.js") : Url("OldDriverUploadViewController.js");
-                public static readonly string OldDriverViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/OldDriverViewController.min.js") ? Url("OldDriverViewController.min.js") : Url("OldDriverViewController.js");
             }
         
             public static readonly string DriverDataViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/DriverDataViewController.min.js") ? Url("DriverDataViewController.min.js") : Url("DriverDataViewController.js");
@@ -850,9 +851,6 @@ namespace Links
                         public const string DriverDataViewController_js = "~/Scripts/ViewController/Driver/DriverDataViewController.js"; 
                         public const string DriverUploadViewController_js = "~/Scripts/ViewController/Driver/DriverUploadViewController.js"; 
                         public const string DriverViewController_js = "~/Scripts/ViewController/Driver/DriverViewController.js"; 
-                        public const string OldDriverDataViewController_js = "~/Scripts/ViewController/Driver/OldDriverDataViewController.js"; 
-                        public const string OldDriverUploadViewController_js = "~/Scripts/ViewController/Driver/OldDriverUploadViewController.js"; 
-                        public const string OldDriverViewController_js = "~/Scripts/ViewController/Driver/OldDriverViewController.js"; 
                     }
                 }
                 public static partial class Email 
@@ -916,6 +914,10 @@ namespace Links
                 public const string jquery_validationEngine_js = "~/Scripts/jquery.validationEngine.js"; 
                 public const string main_js = "~/Scripts/main.js"; 
                 public const string modernizr_2_6_2_js = "~/Scripts/modernizr-2.6.2.js"; 
+                public const string moment_with_locales_js = "~/Scripts/moment-with-locales.js"; 
+                public const string moment_with_locales_min_js = "~/Scripts/moment-with-locales.min.js"; 
+                public const string moment_js = "~/Scripts/moment.js"; 
+                public const string moment_min_js = "~/Scripts/moment.min.js"; 
                 public const string quirk_js = "~/Scripts/quirk.js"; 
                 public const string respond_js = "~/Scripts/respond.js"; 
                 public const string respond_min_js = "~/Scripts/respond.min.js"; 
