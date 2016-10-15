@@ -25,7 +25,7 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                 //DataAccessDatabaseConfiguration.GetDataBase();
         }
 
-        public OperationDbModel CreateOperation(string operationName, bool azureRemoteGeneration)
+        public OperationDbModel CreateOperation(string operationName)
         {
             string operationDatabaseName = String.Empty;
             int databaseId = 0;
@@ -41,62 +41,62 @@ namespace SERVOSA.SAIR.DATAACCESS.Realizations
                 operationId = Convert.ToInt32(_servosaDB.GetParameterValue(createDbCommand, "@operationId"));
             }
 
-            if(!azureRemoteGeneration)
-            {
-                //Set Source SQL Server Instance Information
-                SqlConnectionStringBuilder connectionBuilderCleanDataBase = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["SERVOSASAIR_CLEAN"].ConnectionString);
-                SqlConnectionStringBuilder connectionBuilderSERVOSA = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["SERVOSAIR"].ConnectionString);
-                //string sqlServerLogin = connectionBuilder.UserID;
-                //string sqlServerPassWord = connectionBuilder.Password;
-                string remoteServerName = connectionBuilderCleanDataBase.DataSource;
+            //if(!azureRemoteGeneration)
+            //{
+            //    //Set Source SQL Server Instance Information
+            //    SqlConnectionStringBuilder connectionBuilderCleanDataBase = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["SERVOSASAIR_CLEAN"].ConnectionString);
+            //    SqlConnectionStringBuilder connectionBuilderSERVOSA = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["SERVOSAIR"].ConnectionString);
+            //    //string sqlServerLogin = connectionBuilder.UserID;
+            //    //string sqlServerPassWord = connectionBuilder.Password;
+            //    string remoteServerName = connectionBuilderCleanDataBase.DataSource;
 
-                ServerConnection srvConnection = new ServerConnection(connectionBuilderCleanDataBase.DataSource);
-                srvConnection.LoginSecure = false;
-                srvConnection.Login = connectionBuilderCleanDataBase.UserID;
-                srvConnection.Password = connectionBuilderCleanDataBase.Password;
+            //    ServerConnection srvConnection = new ServerConnection(connectionBuilderCleanDataBase.DataSource);
+            //    srvConnection.LoginSecure = false;
+            //    srvConnection.Login = connectionBuilderCleanDataBase.UserID;
+            //    srvConnection.Password = connectionBuilderCleanDataBase.Password;
                 
-                Server server = new Server(srvConnection);
+            //    Server server = new Server(srvConnection);
 
-                //Set Source Database Name [Database to Copy]
-                Microsoft.SqlServer.Management.Smo.Database database = server.Databases["SERVOSASAIR_CLEAN"];
-                //server.ConnectionContext.ConnectTimeout = 300000;
-                Transfer transfer = new Transfer(database);
-                //transfer.BulkCopyTimeout = 0;
+            //    //Set Source Database Name [Database to Copy]
+            //    Microsoft.SqlServer.Management.Smo.Database database = server.Databases["SERVOSASAIR_CLEAN"];
+            //    //server.ConnectionContext.ConnectTimeout = 300000;
+            //    Transfer transfer = new Transfer(database);
+            //    //transfer.BulkCopyTimeout = 0;
 
-                //Yes I want to Copy All the Database Objects
-                transfer.CopyAllObjects = true;
-                //In case if the Destination Database / Objects Exists Drop them First
-                transfer.DropDestinationObjectsFirst = true;
-                //Copy Database Schema
-                transfer.CopySchema = true;
-                //Copy Database Data Get Value from bCopyData Parameter
-                transfer.CopyData = true;
-                //Set Destination SQL Server Instance Name
-                transfer.DestinationServer = connectionBuilderCleanDataBase.DataSource;
-                //Create The Database in Destination Server
-                transfer.CreateTargetDatabase = false;
-                //transfer.CopyAllDefaults = true;
-                //transfer.Options.DriDefaults = true;
-                transfer.Options.DriAll = true;
-                ////Set Destination Database Name
-                //Microsoft.SqlServer.Management.Smo.Database destionationDatabase = new Microsoft.SqlServer.Management.Smo.Database(server, operationDatabaseName);
-                ////Create Empty Database at Destination
-                //destionationDatabase.Create();
-                //Set Destination Parameters
-                transfer.DestinationDatabase = operationDatabaseName;
-                transfer.DestinationServer = connectionBuilderSERVOSA.DataSource;
-                transfer.DestinationLoginSecure = false;
-                transfer.DestinationLogin = connectionBuilderSERVOSA.UserID;
-                transfer.DestinationPassword = connectionBuilderSERVOSA.Password;
+            //    //Yes I want to Copy All the Database Objects
+            //    transfer.CopyAllObjects = true;
+            //    //In case if the Destination Database / Objects Exists Drop them First
+            //    transfer.DropDestinationObjectsFirst = true;
+            //    //Copy Database Schema
+            //    transfer.CopySchema = true;
+            //    //Copy Database Data Get Value from bCopyData Parameter
+            //    transfer.CopyData = true;
+            //    //Set Destination SQL Server Instance Name
+            //    transfer.DestinationServer = connectionBuilderCleanDataBase.DataSource;
+            //    //Create The Database in Destination Server
+            //    transfer.CreateTargetDatabase = false;
+            //    //transfer.CopyAllDefaults = true;
+            //    //transfer.Options.DriDefaults = true;
+            //    transfer.Options.DriAll = true;
+            //    ////Set Destination Database Name
+            //    //Microsoft.SqlServer.Management.Smo.Database destionationDatabase = new Microsoft.SqlServer.Management.Smo.Database(server, operationDatabaseName);
+            //    ////Create Empty Database at Destination
+            //    //destionationDatabase.Create();
+            //    //Set Destination Parameters
+            //    transfer.DestinationDatabase = operationDatabaseName;
+            //    transfer.DestinationServer = connectionBuilderSERVOSA.DataSource;
+            //    transfer.DestinationLoginSecure = false;
+            //    transfer.DestinationLogin = connectionBuilderSERVOSA.UserID;
+            //    transfer.DestinationPassword = connectionBuilderSERVOSA.Password;
                 
 
-                //Include If Not Exists Clause in the Script
-                transfer.Options.IncludeIfNotExists = true;
-                //Start Transfer
-                transfer.TransferData();
-                //Release Server variable
-                server = null;
-            }
+            //    //Include If Not Exists Clause in the Script
+            //    transfer.Options.IncludeIfNotExists = true;
+            //    //Start Transfer
+            //    transfer.TransferData();
+            //    //Release Server variable
+            //    server = null;
+            //}
 
             return new OperationDbModel()
             {

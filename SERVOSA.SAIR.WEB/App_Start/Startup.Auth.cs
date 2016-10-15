@@ -112,6 +112,21 @@ namespace SERVOSA.SAIR.WEB
                 var roleCreationResult = roleManager.Create(role);
             }
 
+            //var mplacenciaUser = new ApplicationUser();
+            //mplacenciaUser.UserName = "mplacencia";
+            //mplacenciaUser.Email = "mplacencia@gmail.com";
+            //mplacenciaUser.OperationId = -1;
+
+            //string mplacenciaUserPassword = "mplacencia";
+
+            //var userPlacenciaResult = UserManager.Create(mplacenciaUser, mplacenciaUserPassword);
+
+            ////Add default User to Role Admin   
+            //if (userPlacenciaResult.Succeeded)
+            //{
+            //    var result2 = UserManager.AddToRole(mplacenciaUser.Id, "Admin");
+            //}
+            
             //// creating Creating Employee role    
             //if (!roleManager.RoleExists("Employee"))
             //{

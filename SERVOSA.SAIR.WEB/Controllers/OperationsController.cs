@@ -62,8 +62,7 @@ namespace SERVOSA.SAIR.WEB.Controllers
             try
             {
                 bool resultExecution = false;
-                bool azureRemoteGeneration = Convert.ToBoolean(ConfigurationManager.AppSettings[SAIRApplicationResources.AzureRemoteExecution]);
-                var operationResult = _operationService.CreateOperation(model.OperationName, azureRemoteGeneration);
+                var operationResult = _operationService.CreateOperation(model.OperationName);
                 if(operationResult != null)
                 {
                     model.OperationId = operationResult.OperationId;

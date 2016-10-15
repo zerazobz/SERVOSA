@@ -120,9 +120,6 @@
   <data name="AdminRole" xml:space="preserve">
     <value>Admin</value>
   </data>
-  <data name="AzureRemoteExecution" xml:space="preserve">
-    <value>cution</value>
-  </data>
   <data name="OperationID" xml:space="preserve">
     <value>OperationID</value>
   </data>
