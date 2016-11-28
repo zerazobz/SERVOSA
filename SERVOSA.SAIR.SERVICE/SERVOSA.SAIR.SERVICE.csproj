@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Common\IServiceRepository.cs" />
+    <Compile Include="Contracts\IBrandService.cs" />
     <Compile Include="Contracts\IDBServices.cs" />
     <Compile Include="Contracts\IDriverAlertService.cs" />
     <Compile Include="Contracts\IDriverDBServices.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Core\ServosaDriverSingleton.cs" />
     <Compile Include="Core\ServosaSingleton.cs" />
     <Compile Include="Core\SERVOSASqlTypes.cs" />
+    <Compile Include="Models\BrandModel.cs" />
     <Compile Include="Models\ColumnServiceModel.cs" />
     <Compile Include="Models\DriverColumnServiceModel.cs" />
     <Compile Include="Models\DriverTableColumnServiceModel.cs" />
@@ -133,6 +135,7 @@
     <Compile Include="Models\Vehicle\VehicleVariableDataServiceModel.cs" />
     <Compile Include="Models\Vehicle\VehicleRelatedTableServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Realizations\BrandService.cs" />
     <Compile Include="Realizations\DBServices.cs" />
     <Compile Include="Realizations\DriverAlertService.cs" />
     <Compile Include="Realizations\DriverDBServices.cs" />

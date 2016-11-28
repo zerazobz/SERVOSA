@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Mantenimiento de Marcas";
+}
+
+@Styles.Render("~/bundles/jtableStyles")
+<div class="container">
+    <div class="col-md-12">
+        <div id="brandsContainer"></div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jtableReferences")
+    @Scripts.Render("~/bundles/Brands")
+}

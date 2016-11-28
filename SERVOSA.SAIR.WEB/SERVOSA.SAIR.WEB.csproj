@@ -223,7 +223,11 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BrandsController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\DriverDashboardController.cs" />
     <Compile Include="Controllers\DriverDataController.cs" />
@@ -535,6 +539,7 @@
     <Content Include="Scripts\quirk.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ViewController\Brands\BrandViewController.js" />
     <Content Include="Scripts\ViewController\DriverDataViewController.js" />
     <Content Include="Scripts\ViewController\DriverSERVOSA.Core.js" />
     <Content Include="Scripts\ViewController\DriverSERVOSAViewController.js" />
@@ -662,6 +667,7 @@
     <Content Include="Views\Users\Manage.cshtml" />
     <Content Include="Views\Email\Manage.cshtml" />
     <Content Include="Views\Shared\Constants\_ConstansDrivers.cshtml" />
+    <Content Include="Views\Brands\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

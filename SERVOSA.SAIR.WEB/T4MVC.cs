@@ -28,6 +28,7 @@ using T4MVC;
 public static partial class MVC
 {
     public static SERVOSA.SAIR.WEB.Controllers.AccountController Account = new SERVOSA.SAIR.WEB.Controllers.T4MVC_AccountController();
+    public static SERVOSA.SAIR.WEB.Controllers.BrandsController Brands = new SERVOSA.SAIR.WEB.Controllers.T4MVC_BrandsController();
     public static SERVOSA.SAIR.WEB.Controllers.DriverController Driver = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverController();
     public static SERVOSA.SAIR.WEB.Controllers.DriverDashboardController DriverDashboard = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverDashboardController();
     public static SERVOSA.SAIR.WEB.Controllers.DriverDataController DriverData = new SERVOSA.SAIR.WEB.Controllers.T4MVC_DriverDataController();
@@ -457,6 +458,14 @@ namespace Links
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Brands {
+                private const string URLPATH = "~/Scripts/ViewController/Brands";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string BrandViewController_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/BrandViewController.min.js") ? Url("BrandViewController.min.js") : Url("BrandViewController.js");
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class Driver {
                 private const string URLPATH = "~/Scripts/ViewController/Driver";
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
@@ -844,6 +853,13 @@ namespace Links
             }
             public static partial class ViewController 
             {
+                public static partial class Brands 
+                {
+                    public static class Assets
+                    {
+                        public const string BrandViewController_js = "~/Scripts/ViewController/Brands/BrandViewController.js"; 
+                    }
+                }
                 public static partial class Driver 
                 {
                     public static class Assets

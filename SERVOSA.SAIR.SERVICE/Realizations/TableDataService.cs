@@ -76,27 +76,7 @@ namespace SERVOSA.SAIR.SERVICE.Realizations
             }
             return new Tuple<bool, int, string>(updateResult, rowsAffected, messageResult);
         }
-
-        //public Tuple<bool, int, string> InsertOrUpdateVariableData(VehicleVariableDataServiceModel model, Dictionary<string, Tuple<SERVOSASqlTypes, Object>> tableData)
-        //{
-        //    var columnFK = model.ColumnsCollection.Where(c => c.ColumnName == "SAIR_VEHIID").FirstOrDefault();
-        //    string fkValue = String.Empty;
-        //    var rawFkConvertion = columnFK.ColumnValue as string[];
-        //    if (rawFkConvertion.Length > 0)
-        //        fkValue = rawFkConvertion[0];
-
-        //    var columnIdentity = model.ColumnsCollection.Where(c => c.ColumnName == "id").FirstOrDefault();
-        //    string identityValue = String.Empty;
-        //    var rawIdentityConvertion = columnIdentity.ColumnValue as string[];
-        //    if (rawIdentityConvertion.Length > 0)
-        //        identityValue = rawIdentityConvertion[0];
-
-        //    if (columnIdentity != null && !String.IsNullOrWhiteSpace(identityValue))
-        //        return UpdateTableData(model.TableName, Convert.ToInt32(fkValue), tableData);
-        //    else
-        //        return InsertTableData(model.TableName, tableData);
-        //}
-
+        
         public Tuple<bool, int, string> InsertOrUpdateData(VehicleVariableDataServiceModel model)
         {
             Tuple<bool, int, string> resultForConstants = null;

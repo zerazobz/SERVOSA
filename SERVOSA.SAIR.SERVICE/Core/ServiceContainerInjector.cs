@@ -34,6 +34,7 @@ namespace SERVOSA.SAIR.SERVICE.Core
             Container.RegisterType<IDriverFilesRepository, DriverFilesRepository>();
             Container.RegisterType<IOperationRepository, OperationRepository>();
             Container.RegisterType<IEmailRecipentsRepository, EmailRecipentRepository>();
+            Container.RegisterType<IBrandsRepository, BrandsRepository>();
         }
     }
 }

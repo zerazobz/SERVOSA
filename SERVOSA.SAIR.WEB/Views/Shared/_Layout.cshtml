@@ -29,6 +29,7 @@
                     @{ Html.RenderPartial(MVC.Shared.Views._Menu); }
                     <li>@Html.ActionLink("Operaciones", MVC.Operations.Choose())</li>
                     <li>@Html.ActionLink("Usuarios", MVC.Users.Manage())</li>
+                    <li>@Html.ActionLink("Marcas", MVC.Brands.Index())</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -8,6 +8,11 @@ namespace SERVOSA.SAIR.WEB
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            string[] jqueryMinimal = new string[]
+            {
+                ""
+            };
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -17,6 +22,21 @@ namespace SERVOSA.SAIR.WEB
             bundles.Add(new ScriptBundle("~/bundles/jqueryuiwithdatepickerculture").Include(
                         "~/Scripts/jquery-ui-1.9.2.js",
                         "~/Scripts/jquery.ui.datepicker-es.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/jtableStyles").Include(
+                        "~/Content/themes/base/jquery-ui.css",
+                        "~/Scripts/jtable/themes/jqueryui/jtable_jqueryui.css"
+                        ));
+
+            bundles.Add(new ScriptBundle("~/bundles/jtableReferences").Include(
+                        "~/Scripts/jquery-ui-1.9.2.js", new CssRewriteUrlTransform())
+                        .Include("~/Scripts/jtable/jquery.jtable.js", new CssRewriteUrlTransform())
+                        .Include("~/Scripts/jtable/localization/jquery.jtable.es.js", new CssRewriteUrlTransform())
+                        );
+
+            bundles.Add(new ScriptBundle("~/bundles/Brands").Include(
+                        "~/Scripts/ViewController/Brands/BrandViewController.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/servosamaincore").Include(
                         "~/Scripts/Core/ServosaMainCore.js"));
